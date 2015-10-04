@@ -1,3 +1,3 @@
-install: true
+install: gem install kramdown
 
 script: make

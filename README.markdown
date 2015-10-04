@@ -1,7 +1,7 @@
 Subresource Integrity
 =====================
 
-Editor's draft: https://w3c.github.io/webappsec/specs/subresourceintegrity/
+Editor's draft: https://w3c.github.io/webappsec-subresource-integrity/
 
 The spec text is written in the [Kramdown variant of Markdown][kramdown].
 After editing `spec.markdown`, you can generate a new HTML draft by typing

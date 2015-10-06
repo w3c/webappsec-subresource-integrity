@@ -5,7 +5,7 @@ a fetched resource has been delivered without unexpected manipulation.
 
 <section id="sotd">
 A list of changes to this document may be found at
-<https://github.com/w3c/webappsec>.
+<https://github.com/w3c/webappsec-subresource-integrity>.
 </section>
 
 <section class="informative">

@@ -201,10 +201,9 @@ pieces of information:
 The hash function and digest MUST be provided in order to validate a
 response's integrity.
 
-<div class="note">
 At the moment, no options are defined. However, future versions of
 the spec may define options, such as MIME types [[!MIMETYPE]].
-</div>
+{:.note}
 
 This metadata MUST be encoded in the same format as the `hash-source` (without the single quotes)
 in [section 4.2 of the Content Security Policy Level 2 specification][csp2-section42].
@@ -217,18 +216,18 @@ digest that results. This can be encoded as follows:
     sha384-H8BRh8j48O9oYatfu5AZzq6A9RINhZO5H16dQZngK7T62em8MUt1FLm52t+eX6xO
 {:.example}
 
-<div class="note">
+<div>
 Digests may be generated using any number of utilities. [OpenSSL][], for
 example, is quite commonly available. The example in this section is the
 result of the following command line:
 
     echo -n "alert('Hello, world.');" | openssl dgst -sha384 -binary | openssl enc -base64 -A
+</div>
+{:.note}
 
 [request]: https://fetch.spec.whatwg.org/#concept-request-integrity-metadata
 [csp2-section42]: http://www.w3.org/TR/CSP2/#source-list-syntax
 [openssl]: https://www.openssl.org/
-</div>
-
 [sha2]: #dfn-sha-2
 [digest]: #dfn-digest
 [integrity metadata]: #dfn-integrity-metadata
@@ -287,12 +286,11 @@ collision-resistant.  For example, `getPrioritizedHashFunction('sha256',
 'sha512')` would return `'sha512'` and `getPrioritizedHashFunction('sha256',
 'sha256')` would return the empty string.
 
-<div class="note">
 The <dfn>getPrioritizedHashFunction</dfn> is an internal 
 implementation detail. It is not an API that implementors 
 provide to web applications. It is used in this document 
 only to simplify the algorithm description.
-</div>
+{:.note}
 
 </section><!-- /Framework::Cryptographic hash functions::Priority -->
 

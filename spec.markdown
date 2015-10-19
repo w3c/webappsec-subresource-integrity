@@ -47,7 +47,6 @@ This example can be communicated to a user agent by adding the hash to a
     <script src="https://example.com/example-framework.js"
             integrity="sha384-Li9vy3DqF8tnTXuiaAJuML3ky+er10rcgNR/VqsVpcw+ThHmYcwiB1pbOxEbzJr7"
             crossorigin="anonymous"></script>
-
 {:.example}
 
 Scripts, of course, are not the only response type which would benefit
@@ -250,6 +249,7 @@ by either of the following hash expressions:
 
     sha384-dOTZf16X8p34q2/kYyEFm0jh89uTjikhnzjeLeF0FHsEaYKb1A1cv+Lyv4Hk8vHd
     sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzCinRE7Af1ofPrw==
+{:.example}
 
 Authors may choose to specify both, for example:
 
@@ -257,6 +257,7 @@ Authors may choose to specify both, for example:
        integrity="sha384-dOTZf16X8p34q2/kYyEFm0jh89uTjikhnzjeLeF0FHsEaYKb1A1cv+Lyv4Hk8vHd
                   sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzCinRE7Af1ofPrw=="
        crossorigin="anonymous"></script>
+{:.example}
 
 In this case, the user agent will choose the strongest hash function in the
 list, and use that metadata to validate the response (as described below in
@@ -451,12 +452,11 @@ functions. For example, a developer might write a `script` element such as:
             integrity="sha384-Li9vy3DqF8tnTXuiaAJuML3ky+er10rcgNR/VqsVpcw+ThHmYcwiB1pbOxEbzJr7
                        sha384-+/M6kredJcxdsqkczBUjMLvqyHb1K/JThDXWsBVxMEeZHEaMKEOEct339VItX1zB"
             crossorigin="anonymous"></script>
+{:.example}
 
 which would allow the user agent to accept two different content payloads, one
 of which matches the first SHA384 hash value and the other matches the second
 SHA384 hash value.
-
-{:.example}
 
 User agents may allow users to modify the result of this algorithm via user
 preferences, bookmarklets, third-party additions to the user agent, and other

@@ -349,7 +349,7 @@ only deliver integrity metadata on a [potentially secure origin][].  See
 The following algorithm details these restrictions:
 
 1.  Let <var>response</var> be the response that results from
-    fetching the <var>resource</var>.
+    [fetching][] the <var>resource</var>.
 2.  If the <var>response</var> [type][response type] is `basic`,
     `cors` or `default`, return `true`.
 3.  Return `false`.
@@ -370,6 +370,7 @@ checks. Blob URLs on the other hand are usually considered same-origin and
 therefore are eligible for integrity checks.
 {:.note}
 
+[fetching]: https://fetch.spec.whatwg.org/#main-fetch
 [response type]: https://fetch.spec.whatwg.org/#concept-response-type
 </section><!-- Algorithms::eligible -->
 <section>

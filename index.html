@@ -140,12 +140,12 @@ only a single origin. For example, authors pull scripts and styles from a
 wide variety of services and content delivery networks, and must trust
 that the delivered representation is, in fact, what they expected to
 load. If an attacker can trick a user into downloading content from
-a hostile server (via DNS poisoning, or other such means), the author has
-no recourse. Likewise, an attacker who can replace the file on the CDN server
-has the ability to inject arbitrary content.</p>
+a hostile server (via <a href="https://www.ietf.org/rfc/rfc1035.txt">DNS</a> poisoning, or other such means), the author has
+no recourse. Likewise, an attacker who can replace the file on the Content
+Delivery Network (CDN) server has the ability to inject arbitrary content.</p>
 
   <p>Delivering resources over a secure channel mitigates some of this risk: with
-TLS, <a href="https://tools.ietf.org/html/rfc6797">HSTS</a>, and <a href="https://tools.ietf.org/html/rfc7469">pinned public keys</a>, a user agent can be fairly certain
+<a href="https://tools.ietf.org/html/rfc5246">TLS</a>, <a href="https://tools.ietf.org/html/rfc6797">HSTS</a>, and <a href="https://tools.ietf.org/html/rfc7469">pinned public keys</a>, a user agent can be fairly certain
 that it is indeed speaking with the server it believes it’s talking to. These
 mechanisms, however, authenticate <em>only</em> the server, <em>not</em> the content. An
 attacker (or administrator) with access to the server can manipulate content with
@@ -168,14 +168,14 @@ substitute malicious content.</p>
   <p>This example can be communicated to a user agent by adding the hash to a
 <code>script</code> element, like so:</p>
 
-  <pre><code>&lt;script src="https://example.com/example-framework.js"
+  <pre class="example"><code>&lt;script src="https://example.com/example-framework.js"
         integrity="sha384-Li9vy3DqF8tnTXuiaAJuML3ky+er10rcgNR/VqsVpcw+ThHmYcwiB1pbOxEbzJr7"
         crossorigin="anonymous"&gt;&lt;/script&gt;
 </code></pre>
 
-  <p class="example">Scripts, of course, are not the only response type which would benefit
+  <p>Scripts, of course, are not the only response type which would benefit
 from integrity validation. The scheme specified here also applies to <code>link</code>
-and future versions of the specification are likely to expand this coverage.</p>
+and future versions of this specification are likely to expand this coverage.</p>
 
   <section>
     <h3 id="goals">Goals</h3>
@@ -289,8 +289,12 @@ NIST in <a href="http://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf
 specified in RFC5234. [[!ABNF]]</p>
 
     <p>The following core rules are included by reference, as defined in
-<a href="https://tools.ietf.org/html/rfc5234#appendix-B.1">Appendix B.1</a> of [[!ABNF]]: <code><dfn>WSP</dfn></code> (white space)
-and <code><dfn>VCHAR</dfn></code> (printing characters).</p>
+<a href="https://tools.ietf.org/html/rfc5234#appendix-B.1">Appendix B.1</a> of [[!ABNF]]:</p>
+
+    <ul>
+      <li><code><dfn>WSP</dfn></code> (white space)</li>
+      <li><code><dfn>VCHAR</dfn></code> (printing characters).</li>
+    </ul>
 
   </section>
 
@@ -320,10 +324,8 @@ pieces of information:</p>
     <p>The hash function and digest MUST be provided in order to validate a
 response’s integrity.</p>
 
-    <div class="note">
-      <p>At the moment, no options are defined. However, future versions of
+    <p class="note">At the moment, no options are defined. However, future versions of
 the spec may define options, such as MIME types [[!MIMETYPE]].</p>
-    </div>
 
     <p>This metadata MUST be encoded in the same format as the <code>hash-source</code> (without the single quotes)
 in <a href="http://www.w3.org/TR/CSP2/#source-list-syntax">section 4.2 of the Content Security Policy Level 2 specification</a>.</p>
@@ -343,7 +345,6 @@ result of the following command line:</p>
 
       <pre><code>echo -n "alert('Hello, world.');" | openssl dgst -sha384 -binary | openssl enc -base64 -A
 </code></pre>
-
     </div>
 
   </section>
@@ -364,13 +365,13 @@ resource in order to provide agility in the face of future cryptographic discove
 For example, the resource described in the previous section may be described
 by either of the following hash expressions:</p>
 
-      <pre><code>sha384-dOTZf16X8p34q2/kYyEFm0jh89uTjikhnzjeLeF0FHsEaYKb1A1cv+Lyv4Hk8vHd
+      <pre class="example"><code>sha384-dOTZf16X8p34q2/kYyEFm0jh89uTjikhnzjeLeF0FHsEaYKb1A1cv+Lyv4Hk8vHd
 sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzCinRE7Af1ofPrw==
 </code></pre>
 
       <p>Authors may choose to specify both, for example:</p>
 
-      <pre><code>&lt;script src="hello_world.js"
+      <pre class="example"><code>&lt;script src="hello_world.js"
    integrity="sha384-dOTZf16X8p34q2/kYyEFm0jh89uTjikhnzjeLeF0FHsEaYKb1A1cv+Lyv4Hk8vHd
               sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzCinRE7Af1ofPrw=="
    crossorigin="anonymous"&gt;&lt;/script&gt;
@@ -382,7 +383,7 @@ the “<a href="#parse-metadata">parse metadata</a>” and “<a href="#get-the-
 set</a>” algorithms).</p>
 
       <p>When a hash function is determined to be insecure, user agents SHOULD deprecate
-and eventually remove support for integrity validation using that hash
+and eventually remove support for integrity validation using the insecure hash
 function. User agents MAY check the validity of responses using a digest based on
 a deprecated function.</p>
 
@@ -405,12 +406,10 @@ collision-resistant.  For example, <code>getPrioritizedHashFunction('sha256',
 'sha512')</code> would return <code>'sha512'</code> and <code>getPrioritizedHashFunction('sha256',
 'sha256')</code> would return the empty string.</p>
 
-      <div class="note">
-        <p>The <dfn>getPrioritizedHashFunction</dfn> is an internal 
+      <p class="note">The <dfn>getPrioritizedHashFunction</dfn> is an internal 
 implementation detail. It is not an API that implementors 
 provide to web applications. It is used in this document 
 only to simplify the algorithm description.</p>
-      </div>
 
     </section>
     <!-- /Framework::Cryptographic hash functions::Priority -->
@@ -442,7 +441,7 @@ the result of applying <var>algorithm</var> to the <a href="https://tools.ietf.o
       <p>In order to mitigate an attacker’s ability to read data cross-origin by
 brute-forcing values via integrity checks, responses are only eligible for such
 checks if they are same-origin or are the result of explicit access granted to
-the loading origin via CORS. [[!CORS]]</p>
+the loading origin via Cross Origin Resource Sharing [[!CORS]].</p>
 
       <p class="note">As noted in <a class="note" href="https://tools.ietf.org/html/rfc6454#section-4">RFC6454, section 4</a>, some user agents use
 globally unique identifiers for each file URI. This means that
@@ -576,7 +575,7 @@ metadata from <var>parsedMetadata</var></a>.</li>
       <p>This algorithm allows the user agent to accept multiple, valid strong hash
 functions. For example, a developer might write a <code>script</code> element such as:</p>
 
-      <pre><code>&lt;script src="https://example.com/example-framework.js"
+      <pre class="example"><code>&lt;script src="https://example.com/example-framework.js"
         integrity="sha384-Li9vy3DqF8tnTXuiaAJuML3ky+er10rcgNR/VqsVpcw+ThHmYcwiB1pbOxEbzJr7
                    sha384-+/M6kredJcxdsqkczBUjMLvqyHb1K/JThDXWsBVxMEeZHEaMKEOEct339VItX1zB"
         crossorigin="anonymous"&gt;&lt;/script&gt;
@@ -586,7 +585,7 @@ functions. For example, a developer might write a <code>script</code> element su
 of which matches the first SHA384 hash value and the other matches the second
 SHA384 hash value.</p>
 
-      <p class="example note">User agents may allow users to modify the result of this algorithm via user
+      <p class="note">User agents may allow users to modify the result of this algorithm via user
 preferences, bookmarklets, third-party additions to the user agent, and other
 such mechanisms. For example, redirects generated by an extension like
 <a href="https://www.eff.org/https-everywhere">HTTPS Everywhere</a> could load and execute
@@ -680,7 +679,7 @@ as possible.</p>
     <p>The user agent will refuse to render or execute responses that fail an integrity
 check, instead returning a network error as defined in Fetch [[!FETCH]].</p>
 
-    <p class="note">On a failed integrity check, an <code>error</code> event is thrown. Developers
+    <p class="note">On a failed integrity check, an <code>error</code> event is fired. Developers
 wishing to provide a canonical fallback resource (e.g., a resource not served
 from a CDN, perhaps from a secondary, trusted, but slower source) can catch this
 <code>error</code> event and provide an appropriate handler to replace the
@@ -701,7 +700,7 @@ modify step 4 to read:</p>
       <p>Do a potentially CORS-enabled fetch of the resulting absolute URL, with the
 mode being the current state of the element’s crossorigin content attribute,
 the origin being the origin of the link element’s Document, the default origin
-behaviour set to taint, and the <a href="#dfn-integrity-metadata">integrity metadata</a> of the request to the
+behavior set to taint, and the <a href="#dfn-integrity-metadata">integrity metadata</a> of the request set to the
 value of the element’s <code>integrity</code> attribute.</p>
 
     </section>

@@ -164,11 +164,16 @@ NIST in ["FIPS PUB 180-4: Secure Hash Standard (SHS)"][shs].
 The Augmented Backus-Naur Form (ABNF) notation used in this document is
 specified in RFC5234. [[!ABNF]]
 
-The following core rules are included by reference, as defined in
-[Appendix B.1][abnf-b1] of [[!ABNF]]: <code><dfn>WSP</dfn></code> (white space)
-and <code><dfn>VCHAR</dfn></code> (printing characters).
+The following core rules are included by reference, as defined in [Appendix
+B.1][abnf-b1] of [[!ABNF]] defines <code><dfn>VCHAR</dfn></code> (printing
+characters).
+
+<code><dfn>WSP</dfn></code> (white space) characters are defined in Section
+[2.4.1 Common parser idioms][space-chars] of the HTML 5 specification as
+<code>White_Space characters.</code>
 
 [abnf-b1]: https://tools.ietf.org/html/rfc5234#appendix-B.1
+[space-chars]: http://www.w3.org/TR/html5/infrastructure.html#space-character
 </section>
 
 </section>

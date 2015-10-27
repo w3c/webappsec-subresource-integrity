@@ -47,7 +47,6 @@ This example can be communicated to a user agent by adding the hash to a
     <script src="https://example.com/example-framework.js"
             integrity="sha384-Li9vy3DqF8tnTXuiaAJuML3ky+er10rcgNR/VqsVpcw+ThHmYcwiB1pbOxEbzJr7"
             crossorigin="anonymous"></script>
-
 {:.example}
 
 Scripts, of course, are not the only response type which would benefit
@@ -196,10 +195,9 @@ pieces of information:
 The hash function and digest MUST be provided in order to validate a
 response's integrity.
 
-<div class="note">
 At the moment, no options are defined. However, future versions of
 the spec may define options, such as MIME types [[!MIMETYPE]].
-</div>
+{:.note}
 
 This metadata MUST be encoded in the same format as the `hash-source` (without the single quotes)
 in [section 4.2 of the Content Security Policy Level 2 specification][csp2-section42].
@@ -212,18 +210,18 @@ digest that results. This can be encoded as follows:
     sha384-H8BRh8j48O9oYatfu5AZzq6A9RINhZO5H16dQZngK7T62em8MUt1FLm52t+eX6xO
 {:.example}
 
-<div class="note">
+<div>
 Digests may be generated using any number of utilities. [OpenSSL][], for
 example, is quite commonly available. The example in this section is the
 result of the following command line:
 
     echo -n "alert('Hello, world.');" | openssl dgst -sha384 -binary | openssl enc -base64 -A
+</div>
+{:.note}
 
 [request]: https://fetch.spec.whatwg.org/#concept-request-integrity-metadata
 [csp2-section42]: http://www.w3.org/TR/CSP2/#source-list-syntax
 [openssl]: https://www.openssl.org/
-</div>
-
 [sha2]: #dfn-sha-2
 [digest]: #dfn-digest
 [integrity metadata]: #dfn-integrity-metadata
@@ -246,6 +244,7 @@ by either of the following hash expressions:
 
     sha384-dOTZf16X8p34q2/kYyEFm0jh89uTjikhnzjeLeF0FHsEaYKb1A1cv+Lyv4Hk8vHd
     sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzCinRE7Af1ofPrw==
+{:.example}
 
 Authors may choose to specify both, for example:
 
@@ -253,6 +252,7 @@ Authors may choose to specify both, for example:
        integrity="sha384-dOTZf16X8p34q2/kYyEFm0jh89uTjikhnzjeLeF0FHsEaYKb1A1cv+Lyv4Hk8vHd
                   sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzCinRE7Af1ofPrw=="
        crossorigin="anonymous"></script>
+{:.example}
 
 In this case, the user agent will choose the strongest hash function in the
 list, and use that metadata to validate the response (as described below in
@@ -282,12 +282,11 @@ collision-resistant.  For example, `getPrioritizedHashFunction('sha256',
 'sha512')` would return `'sha512'` and `getPrioritizedHashFunction('sha256',
 'sha256')` would return the empty string.
 
-<div class="note">
 The <dfn>getPrioritizedHashFunction</dfn> is an internal 
 implementation detail. It is not an API that implementors 
 provide to web applications. It is used in this document 
 only to simplify the algorithm description.
-</div>
+{:.note}
 
 </section><!-- /Framework::Cryptographic hash functions::Priority -->
 
@@ -450,12 +449,11 @@ functions. For example, a developer might write a `script` element such as:
             integrity="sha384-Li9vy3DqF8tnTXuiaAJuML3ky+er10rcgNR/VqsVpcw+ThHmYcwiB1pbOxEbzJr7
                        sha384-+/M6kredJcxdsqkczBUjMLvqyHb1K/JThDXWsBVxMEeZHEaMKEOEct339VItX1zB"
             crossorigin="anonymous"></script>
+{:.example}
 
 which would allow the user agent to accept two different content payloads, one
 of which matches the first SHA384 hash value and the other matches the second
 SHA384 hash value.
-
-{:.example}
 
 User agents may allow users to modify the result of this algorithm via user
 preferences, bookmarklets, third-party additions to the user agent, and other

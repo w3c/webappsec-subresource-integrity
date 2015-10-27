@@ -16,12 +16,12 @@ only a single origin. For example, authors pull scripts and styles from a
 wide variety of services and content delivery networks, and must trust
 that the delivered representation is, in fact, what they expected to
 load. If an attacker can trick a user into downloading content from
-a hostile server (via DNS poisoning, or other such means), the author has
-no recourse. Likewise, an attacker who can replace the file on the CDN server
-has the ability to inject arbitrary content.
+a hostile server (via [DNS][] poisoning, or other such means), the author has
+no recourse. Likewise, an attacker who can replace the file on the Content
+Delivery Network (CDN) server has the ability to inject arbitrary content.
 
 Delivering resources over a secure channel mitigates some of this risk: with
-TLS, [HSTS][], and [pinned public keys][], a user agent can be fairly certain
+[TLS][], [HSTS][], and [pinned public keys][], a user agent can be fairly certain
 that it is indeed speaking with the server it believes it's talking to. These
 mechanisms, however, authenticate _only_ the server, _not_ the content. An
 attacker (or administrator) with access to the server can manipulate content with
@@ -51,8 +51,10 @@ This example can be communicated to a user agent by adding the hash to a
 
 Scripts, of course, are not the only response type which would benefit
 from integrity validation. The scheme specified here also applies to `link`
-and future versions of the specification are likely to expand this coverage.
+and future versions of this specification are likely to expand this coverage.
 
+[DNS]: https://www.ietf.org/rfc/rfc1035.txt
+[TLS]: https://tools.ietf.org/html/rfc5246
 [HSTS]: https://tools.ietf.org/html/rfc6797
 [pinned public keys]: https://tools.ietf.org/html/rfc7469
 
@@ -164,13 +166,12 @@ NIST in ["FIPS PUB 180-4: Secure Hash Standard (SHS)"][shs].
 The Augmented Backus-Naur Form (ABNF) notation used in this document is
 specified in RFC5234. [[!ABNF]]
 
-The following core rules are included by reference, as defined in [Appendix
-B.1][abnf-b1] of [[!ABNF]] defines <code><dfn>VCHAR</dfn></code> (printing
-characters).
+[Appendix B.1][abnf-b1] of [[!ABNF]] defines <code><dfn>VCHAR</dfn></code>
+(printing characters).
 
 <code><dfn>WSP</dfn></code> (white space) characters are defined in Section
 [2.4.1 Common parser idioms][space-chars] of the HTML 5 specification as
-<code>White_Space characters.</code>
+<code>White_Space characters</code>.
 
 [abnf-b1]: https://tools.ietf.org/html/rfc5234#appendix-B.1
 [space-chars]: http://www.w3.org/TR/html5/infrastructure.html#space-character
@@ -265,7 +266,7 @@ the "[parse metadata][parse]" and "[get the strongest metadata from
 set][get-the-strongest]" algorithms).
 
 When a hash function is determined to be insecure, user agents SHOULD deprecate
-and eventually remove support for integrity validation using that hash
+and eventually remove support for integrity validation using the insecure hash
 function. User agents MAY check the validity of responses using a digest based on
 a deprecated function.
 
@@ -322,7 +323,7 @@ only to simplify the algorithm description.
 In order to mitigate an attacker's ability to read data cross-origin by
 brute-forcing values via integrity checks, responses are only eligible for such
 checks if they are same-origin or are the result of explicit access granted to
-the loading origin via CORS. [[!CORS]]
+the loading origin via Cross Origin Resource Sharing [[!CORS]].
 
 As noted in [RFC6454, section 4][uri-origin], some user agents use
 globally unique identifiers for each file URI. This means that
@@ -553,7 +554,7 @@ attribute DOMString integrity
 The user agent will refuse to render or execute responses that fail an integrity
 check, instead returning a network error as defined in Fetch [[!FETCH]].
 
-On a failed integrity check, an <code>error</code> event is thrown. Developers
+On a failed integrity check, an <code>error</code> event is fired. Developers
 wishing to provide a canonical fallback resource (e.g., a resource not served
 from a CDN, perhaps from a secondary, trusted, but slower source) can catch this
 <code>error</code> event and provide an appropriate handler to replace the
@@ -576,7 +577,7 @@ modify step 4 to read:
 Do a potentially CORS-enabled fetch of the resulting absolute URL, with the
 mode being the current state of the element's crossorigin content attribute,
 the origin being the origin of the link element's Document, the default origin
-behaviour set to taint, and the [integrity metadata][] of the request to the
+behavior set to taint, and the [integrity metadata][] of the request set to the
 value of the element's `integrity` attribute.
 
 {:start="4"}

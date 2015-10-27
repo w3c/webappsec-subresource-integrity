@@ -140,12 +140,12 @@ only a single origin. For example, authors pull scripts and styles from a
 wide variety of services and content delivery networks, and must trust
 that the delivered representation is, in fact, what they expected to
 load. If an attacker can trick a user into downloading content from
-a hostile server (via DNS poisoning, or other such means), the author has
-no recourse. Likewise, an attacker who can replace the file on the CDN server
-has the ability to inject arbitrary content.</p>
+a hostile server (via <a href="https://www.ietf.org/rfc/rfc1035.txt">DNS</a> poisoning, or other such means), the author has
+no recourse. Likewise, an attacker who can replace the file on the Content
+Delivery Network (CDN) server has the ability to inject arbitrary content.</p>
 
   <p>Delivering resources over a secure channel mitigates some of this risk: with
-TLS, <a href="https://tools.ietf.org/html/rfc6797">HSTS</a>, and <a href="https://tools.ietf.org/html/rfc7469">pinned public keys</a>, a user agent can be fairly certain
+<a href="https://tools.ietf.org/html/rfc5246">TLS</a>, <a href="https://tools.ietf.org/html/rfc6797">HSTS</a>, and <a href="https://tools.ietf.org/html/rfc7469">pinned public keys</a>, a user agent can be fairly certain
 that it is indeed speaking with the server it believes it’s talking to. These
 mechanisms, however, authenticate <em>only</em> the server, <em>not</em> the content. An
 attacker (or administrator) with access to the server can manipulate content with
@@ -175,7 +175,7 @@ substitute malicious content.</p>
 
   <p>Scripts, of course, are not the only response type which would benefit
 from integrity validation. The scheme specified here also applies to <code>link</code>
-and future versions of the specification are likely to expand this coverage.</p>
+and future versions of this specification are likely to expand this coverage.</p>
 
   <section>
     <h3 id="goals">Goals</h3>
@@ -288,13 +288,12 @@ NIST in <a href="http://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf
     <p>The Augmented Backus-Naur Form (ABNF) notation used in this document is
 specified in RFC5234. [[!ABNF]]</p>
 
-    <p>The following core rules are included by reference, as defined in <a href="https://tools.ietf.org/html/rfc5234#appendix-B.1">Appendix
-B.1</a> of [[!ABNF]] defines <code><dfn>VCHAR</dfn></code> (printing
-characters).</p>
+    <p><a href="https://tools.ietf.org/html/rfc5234#appendix-B.1">Appendix B.1</a> of [[!ABNF]] defines <code><dfn>VCHAR</dfn></code>
+(printing characters).</p>
 
     <p><code><dfn>WSP</dfn></code> (white space) characters are defined in Section
 <a href="http://www.w3.org/TR/html5/infrastructure.html#space-character">2.4.1 Common parser idioms</a> of the HTML 5 specification as
-<code>White_Space characters.</code></p>
+<code>White_Space characters</code>.</p>
 
   </section>
 
@@ -383,7 +382,7 @@ the “<a href="#parse-metadata">parse metadata</a>” and “<a href="#get-the-
 set</a>” algorithms).</p>
 
       <p>When a hash function is determined to be insecure, user agents SHOULD deprecate
-and eventually remove support for integrity validation using that hash
+and eventually remove support for integrity validation using the insecure hash
 function. User agents MAY check the validity of responses using a digest based on
 a deprecated function.</p>
 
@@ -441,7 +440,7 @@ the result of applying <var>algorithm</var> to the <a href="https://tools.ietf.o
       <p>In order to mitigate an attacker’s ability to read data cross-origin by
 brute-forcing values via integrity checks, responses are only eligible for such
 checks if they are same-origin or are the result of explicit access granted to
-the loading origin via CORS. [[!CORS]]</p>
+the loading origin via Cross Origin Resource Sharing [[!CORS]].</p>
 
       <p class="note">As noted in <a class="note" href="https://tools.ietf.org/html/rfc6454#section-4">RFC6454, section 4</a>, some user agents use
 globally unique identifiers for each file URI. This means that
@@ -679,7 +678,7 @@ as possible.</p>
     <p>The user agent will refuse to render or execute responses that fail an integrity
 check, instead returning a network error as defined in Fetch [[!FETCH]].</p>
 
-    <p class="note">On a failed integrity check, an <code>error</code> event is thrown. Developers
+    <p class="note">On a failed integrity check, an <code>error</code> event is fired. Developers
 wishing to provide a canonical fallback resource (e.g., a resource not served
 from a CDN, perhaps from a secondary, trusted, but slower source) can catch this
 <code>error</code> event and provide an appropriate handler to replace the
@@ -700,7 +699,7 @@ modify step 4 to read:</p>
       <p>Do a potentially CORS-enabled fetch of the resulting absolute URL, with the
 mode being the current state of the element’s crossorigin content attribute,
 the origin being the origin of the link element’s Document, the default origin
-behaviour set to taint, and the <a href="#dfn-integrity-metadata">integrity metadata</a> of the request to the
+behavior set to taint, and the <a href="#dfn-integrity-metadata">integrity metadata</a> of the request set to the
 value of the element’s <code>integrity</code> attribute.</p>
 
     </section>

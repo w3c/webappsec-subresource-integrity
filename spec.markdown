@@ -136,13 +136,6 @@ document loaded over HTTPS. A counterexample is a document loaded over HTTP.
 [secure context]: #dfn-secure-context
 [secure document]: #dfn-secure-document
 
-A <dfn>potentially secure origin</dfn> is defined in [section 2 of the Mixed
-Content][mixedcontent] specification. An example of a potentially secure origin
-is an origin whose scheme component is <code>HTTPS</code>.
-
-[potentially secure origin]: #dfn-potentially-secure-origin
-[mixedcontent]: https://www.w3.org/TR/mixed-content/#potentially-secure-origin
-
 The <dfn>representation data</dfn> and <dfn>content encoding</dfn> of a resource
 are defined by [RFC7231, section 3][representationdata]. [[!RFC7231]]
 
@@ -338,7 +331,7 @@ change the security state of the user agent, a [secure document] is
 unnecessary. However, if integrity is used in something other than a [secure document][]
 (e.g., a document delivered over HTTP), authors should be aware that the integrity
 provides <em>no security guarantees at all</em>. For this reason, authors should
-only deliver integrity metadata on a [potentially secure origin][].  See
+only deliver integrity metadata in a [secure context][].  See
 [Non-secure contexts remain non-secure][] for more discussion.
 
 {:.note}

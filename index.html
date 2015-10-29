@@ -266,10 +266,6 @@ executing a cryptographic hash function on an arbitrary block of data.</p>
 Contexts</a> specification. An example of a secure document is a
 document loaded over HTTPS. A counterexample is a document loaded over HTTP.</p>
 
-    <p>A <dfn>potentially secure origin</dfn> is defined in <a href="https://www.w3.org/TR/mixed-content/#potentially-secure-origin">section 2 of the Mixed
-Content</a> specification. An example of a potentially secure origin
-is an origin whose scheme component is <code>HTTPS</code>.</p>
-
     <p>The <dfn>representation data</dfn> and <dfn>content encoding</dfn> of a resource
 are defined by <a href="https://tools.ietf.org/html/rfc7231#section-3">RFC7231, section 3</a>. [[!RFC7231]]</p>
 
@@ -342,7 +338,7 @@ digest that results. This can be encoded as follows:</p>
 example, is quite commonly available. The example in this section is the
 result of the following command line:</p>
 
-      <pre><code>echo -n "alert('Hello, world.');" | openssl dgst -sha384 -binary | openssl enc -base64 -A
+      <pre><code>echo -n "alert('Hello, world.');" | openssl dgst -sha384 -binary | openssl base64 -A
 </code></pre>
     </div>
 
@@ -442,7 +438,7 @@ brute-forcing values via integrity checks, responses are only eligible for such
 checks if they are same-origin or are the result of explicit access granted to
 the loading origin via Cross Origin Resource Sharing [[!CORS]].</p>
 
-      <p class="note">As noted in <a class="note" href="https://tools.ietf.org/html/rfc6454#section-4">RFC6454, section 4</a>, some user agents use
+      <p class="note">As noted in <a href="https://tools.ietf.org/html/rfc6454#section-4">RFC6454, section 4</a>, some user agents use
 globally unique identifiers for each file URI. This means that
 resources accessed over a <code>file</code> scheme URL are unlikely to be
 eligible for integrity checks.</p>
@@ -454,7 +450,7 @@ change the security state of the user agent, a <a href="#dfn-secure-document">se
 unnecessary. However, if integrity is used in something other than a <a href="#dfn-secure-document">secure document</a>
 (e.g., a document delivered over HTTP), authors should be aware that the integrity
 provides <em>no security guarantees at all</em>. For this reason, authors should
-only deliver integrity metadata on a <a href="#dfn-potentially-secure-origin">potentially secure origin</a>.  See
+only deliver integrity metadata in a <a href="#dfn-secure-context">secure context</a>.  See
 <a href="#non-secure-contexts-remain-non-secure">Non-secure contexts remain non-secure</a> for more discussion.</p>
 
       <p>The following algorithm details these restrictions:</p>
@@ -692,7 +688,7 @@ failed resource with a different one.</p>
     <section>
       <h6 id="the-link-element-for-stylesheets">The <code>link</code> element for stylesheets</h6>
 
-      <p>Whenever a user agent attempts to <a start="4" href="http://www.w3.org/TR/html5/document-metadata.html#concept-link-obtain">obtain a resource</a> pointed to by a
+      <p>Whenever a user agent attempts to <a href="http://www.w3.org/TR/html5/document-metadata.html#concept-link-obtain">obtain a resource</a> pointed to by a
 <code>link</code> element that has a <code>rel</code> attribute with the keyword of <code>stylesheet</code>,
 modify step 4 to read:</p>
 
@@ -708,7 +704,7 @@ value of the element’s <code>integrity</code> attribute.</p>
     <section>
       <h6 id="the-script-element">The <code>script</code> element</h6>
 
-      <p>Replace step 14.1 of HTML5’s <a start="6" href="http://www.w3.org/TR/html5/scripting-1.html#prepare-a-script">“prepare a script” algorithm</a> with:</p>
+      <p>Replace step 14.1 of HTML5’s <a href="http://www.w3.org/TR/html5/scripting-1.html#prepare-a-script">“prepare a script” algorithm</a> with:</p>
 
       <ol>
         <li>Let <var>src</var> be the value of the element’s <code>src</code> attribute and

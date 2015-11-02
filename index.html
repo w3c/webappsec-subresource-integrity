@@ -438,7 +438,7 @@ brute-forcing values via integrity checks, responses are only eligible for such
 checks if they are same-origin or are the result of explicit access granted to
 the loading origin via Cross Origin Resource Sharing [[!CORS]].</p>
 
-      <p class="note">As noted in <a href="https://tools.ietf.org/html/rfc6454#section-4">RFC6454, section 4</a>, some user agents use
+      <p class="note">As noted in <a class="note" href="https://tools.ietf.org/html/rfc6454#section-4">RFC6454, section 4</a>, some user agents use
 globally unique identifiers for each file URI. This means that
 resources accessed over a <code>file</code> scheme URL are unlikely to be
 eligible for integrity checks.</p>
@@ -688,7 +688,7 @@ failed resource with a different one.</p>
     <section>
       <h6 id="the-link-element-for-stylesheets">The <code>link</code> element for stylesheets</h6>
 
-      <p>Whenever a user agent attempts to <a href="http://www.w3.org/TR/html5/document-metadata.html#concept-link-obtain">obtain a resource</a> pointed to by a
+      <p>Whenever a user agent attempts to <a start="4" href="http://www.w3.org/TR/html5/document-metadata.html#concept-link-obtain">obtain a resource</a> pointed to by a
 <code>link</code> element that has a <code>rel</code> attribute with the keyword of <code>stylesheet</code>,
 modify step 4 to read:</p>
 
@@ -704,7 +704,7 @@ value of the element’s <code>integrity</code> attribute.</p>
     <section>
       <h6 id="the-script-element">The <code>script</code> element</h6>
 
-      <p>Replace step 14.1 of HTML5’s <a href="http://www.w3.org/TR/html5/scripting-1.html#prepare-a-script">“prepare a script” algorithm</a> with:</p>
+      <p>Replace step 14.1 of HTML5’s <a start="6" href="http://www.w3.org/TR/html5/scripting-1.html#prepare-a-script">“prepare a script” algorithm</a> with:</p>
 
       <ol>
         <li>Let <var>src</var> be the value of the element’s <code>src</code> attribute and

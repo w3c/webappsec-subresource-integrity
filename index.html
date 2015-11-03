@@ -261,11 +261,6 @@ executing a cryptographic hash function on an arbitrary block of data.</p>
     <p>The term <dfn>origin</dfn> is defined in the Origin specification.
 [[!RFC6454]]</p>
 
-    <p>The terms <dfn>secure document</dfn> and
-<dfn>secure context</dfn> are defined in section 2 of the <a href="http://www.w3.org/TR/powerful-features/">Secure
-Contexts</a> specification. An example of a secure document is a
-document loaded over HTTPS. A counterexample is a document loaded over HTTP.</p>
-
     <p>The <dfn>representation data</dfn> and <dfn>content encoding</dfn> of a resource
 are defined by <a href="https://tools.ietf.org/html/rfc7231#section-3">RFC7231, section 3</a>. [[!RFC7231]]</p>
 
@@ -350,7 +345,13 @@ result of the following command line:</p>
 
     <p>Conformant user agents MUST support the <a href="#dfn-sha-2">SHA-256</a>, <a href="#dfn-sha-2">SHA-384</a>
 and <a href="#dfn-sha-2">SHA-512</a> cryptographic hash functions for use as part of a
-request’s <a href="#dfn-integrity-metadata">integrity metadata</a>, and MAY support additional hash functions.</p>
+request’s <a href="#dfn-integrity-metadata">integrity metadata</a> and MAY support additional hash functions.</p>
+
+    <p>User agents SHOULD refuse to support known-weak hashing functions like MD5 or
+SHA-1 and SHOULD restrict supported hashing functions to those known to be
+collision-resistant. Additionally, user agents SHOULD re-evaluate their
+supported hash functions on a regular basis and deprecate support for those
+functions that have become insecure. See <a href="#hash-collision-attacks">Hash collision attacks</a>.</p>
 
     <section>
       <h4 id="agility">Agility</h4>
@@ -438,20 +439,20 @@ brute-forcing values via integrity checks, responses are only eligible for such
 checks if they are same-origin or are the result of explicit access granted to
 the loading origin via Cross Origin Resource Sharing [[!CORS]].</p>
 
-      <p class="note">As noted in <a class="note" href="https://tools.ietf.org/html/rfc6454#section-4">RFC6454, section 4</a>, some user agents use
+      <p class="note">As noted in <a href="https://tools.ietf.org/html/rfc6454#section-4">RFC6454, section 4</a>, some user agents use
 globally unique identifiers for each file URI. This means that
 resources accessed over a <code>file</code> scheme URL are unlikely to be
 eligible for integrity checks.</p>
 
-      <p>One should note that being a <a href="#dfn-secure-document">secure document</a> (e.g., a document delivered
-over HTTPS) is not necessary for the use of integrity validation. Because
-resource integrity is only an application level security tool, and it does not
-change the security state of the user agent, a <a href="#dfn-secure-document">secure document</a> is
-unnecessary. However, if integrity is used in something other than a <a href="#dfn-secure-document">secure document</a>
-(e.g., a document delivered over HTTP), authors should be aware that the integrity
-provides <em>no security guarantees at all</em>. For this reason, authors should
-only deliver integrity metadata in a <a href="#dfn-secure-context">secure context</a>.  See
-<a href="#non-secure-contexts-remain-non-secure">Non-secure contexts remain non-secure</a> for more discussion.</p>
+      <p class="note">Being in a <a href="https://w3c.github.io/webappsec-secure-contexts/">Secure Context</a> (e.g., a document delivered over HTTPS) is not
+necessary for the use of integrity validation. Because resource integrity is
+only an application level security tool, and it does not change the security
+state of the user agent, a Secure Context is unnecessary. However, if integrity
+is used in something other than a Secure Context (e.g., a document delivered
+over HTTP), authors should be aware that the integrity provides <em>no security
+guarantees at all</em>. For this reason, authors should only deliver integrity
+metadata in a Secure Context.  See <a href="#non-secure-contexts-remain-non-secure">Non-secure contexts remain non-secure</a> for
+more discussion.</p>
 
       <p>The following algorithm details these restrictions:</p>
 
@@ -745,19 +746,13 @@ with a value of <a href="https://tools.ietf.org/html/rfc7234#section-5.2.1.6"><c
   <section>
     <h3 id="non-secure-contexts-remain-non-secure">Non-secure contexts remain non-secure</h3>
 
-    <p><a href="#dfn-integrity-metadata">Integrity metadata</a> delivered by a context that is not a <a href="#dfn-secure-context">secure context</a>,
+    <p><a href="#dfn-integrity-metadata">Integrity metadata</a> delivered by a context that is not a <a href="https://w3c.github.io/webappsec-secure-contexts/">Secure Context</a>,
 such as an HTTP page, only protects an origin against a compromise of the
 server where an external resources is hosted. Network attackers can alter the
 digest in-flight (or remove it entirely, or do absolutely anything else to the
 document), just as they could alter the response the hash is meant to validate.
-Thus, authors SHOULD deliver integrity metadata only to a <a href="#dfn-secure-document">secure
-document</a>. See also <a href="http://www.w3.org/2001/tag/doc/web-https">securing the web</a>.</p>
-
-    <p>Similarly, since integrity checks do not provide any privacy guarantees,
-<a href="#dfn-integrity-metadata">Integrity metadata</a> MUST NOT affect the return values of the Mixed Content
-algorithms as defined in <a href="http://www.w3.org/TR/mixed-content/#algorithms">section 5 of the Mixed
-Content</a>
-specification.</p>
+Thus, it is recommended that authors deliver integrity metadata only to a
+<a href="https://w3c.github.io/webappsec-secure-contexts/">Secure Context</a>. See also <a href="http://www.w3.org/2001/tag/doc/web-https">securing the web</a>.</p>
 
   </section>
   <!-- /Security::Non-secure contexts remain non-secure -->
@@ -765,13 +760,18 @@ specification.</p>
   <section>
     <h3 id="hash-collision-attacks">Hash collision attacks</h3>
 
-    <p>Digests are only as strong as the hash function used to generate them. User
-agents SHOULD refuse to support known-weak hashing functions like MD5 or SHA-1,
-and SHOULD restrict supported hashing functions to those known to be
-collision-resistant. At the time of writing, SHA-384 is a good baseline.
-Moreover, user agents SHOULD re-evaluate their supported hash functions
-on a regular basis, and deprecate support for those functions shown to be
-insecure.</p>
+    <p>Digests are only as strong as the hash function used to generate them. It is
+recommended that user agents refuse to support known-weak hashing functions and
+limit supported algorithms to those known to be collision resistant. Examples of
+hashing functions that are not recommended include MD5 and SHA-1. At the time of
+writing, SHA-384 is a good baseline.</p>
+
+    <p>Moreover, it is recommended that user agents re-evaluate their supported hash
+functions on a regular basis and deprecate support for those functions shown to
+be insecure. Over time, hash functions may be shown to be much weaker than
+expected and, in some cases, broken, so it is important that user agents stay
+aware of these developments.</p>
+
   </section>
   <!-- /Security::Hash collision -->
 

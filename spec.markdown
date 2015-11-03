@@ -619,7 +619,7 @@ with a value of [`no-transform`][notransform].
 
 </section><!-- /Implementation -->
 
-<section>
+<section class="informative">
 ## Security Considerations
 
 <section>

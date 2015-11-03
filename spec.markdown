@@ -127,15 +127,6 @@ executing a cryptographic hash function on an arbitrary block of data.
 The term <dfn>origin</dfn> is defined in the Origin specification.
 [[!RFC6454]]
 
-The terms <dfn>secure document</dfn> and
-<dfn>secure context</dfn> are defined in section 2 of the [Secure
-Contexts][securecontext] specification. An example of a secure document is a
-document loaded over HTTPS. A counterexample is a document loaded over HTTP.
-
-[securecontext]: http://www.w3.org/TR/powerful-features/
-[secure context]: #dfn-secure-context
-[secure document]: #dfn-secure-document
-
 The <dfn>representation data</dfn> and <dfn>content encoding</dfn> of a resource
 are defined by [RFC7231, section 3][representationdata]. [[!RFC7231]]
 
@@ -231,7 +222,15 @@ result of the following command line:
 
 Conformant user agents MUST support the [SHA-256][sha2], [SHA-384][sha2]
 and [SHA-512][sha2] cryptographic hash functions for use as part of a
-request's [integrity metadata][], and MAY support additional hash functions.
+request's [integrity metadata][] and MAY support additional hash functions.
+
+User agents SHOULD refuse to support known-weak hashing functions like MD5 or
+SHA-1 and SHOULD restrict supported hashing functions to those known to be
+collision-resistant. Additionally, user agents SHOULD re-evaluate their
+supported hash functions on a regular basis and deprecate support for those
+functions that have become insecure. See [Hash collision attacks].
+
+[Hash collision attacks]: #hash-collision-attacks
 
 <section>
 #### Agility
@@ -324,19 +323,19 @@ resources accessed over a `file` scheme URL are unlikely to be
 eligible for integrity checks.
 {:.note}
 
-One should note that being a [secure document][] (e.g., a document delivered
-over HTTPS) is not necessary for the use of integrity validation. Because
-resource integrity is only an application level security tool, and it does not
-change the security state of the user agent, a [secure document] is
-unnecessary. However, if integrity is used in something other than a [secure document][]
-(e.g., a document delivered over HTTP), authors should be aware that the integrity
-provides <em>no security guarantees at all</em>. For this reason, authors should
-only deliver integrity metadata in a [secure context][].  See
-[Non-secure contexts remain non-secure][] for more discussion.
-
+Being in a [Secure Context][] (e.g., a document delivered over HTTPS) is not
+necessary for the use of integrity validation. Because resource integrity is
+only an application level security tool, and it does not change the security
+state of the user agent, a Secure Context is unnecessary. However, if integrity
+is used in something other than a Secure Context (e.g., a document delivered
+over HTTP), authors should be aware that the integrity provides <em>no security
+guarantees at all</em>. For this reason, authors should only deliver integrity
+metadata in a Secure Context.  See [Non-secure contexts remain non-secure][] for
+more discussion.
 {:.note}
 
 [uri-origin]: https://tools.ietf.org/html/rfc6454#section-4
+[Secure Context]: https://w3c.github.io/webappsec-secure-contexts/
 [Non-secure contexts remain non-secure]: #non-secure-contexts-remain-non-secure
 
 The following algorithm details these restrictions:
@@ -620,40 +619,38 @@ with a value of [`no-transform`][notransform].
 
 </section><!-- /Implementation -->
 
-<section>
+<section class="informative">
 ## Security Considerations
 
 <section>
 ### Non-secure contexts remain non-secure
 
-[Integrity metadata][] delivered by a context that is not a [secure context],
+[Integrity metadata][] delivered by a context that is not a [Secure Context],
 such as an HTTP page, only protects an origin against a compromise of the
 server where an external resources is hosted. Network attackers can alter the
 digest in-flight (or remove it entirely, or do absolutely anything else to the
 document), just as they could alter the response the hash is meant to validate.
-Thus, authors SHOULD deliver integrity metadata only to a [secure
-document][]. See also [securing the web][].
-
-Similarly, since integrity checks do not provide any privacy guarantees,
-[Integrity metadata][] MUST NOT affect the return values of the Mixed Content
-algorithms as defined in [section 5 of the Mixed
-Content][mixedcontent-algorithms]
-specification.
+Thus, it is recommended that authors deliver integrity metadata only to a
+[Secure Context][]. See also [securing the web][].
 
 [Securing the Web]: http://www.w3.org/2001/tag/doc/web-https
-[mixedcontent-algorithms]: http://www.w3.org/TR/mixed-content/#algorithms
 </section><!-- /Security::Non-secure contexts remain non-secure -->
 
 <section>
 ### Hash collision attacks
 
-Digests are only as strong as the hash function used to generate them. User
-agents SHOULD refuse to support known-weak hashing functions like MD5 or SHA-1,
-and SHOULD restrict supported hashing functions to those known to be
-collision-resistant. At the time of writing, SHA-384 is a good baseline.
-Moreover, user agents SHOULD re-evaluate their supported hash functions
-on a regular basis, and deprecate support for those functions shown to be
-insecure.
+Digests are only as strong as the hash function used to generate them. It is
+recommended that user agents refuse to support known-weak hashing functions and
+limit supported algorithms to those known to be collision resistant. Examples of
+hashing functions that are not recommended include MD5 and SHA-1. At the time of
+writing, SHA-384 is a good baseline.
+
+Moreover, it is recommended that user agents re-evaluate their supported hash
+functions on a regular basis and deprecate support for those functions shown to
+be insecure. Over time, hash functions may be shown to be much weaker than
+expected and, in some cases, broken, so it is important that user agents stay
+aware of these developments.
+
 </section><!-- /Security::Hash collision -->
 
 <section>

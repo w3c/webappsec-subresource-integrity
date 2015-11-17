@@ -192,7 +192,7 @@ the spec may define options, such as MIME types [[!MIMETYPE]].
 This metadata MUST be encoded in the same format as the `hash-source` (without the single quotes)
 in [section 4.2 of the Content Security Policy Level 2 specification][csp2-section42].
 
-For example, given a script resource containing only the string \"alert(\'Hello, world.\');\",
+For example, given a script resource containing only the string `alert(\'Hello, world.\');`,
 an author might choose [SHA-384][sha2] as a hash function.
 `H8BRh8j48O9oYatfu5AZzq6A9RINhZO5H16dQZngK7T62em8MUt1FLm52t+eX6xO` is the base64-encoded
 digest that results. This can be encoded as follows:
@@ -382,7 +382,7 @@ the user agent.
     1.  Set <var>empty</var> to `false`.
     2.  If <var>token</var> is not a valid metadata, skip the remaining
         steps, and proceed to the next token.
-    3.  Parse <var>token</var> per the grammar in [integrity metadata][]
+    3.  Parse <var>token</var> per the grammar in [integrity metadata][].
     4.  Let <var>algorithm</var> be the <var>alg</var> component of
         <var>token</var>.
     5.  If <var>algorithm</var> is a hash function recognized by the user
@@ -691,7 +691,7 @@ Much of the content here is inspired heavily by Gervase
 Markham's [Link Fingerprints][] concept, as well as WHATWG's [Link Hashes][].
 
 A special thanks to Mike West of Google, Inc. for his invaluable contributions
-to the initial version of this spec. Additonally, Brad Hill, Anne van Kesteren,
+to the initial version of this spec. Additionally, Brad Hill, Anne van Kesteren,
 Jonathan Kingston, Mark Nottingham, Dan Veditz, Eduardo Vela, Tanvi Vyas, and
 Michal Zalewski provided invaluable feedback.
 

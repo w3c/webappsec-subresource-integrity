@@ -1,7 +1,7 @@
 <pre class="metadata">
 Title: Subresource Integrity
-Status: CR
-Deadline: 2015-12-15
+Status: PR
+Deadline: 2015-02-15
 ED: https://w3c.github.io/webappsec-subresource-integrity/
 TR: http://www.w3.org/TR/SRI/
 Previous Version: http://www.w3.org/TR/2015/WD-SRI-20151006/

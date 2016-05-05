@@ -36,6 +36,10 @@ spec: ABNF; urlPrefix: https://tools.ietf.org/html/rfc5234
     text: VCHAR; url: appendix-B.1
     text: WSP; url: appendix-B.1
 
+spec: CSP; urlPrefix: https://www.w3.org/TR/CSP/
+  type: dfn
+    text: Content Security Policy; urlPrefix: #
+
 spec: Fetch; urlPrefix: https://fetch.spec.whatwg.org
   type: dfn
     text: fetch; url: concept-fetch
@@ -52,6 +56,13 @@ spec: HTML5; urlPrefix: http://www.w3.org/TR/html5/
       text: split on spaces; url: #split-a-string-on-spaces
     urlPrefix: scripting-1.html
       text: prepare a script; url: #prepare-a-script
+      text: splitting tokens on spaces; url: split-a-string-on-spaces
+      text: ASCII case-insensitive match; url: ascii-case-insensitive
+
+spec: RFC7230; urlPrefix: https://tools.ietf.org/html/rfc7230
+  type: grammar
+    text: RWS; url: section-3.2.3
+    text: token; url: section-3.2.6
 
 spec: RFC7234; urlPrefix: https://tools.ietf.org/html/rfc7234
   type: dfn
@@ -343,7 +354,47 @@ implementation detail. It is not an API that implementors
 provide to web applications. It is used in this document
 only to simplify the algorithm description.
 
-## Response verification algorithms ## {#verification-algorithms}
+## Request verification algorithms ## {#request-verification-algorithms}
+
+### Opting-in
+
+Authors may opt a Document to require SRI metadata be present for 
+some resource types via a <dfn export>require-sri-for</dfn> <a>Content
+Security Policy</a> directive defined by the following ABNF grammar:
+
+<pre dfn-type="grammar" link-type="grammar">
+    directive-name  = "require-sri-for"
+    directive-value = <a grammar>token</a> *( <a>RWS</a> <a>token</a> )
+</pre>
+
+The directive recognizes a number of potential token values:
+
+  * `script` requires SRI for scripts
+  * `style` requires SRI for style sheets
+
+### Parsing `require-sri-for` ### {#parse-require-sri-for}
+
+To parse the |token| list, the user agent MUST use an algorithm equivalent to the following:
+
+1. Let the set of |protected resource types| that require SRI be |null|.
+
+2. For each token returned by <a>splitting tokens on spaces</a>,
+  if token matches the grammar for <a>require-sri-for</a>,
+  add the token to the set of |protected resource types|. Otherwise, ignore the token.
+
+3. Return the set of |protected resource types|.
+
+### Apply |algorithm| to |request| ### {#apply-algorithm-to-request}
+
+1. Let |protected resource types| be the result of [[#parse-require-sri-for]].
+
+2. If |request|'s type is a <a>ASCII case-insensitive match</a> for at least
+  one token in |protected resource types|, and |request|'s integrity metadata
+  is the empty string, return "Blocked":
+
+3. Return "Allowed".
+
+## Response verification algorithms ## {#response-verification-algorithms}
 
 ### Apply |algorithm| to |response| ### {#apply-algorithm-to-response}
 

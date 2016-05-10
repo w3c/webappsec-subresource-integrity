@@ -356,7 +356,7 @@ only to simplify the algorithm description.
 
 ## Request verification algorithms ## {#request-verification-algorithms}
 
-### Opting-in
+### Opting-in {#opt-in-require-sri-for}
 
 Authors may opt a Document to require SRI metadata be present for 
 some resource types via a <dfn export>require-sri-for</dfn> <a>Content
@@ -376,7 +376,7 @@ The directive recognizes a number of potential token values:
 
 To parse the |token| list, the user agent MUST use an algorithm equivalent to the following:
 
-1. Let the set of |protected resource types| that require SRI be |null|.
+1. Let the set of |protected resource types| that require SRI be the empty set.
 
 2. For each token returned by <a>splitting tokens on spaces</a>,
   if token matches the grammar for <a>require-sri-for</a>,

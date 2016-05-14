@@ -298,7 +298,7 @@ fetched resource has been delivered without unexpected manipulation.</p>
       <li>
        <a href="#request-verification-algorithms"><span class="secno">3.3</span> <span class="content">Request verification algorithms</span></a>
        <ol class="toc">
-        <li><a href="#opt-in-require-sri-for"><span class="secno">3.3.1</span> <span class="content">Opting-in {#opt-in-require-sri-for}</span></a>
+        <li><a href="#opt-in-require-sri-for"><span class="secno">3.3.1</span> <span class="content">Opting-in</span></a>
         <li><a href="#parse-require-sri-for"><span class="secno">3.3.2</span> <span class="content">Parsing <code>require-sri-for</code></span></a>
         <li><a href="#apply-algorithm-to-request"><span class="secno">3.3.3</span> <span class="content">Apply <var>algorithm</var> to <var>request</var></span></a>
        </ol>
@@ -557,9 +557,9 @@ implementation detail. It is not an API that implementors
 provide to web applications. It is used in this document
 only to simplify the algorithm description.</p>
    <h3 class="heading settled" data-level="3.3" id="request-verification-algorithms"><span class="secno">3.3. </span><span class="content">Request verification algorithms</span><a class="self-link" href="#request-verification-algorithms"></a></h3>
-   <h4 class="heading settled" data-level="3.3.1" id="opt-in-require-sri-for"><span class="secno">3.3.1. </span><span class="content">Opting-in {#opt-in-require-sri-for}</span><a class="self-link" href="#opt-in-require-sri-for"></a></h4>
-   <p>Authors may opt a Document to require SRI metadata be present for
-some resource types via a <dfn class="dfn-paneled" data-dfn-type="dfn" data-export="" data-lt="require-sri-for" id="require-sri-for">require-sri-for<span class="dfn-panel" data-deco=""><b><a href="#require-sri-for">#require-sri-for</a></b><b>Referenced in:</b><span><a href="#ref-for-require-sri-for-1">3.3.2. Parsing require-sri-for</a></span></span></dfn> <a data-link-type="dfn" href="https://www.w3.org/TR/CSP/#content-security-policy">Content
+   <h4 class="heading settled" data-level="3.3.1" id="opt-in-require-sri-for"><span class="secno">3.3.1. </span><span class="content">Opting-in</span><a class="self-link" href="#opt-in-require-sri-for"></a></h4>
+   <p>Authors may opt a <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/html5/dom.html#document">Document</a></code> to require SRI metadata be present for
+some resource types via a <dfn class="dfn-paneled" data-dfn-type="dfn" data-export="" data-lt="require-sri-for" id="require-sri-for">require-sri-for<span class="dfn-panel" data-deco=""><b><a href="#require-sri-for">#require-sri-for</a></b><b>Referenced in:</b><span><a href="#ref-for-require-sri-for-1">3.3.2. Parsing require-sri-for</a></span><span><a href="#ref-for-require-sri-for-2">3.3.3. Apply algorithm to request</a></span></span></dfn> <a data-link-type="dfn" href="https://www.w3.org/TR/CSP/#content-security-policy">Content
 Security Policy</a> directive defined by the following ABNF grammar:</p>
 <pre>directive-name  = "require-sri-for"
 directive-value = <a data-link-type="grammar" href="https://tools.ietf.org/html/rfc7230#section-3.2.6">token</a> *( <a data-link-type="grammar" href="https://tools.ietf.org/html/rfc7230#section-3.2.3">RWS</a> <a data-link-type="grammar" href="https://tools.ietf.org/html/rfc7230#section-3.2.6">token</a> )
@@ -586,7 +586,7 @@ add the token to the set of <var>protected resource types</var>. Otherwise, igno
    <h4 class="heading settled" data-level="3.3.3" id="apply-algorithm-to-request"><span class="secno">3.3.3. </span><span class="content">Apply <var>algorithm</var> to <var>request</var></span><a class="self-link" href="#apply-algorithm-to-request"></a></h4>
    <ol>
     <li data-md="">
-     <p>Let <var>protected resource types</var> be the result of <a href="#parse-require-sri-for">§3.3.2 Parsing require-sri-for</a>.</p>
+     <p>Let <var>protected resource types</var> be the result of applying <a href="#parse-require-sri-for">§3.3.2 Parsing require-sri-for</a> to the value of the <a data-link-type="dfn" href="#require-sri-for" id="ref-for-require-sri-for-2">require-sri-for</a> directive.</p>
     <li data-md="">
      <p>If <var>request</var>’s type is a <a data-link-type="dfn" href="http://www.w3.org/TR/html5/scripting-1.html#ascii-case-insensitive">ASCII case-insensitive match</a> for at least
 one token in <var>protected resource types</var>, and <var>request</var>’s integrity metadata
@@ -958,6 +958,7 @@ metadata</a><span>, in §3.1</span>
    <li>
     <a data-link-type="biblio">[HTML5]</a> defines the following terms:
     <ul>
+     <li><a href="http://www.w3.org/TR/html5/dom.html#document">Document</a>
      <li><a href="http://www.w3.org/TR/html5/scripting-1.html#ascii-case-insensitive">ascii case-insensitive match</a>
      <li><a href="http://www.w3.org/TR/html5/infrastructure.html#cors-settings-attributes">cors settings attribute</a>
      <li><a href="http://www.w3.org/TR/html5/document-metadata.html#concept-link-obtain">obtain a resource</a>

@@ -36,28 +36,42 @@ spec: ABNF; urlPrefix: https://tools.ietf.org/html/rfc5234
     text: VCHAR; url: appendix-B.1
     text: WSP; url: appendix-B.1
 
-spec: CSP; urlPrefix: https://www.w3.org/TR/CSP/
+spec: CSP; urlPrefix: https://w3c.github.io/webappsec-csp/
   type: dfn
     text: Content Security Policy; urlPrefix: #
+    text: policy; url: policy
+    text: directive; url: directives
+    text: directive value; url: directive-value
+    text: pre-request check; url: directive-pre-request-check
+    text: create a violation object for global; url: create-violation-for-global
+    text: report violation; url: report-violation
+    text: violation; url: violation
+    text: violation-resource; url: violation-resource
+    text: disposition; for: policy
 
 spec: Fetch; urlPrefix: https://fetch.spec.whatwg.org
   type: dfn
     text: fetch; url: concept-fetch
     text: request; url: concept-request
     text: response type; url: concept-response-type
+    text: destination; url: concept-request-destination
 
 spec: HTML5; urlPrefix: http://www.w3.org/TR/html5/
   type: dfn
+    text: global object; url: global-object
     urlPrefix: document-metadata.html
-      text: obtain a resource; url: #concept-link-obtain
+      text: obtain a resource; url: concept-link-obtain
     urlPrefix: infrastructure.html
       text: CORS settings attribute; url: #cors-settings-attributes
       text: reflect; url: #reflect
-      text: split on spaces; url: #split-a-string-on-spaces
+      text: split a string on spaces; url: #split-a-string-on-spaces
     urlPrefix: scripting-1.html
       text: prepare a script; url: #prepare-a-script
       text: splitting tokens on spaces; url: split-a-string-on-spaces
       text: ASCII case-insensitive match; url: ascii-case-insensitive
+  type: interface
+    urlPrefix: dom.html
+      text: Document
 
 spec: RFC7230; urlPrefix: https://tools.ietf.org/html/rfc7230
   type: grammar
@@ -356,9 +370,9 @@ only to simplify the algorithm description.
 
 ## Request verification algorithms ## {#request-verification-algorithms}
 
-### Opting-in {#opt-in-require-sri-for}
+### Opting-in  ### {#opt-in-require-sri-for}
 
-Authors may opt a Document to require SRI metadata be present for 
+Authors may opt a {{Document}} to require SRI metadata be present for 
 some resource types via a <dfn export>require-sri-for</dfn> <a>Content
 Security Policy</a> directive defined by the following ABNF grammar:
 
@@ -367,32 +381,50 @@ Security Policy</a> directive defined by the following ABNF grammar:
     directive-value = <a grammar>token</a> *( <a>RWS</a> <a>token</a> )
 </pre>
 
-The directive recognizes a number of potential token values:
+The following list contains the set of <dfn noexport>known tokens</dfn>:
 
   * `script` requires SRI for scripts
   * `style` requires SRI for style sheets
 
 ### Parsing `require-sri-for` ### {#parse-require-sri-for}
 
-To parse the |token| list, the user agent MUST use an algorithm equivalent to the following:
+Given a string (|token list|), this algorithm returns a list of resource
+types which will require integrity checks:
 
-1. Let the set of |protected resource types| that require SRI be the empty set.
+1.  Let the set of |protected resource types| that require SRI be the empty set.
 
-2. For each token returned by <a>splitting tokens on spaces</a>,
-  if token matches the grammar for <a>require-sri-for</a>,
-  add the token to the set of |protected resource types|. Otherwise, ignore the token.
+2.  For each |token| in the result of <a lt="split a string on spaces">
+    splitting |token list| on spaces</a> if token matches the grammar
+    for <a>require-sri-for</a>, add |token| to |protected resource types|
+    if |token| is a <a>known token</a>. Otherwise, ignore the token.
 
-3. Return the set of |protected resource types|.
+3.  Return the set of |protected resource types|.
 
 ### Apply |algorithm| to |request| ### {#apply-algorithm-to-request}
 
-1. Let |protected resource types| be the result of [[#parse-require-sri-for]].
+This directive’s <a>pre-request check</a> is as follows:
 
-2. If |request|'s type is a <a>ASCII case-insensitive match</a> for at least
-  one token in |protected resource types|, and |request|'s integrity metadata
-  is the empty string, return "Blocked":
+Given a <a>request</a> (|request|) and a <a>policy</a> (|policy|):
 
-3. Return "Allowed".
+1.  Let |protected resource types| be the result of executing
+    [[#parse-require-sri-for]] on this <a>directive</a>'s <a lt="directive value">value</a>.
+
+2.  If |request|'s <a>destination</a> is a <a>ASCII case-insensitive match</a> for at least
+    one token in |protected resource types|, and |request|'s integrity metadata
+    is the empty string:
+
+      1.  Let |violation| be the result of executing <a lt="create a violation object for global">
+          Create a violation object for global, policy, and directive</a> on |document|'s
+          <a>global object</a>, |policy|, and "<a>`require-sri-for`</a>".
+
+      2.  Set |violation|'s <a lt="violation-resource">resource</a> to "`inline`".
+
+      3.  Execute <a lt="report violation">Report a violation</a> on |violation|.
+
+      4.  If |policy|'s <a for="policy">disposition</a> is "`enforce`",
+          return "`Blocked`".
+
+3.  Return "Allowed".
 
 ## Response verification algorithms ## {#response-verification-algorithms}
 
@@ -459,7 +491,7 @@ the user agent.
 
 1.  Let |result| be the empty set.
 2.  Let |empty| be equal to `true`.
-3.  For each |token| returned by <a lt="split on space">splitting |metadata| on
+3.  For each |token| returned by <a lt="split a string on space">splitting |metadata| on
     spaces</a>:
     1.  Set |empty| to `false`.
     2.  If |token| is not a valid metadata, skip the remaining

@@ -357,12 +357,6 @@ again the requestor has full access to read the body.
 response to the request, so its body, too, is fully readable by the requestor.
 </div>
 
-Since the [response type][] for data URLs will always be "opaque" for
-`script` and `link` elements, such URLs are never eligible for integrity
-checks. Blob URLs on the other hand are usually considered same-origin and
-therefore are eligible for integrity checks.
-{:.note}
-
 [fetching]: https://fetch.spec.whatwg.org/#concept-fetch
 [response type]: https://fetch.spec.whatwg.org/#concept-response-type
 </section><!-- Algorithms::eligible -->

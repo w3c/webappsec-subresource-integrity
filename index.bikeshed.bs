@@ -400,11 +400,6 @@ specification [[!FETCH]] and refer to the following:
 
 </div>
 
-Note: Since the <a>response type</a> for data URLs will always be "opaque" for
-`script` and `link` elements, such URLs are never eligible for integrity
-checks. Blob URLs on the other hand are usually considered <a>same-origin</a>
-and therefore are eligible for integrity checks.
-
 ### Parse |metadata| ### {#parse-metadata}
 
 This algorithm accepts a string, and returns either `no metadata`, or a set of

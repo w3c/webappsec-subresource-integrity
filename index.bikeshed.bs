@@ -41,12 +41,12 @@ spec: CSP; urlPrefix: https://w3c.github.io/webappsec-csp/
     text: Content Security Policy; urlPrefix: #
     text: policy; url: policy
     text: directive; url: directives
-    text: directive value; url: directive-value
+    text: value; for: directive; url: directive-value
     text: pre-request check; url: directive-pre-request-check
     text: create a violation object for global; url: create-violation-for-global
     text: report violation; url: report-violation
     text: violation; url: violation
-    text: violation-resource; url: violation-resource
+    text: resource; for: violation; url: violation-resource
     text: disposition; for: policy
 
 spec: Fetch; urlPrefix: https://fetch.spec.whatwg.org
@@ -394,7 +394,7 @@ types which will require integrity checks:
 1.  Let the set of |protected resource types| that require SRI be the empty set.
 
 2.  For each |token| in the result of <a lt="split a string on spaces">
-    splitting |token list| on spaces</a> if token matches the grammar
+    splitting |token list| on spaces</a>, if token matches the grammar
     for <a>require-sri-for</a>, add |token| to |protected resource types|
     if |token| is a <a>known token</a>. Otherwise, ignore the token.
 
@@ -407,7 +407,7 @@ This directive’s <a>pre-request check</a> is as follows:
 Given a <a>request</a> (|request|) and a <a>policy</a> (|policy|):
 
 1.  Let |protected resource types| be the result of executing
-    [[#parse-require-sri-for]] on this <a>directive</a>'s <a lt="directive value">value</a>.
+    [[#parse-require-sri-for]] on this <a>directive</a>'s <a for="directive">value</a>.
 
 2.  If |request|'s <a>destination</a> is a <a>ASCII case-insensitive match</a> for at least
     one token in |protected resource types|, and |request|'s integrity metadata
@@ -417,7 +417,7 @@ Given a <a>request</a> (|request|) and a <a>policy</a> (|policy|):
           Create a violation object for global, policy, and directive</a> on |document|'s
           <a>global object</a>, |policy|, and "<a>`require-sri-for`</a>".
 
-      2.  Set |violation|'s <a lt="violation-resource">resource</a> to "`inline`".
+      2.  Set |violation|'s <a for="violation">resource</a> to |request|'s URL.
 
       3.  Execute <a lt="report violation">Report a violation</a> on |violation|.
 

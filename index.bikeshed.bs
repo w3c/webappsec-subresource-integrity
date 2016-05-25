@@ -45,8 +45,6 @@ spec: CSP; urlPrefix: https://w3c.github.io/webappsec-csp/
     text: pre-request check; url: directive-pre-request-check
     text: create a violation object for global; url: create-violation-for-global
     text: report violation; url: report-violation
-    text: violation; url: violation
-    text: resource; for: violation; url: violation-resource
     text: disposition; for: policy
 
 spec: Fetch; urlPrefix: https://fetch.spec.whatwg.org
@@ -411,18 +409,7 @@ Given a <a>request</a> (|request|) and a <a>policy</a> (|policy|):
 
 2.  If |request|'s <a>destination</a> is a <a>ASCII case-insensitive match</a> for at least
     one token in |protected resource types|, and |request|'s integrity metadata
-    is the empty string:
-
-      1.  Let |violation| be the result of executing <a lt="create a violation object for global">
-          Create a violation object for global, policy, and directive</a> on |document|'s
-          <a>global object</a>, |policy|, and "<a>`require-sri-for`</a>".
-
-      2.  Set |violation|'s <a for="violation">resource</a> to |request|'s URL.
-
-      3.  Execute <a lt="report violation">Report a violation</a> on |violation|.
-
-      4.  If |policy|'s <a for="policy">disposition</a> is "`enforce`",
-          return "`Blocked`".
+    is the empty string, return "Blocked".
 
 3.  Return "Allowed".
 

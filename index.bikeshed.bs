@@ -384,6 +384,7 @@ The following list contains the set of <dfn noexport>known tokens</dfn>:
   * `script` requires SRI for scripts
   * `style` requires SRI for style sheets
 
+
 ### Parsing `require-sri-for` ### {#parse-require-sri-for}
 
 Given a string (|token list|), this algorithm returns a list of resource
@@ -410,6 +411,12 @@ Given a <a>request</a> (|request|) and a <a>policy</a> (|policy|):
 2.  If |request|'s <a>destination</a> is a <a>ASCII case-insensitive match</a> for at least
     one token in |protected resource types|, and |request|'s integrity metadata
     is the empty string, return "Blocked".
+
+    Note: This logic means that request with matched <a>destination</a> and missing <a>integrity metadata</a>
+    will be blocked even if it is not currently possible to set it's <a>integrity metadata</a>.
+    Such requests are originated by, for example, <code>importScripts()</code>, CSS' <code>@import</code>,
+    or `script`/`style` elements without crossorigin content attribute.
+
 
 3.  Return "Allowed".
 

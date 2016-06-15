@@ -9,7 +9,7 @@ Shortname: SRI
 Level: 1
 Editor: Devdatta Akhawe, Dropbox Inc., http://devd.me, dev.akhawe@gmail.com
 Editor: Frederik Braun 68466, Mozilla, https://frederik-braun.com, fbraun@mozilla.com
-Editor: Francois Marier, Mozilla, https://fmarier.org, francois@mozilla.com
+Editor: François Marier, Mozilla, https://fmarier.org, francois@mozilla.com
 Editor: Joel Weinberger, Google Inc., https://joelweinberger.us, jww@google.com
 Abstract:
   This specification defines a mechanism by which user agents may verify that a

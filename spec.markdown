@@ -101,6 +101,20 @@ and future versions of this specification are likely to expand this coverage.
                 crossorigin="anonymous"></script>
     {:.example}
 
+*   The integrity attributes can be also added to elements created programatically.
+    Note that the cross-origin attribute is called [crossOrigin][crossorigin] in Document Object
+    Model.
+
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js";
+        script.integrity = "sha384-tSi+YsgNwyohDGfW/VhY51IK3RKAPYDcj1sNXJ16oRAyDP++K0NCzSCUW78EMFmf";
+        script.crossOrigin = "anonymous";
+        document.getElementsByTagName("head")[0].appendChild(script);
+    {:.example}
+
+[crossorigin]: https://html.spec.whatwg.org/multipage/embedded-content.html#dom-img-crossorigin
+
 *   A user agent wishes to ensure that JavaScript code running in high-privilege HTML 
     contexts (for example, a browser's New Tab page) aren't manipulated before display.
     [Integrity metadata][] mitigates the risk that altered JavaScript will run

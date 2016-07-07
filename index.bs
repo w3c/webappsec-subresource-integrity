@@ -394,8 +394,9 @@ types which will require integrity checks:
 
 2.  For each |token| in the result of <a lt="split a string on spaces">
     splitting |token list| on spaces</a>, if token matches the grammar
-    for <a>require-sri-for</a>, add |token| to |protected resource types|
-    if |token| is a <a>known token</a>. Otherwise, ignore the token.
+    for <a>require-sri-for</a> and is a <a>ASCII case-insensitive match</a>
+    for any of the <a>known token</a>s, add |token| to |protected resource types|.
+    Otherwise, ignore the token.
 
 3.  Return the set of |protected resource types|.
 

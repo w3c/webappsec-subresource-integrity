@@ -4,7 +4,8 @@ Subresource Integrity
 Editor's draft: https://w3c.github.io/webappsec-subresource-integrity/
 
 The spec text is written in [Bikeshed]. After editing `index.bs`, you can
-generate a new HTML draft by typing `make` on the command line.
+generate a new HTML draft by typing `make` on the command line. Note that this
+requires an active internet connection to download up-to-date config files.
 
 You can publish a new draft by typing `make publish` (which simply pushes
 the local `master` branch to GitHub's `gh-pages` branch).

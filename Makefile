@@ -9,6 +9,9 @@ index.kramdown.html: spec_v1.markdown template.erb
 index.html: index.bs
 	curl https://api.csswg.org/bikeshed/ -F file=@index.bs -F force=1 > ./index.html
 
+local:
+	bikeshed -f spec index.bs
+
 publish: all
 	git push origin master
 	git push origin master:gh-pages

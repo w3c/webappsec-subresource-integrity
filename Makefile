@@ -7,7 +7,7 @@ index.kramdown.html: spec_v1.markdown template.erb
 	sed -e 's/\[\[/\\[\\[/g' -e 's/\]\]/\\]\\]/g' ./spec_v1.markdown | kramdown --parse-block-html --template='template.erb' > index.kramdown.html
 
 index.html: index.bs
-	curl https://api.csswg.org/bikeshed/ -F file=@index.bs -F force=1 > ./index.html
+	curl https://api.csswg.org/bikeshed/ -F file=@index.bs -F force=1 --fail -o index.html
 
 local:
 	bikeshed -f spec index.bs

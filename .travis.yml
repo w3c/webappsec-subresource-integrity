@@ -4,9 +4,5 @@ python:
 sudo: false
 install: 
   - gem install kramdown
-  - git clone --depth=1 --branch=master https://github.com/tabatkins/bikeshed.git ./bikeshed
-  - pip install pygments
-  - pip install --editable ./bikeshed
-  - bikeshed update
 
 script: make

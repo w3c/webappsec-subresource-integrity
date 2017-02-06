@@ -510,10 +510,9 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
   3.  For each |token| returned by <a lt="split a string on space">splitting |metadata| on
       spaces</a>:
       1.  Set |empty| to `false`.
-      2.  If |token| is not a valid metadata, skip the remaining
-          steps, and proceed to the next token.
-      3.  Parse |token| per the grammar in <a>integrity metadata</a>.
-      4.  Let |algorithm| be the |alg| component of
+      2.  Parse |token| as a <a grammar>hash-with-options</a>.
+      3.  If |token| does not parse, [=continue=] to the next token.
+      4.  Let |algorithm| be the <a grammar>hash-algo</a> component of
           |token|.
       5.  If |algorithm| is a hash function recognized by the user
           agent, add the parsed |token| to |result|.
@@ -542,7 +541,7 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
   ### Does |response| match |metadataList|? ### {#does-response-match-metadatalist}
 
   1.  Let |parsedMetadata| be the result of
-      [parsing |metadataList|][parse].
+      <a href="#parse-metadata">parsing |metadataList|</a>.
   2.  If |parsedMetadata| is `no metadata`, return `true`.
   3.  If <a href="#is-response-eligible">|response| is not eligible for integrity
       validation</a>, return `false`.

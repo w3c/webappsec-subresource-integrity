@@ -428,7 +428,7 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
       Content-Security-Policy: <a>require-sri-for</a> script style
     </pre>
 
-    is equivalent to Content Security Policy delivered through <meta>
+    is equivalent to Content Security Policy delivered through `<meta>`
     element:
 
     <pre>

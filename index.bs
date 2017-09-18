@@ -597,7 +597,7 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
   the list of content attributes for the `link` and `script` elements.
 
   A corresponding `integrity` IDL attribute which <a>reflects</a> the
-  value each element's `integrity` content attribute is added to the
+  value of each element's `integrity` content attribute is added to the
   `HTMLLinkElement` and `HTMLScriptElement` interfaces.
 
   Note: A future revision of this specification is likely to include integrity support

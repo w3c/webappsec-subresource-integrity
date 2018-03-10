@@ -133,7 +133,7 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
   server, but also pin the <em>content</em>, ensuring that an exact representation of
   a resource, and <em>only</em> that representation, loads and executes.
 
-  This document specifies such a validation scheme, extending two HTML elements
+  This document specifies such a validation scheme, extending four HTML elements
   with an `integrity` attribute that contains a cryptographic hash
   of the representation of the resource the author expects to load. For instance,
   an author may wish to load some framework from a shared server rather than hosting it
@@ -157,8 +157,9 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
   </div>
 
   Scripts, of course, are not the only response type which would benefit
-  from integrity validation. The scheme specified here also applies to `link`
-  and future versions of this specification are likely to expand this coverage.
+  from integrity validation. The scheme specified here also applies to `link`,
+  and to `a` and `area` with the `download` attribute.
+  Future versions of this specification are likely to expand this coverage.
 
   ## Goals ## {#goals}
 
@@ -203,7 +204,23 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
                   crossorigin="anonymous"&gt;&lt;/script&gt;
       </pre>
       </div>
+      
+  *   An author wishes to use a content delivery network to improve download performance
+      for globally-distributed users. It is important, however, to ensure that
+      the CDN's servers deliver <em>only</em> the files the author expects them to
+      deliver. To mitigate the risk that a CDN compromise (or unexpectedly malicious
+      behavior) would change the content of the downloaded files, the following
+      <a>integrity metadata</a> is added to the `a` element included on the page:
 
+      <div class="example">
+      <pre>
+          &lt;a href="https://dowload.example.net/program.v1.0.0.exe"
+                download
+                integrity="sha384-R4/ztc4ZlRqWjqIuvf6RX5yb/v90qNGx6fS48N0tRxiGkqveZETq72KgDVJCp2TC"
+                crossorigin="anonymous"&gt;
+      </pre>
+      </div>
+      
   *   A user agent wishes to ensure that JavaScript code running in high-privilege HTML 
       contexts (for example, a browser's New Tab page) aren't manipulated before display.
       <a>Integrity metadata</a> mitigates the risk that altered JavaScript will run
@@ -383,6 +400,7 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
 
     * `script` requires SRI for scripts
     * `style` requires SRI for style sheets
+    * `download` requires SRI for downloads
 
 
   ### Parsing `require-sri-for` ### {#parse-require-sri-for}
@@ -601,7 +619,7 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
   `HTMLLinkElement` and `HTMLScriptElement` interfaces.
 
   Note: A future revision of this specification is likely to include integrity support
-  for all possible subresources, i.e., `a`, `audio`, `embed`, `iframe`, `img`,
+  for all possible subresources, i.e., `a`, `area`, `audio`, `embed`, `iframe`, `img`,
   `link`, `object`, `script`, `source`, `track`, and `video` elements.
 
   ## The `integrity` attribute ## {#the-integrity-attribute}
@@ -657,9 +675,31 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
   <b>integrity</b> of type `DOMString`: The value of this element's integrity
   attribute.
 
+  ### HTMLAnchorElement ### {#HTMLAnchorElement}
+  <pre class="idl">
+    partial interface HTMLAnchorElement {
+      attribute DOMString integrity;
+    };
+  </pre>
+
+  #### Attributes #### {#HTMLAnchorElement-Attributes}
+  <b>integrity</b> of type `DOMString`: The value of this element's integrity
+  attribute.
+
+  ### HTMLAreaElement ### {#HTMLAreaElement}
+  <pre class="idl">
+    partial interface HTMLAnchorElement {
+      attribute DOMString integrity;
+    };
+  </pre>
+
+  #### Attributes #### {#HTMLAreaElement-Attributes}
+  <b>integrity</b> of type `DOMString`: The value of this element's integrity
+  attribute.
+
   ## Handling integrity violations ## {#handling-integrity-violations}
 
-  The user agent will refuse to render or execute responses that fail an integrity
+  The user agent will refuse to render, execute or give access to responses that fail an integrity
   check, instead returning a network error as defined in Fetch [[!FETCH]].
 
   Note: On a failed integrity check, an `error` event is fired. Developers
@@ -689,6 +729,28 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
   1.  Let |src| be the value of the element's `src` attribute and
       the request's associated <a>integrity metadata</a> be the value of the
       element's `integrity` attribute.
+
+  ### The `a` and `area` elements ### {#a-element}
+  
+  Whenever a user agent attempts to <a>downloads a hyperlink</a> pointed to by a
+  `a` or an `area` element that has a `download` attribute, if the <a>integrity metadata</a> check
+  failed, it must consider the download as not successful and:
+  
+  - The user agent must not attept to execute or open the dowloaded file nor give the user the option to do so.
+  
+  - The dowloaded file must not be present in the download directory (nor the default one nor the one choosen by the user).
+
+ -  If the downloaded file is present in a temporary directory, the user agent must not display that location to the user.
+  
+  - The user agent should avoid keeping the downloaded file on disk.
+  
+  If the user agent have an option to retry failed downloads, the integrity check must me performed again on retries.
+  
+  In cross origin situation, if the `download` attribute of an `a` and `area` element
+  with an `integrity` attribute is overridden by the `Content-Disposition` HTTP header
+  with an `inline` disposition type [[!RFC6266]], the user agent must cancel the navigation,
+  regardless of the <a>integrity metadata</a> check.
+  
 
   <!-- ####################################################################### -->
 

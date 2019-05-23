@@ -276,8 +276,8 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
   href="http://www.w3.org/TR/CSP2/#source-list-syntax">section 4.2 of the Content
   Security Policy Level 2 specification</a>.
 
-  For example, given a script resource containing only the string `alert(\'Hello,
-  world.\');`, an author might choose <a>SHA-384</a> as a hash function.
+  For example, given a script resource containing only the string `alert('Hello,
+  world.');`, an author might choose <a>SHA-384</a> as a hash function.
   `H8BRh8j48O9oYatfu5AZzq6A9RINhZO5H16dQZngK7T62em8MUt1FLm52t+eX6xO` is the <a
   lt="base64 encoding">base64 encoded</a> digest that results. This can be encoded
   as follows:

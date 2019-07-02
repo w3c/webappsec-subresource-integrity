@@ -421,27 +421,6 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
 
   3.  Return "Allowed".
 
-  <div class="example">
-    A page with the following Content Security Policy:
-
-    <pre>
-      Content-Security-Policy: <a>require-sri-for</a> script style
-    </pre>
-
-    is equivalent to Content Security Policy delivered through `<meta>`
-    element:
-
-    <pre>
-      &lt;meta http-equiv="Content-Security-Policy"
-            content="<a>require-sri-for</a> script style"&gt;
-    </pre>
-
-
-    and requires <a>integrity metadata</a> be present in `script`
-    and `link` HTML elements that contain `src` attribute.
-  </div>
-
-
   ## Response verification algorithms ## {#response-verification-algorithms}
 
   ### Apply |algorithm| to |response| ### {#apply-algorithm-to-response}

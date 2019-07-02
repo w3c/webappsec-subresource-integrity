@@ -785,7 +785,7 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
   concept as well as WHATWG's <a
   href="https://wiki.whatwg.org/wiki/Link_Hashes">Link Hashes</a>.
 
-  A special thanks to Mike West of Google, Inc. for his invaluable contributions
-  to the initial version of this spec. Additionally, Brad Hill, Anne van Kesteren,
-  Jonathan Kingston, Mark Nottingham, Dan Veditz, Eduardo Vela, Tanvi Vyas, and
-  Michal Zalewski provided invaluable feedback.
+  A special thanks to Mike West for his invaluable contributions to the initial
+  version of this spec. Thanks to Brad Hill, Anne van Kesteren, Jonathan
+  Kingston, Mark Nottingham,  Sergey Shekyan , Dan Veditz, Eduardo Vela,
+  Tanvi Vyas, and Michal Zalewski for providing invaluable feedback.

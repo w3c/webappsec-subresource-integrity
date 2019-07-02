@@ -765,17 +765,6 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
   to load the document. A successful load would confirm that the attacker
   has correctly guessed the username.
 
-
-  <section>
-    <h2 id="iana-considerations">IANA Considerations</h2>
-
-    The Content Security Policy Directive registry should be updated with the
-    following directives and references [[!RFC7762]]:
-
-    :   <a>`require-sri-for`</a>
-    ::  This document (see [[#opt-in-require-sri-for]])
-  </section>
-
   <!-- ####################################################################### -->
 
   # Acknowledgements # {#acknowledgements}

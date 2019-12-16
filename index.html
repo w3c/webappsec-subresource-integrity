@@ -1214,7 +1214,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 83d3ceadc5400c8422976bbcbe49615aace9cf1e" name="generator">
   <link href="http://www.w3.org/TR/SRI/" rel="canonical">
-  <meta content="4716b7278b553c9d5bf10ee56e00570a737ee896" name="document-revision">
+  <meta content="68fd65e85962962ea7c2d61178d6d5dec7d4848e" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1300,6 +1300,17 @@ figcaption {
 figcaption:not(.no-marker)::before {
     content: "Figure " counter(figure) " ";
 }</style>
+<style>/* style-var-click-highlighting */
+
+    var { cursor: pointer; }
+    var.selected0 { background-color: #F4D200; box-shadow: 0 0 0 2px #F4D200; }
+    var.selected1 { background-color: #FF87A2; box-shadow: 0 0 0 2px #FF87A2; }
+    var.selected2 { background-color: #96E885; box-shadow: 0 0 0 2px #96E885; }
+    var.selected3 { background-color: #3EEED2; box-shadow: 0 0 0 2px #3EEED2; }
+    var.selected4 { background-color: #EACFB6; box-shadow: 0 0 0 2px #EACFB6; }
+    var.selected5 { background-color: #82DDFF; box-shadow: 0 0 0 2px #82DDFF; }
+    var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
+    </style>
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -1476,6 +1487,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <dd><span><a href="mailto:public-webappsec@w3.org?subject=%5BSRI%5D%20YOUR%20TOPIC%20HERE">public-webappsec@w3.org</a> with subject line “<kbd>[SRI] <i data-lt>… message topic …</i></kbd>” (<a href="https://lists.w3.org/Archives/Public/public-webappsec/" rel="discussion">archives</a>)</span>
      <dt>Issue Tracking:
      <dd><a href="https://github.com/w3c/webappsec-subresource-integrity/issues/">GitHub</a>
+     <dd><a href="#issues-index">Inline In Spec</a>
      <dt class="editor">Editors:
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-url url" href="http://devd.me">Devdatta Akhawe</a> (<span class="p-org org">Dropbox Inc.</span>) <a class="u-email email" href="mailto:dev.akhawe@gmail.com">dev.akhawe@gmail.com</a>
      <dd class="editor p-author h-card vcard" data-editor-id="68466"><a class="p-name fn u-url url" href="https://frederik-braun.com">Frederik Braun</a> (<span class="p-org org">Mozilla</span>) <a class="u-email email" href="mailto:fbraun@mozilla.com">fbraun@mozilla.com</a>
@@ -1558,28 +1570,29 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
         <li><a href="#get-the-strongest-metadata"><span class="secno">3.3.4</span> <span class="content">Get the strongest metadata from <var>set</var></span></a>
         <li><a href="#does-response-match-metadatalist"><span class="secno">3.3.5</span> <span class="content">Does <var>response</var> match <var>metadataList</var>?</span></a>
        </ol>
-      <li><a href="#verification-of-html-document-subresources"><span class="secno">3.4</span> <span class="content">Verification of HTML document subresources</span></a>
-      <li><a href="#the-integrity-attribute"><span class="secno">3.5</span> <span class="content">The <code>integrity</code> attribute</span></a>
+      <li><a href="#inline-verification"><span class="secno">3.4</span> <span class="content">Inline Verification Algorithms</span></a>
+      <li><a href="#verification-of-html-document-subresources"><span class="secno">3.5</span> <span class="content">Verification of HTML document subresources</span></a>
+      <li><a href="#the-integrity-attribute"><span class="secno">3.6</span> <span class="content">The <code>integrity</code> attribute</span></a>
       <li>
-       <a href="#interface-extensions"><span class="secno">3.6</span> <span class="content">Element interface extensions</span></a>
+       <a href="#interface-extensions"><span class="secno">3.7</span> <span class="content">Element interface extensions</span></a>
        <ol class="toc">
         <li>
-         <a href="#HTMLLinkElement"><span class="secno">3.6.1</span> <span class="content">HTMLLinkElement</span></a>
+         <a href="#HTMLLinkElement"><span class="secno">3.7.1</span> <span class="content">HTMLLinkElement</span></a>
          <ol class="toc">
-          <li><a href="#HTMLLinkElement-Attributes"><span class="secno">3.6.1.1</span> <span class="content">Attributes</span></a>
+          <li><a href="#HTMLLinkElement-Attributes"><span class="secno">3.7.1.1</span> <span class="content">Attributes</span></a>
          </ol>
         <li>
-         <a href="#HTMLScriptElement"><span class="secno">3.6.2</span> <span class="content">HTMLScriptElement</span></a>
+         <a href="#HTMLScriptElement"><span class="secno">3.7.2</span> <span class="content">HTMLScriptElement</span></a>
          <ol class="toc">
-          <li><a href="#HTMLScriptElement-Attributes"><span class="secno">3.6.2.1</span> <span class="content">Attributes</span></a>
+          <li><a href="#HTMLScriptElement-Attributes"><span class="secno">3.7.2.1</span> <span class="content">Attributes</span></a>
          </ol>
        </ol>
-      <li><a href="#handling-integrity-violations"><span class="secno">3.7</span> <span class="content">Handling integrity violations</span></a>
+      <li><a href="#handling-integrity-violations"><span class="secno">3.8</span> <span class="content">Handling integrity violations</span></a>
       <li>
-       <a href="#elements"><span class="secno">3.8</span> <span class="content">Elements</span></a>
+       <a href="#elements"><span class="secno">3.9</span> <span class="content">Elements</span></a>
        <ol class="toc">
-        <li><a href="#link-element-for-stylesheets"><span class="secno">3.8.1</span> <span class="content">The <code>link</code> element for stylesheets</span></a>
-        <li><a href="#script-element"><span class="secno">3.8.2</span> <span class="content">The <code>script</code> element</span></a>
+        <li><a href="#link-element-for-stylesheets"><span class="secno">3.9.1</span> <span class="content">The <code>link</code> element for stylesheets</span></a>
+        <li><a href="#script-element"><span class="secno">3.9.2</span> <span class="content">The <code>script</code> element</span></a>
        </ol>
      </ol>
     <li><a href="#proxies"><span class="secno">4</span> <span class="content">Proxies</span></a>
@@ -1610,6 +1623,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       <li><a href="#informative"><span class="secno"></span> <span class="content">Informative References</span></a>
      </ol>
     <li><a href="#idl-index"><span class="secno"></span> <span class="content">IDL Index</span></a>
+    <li><a href="#issues-index"><span class="secno"></span> <span class="content">Issues Index</span></a>
    </ol>
   </nav>
   <main>
@@ -1856,9 +1870,9 @@ response to the request, so its body, too, is fully readable by the requestor.</
     </ul>
    </div>
    <h4 class="heading settled" data-level="3.3.3" id="parse-metadata"><span class="secno">3.3.3. </span><span class="content">Parse <var>metadata</var></span><a class="self-link" href="#parse-metadata"></a></h4>
-   <p>This algorithm accepts a string, and returns either <code>no metadata</code>, or a set of
-  valid hash expressions whose hash functions are understood by
-  the user agent.</p>
+   <p>The <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export data-local-lt="parse metadata" id="abstract-opdef-integrity-metadata-parsing">integrity metadata parsing</dfn> algorithm accepts
+  a string, and returns either <code>no metadata</code>, or a set of valid hash expressions whose hash
+  functions are understood by the user agent.</p>
    <ol>
     <li data-md>
      <p>Let <var>result</var> be the empty set.</p>
@@ -1884,6 +1898,7 @@ response to the request, so its body, too, is fully readable by the requestor.</
      <p>Return <code>no metadata</code> if <var>empty</var> is <code>true</code>, otherwise return <var>result</var>.</p>
    </ol>
    <h4 class="heading settled" data-level="3.3.4" id="get-the-strongest-metadata"><span class="secno">3.3.4. </span><span class="content">Get the strongest metadata from <var>set</var></span><a class="self-link" href="#get-the-strongest-metadata"></a></h4>
+   <p>To <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export data-local-lt="get strongest" id="abstract-opdef-get-the-strongest-metadata">get the strongest metadata</dfn> from a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list">list</a> (<var>set</var>):</p>
    <ol>
     <li data-md>
      <p>Let <var>result</var> be the empty set and <var>strongest</var> be the empty
@@ -1955,7 +1970,37 @@ response to the request, so its body, too, is fully readable by the requestor.</
   validation since Subresource Integrity requires CORS, and it is a logical error
   to attempt to use it without CORS. Additionally, user agents SHOULD report a
   warning message to the developer console to explain this failure.</p>
-   <h3 class="heading settled" data-level="3.4" id="verification-of-html-document-subresources"><span class="secno">3.4. </span><span class="content">Verification of HTML document subresources</span><a class="self-link" href="#verification-of-html-document-subresources"></a></h3>
+   <h3 class="heading settled" data-level="3.4" id="inline-verification"><span class="secno">3.4. </span><span class="content">Inline Verification Algorithms</span><a class="self-link" href="#inline-verification"></a></h3>
+   <p>Integrity may be enforced on a given <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/scripting.html#script" id="ref-for-script">script</a></code> or <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#the-style-element" id="ref-for-the-style-element">style</a></code> element by comparing an element’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-child-text-content" id="ref-for-concept-child-text-content">child text content</a> with the integrity metadata asserted via its <code><a data-link-type="element-sub" href="https://html.spec.whatwg.org/multipage/scripting.html#attr-script-integrity" id="ref-for-attr-script-integrity">integrity</a></code> attribute, as follows:</p>
+   <div class="algorithm" data-algorithm="inline verification">
+     To <dfn data-dfn-type="abstract-op" data-export data-local-lt="inline verification" data-lt="determine whether an element’s inline behavior should be blocked by integrity checks" id="abstract-opdef-determine-whether-an-elements-inline-behavior-should-be-blocked-by-integrity-checks">determine whether an element’s inline
+      behavior should be blocked by integrity checks<a class="self-link" href="#abstract-opdef-determine-whether-an-elements-inline-behavior-should-be-blocked-by-integrity-checks"></a></dfn>, given an <code class="idl"><a data-link-type="idl" href="https://dom.spec.whatwg.org/#element" id="ref-for-element">Element</a></code> (<var>el</var>) and a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string" id="ref-for-string">string</a> (<var>body</var>), perform the following steps, which return "<code>Blocked</code>" or "<code>Allowed</code>": 
+    <ol>
+     <li data-md>
+      <p class="assertion">Assert: <var>el</var> is an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/dom.html#htmlorsvgscriptelement" id="ref-for-htmlorsvgscriptelement">HTMLOrSVGScriptElement</a></code>, or an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/semantics.html#htmlstyleelement" id="ref-for-htmlstyleelement">HTMLStyleElement</a></code>.</p>
+     <li data-md>
+      <p>Let <var>metadata</var> be the value of <a data-link-type="abstract-op" href="#abstract-opdef-get-the-strongest-metadata" id="ref-for-abstract-opdef-get-the-strongest-metadata">getting the strongest metadata</a> from <a data-link-type="abstract-op" href="#abstract-opdef-integrity-metadata-parsing" id="ref-for-abstract-opdef-integrity-metadata-parsing">parsing</a> <var>el</var>’s <code><a data-link-type="element-sub" href="https://html.spec.whatwg.org/multipage/scripting.html#attr-script-integrity" id="ref-for-attr-script-integrity①">integrity</a></code> attribute.</p>
+     <li data-md>
+      <p>If <var>metadata</var> is empty, then return "<code>Allowed</code>".</p>
+     <li data-md>
+      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate">For each</a> <var>item</var> in <var>metadata</var>:</p>
+      <ol>
+       <li data-md>
+        <p>Let <var>algorithm</var> be the <var>alg</var> component of <var>item</var>.</p>
+       <li data-md>
+        <p>Let <var>expectedValue</var> be the <var>val</var> component of <var>item</var>.</p>
+       <li data-md>
+        <p>Let <var>actualValue</var> be the result of <a data-link-type="dfn" href="#base64-encoding" id="ref-for-base64-encoding②">base64 encoding</a> the result of executing <var>algorithm</var> on <var>body</var>.</p>
+       <li data-md>
+        <p>If <var>actualValue</var> is <var>expectedValue</var>, return "<code>Allowed</code>".</p>
+      </ol>
+     <li data-md>
+      <p>Return "<code>Blocked</code>".</p>
+    </ol>
+   </div>
+   <p class="issue" id="issue-d9673cac"><a class="self-link" href="#issue-d9673cac"></a> This needs to be wired up to HTML’s <a data-link-type="dfn" href="http://www.w3.org/TR/html5/scripting-1.html#prepare-a-script" id="ref-for-prepare-a-script">prepare a script</a> algorithm:</p>
+   <p class="issue" id="issue-73339f22"><a class="self-link" href="#issue-73339f22"></a> This needs to be wired up to HTML’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/semantics.html#update-a-style-block" id="ref-for-update-a-style-block">update a style block</a> algorithm:</p>
+   <h3 class="heading settled" data-level="3.5" id="verification-of-html-document-subresources"><span class="secno">3.5. </span><span class="content">Verification of HTML document subresources</span><a class="self-link" href="#verification-of-html-document-subresources"></a></h3>
    <p>A variety of HTML elements result in requests for resources that are to be
   embedded into the document, or executed in its context. To support integrity
   metadata for some of these elements, a new <code>integrity</code> attribute is added to
@@ -1964,7 +2009,7 @@ response to the request, so its body, too, is fully readable by the requestor.</
   value of each element’s <code>integrity</code> content attribute is added to the <code>HTMLLinkElement</code> and <code>HTMLScriptElement</code> interfaces.</p>
    <p class="note" role="note"><span>Note:</span> A future revision of this specification is likely to include integrity support
   for all possible subresources, i.e., <code>a</code>, <code>audio</code>, <code>embed</code>, <code>iframe</code>, <code>img</code>, <code>link</code>, <code>object</code>, <code>script</code>, <code>source</code>, <code>track</code>, and <code>video</code> elements.</p>
-   <h3 class="heading settled" data-level="3.5" id="the-integrity-attribute"><span class="secno">3.5. </span><span class="content">The <code>integrity</code> attribute</span><a class="self-link" href="#the-integrity-attribute"></a></h3>
+   <h3 class="heading settled" data-level="3.6" id="the-integrity-attribute"><span class="secno">3.6. </span><span class="content">The <code>integrity</code> attribute</span><a class="self-link" href="#the-integrity-attribute"></a></h3>
    <p>The <code>integrity</code> attribute represents <a data-link-type="dfn" href="#integrity-metadata" id="ref-for-integrity-metadata⑤">integrity metadata</a> for an element.
   The value of the attribute MUST be either the empty string, or at least one
   valid metadata as described by the following ABNF grammar:</p>
@@ -1984,32 +2029,32 @@ response to the request, so its body, too, is fully readable by the requestor.</
   no options have been defined. It is likely that a future version of the spec
   will define a more specific syntax for options, so it is defined here as broadly
   as possible.</p>
-   <h3 class="heading settled" data-level="3.6" id="interface-extensions"><span class="secno">3.6. </span><span class="content">Element interface extensions</span><a class="self-link" href="#interface-extensions"></a></h3>
-   <h4 class="heading settled" data-level="3.6.1" id="HTMLLinkElement"><span class="secno">3.6.1. </span><span class="content">HTMLLinkElement</span><a class="self-link" href="#HTMLLinkElement"></a></h4>
+   <h3 class="heading settled" data-level="3.7" id="interface-extensions"><span class="secno">3.7. </span><span class="content">Element interface extensions</span><a class="self-link" href="#interface-extensions"></a></h3>
+   <h4 class="heading settled" data-level="3.7.1" id="HTMLLinkElement"><span class="secno">3.7.1. </span><span class="content">HTMLLinkElement</span><a class="self-link" href="#HTMLLinkElement"></a></h4>
 <pre class="idl highlight def"><c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/semantics.html#htmllinkelement" id="ref-for-htmllinkelement"><c- g>HTMLLinkElement</c-></a> {
   <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString"><c- b>DOMString</c-></a> <dfn class="idl-code" data-dfn-for="HTMLLinkElement" data-dfn-type="attribute" data-export data-type="DOMString" id="dom-htmllinkelement-integrity"><code><c- g>integrity</c-></code><a class="self-link" href="#dom-htmllinkelement-integrity"></a></dfn>;
 };
 </pre>
-   <h5 class="heading settled" data-level="3.6.1.1" id="HTMLLinkElement-Attributes"><span class="secno">3.6.1.1. </span><span class="content">Attributes</span><a class="self-link" href="#HTMLLinkElement-Attributes"></a></h5>
+   <h5 class="heading settled" data-level="3.7.1.1" id="HTMLLinkElement-Attributes"><span class="secno">3.7.1.1. </span><span class="content">Attributes</span><a class="self-link" href="#HTMLLinkElement-Attributes"></a></h5>
     <b>integrity</b> of type <code>DOMString</code>: The value of this element’s integrity
   attribute. 
-   <h4 class="heading settled" data-level="3.6.2" id="HTMLScriptElement"><span class="secno">3.6.2. </span><span class="content">HTMLScriptElement</span><a class="self-link" href="#HTMLScriptElement"></a></h4>
+   <h4 class="heading settled" data-level="3.7.2" id="HTMLScriptElement"><span class="secno">3.7.2. </span><span class="content">HTMLScriptElement</span><a class="self-link" href="#HTMLScriptElement"></a></h4>
 <pre class="idl highlight def"><c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/scripting.html#htmlscriptelement" id="ref-for-htmlscriptelement"><c- g>HTMLScriptElement</c-></a> {
   <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString①"><c- b>DOMString</c-></a> <dfn class="idl-code" data-dfn-for="HTMLScriptElement" data-dfn-type="attribute" data-export data-type="DOMString" id="dom-htmlscriptelement-integrity"><code><c- g>integrity</c-></code><a class="self-link" href="#dom-htmlscriptelement-integrity"></a></dfn>;
 };
 </pre>
-   <h5 class="heading settled" data-level="3.6.2.1" id="HTMLScriptElement-Attributes"><span class="secno">3.6.2.1. </span><span class="content">Attributes</span><a class="self-link" href="#HTMLScriptElement-Attributes"></a></h5>
+   <h5 class="heading settled" data-level="3.7.2.1" id="HTMLScriptElement-Attributes"><span class="secno">3.7.2.1. </span><span class="content">Attributes</span><a class="self-link" href="#HTMLScriptElement-Attributes"></a></h5>
     <b>integrity</b> of type <code>DOMString</code>: The value of this element’s integrity
   attribute. 
-   <h3 class="heading settled" data-level="3.7" id="handling-integrity-violations"><span class="secno">3.7. </span><span class="content">Handling integrity violations</span><a class="self-link" href="#handling-integrity-violations"></a></h3>
+   <h3 class="heading settled" data-level="3.8" id="handling-integrity-violations"><span class="secno">3.8. </span><span class="content">Handling integrity violations</span><a class="self-link" href="#handling-integrity-violations"></a></h3>
    <p>The user agent will refuse to render or execute responses that fail an integrity
   check, instead returning a network error as defined in Fetch <a data-link-type="biblio" href="#biblio-fetch">[FETCH]</a>.</p>
    <p class="note" role="note"><span>Note:</span> On a failed integrity check, an <code>error</code> event is fired. Developers
   wishing to provide a canonical fallback resource (e.g., a resource not served
   from a CDN, perhaps from a secondary, trusted, but slower source) can catch this <code>error</code> event and provide an appropriate handler to replace the
   failed resource with a different one.</p>
-   <h3 class="heading settled" data-level="3.8" id="elements"><span class="secno">3.8. </span><span class="content">Elements</span><a class="self-link" href="#elements"></a></h3>
-   <h4 class="heading settled" data-level="3.8.1" id="link-element-for-stylesheets"><span class="secno">3.8.1. </span><span class="content">The <code>link</code> element for stylesheets</span><a class="self-link" href="#link-element-for-stylesheets"></a></h4>
+   <h3 class="heading settled" data-level="3.9" id="elements"><span class="secno">3.9. </span><span class="content">Elements</span><a class="self-link" href="#elements"></a></h3>
+   <h4 class="heading settled" data-level="3.9.1" id="link-element-for-stylesheets"><span class="secno">3.9.1. </span><span class="content">The <code>link</code> element for stylesheets</span><a class="self-link" href="#link-element-for-stylesheets"></a></h4>
    <p>Whenever a user agent attempts to <a data-link-type="dfn" href="http://www.w3.org/TR/html5/document-metadata.html#concept-link-obtain" id="ref-for-concept-link-obtain">obtain a resource</a> pointed to by a <code>link</code> element that has a <code>rel</code> attribute with the keyword of <code>stylesheet</code>,
   modify step 4 to read:</p>
    <p>Do a potentially CORS-enabled fetch of the resulting absolute URL, with the
@@ -2017,8 +2062,8 @@ response to the request, so its body, too, is fully readable by the requestor.</
   the origin being the origin of the link element’s Document, the default origin
   behavior set to taint, and the <a data-link-type="dfn" href="#integrity-metadata" id="ref-for-integrity-metadata⑥">integrity metadata</a> of the request set to
   the value of the element’s <code>integrity</code> attribute.</p>
-   <h4 class="heading settled" data-level="3.8.2" id="script-element"><span class="secno">3.8.2. </span><span class="content">The <code>script</code> element</span><a class="self-link" href="#script-element"></a></h4>
-   <p>Replace step 14.1 of HTML5’s <a data-link-type="dfn" href="http://www.w3.org/TR/html5/scripting-1.html#prepare-a-script" id="ref-for-prepare-a-script">prepare a script</a> algorithm with:</p>
+   <h4 class="heading settled" data-level="3.9.2" id="script-element"><span class="secno">3.9.2. </span><span class="content">The <code>script</code> element</span><a class="self-link" href="#script-element"></a></h4>
+   <p>Replace step 14.1 of HTML5’s <a data-link-type="dfn" href="http://www.w3.org/TR/html5/scripting-1.html#prepare-a-script" id="ref-for-prepare-a-script①">prepare a script</a> algorithm with:</p>
    <ol>
     <li data-md>
      <p>Let <var>src</var> be the value of the element’s <code>src</code> attribute and
@@ -2120,35 +2165,53 @@ response to the request, so its body, too, is fully readable by the requestor.</
   <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
   <ul class="index">
    <li><a href="#base64-encoding">base64 encoding</a><span>, in §2</span>
-   <li><a href="#grammardef-base64-value">base64-value</a><span>, in §3.5</span>
+   <li><a href="#grammardef-base64-value">base64-value</a><span>, in §3.6</span>
+   <li><a href="#abstract-opdef-determine-whether-an-elements-inline-behavior-should-be-blocked-by-integrity-checks">determine whether an element’s inline behavior should be blocked by integrity checks</a><span>, in §3.4</span>
    <li><a href="#digest">digest</a><span>, in §2</span>
    <li><a href="#getprioritizedhashfunction">getPrioritizedHashFunction</a><span>, in §3.2.2</span>
-   <li><a href="#grammardef-hash-algo">hash-algo</a><span>, in §3.5</span>
-   <li><a href="#grammardef-hash-expression">hash-expression</a><span>, in §3.5</span>
-   <li><a href="#grammardef-hash-with-options">hash-with-options</a><span>, in §3.5</span>
+   <li><a href="#abstract-opdef-get-the-strongest-metadata">get strongest</a><span>, in §3.3.4</span>
+   <li><a href="#abstract-opdef-get-the-strongest-metadata">get the strongest metadata</a><span>, in §3.3.4</span>
+   <li><a href="#grammardef-hash-algo">hash-algo</a><span>, in §3.6</span>
+   <li><a href="#grammardef-hash-expression">hash-expression</a><span>, in §3.6</span>
+   <li><a href="#grammardef-hash-with-options">hash-with-options</a><span>, in §3.6</span>
+   <li><a href="#abstract-opdef-determine-whether-an-elements-inline-behavior-should-be-blocked-by-integrity-checks">inline verification</a><span>, in §3.4</span>
    <li>
     integrity
     <ul>
-     <li><a href="#dom-htmllinkelement-integrity">attribute for HTMLLinkElement</a><span>, in §3.6.1</span>
-     <li><a href="#dom-htmlscriptelement-integrity">attribute for HTMLScriptElement</a><span>, in §3.6.2</span>
+     <li><a href="#dom-htmllinkelement-integrity">attribute for HTMLLinkElement</a><span>, in §3.7.1</span>
+     <li><a href="#dom-htmlscriptelement-integrity">attribute for HTMLScriptElement</a><span>, in §3.7.2</span>
     </ul>
-   <li><a href="#grammardef-integrity-metadata">integrity-metadata</a><span>, in §3.5</span>
+   <li><a href="#grammardef-integrity-metadata">integrity-metadata</a><span>, in §3.6</span>
    <li><a href="#integrity-metadata">integrity metadata</a><span>, in §3.1</span>
-   <li><a href="#grammardef-option-expression">option-expression</a><span>, in §3.5</span>
+   <li><a href="#abstract-opdef-integrity-metadata-parsing">integrity metadata parsing</a><span>, in §3.3.3</span>
+   <li><a href="#grammardef-option-expression">option-expression</a><span>, in §3.6</span>
+   <li><a href="#abstract-opdef-integrity-metadata-parsing">parse metadata</a><span>, in §3.3.3</span>
    <li><a href="#representation-data">representation data</a><span>, in §2</span>
   </ul>
   <aside class="dfn-panel" data-for="term-for-appendix-B.1">
    <a href="https://tools.ietf.org/html/rfc5234#appendix-B.1">https://tools.ietf.org/html/rfc5234#appendix-B.1</a><b>Referenced in:</b>
    <ul>
     <li><a href="#termref-for-">2.1. Grammatical Concepts</a> <a href="#ref-for-appendix-B.1">(2)</a> <a href="#ref-for-appendix-B.1①">(3)</a>
-    <li><a href="#ref-for-appendix-B.1②">3.5. The integrity attribute</a> <a href="#ref-for-appendix-B.1③">(2)</a> <a href="#ref-for-appendix-B.1④">(3)</a> <a href="#ref-for-appendix-B.1⑤">(4)</a> <a href="#ref-for-appendix-B.1⑥">(5)</a>
+    <li><a href="#ref-for-appendix-B.1②">3.6. The integrity attribute</a> <a href="#ref-for-appendix-B.1③">(2)</a> <a href="#ref-for-appendix-B.1④">(3)</a> <a href="#ref-for-appendix-B.1⑤">(4)</a> <a href="#ref-for-appendix-B.1⑥">(5)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-appendix-B.1">
    <a href="https://tools.ietf.org/html/rfc5234#appendix-B.1">https://tools.ietf.org/html/rfc5234#appendix-B.1</a><b>Referenced in:</b>
    <ul>
     <li><a href="#termref-for-">2.1. Grammatical Concepts</a> <a href="#ref-for-appendix-B.1">(2)</a> <a href="#ref-for-appendix-B.1①">(3)</a>
-    <li><a href="#ref-for-appendix-B.1②">3.5. The integrity attribute</a> <a href="#ref-for-appendix-B.1③">(2)</a> <a href="#ref-for-appendix-B.1④">(3)</a> <a href="#ref-for-appendix-B.1⑤">(4)</a> <a href="#ref-for-appendix-B.1⑥">(5)</a>
+    <li><a href="#ref-for-appendix-B.1②">3.6. The integrity attribute</a> <a href="#ref-for-appendix-B.1③">(2)</a> <a href="#ref-for-appendix-B.1④">(3)</a> <a href="#ref-for-appendix-B.1⑤">(4)</a> <a href="#ref-for-appendix-B.1⑥">(5)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-element">
+   <a href="https://dom.spec.whatwg.org/#element">https://dom.spec.whatwg.org/#element</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-element">3.4. Inline Verification Algorithms</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-concept-child-text-content">
+   <a href="https://dom.spec.whatwg.org/#concept-child-text-content">https://dom.spec.whatwg.org/#concept-child-text-content</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-concept-child-text-content">3.4. Inline Verification Algorithms</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-concept-fetch">
@@ -2172,13 +2235,31 @@ response to the request, so its body, too, is fully readable by the requestor.</
   <aside class="dfn-panel" data-for="term-for-htmllinkelement">
    <a href="https://html.spec.whatwg.org/multipage/semantics.html#htmllinkelement">https://html.spec.whatwg.org/multipage/semantics.html#htmllinkelement</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-htmllinkelement">3.6.1. HTMLLinkElement</a>
+    <li><a href="#ref-for-htmllinkelement">3.7.1. HTMLLinkElement</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-htmlorsvgscriptelement">
+   <a href="https://html.spec.whatwg.org/multipage/dom.html#htmlorsvgscriptelement">https://html.spec.whatwg.org/multipage/dom.html#htmlorsvgscriptelement</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-htmlorsvgscriptelement">3.4. Inline Verification Algorithms</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-htmlscriptelement">
    <a href="https://html.spec.whatwg.org/multipage/scripting.html#htmlscriptelement">https://html.spec.whatwg.org/multipage/scripting.html#htmlscriptelement</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-htmlscriptelement">3.6.2. HTMLScriptElement</a>
+    <li><a href="#ref-for-htmlscriptelement">3.7.2. HTMLScriptElement</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-htmlstyleelement">
+   <a href="https://html.spec.whatwg.org/multipage/semantics.html#htmlstyleelement">https://html.spec.whatwg.org/multipage/semantics.html#htmlstyleelement</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-htmlstyleelement">3.4. Inline Verification Algorithms</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-attr-script-integrity">
+   <a href="https://html.spec.whatwg.org/multipage/scripting.html#attr-script-integrity">https://html.spec.whatwg.org/multipage/scripting.html#attr-script-integrity</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-attr-script-integrity">3.4. Inline Verification Algorithms</a> <a href="#ref-for-attr-script-integrity①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-concept-origin">
@@ -2194,6 +2275,24 @@ response to the request, so its body, too, is fully readable by the requestor.</
     <li><a href="#ref-for-same-origin①">3.3.2. Is response eligible for integrity validation?</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-script">
+   <a href="https://html.spec.whatwg.org/multipage/scripting.html#script">https://html.spec.whatwg.org/multipage/scripting.html#script</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-script">3.4. Inline Verification Algorithms</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-the-style-element">
+   <a href="https://html.spec.whatwg.org/multipage/semantics.html#the-style-element">https://html.spec.whatwg.org/multipage/semantics.html#the-style-element</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-the-style-element">3.4. Inline Verification Algorithms</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-update-a-style-block">
+   <a href="https://html.spec.whatwg.org/multipage/semantics.html#update-a-style-block">https://html.spec.whatwg.org/multipage/semantics.html#update-a-style-block</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-update-a-style-block">3.4. Inline Verification Algorithms</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-cors-settings-attributes">
    <a href="http://www.w3.org/TR/html5/infrastructure.html#cors-settings-attributes">http://www.w3.org/TR/html5/infrastructure.html#cors-settings-attributes</a><b>Referenced in:</b>
    <ul>
@@ -2203,20 +2302,21 @@ response to the request, so its body, too, is fully readable by the requestor.</
   <aside class="dfn-panel" data-for="term-for-concept-link-obtain">
    <a href="http://www.w3.org/TR/html5/document-metadata.html#concept-link-obtain">http://www.w3.org/TR/html5/document-metadata.html#concept-link-obtain</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-link-obtain">3.8.1. The link element for stylesheets</a>
+    <li><a href="#ref-for-concept-link-obtain">3.9.1. The link element for stylesheets</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-prepare-a-script">
    <a href="http://www.w3.org/TR/html5/scripting-1.html#prepare-a-script">http://www.w3.org/TR/html5/scripting-1.html#prepare-a-script</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-prepare-a-script">3.8.2. The script element</a>
+    <li><a href="#ref-for-prepare-a-script">3.4. Inline Verification Algorithms</a>
+    <li><a href="#ref-for-prepare-a-script①">3.9.2. The script element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-reflect">
    <a href="http://www.w3.org/TR/html5/infrastructure.html#reflect">http://www.w3.org/TR/html5/infrastructure.html#reflect</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-reflect">3.4. Verification of HTML document subresources</a>
-    <li><a href="#ref-for-reflect①">3.5. The integrity attribute</a>
+    <li><a href="#ref-for-reflect">3.5. Verification of HTML document subresources</a>
+    <li><a href="#ref-for-reflect①">3.6. The integrity attribute</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-iteration-continue">
@@ -2225,10 +2325,28 @@ response to the request, so its body, too, is fully readable by the requestor.</
     <li><a href="#ref-for-iteration-continue">3.3.3. Parse metadata</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-list-iterate">
+   <a href="https://infra.spec.whatwg.org/#list-iterate">https://infra.spec.whatwg.org/#list-iterate</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-list-iterate">3.4. Inline Verification Algorithms</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-list">
+   <a href="https://infra.spec.whatwg.org/#list">https://infra.spec.whatwg.org/#list</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-list">3.3.4. Get the strongest metadata from set</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-strictly-split">
    <a href="https://infra.spec.whatwg.org/#strictly-split">https://infra.spec.whatwg.org/#strictly-split</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-strictly-split">3.3.3. Parse metadata</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-string">
+   <a href="https://infra.spec.whatwg.org/#string">https://infra.spec.whatwg.org/#string</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-string">3.4. Inline Verification Algorithms</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-section-5.2">
@@ -2285,8 +2403,8 @@ response to the request, so its body, too, is fully readable by the requestor.</
   <aside class="dfn-panel" data-for="term-for-idl-DOMString">
    <a href="https://heycam.github.io/webidl/#idl-DOMString">https://heycam.github.io/webidl/#idl-DOMString</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-idl-DOMString">3.6.1. HTMLLinkElement</a>
-    <li><a href="#ref-for-idl-DOMString①">3.6.2. HTMLScriptElement</a>
+    <li><a href="#ref-for-idl-DOMString">3.7.1. HTMLLinkElement</a>
+    <li><a href="#ref-for-idl-DOMString①">3.7.2. HTMLScriptElement</a>
    </ul>
   </aside>
   <h3 class="no-num no-ref heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
@@ -2296,6 +2414,12 @@ response to the request, so its body, too, is fully readable by the requestor.</
     <ul>
      <li><span class="dfn-paneled" id="term-for-appendix-B.1" style="color:initial">vchar</span>
      <li><span class="dfn-paneled" id="term-for-appendix-B.1①" style="color:initial">wsp</span>
+    </ul>
+   <li>
+    <a data-link-type="biblio">[DOM]</a> defines the following terms:
+    <ul>
+     <li><span class="dfn-paneled" id="term-for-element" style="color:initial">Element</span>
+     <li><span class="dfn-paneled" id="term-for-concept-child-text-content" style="color:initial">child text content</span>
     </ul>
    <li>
     <a data-link-type="biblio">[FETCH]</a> defines the following terms:
@@ -2308,9 +2432,15 @@ response to the request, so its body, too, is fully readable by the requestor.</
     <a data-link-type="biblio">[HTML]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="term-for-htmllinkelement" style="color:initial">HTMLLinkElement</span>
+     <li><span class="dfn-paneled" id="term-for-htmlorsvgscriptelement" style="color:initial">HTMLOrSVGScriptElement</span>
      <li><span class="dfn-paneled" id="term-for-htmlscriptelement" style="color:initial">HTMLScriptElement</span>
+     <li><span class="dfn-paneled" id="term-for-htmlstyleelement" style="color:initial">HTMLStyleElement</span>
+     <li><span class="dfn-paneled" id="term-for-attr-script-integrity" style="color:initial">integrity</span>
      <li><span class="dfn-paneled" id="term-for-concept-origin" style="color:initial">origin</span>
      <li><span class="dfn-paneled" id="term-for-same-origin" style="color:initial">same origin</span>
+     <li><span class="dfn-paneled" id="term-for-script" style="color:initial">script</span>
+     <li><span class="dfn-paneled" id="term-for-the-style-element" style="color:initial">style</span>
+     <li><span class="dfn-paneled" id="term-for-update-a-style-block" style="color:initial">update a style block</span>
     </ul>
    <li>
     <a data-link-type="biblio">[HTML5]</a> defines the following terms:
@@ -2324,7 +2454,10 @@ response to the request, so its body, too, is fully readable by the requestor.</
     <a data-link-type="biblio">[INFRA]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="term-for-iteration-continue" style="color:initial">continue</span>
+     <li><span class="dfn-paneled" id="term-for-list-iterate" style="color:initial">iterate</span>
+     <li><span class="dfn-paneled" id="term-for-list" style="color:initial">list</span>
      <li><span class="dfn-paneled" id="term-for-strictly-split" style="color:initial">strictly split</span>
+     <li><span class="dfn-paneled" id="term-for-string" style="color:initial">string</span>
     </ul>
    <li>
     <a data-link-type="biblio">[rfc7234]</a> defines the following terms:
@@ -2358,6 +2491,8 @@ response to the request, so its body, too, is fully readable by the requestor.</
    <dd>D. Crocker, Ed.; P. Overell. <a href="https://tools.ietf.org/html/rfc5234">Augmented BNF for Syntax Specifications: ABNF</a>. January 2008. Internet Standard. URL: <a href="https://tools.ietf.org/html/rfc5234">https://tools.ietf.org/html/rfc5234</a>
    <dt id="biblio-cors">[CORS]
    <dd>Anne van Kesteren. <a href="https://www.w3.org/TR/cors/">Cross-Origin Resource Sharing</a>. 16 January 2014. REC. URL: <a href="https://www.w3.org/TR/cors/">https://www.w3.org/TR/cors/</a>
+   <dt id="biblio-dom">[DOM]
+   <dd>Anne van Kesteren. <a href="https://dom.spec.whatwg.org/">DOM Standard</a>. Living Standard. URL: <a href="https://dom.spec.whatwg.org/">https://dom.spec.whatwg.org/</a>
    <dt id="biblio-fetch">[FETCH]
    <dd>Anne van Kesteren. <a href="https://fetch.spec.whatwg.org/">Fetch Standard</a>. Living Standard. URL: <a href="https://fetch.spec.whatwg.org/">https://fetch.spec.whatwg.org/</a>
    <dt id="biblio-html">[HTML]
@@ -2404,6 +2539,11 @@ response to the request, so its body, too, is fully readable by the requestor.</
 };
 
 </pre>
+  <h2 class="no-num no-ref heading settled" id="issues-index"><span class="content">Issues Index</span><a class="self-link" href="#issues-index"></a></h2>
+  <div style="counter-reset:issue">
+   <div class="issue"> This needs to be wired up to HTML’s <a data-link-type="dfn" href="http://www.w3.org/TR/html5/scripting-1.html#prepare-a-script">prepare a script</a> algorithm:<a href="#issue-d9673cac"> ↵ </a></div>
+   <div class="issue"> This needs to be wired up to HTML’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/semantics.html#update-a-style-block">update a style block</a> algorithm:<a href="#issue-73339f22"> ↵ </a></div>
+  </div>
   <aside class="dfn-panel" data-for="digest">
    <b><a href="#digest">#digest</a></b><b>Referenced in:</b>
    <ul>
@@ -2421,6 +2561,7 @@ response to the request, so its body, too, is fully readable by the requestor.</
    <ul>
     <li><a href="#ref-for-base64-encoding">3.1. Integrity metadata</a>
     <li><a href="#ref-for-base64-encoding①">3.3.1. Apply algorithm to response</a>
+    <li><a href="#ref-for-base64-encoding②">3.4. Inline Verification Algorithms</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="integrity-metadata">
@@ -2429,9 +2570,9 @@ response to the request, so its body, too, is fully readable by the requestor.</
     <li><a href="#ref-for-integrity-metadata">1.2.1. Resource Integrity</a> <a href="#ref-for-integrity-metadata①">(2)</a> <a href="#ref-for-integrity-metadata②">(3)</a>
     <li><a href="#ref-for-integrity-metadata③">3.2. Cryptographic hash functions</a>
     <li><a href="#ref-for-integrity-metadata④">3.2.1. Agility</a>
-    <li><a href="#ref-for-integrity-metadata⑤">3.5. The integrity attribute</a>
-    <li><a href="#ref-for-integrity-metadata⑥">3.8.1. The link element for stylesheets</a>
-    <li><a href="#ref-for-integrity-metadata⑦">3.8.2. The script element</a>
+    <li><a href="#ref-for-integrity-metadata⑤">3.6. The integrity attribute</a>
+    <li><a href="#ref-for-integrity-metadata⑥">3.9.1. The link element for stylesheets</a>
+    <li><a href="#ref-for-integrity-metadata⑦">3.9.2. The script element</a>
     <li><a href="#ref-for-integrity-metadata⑧">4. Proxies</a>
     <li><a href="#ref-for-integrity-metadata⑨">5.1. Non-secure contexts remain non-secure</a>
    </ul>
@@ -2443,38 +2584,134 @@ response to the request, so its body, too, is fully readable by the requestor.</
     <li><a href="#ref-for-getprioritizedhashfunction①">3.3.4. Get the strongest metadata from set</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="abstract-opdef-integrity-metadata-parsing">
+   <b><a href="#abstract-opdef-integrity-metadata-parsing">#abstract-opdef-integrity-metadata-parsing</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-abstract-opdef-integrity-metadata-parsing">3.4. Inline Verification Algorithms</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="abstract-opdef-get-the-strongest-metadata">
+   <b><a href="#abstract-opdef-get-the-strongest-metadata">#abstract-opdef-get-the-strongest-metadata</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-abstract-opdef-get-the-strongest-metadata">3.4. Inline Verification Algorithms</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="grammardef-hash-with-options">
    <b><a href="#grammardef-hash-with-options">#grammardef-hash-with-options</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-grammardef-hash-with-options">3.3.3. Parse metadata</a>
-    <li><a href="#ref-for-grammardef-hash-with-options①">3.5. The integrity attribute</a> <a href="#ref-for-grammardef-hash-with-options②">(2)</a>
+    <li><a href="#ref-for-grammardef-hash-with-options①">3.6. The integrity attribute</a> <a href="#ref-for-grammardef-hash-with-options②">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="grammardef-option-expression">
    <b><a href="#grammardef-option-expression">#grammardef-option-expression</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-grammardef-option-expression">3.5. The integrity attribute</a>
+    <li><a href="#ref-for-grammardef-option-expression">3.6. The integrity attribute</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="grammardef-hash-algo">
    <b><a href="#grammardef-hash-algo">#grammardef-hash-algo</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-grammardef-hash-algo">3.3.3. Parse metadata</a>
-    <li><a href="#ref-for-grammardef-hash-algo①">3.5. The integrity attribute</a>
+    <li><a href="#ref-for-grammardef-hash-algo①">3.6. The integrity attribute</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="grammardef-base64-value">
    <b><a href="#grammardef-base64-value">#grammardef-base64-value</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-grammardef-base64-value">3.5. The integrity attribute</a>
+    <li><a href="#ref-for-grammardef-base64-value">3.6. The integrity attribute</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="grammardef-hash-expression">
    <b><a href="#grammardef-hash-expression">#grammardef-hash-expression</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-grammardef-hash-expression">3.5. The integrity attribute</a>
+    <li><a href="#ref-for-grammardef-hash-expression">3.6. The integrity attribute</a>
    </ul>
   </aside>
+<script>/* script-var-click-highlighting */
+
+    document.addEventListener("click", e=>{
+        if(e.target.nodeName == "VAR") {
+            highlightSameAlgoVars(e.target);
+        }
+    });
+    {
+        const indexCounts = new Map();
+        const indexNames = new Map();
+        function highlightSameAlgoVars(v) {
+            // Find the algorithm container.
+            let algoContainer = null;
+            let searchEl = v;
+            while(algoContainer == null && searchEl != document.body) {
+                searchEl = searchEl.parentNode;
+                if(searchEl.hasAttribute("data-algorithm")) {
+                    algoContainer = searchEl;
+                }
+            }
+
+            // Not highlighting document-global vars,
+            // too likely to be unrelated.
+            if(algoContainer == null) return;
+
+            const algoName = algoContainer.getAttribute("data-algorithm");
+            const varName = getVarName(v);
+            const addClass = !v.classList.contains("selected");
+            let highlightClass = null;
+            if(addClass) {
+                const index = chooseHighlightIndex(algoName, varName);
+                indexCounts.get(algoName)[index] += 1;
+                indexNames.set(algoName+"///"+varName, index);
+                highlightClass = nameFromIndex(index);
+            } else {
+                const index = previousHighlightIndex(algoName, varName);
+                indexCounts.get(algoName)[index] -= 1;
+                highlightClass = nameFromIndex(index);
+            }
+
+            // Find all same-name vars, and toggle their class appropriately.
+            for(const el of algoContainer.querySelectorAll("var")) {
+                if(getVarName(el) == varName) {
+                    el.classList.toggle("selected", addClass);
+                    el.classList.toggle(highlightClass, addClass);
+                }
+            }
+        }
+        function getVarName(el) {
+            return el.textContent.replace(/(\s| )+/, " ").trim();
+        }
+        function chooseHighlightIndex(algoName, varName) {
+            let indexes = null;
+            if(indexCounts.has(algoName)) {
+                indexes = indexCounts.get(algoName);
+            } else {
+                // 7 classes right now
+                indexes = [0,0,0,0,0,0,0];
+                indexCounts.set(algoName, indexes);
+            }
+
+            // If the element was recently unclicked,
+            // *and* that color is still unclaimed,
+            // give it back the same color.
+            const lastIndex = previousHighlightIndex(algoName, varName);
+            if(indexes[lastIndex] === 0) return lastIndex;
+
+            // Find the earliest index with the lowest count.
+            const minCount = Math.min.apply(null, indexes);
+            let index = null;
+            for(var i = 0; i < indexes.length; i++) {
+                if(indexes[i] == minCount) {
+                    return i;
+                }
+            }
+        }
+        function previousHighlightIndex(algoName, varName) {
+            return indexNames.get(algoName+"///"+varName);
+        }
+        function nameFromIndex(index) {
+            return "selected" + index;
+        }
+    }
+    </script>
 <script>/* script-dfn-panel */
 
 document.body.addEventListener("click", function(e) {

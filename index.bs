@@ -72,6 +72,12 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
     text: SHA-384; url: #
     text: SHA-512; url: #
 </pre>
+<pre class="link-defaults">
+spec:html; type:element; text:script
+spec:html; type:element; text:style
+spec:infra; type:dfn; text:string
+spec:infra; type:dfn; text:list
+</pre>
 
 <pre class="biblio">
 {
@@ -403,9 +409,9 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
 
   ### Parse |metadata| ### {#parse-metadata}
 
-  This algorithm accepts a string, and returns either `no metadata`, or a set of
-  valid hash expressions whose hash functions are understood by
-  the user agent.
+  The <dfn abstract-op local-lt="parse metadata">integrity metadata parsing</dfn> algorithm accepts
+  a string, and returns either `no metadata`, or a set of valid hash expressions whose hash
+  functions are understood by the user agent.
 
   1.  Let |result| be the empty set.
   2.  Let |empty| be equal to `true`.
@@ -422,6 +428,9 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
       |result|.
 
   ### Get the strongest metadata from |set| ### {#get-the-strongest-metadata}
+
+  To <dfn abstract-op local-lt="get strongest">get the strongest metadata</dfn> from a [=list=]
+  (|set|):
 
   1.  Let |result| be the empty set and |strongest| be the empty
       string.
@@ -490,6 +499,49 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
   validation since Subresource Integrity requires CORS, and it is a logical error
   to attempt to use it without CORS. Additionally, user agents SHOULD report a
   warning message to the developer console to explain this failure.
+
+  ## Inline Verification Algorithms ## {#inline-verification}
+
+  Integrity may be enforced on a given <{script}> or <{style}> element by comparing an element's
+  [=child text content=] with the integrity metadata asserted via its <{script/integrity}>
+  attribute, as follows:
+
+  <div algorithm="inline verification">
+      To <dfn local-lt="inline verification" abstract-op>determine whether an element's inline
+      behavior should be blocked by integrity checks</dfn>, given an {{Element}} (|el|) and a
+      [=string=] (|body|), perform the following steps, which return "`Blocked`" or "`Allowed`":
+
+      1.  Assert: |el| is an {{HTMLOrSVGScriptElement}}, or an {{HTMLStyleElement}}.
+
+      2.  Let |metadata| be the value of [$get strongest|getting the strongest metadata$] from
+          [$parse metadata|parsing$] |el|'s <{script/integrity}> attribute.
+
+      3.  If |metadata| is empty, then return "`Allowed`".
+
+      4.  [=list/iterate|For each=] |item| in |metadata|:
+
+          1.  Let |algorithm| be the |alg| component of
+              |item|.
+
+          2.  Let |expectedValue| be the |val| component of
+              |item|.
+
+          3.  Let |actualValue| be the result of [=base64 encoding=] the result of executing
+              |algorithm| on |body|.
+
+          4.  If |actualValue| is |expectedValue|, return "`Allowed`".
+
+      5.  Return "`Blocked`".
+  </div>
+
+  ISSUE: This needs to be wired up to HTML's [=prepare a script=] algorithm by inserting a call to
+  this algorithm after the CSP check in step 13.
+
+  ISSUE: This needs to be wired up to HTML's [=update a style block=] algorithm by inserting a call
+  to this algorithm after the CSP check in step 5.
+
+  ISSUE: This needs to be wired up to CSP's enforcement by inserting integrity-matching steps into
+  both `script-src` and `style-src`'s inline checks.
 
   ## Verification of HTML document subresources ## {#verification-of-html-document-subresources}
 

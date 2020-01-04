@@ -475,8 +475,8 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
   </div>
 
   which would allow the user agent to accept two different content payloads, one
-  of which matches the first SHA384 hash value and the other matches the second
-  SHA384 hash value.
+  of which matches the first <a>SHA-384</a> hash value and the other matches the second
+  <a>SHA-384</a> hash value.
 
   Note: User agents may allow users to modify the result of this algorithm via
   user preferences, bookmarklets, third-party additions to the user agent, and

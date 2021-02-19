@@ -429,6 +429,10 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
   execute correctly, even if the HTTPS version of a resource differs from the HTTP
   version.
 
+  Note: Subresource Integrity requires CORS and it is a logical error
+  to attempt to use it without CORS. User agents are encouraged to report a
+  warning message to the developer console to explain this failure. [[!Fetch]]
+
   ## Verification of HTML document subresources ## {#verification-of-html-document-subresources}
 
   A variety of HTML elements result in requests for resources that are to be

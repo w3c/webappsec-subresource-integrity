@@ -345,8 +345,7 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
   ### Apply |algorithm| to |bytes| ### {#apply-algorithm-to-response}
 
   1.  Let |result| be the result of applying |algorithm| to |bytes|.
-  2.  Let |encodedResult| be result of <a>base64 encoding</a> |result|.
-  3.  Return |encodedResult|.
+  2.  Return the result of <a>base64 encoding</a> |result|.
 
   ### Parse |metadata| ### {#parse-metadata}
 

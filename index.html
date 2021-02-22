@@ -1323,7 +1323,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 89ebb6ab, updated Fri Oct 9 15:32:07 2020 -0700" name="generator">
   <link href="http://www.w3.org/TR/SRI/" rel="canonical">
-  <meta content="11704c4bb9453d3f6fc95e8bfe42e5d46d929f51" name="document-revision">
+  <meta content="afa3d6af9a8a8a7550d6a5ccf49741786f894843" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -1876,7 +1876,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Subresource Integrity</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2021-02-19">19 February 2021</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2021-02-22">22 February 2021</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1970,30 +1970,30 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
         <li><a href="#apply-algorithm-to-response"><span class="secno">3.3.1</span> <span class="content">Apply <var>algorithm</var> to <var>bytes</var></span></a>
         <li><a href="#parse-metadata"><span class="secno">3.3.2</span> <span class="content">Parse <var>metadata</var></span></a>
         <li><a href="#get-the-strongest-metadata"><span class="secno">3.3.3</span> <span class="content">Get the strongest metadata from <var>set</var></span></a>
+        <li><a href="#does-response-match-metadatalist"><span class="secno">3.3.4</span> <span class="content">Do <var>bytes</var> match <var>metadataList</var>?</span></a>
        </ol>
-      <li><a href="#does-response-match-metadatalist"><span class="secno">3.4</span> <span class="content">Do <var>bytes</var> match <var>metadataList</var>?</span></a>
-      <li><a href="#verification-of-html-document-subresources"><span class="secno">3.5</span> <span class="content">Verification of HTML document subresources</span></a>
-      <li><a href="#the-integrity-attribute"><span class="secno">3.6</span> <span class="content">The <code>integrity</code> attribute</span></a>
+      <li><a href="#verification-of-html-document-subresources"><span class="secno">3.4</span> <span class="content">Verification of HTML document subresources</span></a>
+      <li><a href="#the-integrity-attribute"><span class="secno">3.5</span> <span class="content">The <code>integrity</code> attribute</span></a>
       <li>
-       <a href="#interface-extensions"><span class="secno">3.7</span> <span class="content">Element interface extensions</span></a>
+       <a href="#interface-extensions"><span class="secno">3.6</span> <span class="content">Element interface extensions</span></a>
        <ol class="toc">
         <li>
-         <a href="#HTMLLinkElement"><span class="secno">3.7.1</span> <span class="content">HTMLLinkElement</span></a>
+         <a href="#HTMLLinkElement"><span class="secno">3.6.1</span> <span class="content">HTMLLinkElement</span></a>
          <ol class="toc">
-          <li><a href="#HTMLLinkElement-Attributes"><span class="secno">3.7.1.1</span> <span class="content">Attributes</span></a>
+          <li><a href="#HTMLLinkElement-Attributes"><span class="secno">3.6.1.1</span> <span class="content">Attributes</span></a>
          </ol>
         <li>
-         <a href="#HTMLScriptElement"><span class="secno">3.7.2</span> <span class="content">HTMLScriptElement</span></a>
+         <a href="#HTMLScriptElement"><span class="secno">3.6.2</span> <span class="content">HTMLScriptElement</span></a>
          <ol class="toc">
-          <li><a href="#HTMLScriptElement-Attributes"><span class="secno">3.7.2.1</span> <span class="content">Attributes</span></a>
+          <li><a href="#HTMLScriptElement-Attributes"><span class="secno">3.6.2.1</span> <span class="content">Attributes</span></a>
          </ol>
        </ol>
-      <li><a href="#handling-integrity-violations"><span class="secno">3.8</span> <span class="content">Handling integrity violations</span></a>
+      <li><a href="#handling-integrity-violations"><span class="secno">3.7</span> <span class="content">Handling integrity violations</span></a>
       <li>
-       <a href="#elements"><span class="secno">3.9</span> <span class="content">Elements</span></a>
+       <a href="#elements"><span class="secno">3.8</span> <span class="content">Elements</span></a>
        <ol class="toc">
-        <li><a href="#link-element-for-stylesheets"><span class="secno">3.9.1</span> <span class="content">The <code>link</code> element for stylesheets</span></a>
-        <li><a href="#script-element"><span class="secno">3.9.2</span> <span class="content">The <code>script</code> element</span></a>
+        <li><a href="#link-element-for-stylesheets"><span class="secno">3.8.1</span> <span class="content">The <code>link</code> element for stylesheets</span></a>
+        <li><a href="#script-element"><span class="secno">3.8.2</span> <span class="content">The <code>script</code> element</span></a>
        </ol>
      </ol>
     <li><a href="#proxies"><span class="secno">4</span> <span class="content">Proxies</span></a>
@@ -2198,7 +2198,7 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
   a deprecated function.</p>
    <p>To allow authors to switch to stronger hash functions without being held back by older
   user agents, validation using unsupported hash functions acts like no integrity value
-  was provided (see the <a href="#does-response-match-metadatalist" id="ref-for-does-response-match-metadatalist">§ 3.4 Do bytes match metadataList?</a> algorithm below).
+  was provided (see the <a href="#does-response-match-metadatalist" id="ref-for-does-response-match-metadatalist">§ 3.3.4 Do bytes match metadataList?</a> algorithm below).
   Authors  are encouraged to use strong hash functions, and to begin migrating to
   stronger hash functions as they become available.</p>
    <h4 class="heading settled" data-level="3.2.2" id="priority"><span class="secno">3.2.2. </span><span class="content">Priority</span><a class="self-link" href="#priority"></a></h4>
@@ -2269,7 +2269,7 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
     <li data-md>
      <p>Return <var>result</var>.</p>
    </ol>
-   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export data-level="3.4" data-lt="Do bytes match metadataList?" id="does-response-match-metadatalist"><span class="secno">3.4. </span><span class="content">Do <var>bytes</var> match <var>metadataList</var>?</span><a class="self-link" href="#does-response-match-metadatalist" id="ref-for-does-response-match-metadatalist①"></a></h3>
+   <h4 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export data-level="3.3.4" data-lt="Do bytes match metadataList?" id="does-response-match-metadatalist"><span class="secno">3.3.4. </span><span class="content">Do <var>bytes</var> match <var>metadataList</var>?</span><a class="self-link" href="#does-response-match-metadatalist" id="ref-for-does-response-match-metadatalist①"></a></h4>
    <ol>
     <li data-md>
      <p>Let <var>parsedMetadata</var> be the result of <a href="#parse-metadata">parsing <var>metadataList</var></a>.</p>
@@ -2314,7 +2314,7 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
    <p class="note" role="note"><span>Note:</span> Subresource Integrity requires CORS and it is a logical error
   to attempt to use it without CORS. User agents are encouraged to report a
   warning message to the developer console to explain this failure. <a data-link-type="biblio" href="#biblio-fetch">[Fetch]</a></p>
-   <h3 class="heading settled" data-level="3.5" id="verification-of-html-document-subresources"><span class="secno">3.5. </span><span class="content">Verification of HTML document subresources</span><a class="self-link" href="#verification-of-html-document-subresources"></a></h3>
+   <h3 class="heading settled" data-level="3.4" id="verification-of-html-document-subresources"><span class="secno">3.4. </span><span class="content">Verification of HTML document subresources</span><a class="self-link" href="#verification-of-html-document-subresources"></a></h3>
    <p>A variety of HTML elements result in requests for resources that are to be
   embedded into the document, or executed in its context. To support integrity
   metadata for some of these elements, a new <code>integrity</code> attribute is added to
@@ -2323,7 +2323,7 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
   value of each element’s <code>integrity</code> content attribute is added to the <code>HTMLLinkElement</code> and <code>HTMLScriptElement</code> interfaces.</p>
    <p class="note" role="note"><span>Note:</span> A future revision of this specification is likely to include integrity support
   for all possible subresources, i.e., <code>a</code>, <code>audio</code>, <code>embed</code>, <code>iframe</code>, <code>img</code>, <code>link</code>, <code>object</code>, <code>script</code>, <code>source</code>, <code>track</code>, and <code>video</code> elements.</p>
-   <h3 class="heading settled" data-level="3.6" id="the-integrity-attribute"><span class="secno">3.6. </span><span class="content">The <code>integrity</code> attribute</span><a class="self-link" href="#the-integrity-attribute"></a></h3>
+   <h3 class="heading settled" data-level="3.5" id="the-integrity-attribute"><span class="secno">3.5. </span><span class="content">The <code>integrity</code> attribute</span><a class="self-link" href="#the-integrity-attribute"></a></h3>
    <p>The <code>integrity</code> attribute represents <a data-link-type="dfn" href="#integrity-metadata" id="ref-for-integrity-metadata⑤">integrity metadata</a> for an element.
   The value of the attribute MUST be either the empty string, or at least one
   valid metadata as described by the following ABNF grammar:</p>
@@ -2343,32 +2343,32 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
   no options have been defined. It is likely that a future version of the spec
   will define a more specific syntax for options, so it is defined here as broadly
   as possible.</p>
-   <h3 class="heading settled" data-level="3.7" id="interface-extensions"><span class="secno">3.7. </span><span class="content">Element interface extensions</span><a class="self-link" href="#interface-extensions"></a></h3>
-   <h4 class="heading settled" data-level="3.7.1" id="HTMLLinkElement"><span class="secno">3.7.1. </span><span class="content">HTMLLinkElement</span><a class="self-link" href="#HTMLLinkElement"></a></h4>
+   <h3 class="heading settled" data-level="3.6" id="interface-extensions"><span class="secno">3.6. </span><span class="content">Element interface extensions</span><a class="self-link" href="#interface-extensions"></a></h3>
+   <h4 class="heading settled" data-level="3.6.1" id="HTMLLinkElement"><span class="secno">3.6.1. </span><span class="content">HTMLLinkElement</span><a class="self-link" href="#HTMLLinkElement"></a></h4>
 <pre class="idl highlight def"><c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/semantics.html#htmllinkelement" id="ref-for-htmllinkelement"><c- g>HTMLLinkElement</c-></a> {
   <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString"><c- b>DOMString</c-></a> <dfn class="idl-code" data-dfn-for="HTMLLinkElement" data-dfn-type="attribute" data-export data-type="DOMString" id="dom-htmllinkelement-integrity"><code><c- g>integrity</c-></code><a class="self-link" href="#dom-htmllinkelement-integrity"></a></dfn>;
 };
 </pre>
-   <h5 class="heading settled" data-level="3.7.1.1" id="HTMLLinkElement-Attributes"><span class="secno">3.7.1.1. </span><span class="content">Attributes</span><a class="self-link" href="#HTMLLinkElement-Attributes"></a></h5>
+   <h5 class="heading settled" data-level="3.6.1.1" id="HTMLLinkElement-Attributes"><span class="secno">3.6.1.1. </span><span class="content">Attributes</span><a class="self-link" href="#HTMLLinkElement-Attributes"></a></h5>
     <b>integrity</b> of type <code>DOMString</code>: The value of this element’s integrity
   attribute. 
-   <h4 class="heading settled" data-level="3.7.2" id="HTMLScriptElement"><span class="secno">3.7.2. </span><span class="content">HTMLScriptElement</span><a class="self-link" href="#HTMLScriptElement"></a></h4>
+   <h4 class="heading settled" data-level="3.6.2" id="HTMLScriptElement"><span class="secno">3.6.2. </span><span class="content">HTMLScriptElement</span><a class="self-link" href="#HTMLScriptElement"></a></h4>
 <pre class="idl highlight def"><c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/scripting.html#htmlscriptelement" id="ref-for-htmlscriptelement"><c- g>HTMLScriptElement</c-></a> {
   <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString①"><c- b>DOMString</c-></a> <dfn class="idl-code" data-dfn-for="HTMLScriptElement" data-dfn-type="attribute" data-export data-type="DOMString" id="dom-htmlscriptelement-integrity"><code><c- g>integrity</c-></code><a class="self-link" href="#dom-htmlscriptelement-integrity"></a></dfn>;
 };
 </pre>
-   <h5 class="heading settled" data-level="3.7.2.1" id="HTMLScriptElement-Attributes"><span class="secno">3.7.2.1. </span><span class="content">Attributes</span><a class="self-link" href="#HTMLScriptElement-Attributes"></a></h5>
+   <h5 class="heading settled" data-level="3.6.2.1" id="HTMLScriptElement-Attributes"><span class="secno">3.6.2.1. </span><span class="content">Attributes</span><a class="self-link" href="#HTMLScriptElement-Attributes"></a></h5>
     <b>integrity</b> of type <code>DOMString</code>: The value of this element’s integrity
   attribute. 
-   <h3 class="heading settled" data-level="3.8" id="handling-integrity-violations"><span class="secno">3.8. </span><span class="content">Handling integrity violations</span><a class="self-link" href="#handling-integrity-violations"></a></h3>
+   <h3 class="heading settled" data-level="3.7" id="handling-integrity-violations"><span class="secno">3.7. </span><span class="content">Handling integrity violations</span><a class="self-link" href="#handling-integrity-violations"></a></h3>
    <p>The user agent will refuse to render or execute responses that fail an integrity
   check, instead returning a network error as defined in Fetch <a data-link-type="biblio" href="#biblio-fetch">[Fetch]</a>.</p>
    <p class="note" role="note"><span>Note:</span> On a failed integrity check, an <code>error</code> event is fired. Developers
   wishing to provide a canonical fallback resource (e.g., a resource not served
   from a CDN, perhaps from a secondary, trusted, but slower source) can catch this <code>error</code> event and provide an appropriate handler to replace the
   failed resource with a different one.</p>
-   <h3 class="heading settled" data-level="3.9" id="elements"><span class="secno">3.9. </span><span class="content">Elements</span><a class="self-link" href="#elements"></a></h3>
-   <h4 class="heading settled" data-level="3.9.1" id="link-element-for-stylesheets"><span class="secno">3.9.1. </span><span class="content">The <code>link</code> element for stylesheets</span><a class="self-link" href="#link-element-for-stylesheets"></a></h4>
+   <h3 class="heading settled" data-level="3.8" id="elements"><span class="secno">3.8. </span><span class="content">Elements</span><a class="self-link" href="#elements"></a></h3>
+   <h4 class="heading settled" data-level="3.8.1" id="link-element-for-stylesheets"><span class="secno">3.8.1. </span><span class="content">The <code>link</code> element for stylesheets</span><a class="self-link" href="#link-element-for-stylesheets"></a></h4>
    <p>Whenever a user agent attempts to <a data-link-type="dfn" href="http://www.w3.org/TR/html5/document-metadata.html#concept-link-obtain" id="ref-for-concept-link-obtain">obtain a resource</a> pointed to by a <code>link</code> element that has a <code>rel</code> attribute with the keyword of <code>stylesheet</code>,
   modify step 4 to read:</p>
    <p>Do a potentially CORS-enabled fetch of the resulting absolute URL, with the
@@ -2376,7 +2376,7 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
   the origin being the origin of the link element’s Document, the default origin
   behavior set to taint, and the <a data-link-type="dfn" href="#integrity-metadata" id="ref-for-integrity-metadata⑥">integrity metadata</a> of the request set to
   the value of the element’s <code>integrity</code> attribute.</p>
-   <h4 class="heading settled" data-level="3.9.2" id="script-element"><span class="secno">3.9.2. </span><span class="content">The <code>script</code> element</span><a class="self-link" href="#script-element"></a></h4>
+   <h4 class="heading settled" data-level="3.8.2" id="script-element"><span class="secno">3.8.2. </span><span class="content">The <code>script</code> element</span><a class="self-link" href="#script-element"></a></h4>
    <p>Replace step 14.1 of HTML5’s <a data-link-type="dfn" href="http://www.w3.org/TR/html5/scripting-1.html#prepare-a-script" id="ref-for-prepare-a-script">prepare a script</a> algorithm with:</p>
    <ol>
     <li data-md>
@@ -2479,35 +2479,35 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
   <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
   <ul class="index">
    <li><a href="#base64-encoding">base64 encoding</a><span>, in §2</span>
-   <li><a href="#grammardef-base64-value">base64-value</a><span>, in §3.6</span>
+   <li><a href="#grammardef-base64-value">base64-value</a><span>, in §3.5</span>
    <li><a href="#digest">digest</a><span>, in §2</span>
    <li><a href="#does-response-match-metadatalist">Do bytes match metadataList?</a><span>, in §3.3.3</span>
    <li><a href="#getprioritizedhashfunction">getPrioritizedHashFunction</a><span>, in §3.2.2</span>
-   <li><a href="#grammardef-hash-algo">hash-algo</a><span>, in §3.6</span>
-   <li><a href="#grammardef-hash-expression">hash-expression</a><span>, in §3.6</span>
-   <li><a href="#grammardef-hash-with-options">hash-with-options</a><span>, in §3.6</span>
+   <li><a href="#grammardef-hash-algo">hash-algo</a><span>, in §3.5</span>
+   <li><a href="#grammardef-hash-expression">hash-expression</a><span>, in §3.5</span>
+   <li><a href="#grammardef-hash-with-options">hash-with-options</a><span>, in §3.5</span>
    <li>
     integrity
     <ul>
-     <li><a href="#dom-htmllinkelement-integrity">attribute for HTMLLinkElement</a><span>, in §3.7.1</span>
-     <li><a href="#dom-htmlscriptelement-integrity">attribute for HTMLScriptElement</a><span>, in §3.7.2</span>
+     <li><a href="#dom-htmllinkelement-integrity">attribute for HTMLLinkElement</a><span>, in §3.6.1</span>
+     <li><a href="#dom-htmlscriptelement-integrity">attribute for HTMLScriptElement</a><span>, in §3.6.2</span>
     </ul>
    <li><a href="#integrity-metadata">integrity metadata</a><span>, in §3.1</span>
-   <li><a href="#grammardef-integrity-metadata">integrity-metadata</a><span>, in §3.6</span>
-   <li><a href="#grammardef-option-expression">option-expression</a><span>, in §3.6</span>
+   <li><a href="#grammardef-integrity-metadata">integrity-metadata</a><span>, in §3.5</span>
+   <li><a href="#grammardef-option-expression">option-expression</a><span>, in §3.5</span>
   </ul>
   <aside class="dfn-panel" data-for="term-for-appendix-B.1">
    <a href="https://tools.ietf.org/html/rfc5234#appendix-B.1">https://tools.ietf.org/html/rfc5234#appendix-B.1</a><b>Referenced in:</b>
    <ul>
     <li><a href="#termref-for-">2.1. Grammatical Concepts</a> <a href="#ref-for-appendix-B.1">(2)</a> <a href="#ref-for-appendix-B.1①">(3)</a>
-    <li><a href="#ref-for-appendix-B.1②">3.6. The integrity attribute</a> <a href="#ref-for-appendix-B.1③">(2)</a> <a href="#ref-for-appendix-B.1④">(3)</a> <a href="#ref-for-appendix-B.1⑤">(4)</a> <a href="#ref-for-appendix-B.1⑥">(5)</a>
+    <li><a href="#ref-for-appendix-B.1②">3.5. The integrity attribute</a> <a href="#ref-for-appendix-B.1③">(2)</a> <a href="#ref-for-appendix-B.1④">(3)</a> <a href="#ref-for-appendix-B.1⑤">(4)</a> <a href="#ref-for-appendix-B.1⑥">(5)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-appendix-B.1">
    <a href="https://tools.ietf.org/html/rfc5234#appendix-B.1">https://tools.ietf.org/html/rfc5234#appendix-B.1</a><b>Referenced in:</b>
    <ul>
     <li><a href="#termref-for-">2.1. Grammatical Concepts</a> <a href="#ref-for-appendix-B.1">(2)</a> <a href="#ref-for-appendix-B.1①">(3)</a>
-    <li><a href="#ref-for-appendix-B.1②">3.6. The integrity attribute</a> <a href="#ref-for-appendix-B.1③">(2)</a> <a href="#ref-for-appendix-B.1④">(3)</a> <a href="#ref-for-appendix-B.1⑤">(4)</a> <a href="#ref-for-appendix-B.1⑥">(5)</a>
+    <li><a href="#ref-for-appendix-B.1②">3.5. The integrity attribute</a> <a href="#ref-for-appendix-B.1③">(2)</a> <a href="#ref-for-appendix-B.1④">(3)</a> <a href="#ref-for-appendix-B.1⑤">(4)</a> <a href="#ref-for-appendix-B.1⑥">(5)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-concept-request">
@@ -2519,13 +2519,13 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
   <aside class="dfn-panel" data-for="term-for-htmllinkelement">
    <a href="https://html.spec.whatwg.org/multipage/semantics.html#htmllinkelement">https://html.spec.whatwg.org/multipage/semantics.html#htmllinkelement</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-htmllinkelement">3.7.1. HTMLLinkElement</a>
+    <li><a href="#ref-for-htmllinkelement">3.6.1. HTMLLinkElement</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-htmlscriptelement">
    <a href="https://html.spec.whatwg.org/multipage/scripting.html#htmlscriptelement">https://html.spec.whatwg.org/multipage/scripting.html#htmlscriptelement</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-htmlscriptelement">3.7.2. HTMLScriptElement</a>
+    <li><a href="#ref-for-htmlscriptelement">3.6.2. HTMLScriptElement</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-concept-origin">
@@ -2549,20 +2549,20 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
   <aside class="dfn-panel" data-for="term-for-concept-link-obtain">
    <a href="http://www.w3.org/TR/html5/document-metadata.html#concept-link-obtain">http://www.w3.org/TR/html5/document-metadata.html#concept-link-obtain</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-link-obtain">3.9.1. The link element for stylesheets</a>
+    <li><a href="#ref-for-concept-link-obtain">3.8.1. The link element for stylesheets</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-prepare-a-script">
    <a href="http://www.w3.org/TR/html5/scripting-1.html#prepare-a-script">http://www.w3.org/TR/html5/scripting-1.html#prepare-a-script</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-prepare-a-script">3.9.2. The script element</a>
+    <li><a href="#ref-for-prepare-a-script">3.8.2. The script element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-reflect">
    <a href="http://www.w3.org/TR/html5/infrastructure.html#reflect">http://www.w3.org/TR/html5/infrastructure.html#reflect</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-reflect">3.5. Verification of HTML document subresources</a>
-    <li><a href="#ref-for-reflect①">3.6. The integrity attribute</a>
+    <li><a href="#ref-for-reflect">3.4. Verification of HTML document subresources</a>
+    <li><a href="#ref-for-reflect①">3.5. The integrity attribute</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-iteration-continue">
@@ -2601,7 +2601,7 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
     <li><a href="#termref-for-">2. Key Concepts and Terminology</a> <a href="#termref-for-">(2)</a> <a href="#termref-for-">(3)</a> <a href="#termref-for-">(4)</a>
     <li><a href="#termref-for-">3.1. Integrity metadata</a>
     <li><a href="#termref-for-">3.2. Cryptographic hash functions</a> <a href="#termref-for-">(2)</a> <a href="#termref-for-">(3)</a>
-    <li><a href="#termref-for-">3.4. Do bytes match metadataList?</a> <a href="#termref-for-">(2)</a>
+    <li><a href="#termref-for-">3.3.4. Do bytes match metadataList?</a> <a href="#termref-for-">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-">
@@ -2610,7 +2610,7 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
     <li><a href="#termref-for-">2. Key Concepts and Terminology</a> <a href="#termref-for-">(2)</a> <a href="#termref-for-">(3)</a> <a href="#termref-for-">(4)</a>
     <li><a href="#termref-for-">3.1. Integrity metadata</a>
     <li><a href="#termref-for-">3.2. Cryptographic hash functions</a> <a href="#termref-for-">(2)</a> <a href="#termref-for-">(3)</a>
-    <li><a href="#termref-for-">3.4. Do bytes match metadataList?</a> <a href="#termref-for-">(2)</a>
+    <li><a href="#termref-for-">3.3.4. Do bytes match metadataList?</a> <a href="#termref-for-">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-">
@@ -2619,7 +2619,7 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
     <li><a href="#termref-for-">2. Key Concepts and Terminology</a> <a href="#termref-for-">(2)</a> <a href="#termref-for-">(3)</a> <a href="#termref-for-">(4)</a>
     <li><a href="#termref-for-">3.1. Integrity metadata</a>
     <li><a href="#termref-for-">3.2. Cryptographic hash functions</a> <a href="#termref-for-">(2)</a> <a href="#termref-for-">(3)</a>
-    <li><a href="#termref-for-">3.4. Do bytes match metadataList?</a> <a href="#termref-for-">(2)</a>
+    <li><a href="#termref-for-">3.3.4. Do bytes match metadataList?</a> <a href="#termref-for-">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-">
@@ -2628,14 +2628,14 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
     <li><a href="#termref-for-">2. Key Concepts and Terminology</a> <a href="#termref-for-">(2)</a> <a href="#termref-for-">(3)</a> <a href="#termref-for-">(4)</a>
     <li><a href="#termref-for-">3.1. Integrity metadata</a>
     <li><a href="#termref-for-">3.2. Cryptographic hash functions</a> <a href="#termref-for-">(2)</a> <a href="#termref-for-">(3)</a>
-    <li><a href="#termref-for-">3.4. Do bytes match metadataList?</a> <a href="#termref-for-">(2)</a>
+    <li><a href="#termref-for-">3.3.4. Do bytes match metadataList?</a> <a href="#termref-for-">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-idl-DOMString">
    <a href="https://heycam.github.io/webidl/#idl-DOMString">https://heycam.github.io/webidl/#idl-DOMString</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-idl-DOMString">3.7.1. HTMLLinkElement</a>
-    <li><a href="#ref-for-idl-DOMString①">3.7.2. HTMLScriptElement</a>
+    <li><a href="#ref-for-idl-DOMString">3.6.1. HTMLLinkElement</a>
+    <li><a href="#ref-for-idl-DOMString①">3.6.2. HTMLScriptElement</a>
    </ul>
   </aside>
   <h3 class="no-num no-ref heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
@@ -2766,9 +2766,9 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
     <li><a href="#ref-for-integrity-metadata">1.2.1. Resource Integrity</a> <a href="#ref-for-integrity-metadata①">(2)</a> <a href="#ref-for-integrity-metadata②">(3)</a>
     <li><a href="#ref-for-integrity-metadata③">3.2. Cryptographic hash functions</a>
     <li><a href="#ref-for-integrity-metadata④">3.2.1. Agility</a>
-    <li><a href="#ref-for-integrity-metadata⑤">3.6. The integrity attribute</a>
-    <li><a href="#ref-for-integrity-metadata⑥">3.9.1. The link element for stylesheets</a>
-    <li><a href="#ref-for-integrity-metadata⑦">3.9.2. The script element</a>
+    <li><a href="#ref-for-integrity-metadata⑤">3.5. The integrity attribute</a>
+    <li><a href="#ref-for-integrity-metadata⑥">3.8.1. The link element for stylesheets</a>
+    <li><a href="#ref-for-integrity-metadata⑦">3.8.2. The script element</a>
     <li><a href="#ref-for-integrity-metadata⑧">4. Proxies</a>
     <li><a href="#ref-for-integrity-metadata⑨">5.1. Non-secure contexts remain non-secure</a>
    </ul>
@@ -2784,39 +2784,39 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
    <b><a href="#does-response-match-metadatalist">#does-response-match-metadatalist</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-does-response-match-metadatalist">3.2.1. Agility</a>
-    <li><a href="#ref-for-does-response-match-metadatalist">3.4. Do bytes match metadataList?</a>
+    <li><a href="#ref-for-does-response-match-metadatalist">3.3.4. Do bytes match metadataList?</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="grammardef-hash-with-options">
    <b><a href="#grammardef-hash-with-options">#grammardef-hash-with-options</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-grammardef-hash-with-options">3.3.2. Parse metadata</a>
-    <li><a href="#ref-for-grammardef-hash-with-options①">3.6. The integrity attribute</a> <a href="#ref-for-grammardef-hash-with-options②">(2)</a>
+    <li><a href="#ref-for-grammardef-hash-with-options①">3.5. The integrity attribute</a> <a href="#ref-for-grammardef-hash-with-options②">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="grammardef-option-expression">
    <b><a href="#grammardef-option-expression">#grammardef-option-expression</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-grammardef-option-expression">3.6. The integrity attribute</a>
+    <li><a href="#ref-for-grammardef-option-expression">3.5. The integrity attribute</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="grammardef-hash-algo">
    <b><a href="#grammardef-hash-algo">#grammardef-hash-algo</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-grammardef-hash-algo">3.3.2. Parse metadata</a>
-    <li><a href="#ref-for-grammardef-hash-algo①">3.6. The integrity attribute</a>
+    <li><a href="#ref-for-grammardef-hash-algo①">3.5. The integrity attribute</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="grammardef-base64-value">
    <b><a href="#grammardef-base64-value">#grammardef-base64-value</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-grammardef-base64-value">3.6. The integrity attribute</a>
+    <li><a href="#ref-for-grammardef-base64-value">3.5. The integrity attribute</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="grammardef-hash-expression">
    <b><a href="#grammardef-hash-expression">#grammardef-hash-expression</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-grammardef-hash-expression">3.6. The integrity attribute</a>
+    <li><a href="#ref-for-grammardef-hash-expression">3.5. The integrity attribute</a>
    </ul>
   </aside>
 <script>/* script-dfn-panel */

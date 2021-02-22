@@ -386,7 +386,7 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
           set, and add |item| to |result|.
   3.  Return |result|.
 
-<h3 dfn export id=does-response-match-metadatalist>Do |bytes| match |metadataList|?</h3>
+<h4 dfn export id=does-response-match-metadatalist>Do |bytes| match |metadataList|?</h4>
 
   1.  Let |parsedMetadata| be the result of
       <a href="#parse-metadata">parsing |metadataList|</a>.

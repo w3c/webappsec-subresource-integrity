@@ -438,11 +438,7 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
   A variety of HTML elements result in requests for resources that are to be
   embedded into the document, or executed in its context. To support integrity
   metadata for some of these elements, a new `integrity` attribute is added to
-  the list of content attributes for the `link` and `script` elements.
-
-  A corresponding `integrity` IDL attribute which <a>reflects</a> the
-  value of each element's `integrity` content attribute is added to the
-  `HTMLLinkElement` and `HTMLScriptElement` interfaces.
+  the list of content attributes for the `link` and `script` elements. [[!HTML]]
 
   Note: A future revision of this specification is likely to include integrity support
   for all possible subresources, i.e., `a`, `audio`, `embed`, `iframe`, `img`,
@@ -463,8 +459,6 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
       <dfn>hash-expression</dfn>    = <a>hash-algo</a> "-" <a>base64-value</a>
   </pre>
 
-  The `integrity` IDL attribute must <a>reflect</a> the `integrity` content attribute.
-
   `option-expression`s are associated on a per `hash-expression` basis and are
   applied only to the `hash-expression` that immediately precedes it.
 
@@ -476,31 +470,6 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
   will define a more specific syntax for options, so it is defined here as broadly
   as possible.
 
-  ## Element interface extensions ## {#interface-extensions}
-
-  ### HTMLLinkElement ### {#HTMLLinkElement}
-
-  <pre class="idl">
-    partial interface HTMLLinkElement {
-      attribute DOMString integrity;
-    };
-  </pre>
-
-  #### Attributes #### {#HTMLLinkElement-Attributes}
-  <b>integrity</b> of type `DOMString`: The value of this element's integrity
-  attribute.
-
-  ### HTMLScriptElement ### {#HTMLScriptElement}
-  <pre class="idl">
-    partial interface HTMLScriptElement {
-      attribute DOMString integrity;
-    };
-  </pre>
-
-  #### Attributes #### {#HTMLScriptElement-Attributes}
-  <b>integrity</b> of type `DOMString`: The value of this element's integrity
-  attribute.
-
   ## Handling integrity violations ## {#handling-integrity-violations}
 
   The user agent will refuse to render or execute responses that fail an integrity
@@ -511,28 +480,6 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
   from a CDN, perhaps from a secondary, trusted, but slower source) can catch this
   `error` event and provide an appropriate handler to replace the
   failed resource with a different one.
-
-  ## Elements ## {#elements}
-
-  ### The `link` element for stylesheets ### {#link-element-for-stylesheets}
-
-  Whenever a user agent attempts to <a>obtain a resource</a> pointed to by a
-  `link` element that has a `rel` attribute with the keyword of `stylesheet`,
-  modify step 4 to read:
-
-  Do a potentially CORS-enabled fetch of the resulting absolute URL, with the
-  mode being the current state of the element's crossorigin content attribute,
-  the origin being the origin of the link element's Document, the default origin
-  behavior set to taint, and the <a>integrity metadata</a> of the request set to
-  the value of the element's `integrity` attribute.
-
-  ### The `script` element ### {#script-element}
-
-  Replace step 14.1 of HTML5's <a>prepare a script</a> algorithm with:
-
-  1.  Let |src| be the value of the element's `src` attribute and
-      the request's associated <a>integrity metadata</a> be the value of the
-      element's `integrity` attribute.
 
   <!-- ####################################################################### -->
 

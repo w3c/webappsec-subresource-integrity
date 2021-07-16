@@ -135,6 +135,11 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
   </pre>
   </div>
 
+  In the event that the expected hash does not match the hash of the downloaded
+  resource, indicating a potential compromise of the server, the user agent will
+  refuse to parse or execute the resource, and will fire an error to alert
+  developers to the failure.
+
   Scripts, of course, are not the only response type which would benefit
   from integrity validation. The scheme specified here also applies to `link`
   and future versions of this specification are likely to expand this coverage.
@@ -555,6 +560,52 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
   common usernames, and specify those hashes while repeatedly attempting
   to load the document. A successful load would confirm that the attacker
   has correctly guessed the username.
+
+  <!-- ####################################################################### -->
+
+  # Authoring Considerations # {#authoring-considerations}
+
+  <em>This section is not normative.</em>
+
+  ## Versioned resources ## {#versioned-resources}
+
+  <a>Integrity metadata</a> is only useful if the resource can be reasonably
+  guaranteed to remain the same. It is therefore important that if resources
+  are updated they receive a new URL. Typically this might take the form of a
+  version number as part of the path or file name, which would ensure that a
+  resource would only be expected to change as a result of a compromised
+  server.
+
+  <div class="example">
+  <pre>
+    &lt;script src="https://example.com/v1.0/example-framework.js"
+            integrity="sha384-Li9vy3DqF8tnTXuiaAJuML3ky+er10rcgNR/VqsVpcw+ThHmYcwiB1pbOxEbzJr7"
+            crossorigin="anonymous"&gt;&lt;/script&gt;
+  </pre>
+  </div>
+
+  ## Coping with errors ## {#coping-with-errors}
+
+  When an integrity violation is detected, the resource will not parse or
+  execute. This could cause problems for users, so the system should be
+  designed to cope with errors.
+
+  If an alerting or logging system exists, the integrity error should be
+  sent to that so that the violation can be resolved safely.
+
+  The integrity error could also trigger the system to attempt to load the
+  resource from a local copy instead of a CDN or other third-party server.
+  It is worth evaluating if a local resource may be a better initial choice
+  rather than using a resource hosted on a CDN.
+
+  If the resource cannot be made available to the system, then the system
+  should be built to cope as best as possible with the resource's absence.
+  For some resources, for example web fonts or non-essential styles, there
+  may be no work to do to leave the system in a usable state. Alternatively,
+  the system could be built using progressive enhancement principles, where
+  in the absence of a resource, or support from the user agent for that
+  resource, the system remains usable although potentially with degraded
+  functionality.
 
   <!-- ####################################################################### -->
 

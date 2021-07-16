@@ -472,7 +472,7 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
 
   ## Handling integrity violations ## {#handling-integrity-violations}
 
-  The user agent will refuse to render or execute responses that fail an integrity
+  The user agent MUST refuse to render or execute responses that fail an integrity
   check, instead returning a network error as defined in Fetch [[!Fetch]].
 
   Note: On a failed integrity check, an `error` event is fired. Developers

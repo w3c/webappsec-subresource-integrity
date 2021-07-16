@@ -327,7 +327,7 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
   To allow authors to switch to stronger hash functions without being held back by older
   user agents, validation using unsupported hash functions acts like no integrity value
   was provided (see the [[#does-response-match-metadatalist]] algorithm below).
-  Authors  are encouraged to use strong hash functions, and to begin migrating to
+  Authors are encouraged to use strong hash functions, and to begin migrating to
   stronger hash functions as they become available.
 
   ### Priority ### {#priority}
@@ -468,7 +468,7 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
   applied only to the `hash-expression` that immediately precedes it.
 
   In order for user agents to remain fully forwards compatible with future
-  options, the user agent MUST ignore all unrecognized  `option-expression`s.
+  options, the user agent MUST ignore all unrecognized `option-expression`s.
 
   Note: Note that while the `option-expression` has been reserved in the syntax,
   no options have been defined. It is likely that a future version of the spec
@@ -516,8 +516,8 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
   the digest in-flight (or remove it entirely, or do absolutely anything else to
   the document), just as they could alter the response the hash is meant to
   validate.  Thus, it is recommended that authors deliver integrity metadata only
-  to a <a>Secure Context</a>. See also  <a
-  href="http://www.w3.org/2001/tag/doc/web-https ">Securing the Web</a>.
+  to a <a>Secure Context</a>. See also <a
+  href="http://www.w3.org/2001/tag/doc/web-https">Securing the Web</a>.
 
   ## Hash collision attacks ## {#hash-collision-attacks}
 
@@ -618,5 +618,5 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
 
   A special thanks to Mike West for his invaluable contributions to the initial
   version of this spec. Thanks to Brad Hill, Anne van Kesteren, Jonathan
-  Kingston, Mark Nottingham,  Sergey Shekyan , Dan Veditz, Eduardo Vela,
+  Kingston, Mark Nottingham, Sergey Shekyan, Dan Veditz, Eduardo Vela,
   Tanvi Vyas, and Michal Zalewski for providing invaluable feedback.

@@ -117,7 +117,7 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
   of the representation of the resource the author expects to load. For instance,
   an author may wish to load some framework from a shared server rather than hosting it
   on their own origin. Specifying that the <em>expected</em> SHA-384 hash of
-  `https://example.com/example-framework.js`
+  `https://example.com/v1.0/example-framework.js`
   is `Li9vy3DqF8tnTXuiaAJuML3ky+er10rcgNR/VqsVpcw+ThHmYcwiB1pbOxEbzJr7` means
   that the user agent can verify that the data it loads from that URL matches
   that expected hash before executing the JavaScript it contains. This
@@ -129,7 +129,7 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
 
   <div class="example">
   <pre>
-    &lt;script src="https://example.com/example-framework.js"
+    &lt;script src="https://example.com/v1.0/example-framework.js"
             integrity="sha384-Li9vy3DqF8tnTXuiaAJuML3ky+er10rcgNR/VqsVpcw+ThHmYcwiB1pbOxEbzJr7"
             crossorigin="anonymous"&gt;&lt;/script&gt;
   </pre>
@@ -164,7 +164,7 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
 
       <div class="example">
       <pre>
-          &lt;link rel="stylesheet" href="https://site53.example.net/style.css"
+          &lt;link rel="stylesheet" href="https://site53.example.net/v1.0/style.css"
                 integrity="sha384-+/M6kredJcxdsqkczBUjMLvqyHb1K/JThDXWsBVxMEeZHEaMKEOEct339VItX1zB"
                 crossorigin="anonymous"&gt;
       </pre>
@@ -411,7 +411,7 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
 
   <div class="example">
   <pre>
-      &lt;script src="https://example.com/example-framework.js"
+      &lt;script src="https://example.com/v1.0/example-framework.js"
               integrity="sha384-Li9vy3DqF8tnTXuiaAJuML3ky+er10rcgNR/VqsVpcw+ThHmYcwiB1pbOxEbzJr7
                          sha384-+/M6kredJcxdsqkczBUjMLvqyHb1K/JThDXWsBVxMEeZHEaMKEOEct339VItX1zB"
               crossorigin="anonymous"&gt;&lt;/script&gt;

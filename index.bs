@@ -570,11 +570,12 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
   ## Versioned resources ## {#versioned-resources}
 
   <a>Integrity metadata</a> is only useful if the resource can be reasonably
-  guaranteed to remain the same. It is therefore important that if resources
-  are updated they receive a new URL. Typically this might take the form of a
-  version number as part of the path or file name, which would ensure that a
-  resource would only be expected to change as a result of a compromised
-  server.
+  expected to remain static, as dynamic resources will not have a
+  consistent hash over time. One strategy for ensuring consistency is to add
+  version numbers as part of the path or filename, which will change when the
+  resource is updated. A resource at a versioned URL can be expected to
+  remain static, and changes to these resources can be reasonably rejected
+  as potential evidence of compromise.
 
   <div class="example">
   <pre>
@@ -586,8 +587,8 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
 
   ## Coping with errors ## {#coping-with-errors}
 
-  When an integrity violation is detected, the resource will not parse or
-  execute. This could cause problems for users, so the system should be
+  When an integrity violation is detected, the resource will not be parsed or
+  executed. This could cause problems for users, so the system should be
   designed to cope with errors.
 
   If an alerting or logging system exists, the integrity error should be

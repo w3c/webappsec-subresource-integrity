@@ -620,4 +620,5 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
   A special thanks to Mike West for his invaluable contributions to the initial
   version of this spec. Thanks to Brad Hill, Anne van Kesteren, Jonathan
   Kingston, Mark Nottingham, Sergey Shekyan, Dan Veditz, Eduardo Vela,
-  Tanvi Vyas, and Michal Zalewski for providing invaluable feedback.
+  Tanvi Vyas, Robin Whittleton, and Michal Zalewski for providing invaluable
+  feedback.

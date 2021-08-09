@@ -591,22 +591,51 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
   executed. This could cause problems for users, so the system should be
   designed to cope with errors.
 
-  If an alerting or logging system exists, the integrity error should be
-  sent to that so that the violation can be resolved safely.
+  In response to an integrity error when loading a resource from a CDN or other
+  third-party server, the system could attempt to load a fallback resource from
+  a same-origin mirror.
 
-  The integrity error could also trigger the system to attempt to load the
-  resource from a local copy instead of a CDN or other third-party server.
-  It is worth evaluating if a local resource may be a better initial choice
-  rather than using a resource hosted on a CDN.
+  <div class="example">
+  <pre>
+    &lt;script&gt;
+    document.addEventListener('error', error =&gt; {
+      const erroringScript = error.target;
+      if (erroringScript.hasAttribute('integrity')) {
+        const fallbackURL = erroringScript.getAttribute('src').replace(/https:\/\/.*?\//, '/');
+        const fallbackScript = document.createElement('script');
+        fallbackScript.setAttribute('src', fallbackURL);
+        erroringScript.after(fallbackScript);
+      }
+    }, true);
+    &lt;/script&gt;
+
+    &lt;script src="https://example.com/v1.0/example-framework.js"
+      integrity="sha384-Li9vy3DqF8tnTXuiaAJuML3ky+er10rcgNR/VqsVpcw+ThHmYcwiB1pbOxEbzJr7"
+      crossorigin="anonymous"&gt;&lt;/script&gt;
+  </pre>
+  </div>
+
+  Code that attempts to replace a third-party resource with a same-origin
+  mirror in the event of an error will need to be initialised before the
+  load attempt has been made.
+
+  It is worth evaluating if a same-origin resource may be a better choice in
+  the first place, instead of using a resource hosted on a third-party server.
 
   If the resource cannot be made available to the system, then the system
-  should be built to cope as best as possible with the resource's absence.
-  For some resources, for example web fonts or non-essential styles, there
-  may be no work to do to leave the system in a usable state. Alternatively,
-  the system could be built using progressive enhancement principles, where
-  in the absence of a resource, or support from the user agent for that
-  resource, the system remains usable although potentially with degraded
-  functionality.
+  should be built to cope as best as possible with the resource's absence. For
+  some resources, for example web fonts or non-essential styles, there may be
+  no work to do to leave the system in a usable state. Alternatively, the
+  system could be built using progressive enhancement principles, where in the
+  absence of a resource, or support from the user agent for that resource, the
+  system remains usable although potentially with degraded functionality.
+
+  If an alerting or logging system exists, the integrity error should also
+  be sent there so that appropriate steps can be taken. If a single resource
+  on a CDN is seen to have been modified, then general usage of that system
+  should be evaluated for other possible problems. For example, if other
+  resources without integrity metadata have also been loaded from the same CDN,
+  the impact of their potential modification should be evaluated.
 
   <!-- ####################################################################### -->
 

@@ -358,12 +358,24 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
   3.  For each |token| returned by <a lt="strictly split">splitting |metadata| on
       spaces</a>:
       1.  Set |empty| to `false`.
-      2.  Parse |token| as a <a grammar>hash-with-options</a>.
-      3.  If |token| does not parse, [=continue=] to the next token.
-      4.  Let |algorithm| be the <a grammar>hash-algo</a> component of
-          |token|.
-      5.  If |algorithm| is a hash function recognized by the user
-          agent, add the parsed |token| to |result|.
+      2.  Let |position| point at the first character of |token|.
+      3.  <a lt="collect a sequence of code points">Collect a sequence of code
+          points</a> that are not equal to U+003F (?) from |token| given
+          |position|, and let the resulting sequence be the |hash-expresssion|.
+      4.  Let |option-expression| be the substring of *token* from the code
+          point at |position| + 1 by <a lt="code unit substring to the end of
+          the string">code unit substring</a>.
+      5.  Let |position| point at the first character of |hash-expression|.
+      6.  <a lt="collect a sequence of code points">Collect a sequence of code
+          points</a> that are not equal to U+002D (-) from |hash-expression|
+          given |position|, and let the resulting sequence be the |algorithm|.
+      7.  Let |base64-value| be the substring of |hash-expression| from the code
+          point at |position| + 1 <a lt="code unit substring to the end of the
+          string">code unit substring</a>.
+      8.  If either |algorithm| or |base64-value| is empty, [=continue=] the
+          next |token|.
+      9.  If |algorithm| is a hash function recognized by the user agent, add
+          the parsed |token| to |result|.
   4.  Return `no metadata` if |empty| is `true`, otherwise return
       |result|.
 

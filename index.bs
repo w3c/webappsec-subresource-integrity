@@ -355,27 +355,32 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
 
   1.  Let |result| be the empty set.
   2.  Let |empty| be equal to `true`.
-  3.  For each |token| returned by <a lt="strictly split">splitting |metadata| on
-      spaces</a>:
+  3.  For each |item| returned by <a lt="strictly split">splitting |metadata|
+      on spaces</a>:
       1.  Set |empty| to `false`.
-      2.  Let |position| point at the first character of |token|.
-      3.  <a lt="collect a sequence of code points">Collect a sequence of code
-          points</a> that are not equal to U+003F (?) from |token| given
-          |position|, and let the resulting sequence be the |hash-expresssion|.
-      4.  Let |option-expression| be the substring of *token* from the code
-          point at |position| + 1 by <a lt="code unit substring to the end of
-          the string">code unit substring</a>.
-      5.  Let |position| point at the first character of |hash-expression|.
-      6.  <a lt="collect a sequence of code points">Collect a sequence of code
-          points</a> that are not equal to U+002D (-) from |hash-expression|
-          given |position|, and let the resulting sequence be the |algorithm|.
-      7.  Let |base64-value| be the substring of |hash-expression| from the code
-          point at |position| + 1 <a lt="code unit substring to the end of the
-          string">code unit substring</a>.
-      8.  If either |algorithm| or |base64-value| is empty, [=continue=] the
-          next |token|.
-      9.  If |algorithm| is a hash function recognized by the user agent, add
-          the parsed |token| to |result|.
+      
+      2.  let |option-expression| be the empty string.
+      3.  Let |tokenlist| be the result of <a lt="strictly split">splitting
+          |item| on U+003F (?)</a>.
+      4.  Let |hash-expression| be the |tokenlist|[0].
+      5.  If |tokenlist|[1] exists, let |option-expression| be the
+          |tokenlist|[1].
+      
+      6.  Let |base64-value| be the empty string. 
+      7.  Let |tokenlist| be the result of <a lt="strictly split">splitting
+          |hash-expression| on U+002D (-)</a>.
+      8.  Let |algorithm| be the |tokenlist|[0].
+      9.  If |tokenlist|[1] exists, set |base64-value| be the |tokenlist|[1].
+      10.  If |algorithm| is not a hash function recognized by the user agent,
+           [=continue=] the next |item|.
+      11. Let |metadata| be a map with its keys initialized as follows:
+          : "`alg`"
+          :: |algorithm|
+          : "`val`"
+          :: |base64-value|
+          : "`opt`"
+          :: |option-expression|
+      12. Append |metadata| to |result|.
   4.  Return `no metadata` if |empty| is `true`, otherwise return
       |result|.
 

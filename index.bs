@@ -355,15 +355,30 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
 
   1.  Let |result| be the empty set.
   2.  Let |empty| be equal to `true`.
-  3.  For each |token| returned by <a lt="strictly split">splitting |metadata| on
-      spaces</a>:
+  3.  For each |item| returned by <a lt="strictly split">splitting |metadata|
+      on spaces</a>:
       1.  Set |empty| to `false`.
-      2.  Parse |token| as a <a grammar>hash-with-options</a>.
-      3.  If |token| does not parse, [=continue=] to the next token.
-      4.  Let |algorithm| be the <a grammar>hash-algo</a> component of
-          |token|.
-      5.  If |algorithm| is a hash function recognized by the user
-          agent, add the parsed |token| to |result|.
+      2.  Let |option-expression| be the empty string.
+      3.  Let |tokenlist| be the result of <a lt="strictly split">splitting
+          |item| on U+003F (?)</a>.
+      4.  Let |hash-expression| be the |tokenlist|[0].
+      5.  If |tokenlist|[1] exists, let |option-expression| be the
+          |tokenlist|[1].
+      6.  Let |base64-value| be the empty string.
+      7.  Let |tokenlist| be the result of <a lt="strictly split">splitting
+          |hash-expression| on U+002D (-)</a>.
+      8.  Let |algorithm| be the |tokenlist|[0].
+      9.  If |tokenlist|[1] exists, set |base64-value| be the |tokenlist|[1].
+      10.  If |algorithm| is not a hash function recognized by the user agent,
+           [=continue=] the next |item|.
+      11.  Let |metadata| be a map with its keys initialized as follows:
+           : "`alg`"
+           :: |algorithm|
+           : "`val`"
+           :: |base64-value|
+           : "`opt`"
+           :: |option-expression|
+      12. Append |metadata| to |result|.
   4.  Return `no metadata` if |empty| is `true`, otherwise return
       |result|.
 

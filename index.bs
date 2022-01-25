@@ -247,8 +247,8 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
 
   This metadata MUST be encoded in the same format as the `hash-source` (without
   the single quotes) in <a
-  href="http://www.w3.org/TR/CSP2/#source-list-syntax">section 4.2 of the Content
-  Security Policy Level 2 specification</a>.
+  href="http://www.w3.org/TR/CSP3/#framework-directive-source-list">section
+  2.3.1 of the Content Security Policy Level 3 specification</a>. [[!CSP3]]
 
   For example, given a script resource containing only the string `alert('Hello,
   world.');`, an author might choose <a>SHA-384</a> as a hash function.
@@ -451,24 +451,21 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
   valid metadata as described by the following ABNF grammar:
 
   <pre dfn-type="grammar" link-type="grammar">
-      <dfn>integrity-metadata</dfn> = *<a>WSP</a> <a>hash-with-options</a> *(1*<a>WSP</a> <a>hash-with-options</a> ) *<a>WSP</a> / *<a>WSP</a>
-      <dfn>hash-with-options</dfn>  = <a>hash-expression</a> *("?" <a>option-expression</a>)
-      <dfn>option-expression</dfn>  = *<a>VCHAR</a>
-      <dfn>hash-algo</dfn>          = &lt;hash-algo production from [Content Security Policy Level 2, section 4.2]&gt;
-      <dfn>base64-value</dfn>       = &lt;base64-value production from [Content Security Policy Level 2, section 4.2]&gt;
+      <dfn>integrity-metadata</dfn> = *<a>WSP</a> <a>hash-expression</a> *(1*<a>WSP</a> <a>hash-expression</a> ) *<a>WSP</a> / *<a>WSP</a>
+      <dfn>hash-algo</dfn>          = &lt;hash-algo production from [Content Security Policy Level 3, section 2.3.1]&gt;
+      <dfn>base64-value</dfn>       = &lt;base64-value production from [Content Security Policy Level 3, section 2.3.1]&gt;
       <dfn>hash-expression</dfn>    = <a>hash-algo</a> "-" <a>base64-value</a>
+      <dfn>option-expression</dfn>  = *<a>VCHAR</a>
+      <dfn>hash-with-options</dfn>  = <a>hash-expression</a> *("?" <a>option-expression</a>)
   </pre>
-
-  `option-expression`s are associated on a per `hash-expression` basis and are
-  applied only to the `hash-expression` that immediately precedes it.
-
-  In order for user agents to remain fully forwards compatible with future
-  options, the user agent MUST ignore all unrecognized  `option-expression`s.
-
-  Note: Note that while the `option-expression` has been reserved in the syntax,
-  no options have been defined. It is likely that a future version of the spec
-  will define a more specific syntax for options, so it is defined here as broadly
-  as possible.
+  
+  Note: Note that while the `option-expression` and `hash-with-options` have
+  been reserved in the syntax, no `options` have been defined. It is likely that
+  a future version of the spec will define a more specific syntax for options,
+  so it is defined here as broadly as possible. If `options` are to be defined
+  in a future version, the `option-expression` should be modified accordingly.
+  Also, all `hash-expression`s of the 'integrity-metadata' should be replaced
+  with `hash-with-options`.
 
   ## Handling integrity violations ## {#handling-integrity-violations}
 

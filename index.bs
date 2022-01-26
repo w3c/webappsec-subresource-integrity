@@ -455,17 +455,12 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
       <dfn>hash-algo</dfn>          = &lt;hash-algo production from [Content Security Policy Level 3, section 2.3.1]&gt;
       <dfn>base64-value</dfn>       = &lt;base64-value production from [Content Security Policy Level 3, section 2.3.1]&gt;
       <dfn>hash-expression</dfn>    = <a>hash-algo</a> "-" <a>base64-value</a>
-      <dfn>option-expression</dfn>  = *<a>VCHAR</a>
-      <dfn>hash-with-options</dfn>  = <a>hash-expression</a> *("?" <a>option-expression</a>)
   </pre>
   
-  Note: Note that while the `option-expression` and `hash-with-options` have
-  been reserved in the syntax, no `options` have been defined. It is likely that
-  a future version of the spec will define a more specific syntax for options,
-  so it is defined here as broadly as possible. If `options` are to be defined
-  in a future version, the `option-expression` should be modified accordingly.
-  Also, all `hash-expression`s of the 'integrity-metadata' should be replaced
-  with `hash-with-options`.
+  Note: Since no `options` are not defined (see the
+  [[#integrity-metadata-description]]), the above ABNF syntax does not consider
+  them. If `options` are defined in a future version, the ABNF syntax should be
+  modified accordingly.
 
   ## Handling integrity violations ## {#handling-integrity-violations}
 

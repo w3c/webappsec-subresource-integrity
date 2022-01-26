@@ -36,7 +36,6 @@ spec: ABNF; urlPrefix: https://tools.ietf.org/html/rfc5234
     text: VCHAR; url: appendix-B.1
     text: WSP; url: appendix-B.1
 
-
 spec: Fetch; urlPrefix: https://fetch.spec.whatwg.org
   type: dfn
     text: fetch; url: concept-fetch
@@ -213,10 +212,7 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
   specified in RFC5234. [[!ABNF]]
 
   <a href="https://tools.ietf.org/html/rfc5234#appendix-B.1">Appendix B.1</a> of
-  [[!ABNF]] defines <a>VCHAR</a> (printing characters).
-
-  <a>WSP</a> (white space) characters are defined in <a href="http://www.w3.org/TR/html5/infrastructure.html#space-character">Section 2.4.1 Common parser idioms</a> of the HTML 5 specification as
-  <code>White_Space characters</code>. [[!HTML5]]
+  [[!ABNF]] defines <a>VCHAR</a> (printing characters) and <a>WSP</a> (white space).
 
   </section>
 

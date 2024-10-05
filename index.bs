@@ -1,12 +1,10 @@
 <pre class="metadata">
 Title: Subresource Integrity
 Status: ED
-Deadline: 2015-12-15
 ED: https://w3c.github.io/webappsec-subresource-integrity/
 TR: http://www.w3.org/TR/SRI/
-Previous Version: http://www.w3.org/TR/2015/WD-SRI-20151006/
 Shortname: SRI
-Level: 1
+Level: none
 Editor: Devdatta Akhawe, Dropbox Inc., http://devd.me, dev.akhawe@gmail.com
 Editor: Frederik Braun 68466, Mozilla, https://frederik-braun.com, fbraun@mozilla.com
 Editor: François Marier, Mozilla, https://fmarier.org, francois@mozilla.com

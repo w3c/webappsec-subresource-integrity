@@ -18,8 +18,8 @@ Group: webappsec
 Repository: w3c/webappsec-subresource-integrity
 Indent: 2
 Version History: https://github.com/w3c/webappsec-subresource-integrity/commits/gh-pages
-!Implementation status: <a href="https://code.google.com/p/chromium/issues/detail?id=355467">Blink/Chromium</a><br /><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=992096">Gecko</a>
-!Implementation report: <a href="https://github.com/w3c/webappsec-subresource-integrity/wiki/Links">https://github.com/w3c/webappsec-subresource-integrity/wiki/Links</a>
+WPT Path Prefix: /subresource-integrity/
+WPT Display: closed
 
 Markup Shorthands: css off, markdown on
 Ignored Vars: src, resource, val
@@ -109,6 +109,10 @@ spec:csp3; type:grammar; text:base64-value
   Scripts, of course, are not the only response type which would benefit
   from integrity validation. The scheme specified here also applies to `link`
   and future versions of this specification are likely to expand this coverage.
+
+  <wpt>
+    subresource-integrity.html
+  </wpt>
 
   ## Goals ## {#goals}
 

@@ -31,40 +31,15 @@ spec: ABNF; urlPrefix: https://tools.ietf.org/html/rfc5234
     text: VCHAR; url: appendix-B.1
     text: WSP; url: appendix-B.1
   type: grammar
-    text: ALPHA; url: appendix-B.1
-    text: DIGIT; url: appendix-B.1
     text: VCHAR; url: appendix-B.1
     text: WSP; url: appendix-B.1
-
-
-spec: Fetch; urlPrefix: https://fetch.spec.whatwg.org
-  type: dfn
-    text: fetch; url: concept-fetch
-    text: request; url: concept-request
-    text: response type; url: concept-response-type
-    text: destination; url: concept-request-destination
-
-spec: HTML5; urlPrefix: http://www.w3.org/TR/html5/
-  type: dfn
-    urlPrefix: document-metadata.html
-      text: obtain a resource; url: concept-link-obtain
-    urlPrefix: infrastructure.html
-      text: CORS settings attribute; url: #cors-settings-attributes
-      text: reflect; url: #reflect
-    urlPrefix: scripting-1.html
-      text: prepare a script; url: #prepare-a-script
-      text: splitting tokens on spaces; url: split-a-string-on-spaces
 
 spec: RFC7234; urlPrefix: https://tools.ietf.org/html/rfc7234
   type: dfn
     text: Cache-Control; url: section-5.2
     text: no-transform; url: section-5.2.1.6
 
-spec: SECURE-CONTEXTS; urlPrefix: http://www.w3.org/TR/powerful-features/
-  type: dfn
-    text: Secure Context; urlPrefix: #
-
-spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf
+spec: SHA2; urlPrefix: https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf
   type: dfn
     text: SHA-1; url: #
     text: SHA-2; url: #
@@ -72,16 +47,12 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
     text: SHA-384; url: #
     text: SHA-512; url: #
 </pre>
+<pre class="link-defaults">
+spec:csp3; type:grammar; text:base64-value
+</pre>
 
 <pre class="biblio">
 {
-  "SECURE-CONTEXTS": {
-    "authors": [ "Mike West", "Yan Zhu" ],
-    "href": "https://w3c.github.io/webappsec-secure-contexts/",
-    "title": "Secure Contexts",
-    "status": "WD",
-    "publisher": "W3C"
-  },
   "SHA2": {
     "href": "http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf",
     "title": "FIPS PUB 180-4, Secure Hash Standard"
@@ -213,10 +184,11 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
   specified in RFC5234. [[!ABNF]]
 
   <a href="https://tools.ietf.org/html/rfc5234#appendix-B.1">Appendix B.1</a> of
-  [[!ABNF]] defines <a>VCHAR</a> (printing characters).
+  [[!ABNF]] defines the <a>VCHAR</a> (printing characters) and <a>WSP</a>
+  (whitespace) rules.
 
-  <a>WSP</a> (white space) characters are defined in <a href="http://www.w3.org/TR/html5/infrastructure.html#space-character">Section 2.4.1 Common parser idioms</a> of the HTML 5 specification as
-  <code>White_Space characters</code>. [[!HTML5]]
+  Content Security Policy defines the <a grammar>`base64-value`</a> and
+  <a grammar>`hash-algorithm`</a> rules. [[!CSP]]
 
   </section>
 
@@ -232,8 +204,8 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
   ## Integrity metadata ## {#integrity-metadata-description}
 
   To verify the integrity of a response, a user agent requires <dfn>integrity
-  metadata</dfn> as part of the <a>request</a>. This metadata consists of the
-  following pieces of information:
+  metadata</dfn> as part of the <a for=/>request</a>. This metadata consists of
+  the following pieces of information:
 
   * cryptographic hash function ("alg")
   * <a>digest</a> ("val")
@@ -461,9 +433,7 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
       <dfn>integrity-metadata</dfn> = *<a>WSP</a> <a>hash-with-options</a> *(1*<a>WSP</a> <a>hash-with-options</a> ) *<a>WSP</a> / *<a>WSP</a>
       <dfn>hash-with-options</dfn>  = <a>hash-expression</a> *("?" <a>option-expression</a>)
       <dfn>option-expression</dfn>  = *<a>VCHAR</a>
-      <dfn>hash-algo</dfn>          = &lt;hash-algo production from [Content Security Policy Level 2, section 4.2]&gt;
-      <dfn>base64-value</dfn>       = &lt;base64-value production from [Content Security Policy Level 2, section 4.2]&gt;
-      <dfn>hash-expression</dfn>    = <a>hash-algo</a> "-" <a>base64-value</a>
+      <dfn>hash-expression</dfn>    = <a grammar>hash-algorithm</a> "-" <a grammar>base64-value</a>
   </pre>
 
   `option-expression`s are associated on a per `hash-expression` basis and are
@@ -537,8 +507,9 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
 
   ## Cross-origin data leakage ## {#cross-origin-data-leakage}
 
-  This specification requires the <a>CORS settings attribute</a> to be present on
-  integrity-protected cross-origin requests. If that requirement were omitted,
+  This specification requires integrity-protected cross-origin requests to use the
+  <a>CORS protocol</a> to ensure that the resource's content is explicitly shared
+  with the requestor. If that requirement were omitted,
   attackers could violate the <a
   href="http://www.w3.org/Security/wiki/Same_Origin_Policy">same-origin policy</a>
   and determine whether a cross-origin resource has certain content.

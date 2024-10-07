@@ -214,7 +214,7 @@ spec: SHA2; urlPrefix: http://csrc.nist.gov/publications/fips/fips180-4/fips-180
   [[#priority]] and [[#get-the-strongest-metadata]] for
   additional information.
 
-  A string is a <dfn>valid SRI hash algorithm token</dfn> if the its
+  A string is a <dfn>valid SRI hash algorithm token</dfn> if its
   [=ASCII lowercase=] is [=set/contained=] in the
   [=valid SRI hash algorithm token set=].
 

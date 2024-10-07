@@ -329,15 +329,15 @@ spec:csp3; type:grammar; text:base64-value
   1.  Let |result| be the empty set.
   2.  For each |item| returned by <a lt="strictly split">splitting</a>
       |metadata| on spaces:
-      1.  Let |hash-with-opt-token-list| be the result of
+      1.  Let |expression-and-options| be the result of
           <a lt="strictly split">splitting</a> |item| on U+003F (?).
-      2.  Let |hash-expression| be |hash-with-opt-token-list|[0].
+      2.  Let |algorithm-expression| be |expression-and-options|[0].
       3.  Let |base64-value| be the empty string.
-      4.  Let |hash-expr-token-list| be the result of
-          <a lt="strictly split">splitting</a> |hash-expression| on U+002D (-).
-      5.  Let |algorithm| be |hash-expr-token-list|[0].
-      6.  If |hash-expr-token-list|[1] <a for=list>exists</a>, set
-          |base64-value| to |hash-expr-token-list|[1].
+      4.  Let |algorithm-and-value| be the result of
+          <a lt="strictly split">splitting</a> |algorithm-expression| on U+002D (-).
+      5.  Let |algorithm| be |algorithm-and-value|[0].
+      6.  If |algorithm-and-value|[1] <a for=list>exists</a>, set
+          |base64-value| to |algorithm-and-value|[1].
       7.  If |algorithm| is not a hash function recognized by the user agent,
            [=continue=].
       8. Let |metadata| be the ordered map  «["alg" → |algorithm|,
@@ -346,7 +346,7 @@ spec:csp3; type:grammar; text:base64-value
          Note: Since no `options` are defined (see the
          [[#integrity-metadata-description]]), a corresponding entry is not set
          in |metadata|. If `options` are defined in a future version,
-         |hash-with-opt-token-list|[1] can be utilized as `options`.
+         |expression-and-options|[1] can be utilized as `options`.
 
       9. <a for=list>Append</a> |metadata| to |result|.
   3.  Return |result|.

@@ -5,12 +5,10 @@
   <title>Subresource Integrity</title>
   <meta content="ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
-  <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
-  <meta content="Bikeshed version 63e66730b, updated Tue Oct 25 12:35:05 2022 -0700" name="generator">
+  <meta content="Bikeshed version 82ce88815, updated Thu Sep 7 16:33:55 2023 -0700" name="generator">
   <link href="http://www.w3.org/TR/SRI/" rel="canonical">
-  <meta content="5aab13c51b351ac5d6390fb558189d4fe6b23eb6" name="document-revision">
-<style>/* style-autolinks */
-
+  <meta content="0f7980a82764b9a9008005bbd3f887eeb0755cad" name="document-revision">
+<style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
     font-size: inherit;
@@ -70,8 +68,17 @@ pre .property::before, pre .property::after {
 
 [data-link-type=biblio] {
     white-space: pre;
-}</style>
-<style>/* style-colors */
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --selflink-text: black;
+        --selflink-bg: silver;
+        --selflink-hover-text: white;
+    }
+}
+</style>
+<style>/* Boilerplate: style-colors */
 
 /* Any --*-text not paired with a --*-bg is assumed to have a transparent bg */
 :root {
@@ -179,158 +186,7 @@ pre .property::before, pre .property::after {
     --outdated-shadow: red;
 
     --editedrec-bg: darkorange;
-}</style>
-<style>/* style-counters */
-
-body {
-    counter-reset: example figure issue;
 }
-.issue {
-    counter-increment: issue;
-}
-.issue:not(.no-marker)::before {
-    content: "Issue " counter(issue);
-}
-
-.example {
-    counter-increment: example;
-}
-.example:not(.no-marker)::before {
-    content: "Example " counter(example);
-}
-.invalid.example:not(.no-marker)::before,
-.illegal.example:not(.no-marker)::before {
-    content: "Invalid Example" counter(example);
-}
-
-figcaption {
-    counter-increment: figure;
-}
-figcaption:not(.no-marker)::before {
-    content: "Figure " counter(figure) " ";
-}</style>
-<style>/* style-dfn-panel */
-
-:root {
-    --dfnpanel-bg: #ddd;
-    --dfnpanel-text: var(--text);
-}
-.dfn-panel {
-    position: absolute;
-    z-index: 35;
-    height: auto;
-    width: -webkit-fit-content;
-    width: fit-content;
-    max-width: 300px;
-    max-height: 500px;
-    overflow: auto;
-    padding: 0.5em 0.75em;
-    font: small Helvetica Neue, sans-serif, Droid Sans Fallback;
-    background: var(--dfnpanel-bg);
-    color: var(--dfnpanel-text);
-    border: outset 0.2em;
-}
-.dfn-panel:not(.on) { display: none; }
-.dfn-panel * { margin: 0; padding: 0; text-indent: 0; }
-.dfn-panel > b { display: block; }
-.dfn-panel a { color: var(--dfnpanel-text); }
-.dfn-panel a:not(:hover) { text-decoration: none !important; border-bottom: none !important; }
-.dfn-panel > b + b { margin-top: 0.25em; }
-.dfn-panel ul { padding: 0; }
-.dfn-panel li { list-style: inside; }
-.dfn-panel.activated {
-    display: inline-block;
-    position: fixed;
-    left: .5em;
-    bottom: 2em;
-    margin: 0 auto;
-    max-width: calc(100vw - 1.5em - .4em - .5em);
-    max-height: 30vh;
-}
-
-.dfn-paneled { cursor: pointer; }
-</style>
-<style>/* style-issues */
-
-a[href].issue-return {
-    float: right;
-    float: inline-end;
-    color: var(--issueheading-text);
-    font-weight: bold;
-    text-decoration: none;
-}
-</style>
-<style>/* style-md-lists */
-
-/* This is a weird hack for me not yet following the commonmark spec
-   regarding paragraph and lists. */
-[data-md] > :first-child {
-    margin-top: 0;
-}
-[data-md] > :last-child {
-    margin-bottom: 0;
-}</style>
-<style>/* style-selflinks */
-
-:root {
-    --selflink-text: white;
-    --selflink-bg: gray;
-    --selflink-hover-text: black;
-}
-.heading, .issue, .note, .example, li, dt {
-    position: relative;
-}
-a.self-link {
-    position: absolute;
-    top: 0;
-    left: calc(-1 * (3.5rem - 26px));
-    width: calc(3.5rem - 26px);
-    height: 2em;
-    text-align: center;
-    border: none;
-    transition: opacity .2s;
-    opacity: .5;
-}
-a.self-link:hover {
-    opacity: 1;
-}
-.heading > a.self-link {
-    font-size: 83%;
-}
-.example > a.self-link,
-.note > a.self-link,
-.issue > a.self-link {
-    /* These blocks are overflow:auto, so positioning outside
-       doesn't work. */
-    left: auto;
-    right: 0;
-}
-li > a.self-link {
-    left: calc(-1 * (3.5rem - 26px) - 2em);
-}
-dfn > a.self-link {
-    top: auto;
-    left: auto;
-    opacity: 0;
-    width: 1.5em;
-    height: 1.5em;
-    background: var(--selflink-bg);
-    color: var(--selflink-text);
-    font-style: normal;
-    transition: opacity .2s, background-color .2s, color .2s;
-}
-dfn:hover > a.self-link {
-    opacity: 1;
-}
-dfn > a.self-link:hover {
-    color: var(--selflink-hover-text);
-}
-
-a.self-link::before            { content: "¶"; }
-.heading > a.self-link::before { content: "§"; }
-dfn > a.self-link::before      { content: "#"; }
-</style>
-<style>/* style-darkmode */
 
 @media (prefers-color-scheme: dark) {
     :root {
@@ -443,25 +299,486 @@ dfn > a.self-link::before      { content: "#"; }
        which is quite common in practice... */
     img { background: white; }
 }
-@media (prefers-color-scheme: dark) {
-    :root {
-        --selflink-text: black;
-        --selflink-bg: silver;
-        --selflink-hover-text: white;
-    }
+</style>
+<style>/* Boilerplate: style-counters */
+body {
+    counter-reset: example figure issue;
+}
+.issue {
+    counter-increment: issue;
+}
+.issue:not(.no-marker)::before {
+    content: "Issue " counter(issue);
 }
 
+.example {
+    counter-increment: example;
+}
+.example:not(.no-marker)::before {
+    content: "Example " counter(example);
+}
+.invalid.example:not(.no-marker)::before,
+.illegal.example:not(.no-marker)::before {
+    content: "Invalid Example" counter(example);
+}
+
+figcaption {
+    counter-increment: figure;
+}
+figcaption:not(.no-marker)::before {
+    content: "Figure " counter(figure) " ";
+}
+</style>
+<style>/* Boilerplate: style-dfn-panel */
+:root {
+    --dfnpanel-bg: #ddd;
+    --dfnpanel-text: var(--text);
+}
 @media (prefers-color-scheme: dark) {
     :root {
         --dfnpanel-bg: #222;
         --dfnpanel-text: var(--text);
     }
-}</style>
+}
+.dfn-panel {
+    position: absolute;
+    z-index: 35;
+    width: 20em;
+    width: 300px;
+    height: auto;
+    max-height: 500px;
+    overflow: auto;
+    padding: 0.5em 0.75em;
+    font: small Helvetica Neue, sans-serif, Droid Sans Fallback;
+    background: var(--dfnpanel-bg);
+    color: var(--dfnpanel-text);
+    border: outset 0.2em;
+    white-space: normal; /* in case it's moved into a pre */
+}
+.dfn-panel:not(.on) { display: none; }
+.dfn-panel * { margin: 0; padding: 0; text-indent: 0; }
+.dfn-panel > b { display: block; }
+.dfn-panel a { color: var(--dfnpanel-text); }
+.dfn-panel a:not(:hover) { text-decoration: none !important; border-bottom: none !important; }
+.dfn-panel > b + b { margin-top: 0.25em; }
+.dfn-panel ul { padding: 0 0 0 1em; list-style: none; }
+.dfn-panel li a {
+    white-space: pre;
+    display: inline-block;
+    max-width: calc(300px - 1.5em - 1em);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dfn-panel.activated {
+    display: inline-block;
+    position: fixed;
+    left: .5em;
+    bottom: 2em;
+    margin: 0 auto;
+    max-width: calc(100vw - 1.5em - .4em - .5em);
+    max-height: 30vh;
+}
+
+.dfn-paneled[role="button"] { cursor: pointer; }
+</style>
+<style>/* Boilerplate: style-dfn-panel */
+:root {
+    --dfnpanel-bg: #ddd;
+    --dfnpanel-text: var(--text);
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --dfnpanel-bg: #222;
+        --dfnpanel-text: var(--text);
+    }
+}
+.dfn-panel {
+    position: absolute;
+    z-index: 35;
+    width: 20em;
+    width: 300px;
+    height: auto;
+    max-height: 500px;
+    overflow: auto;
+    padding: 0.5em 0.75em;
+    font: small Helvetica Neue, sans-serif, Droid Sans Fallback;
+    background: var(--dfnpanel-bg);
+    color: var(--dfnpanel-text);
+    border: outset 0.2em;
+    white-space: normal; /* in case it's moved into a pre */
+}
+.dfn-panel:not(.on) { display: none; }
+.dfn-panel * { margin: 0; padding: 0; text-indent: 0; }
+.dfn-panel > b { display: block; }
+.dfn-panel a { color: var(--dfnpanel-text); }
+.dfn-panel a:not(:hover) { text-decoration: none !important; border-bottom: none !important; }
+.dfn-panel > b + b { margin-top: 0.25em; }
+.dfn-panel ul { padding: 0 0 0 1em; list-style: none; }
+.dfn-panel li a {
+    white-space: pre;
+    display: inline-block;
+    max-width: calc(300px - 1.5em - 1em);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dfn-panel.activated {
+    display: inline-block;
+    position: fixed;
+    left: .5em;
+    bottom: 2em;
+    margin: 0 auto;
+    max-width: calc(100vw - 1.5em - .4em - .5em);
+    max-height: 30vh;
+}
+
+.dfn-paneled[role="button"] { cursor: pointer; }
+</style>
+<style>/* Boilerplate: style-issues */
+a[href].issue-return {
+    float: right;
+    float: inline-end;
+    color: var(--issueheading-text);
+    font-weight: bold;
+    text-decoration: none;
+}
+</style>
+<style>/* Boilerplate: style-md-lists */
+/* This is a weird hack for me not yet following the commonmark spec
+   regarding paragraph and lists. */
+[data-md] > :first-child {
+    margin-top: 0;
+}
+[data-md] > :last-child {
+    margin-bottom: 0;
+}
+</style>
+<style>/* Boilerplate: style-selflinks */
+
+:root {
+    --selflink-text: white;
+    --selflink-bg: gray;
+    --selflink-hover-text: black;
+}
+.heading, .issue, .note, .example, li, dt {
+    position: relative;
+}
+a.self-link {
+    position: absolute;
+    top: 0;
+    left: calc(-1 * (3.5rem - 26px));
+    width: calc(3.5rem - 26px);
+    height: 2em;
+    text-align: center;
+    border: none;
+    transition: opacity .2s;
+    opacity: .5;
+}
+a.self-link:hover {
+    opacity: 1;
+}
+.heading > a.self-link {
+    font-size: 83%;
+}
+.example > a.self-link,
+.note > a.self-link,
+.issue > a.self-link {
+    /* These blocks are overflow:auto, so positioning outside
+       doesn't work. */
+    left: auto;
+    right: 0;
+}
+li > a.self-link {
+    left: calc(-1 * (3.5rem - 26px) - 2em);
+}
+dfn > a.self-link {
+    top: auto;
+    left: auto;
+    opacity: 0;
+    width: 1.5em;
+    height: 1.5em;
+    background: var(--selflink-bg);
+    color: var(--selflink-text);
+    font-style: normal;
+    transition: opacity .2s, background-color .2s, color .2s;
+}
+dfn:hover > a.self-link {
+    opacity: 1;
+}
+dfn > a.self-link:hover {
+    color: var(--selflink-hover-text);
+}
+
+a.self-link::before            { content: "¶"; }
+.heading > a.self-link::before { content: "§"; }
+dfn > a.self-link::before      { content: "#"; }
+</style>
+<style>/* Boilerplate: style-syntax-highlighting */
+
+code.highlight { padding: .1em; border-radius: .3em; }
+pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em 0; overflow: auto; border-radius: 0; }
+
+.highlight:not(.idl) { background: rgba(0, 0, 0, .03); }
+c-[a] { color: #990055 } /* Keyword.Declaration */
+c-[b] { color: #990055 } /* Keyword.Type */
+c-[c] { color: #708090 } /* Comment */
+c-[d] { color: #708090 } /* Comment.Multiline */
+c-[e] { color: #0077aa } /* Name.Attribute */
+c-[f] { color: #669900 } /* Name.Tag */
+c-[g] { color: #222222 } /* Name.Variable */
+c-[k] { color: #990055 } /* Keyword */
+c-[l] { color: #000000 } /* Literal */
+c-[m] { color: #000000 } /* Literal.Number */
+c-[n] { color: #0077aa } /* Name */
+c-[o] { color: #999999 } /* Operator */
+c-[p] { color: #999999 } /* Punctuation */
+c-[s] { color: #a67f59 } /* Literal.String */
+c-[t] { color: #a67f59 } /* Literal.String.Single */
+c-[u] { color: #a67f59 } /* Literal.String.Double */
+c-[cp] { color: #708090 } /* Comment.Preproc */
+c-[c1] { color: #708090 } /* Comment.Single */
+c-[cs] { color: #708090 } /* Comment.Special */
+c-[kc] { color: #990055 } /* Keyword.Constant */
+c-[kn] { color: #990055 } /* Keyword.Namespace */
+c-[kp] { color: #990055 } /* Keyword.Pseudo */
+c-[kr] { color: #990055 } /* Keyword.Reserved */
+c-[ld] { color: #000000 } /* Literal.Date */
+c-[nc] { color: #0077aa } /* Name.Class */
+c-[no] { color: #0077aa } /* Name.Constant */
+c-[nd] { color: #0077aa } /* Name.Decorator */
+c-[ni] { color: #0077aa } /* Name.Entity */
+c-[ne] { color: #0077aa } /* Name.Exception */
+c-[nf] { color: #0077aa } /* Name.Function */
+c-[nl] { color: #0077aa } /* Name.Label */
+c-[nn] { color: #0077aa } /* Name.Namespace */
+c-[py] { color: #0077aa } /* Name.Property */
+c-[ow] { color: #999999 } /* Operator.Word */
+c-[mb] { color: #000000 } /* Literal.Number.Bin */
+c-[mf] { color: #000000 } /* Literal.Number.Float */
+c-[mh] { color: #000000 } /* Literal.Number.Hex */
+c-[mi] { color: #000000 } /* Literal.Number.Integer */
+c-[mo] { color: #000000 } /* Literal.Number.Oct */
+c-[sb] { color: #a67f59 } /* Literal.String.Backtick */
+c-[sc] { color: #a67f59 } /* Literal.String.Char */
+c-[sd] { color: #a67f59 } /* Literal.String.Doc */
+c-[se] { color: #a67f59 } /* Literal.String.Escape */
+c-[sh] { color: #a67f59 } /* Literal.String.Heredoc */
+c-[si] { color: #a67f59 } /* Literal.String.Interpol */
+c-[sx] { color: #a67f59 } /* Literal.String.Other */
+c-[sr] { color: #a67f59 } /* Literal.String.Regex */
+c-[ss] { color: #a67f59 } /* Literal.String.Symbol */
+c-[vc] { color: #0077aa } /* Name.Variable.Class */
+c-[vg] { color: #0077aa } /* Name.Variable.Global */
+c-[vi] { color: #0077aa } /* Name.Variable.Instance */
+c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
+
+
+@media (prefers-color-scheme: dark) {
+    .highlight:not(.idl) { background: rgba(255, 255, 255, .05); }
+
+    c-[a] { color: #d33682 } /* Keyword.Declaration */
+    c-[b] { color: #d33682 } /* Keyword.Type */
+    c-[c] { color: #2aa198 } /* Comment */
+    c-[d] { color: #2aa198 } /* Comment.Multiline */
+    c-[e] { color: #268bd2 } /* Name.Attribute */
+    c-[f] { color: #b58900 } /* Name.Tag */
+    c-[g] { color: #cb4b16 } /* Name.Variable */
+    c-[k] { color: #d33682 } /* Keyword */
+    c-[l] { color: #657b83 } /* Literal */
+    c-[m] { color: #657b83 } /* Literal.Number */
+    c-[n] { color: #268bd2 } /* Name */
+    c-[o] { color: #657b83 } /* Operator */
+    c-[p] { color: #657b83 } /* Punctuation */
+    c-[s] { color: #6c71c4 } /* Literal.String */
+    c-[t] { color: #6c71c4 } /* Literal.String.Single */
+    c-[u] { color: #6c71c4 } /* Literal.String.Double */
+    c-[ch] { color: #2aa198 } /* Comment.Hashbang */
+    c-[cp] { color: #2aa198 } /* Comment.Preproc */
+    c-[cpf] { color: #2aa198 } /* Comment.PreprocFile */
+    c-[c1] { color: #2aa198 } /* Comment.Single */
+    c-[cs] { color: #2aa198 } /* Comment.Special */
+    c-[kc] { color: #d33682 } /* Keyword.Constant */
+    c-[kn] { color: #d33682 } /* Keyword.Namespace */
+    c-[kp] { color: #d33682 } /* Keyword.Pseudo */
+    c-[kr] { color: #d33682 } /* Keyword.Reserved */
+    c-[ld] { color: #657b83 } /* Literal.Date */
+    c-[nc] { color: #268bd2 } /* Name.Class */
+    c-[no] { color: #268bd2 } /* Name.Constant */
+    c-[nd] { color: #268bd2 } /* Name.Decorator */
+    c-[ni] { color: #268bd2 } /* Name.Entity */
+    c-[ne] { color: #268bd2 } /* Name.Exception */
+    c-[nf] { color: #268bd2 } /* Name.Function */
+    c-[nl] { color: #268bd2 } /* Name.Label */
+    c-[nn] { color: #268bd2 } /* Name.Namespace */
+    c-[py] { color: #268bd2 } /* Name.Property */
+    c-[ow] { color: #657b83 } /* Operator.Word */
+    c-[mb] { color: #657b83 } /* Literal.Number.Bin */
+    c-[mf] { color: #657b83 } /* Literal.Number.Float */
+    c-[mh] { color: #657b83 } /* Literal.Number.Hex */
+    c-[mi] { color: #657b83 } /* Literal.Number.Integer */
+    c-[mo] { color: #657b83 } /* Literal.Number.Oct */
+    c-[sa] { color: #6c71c4 } /* Literal.String.Affix */
+    c-[sb] { color: #6c71c4 } /* Literal.String.Backtick */
+    c-[sc] { color: #6c71c4 } /* Literal.String.Char */
+    c-[dl] { color: #6c71c4 } /* Literal.String.Delimiter */
+    c-[sd] { color: #6c71c4 } /* Literal.String.Doc */
+    c-[se] { color: #6c71c4 } /* Literal.String.Escape */
+    c-[sh] { color: #6c71c4 } /* Literal.String.Heredoc */
+    c-[si] { color: #6c71c4 } /* Literal.String.Interpol */
+    c-[sx] { color: #6c71c4 } /* Literal.String.Other */
+    c-[sr] { color: #6c71c4 } /* Literal.String.Regex */
+    c-[ss] { color: #6c71c4 } /* Literal.String.Symbol */
+    c-[fm] { color: #268bd2 } /* Name.Function.Magic */
+    c-[vc] { color: #cb4b16 } /* Name.Variable.Class */
+    c-[vg] { color: #cb4b16 } /* Name.Variable.Global */
+    c-[vi] { color: #cb4b16 } /* Name.Variable.Instance */
+    c-[vm] { color: #cb4b16 } /* Name.Variable.Magic */
+    c-[il] { color: #657b83 } /* Literal.Number.Integer.Long */
+}
+</style>
+<style>/* Boilerplate: style-wpt */
+:root {
+    --wpt-border: hsl(0, 0%, 60%);
+    --wpt-bg: hsl(0, 0%, 95%);
+    --wpt-text: var(--text);
+    --wptheading-text: hsl(0, 0%, 30%);
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --wpt-border: hsl(0, 0%, 30%);
+        --wpt-bg: var(--borderedblock-bg);
+        --wpt-text: var(--text);
+        --wptheading-text: hsl(0, 0%, 60%);
+    }
+}
+.wpt-tests-block {
+    list-style: none;
+    border-left: .5em solid var(--wpt-border);
+    background: var(--wpt-bg);
+    color: var(--wpt-text);
+    margin: 1em auto;
+    padding: .5em;
+}
+.wpt-tests-block summary {
+    color: var(--wptheading-text);
+    font-weight: normal;
+    text-transform: uppercase;
+}
+.wpt-tests-block summary::marker{
+    color: var(--wpt-border);
+}
+.wpt-tests-block summary:hover::marker{
+    color: var(--wpt-text);
+}
+/*
+   The only content  of a wpt test block in its closed state is the <summary>,
+   which contains the word TESTS,
+   and that is absolutely positioned.
+   In that closed state, wpt test blocks are styled
+   to have a top margin whose height is exactly equal
+   to the height of the absolutely positioned <summary>,
+   and no other background/padding/margin/border.
+   The wpt test block elements will therefore allow the maring
+   of the previous/next block elements
+   to collapse through them;
+   if this combined margin would be larger than its own top margin,
+   it stays as is,
+   and therefore the pre-existing vertical rhythm of the document is undisturbed.
+   If that combined margin would be smaller, it is grown to that size.
+   This means that the wpt test block ensures
+   that there's always enough vertical space to insert the summary,
+   without adding more than is needed.
+*/
+.wpt-tests-block:not([open]){
+    padding: 0;
+    border: none;
+    background: none;
+    font-size: 0.75em;
+    line-height: 1;
+    position: relative;
+    margin: 1em 0 0;
+}
+.wpt-tests-block:not([open]) summary {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+/*
+   It is possible that both the last child of a block element
+   and the block element itself
+   would be annotated with a <wpt> block each.
+   If the block element has a padding or a border,
+   that's fine, but otherwise
+   the bottom margin of the block and of its last child would collapse
+   and both <wpt> elements would overlap, being both placed there.
+   To avoid that, add 1px of padding to the <wpt> element annotating the last child
+   to prevent the bottom margin of the block and of its last child from collapsing
+   (and as much negative margin,
+   as wel only want to prevent margin collapsing,
+   but are not trying to actually take more space).
+*/
+.wpt-tests-block:not([open]):last-child {
+    padding-bottom: 1px;
+    margin-bottom: -1px;
+}
+/*
+   Exception to the previous rule:
+   don't do that in non-last list items,
+   because it's not necessary,
+   and would therefore consume more space than strictly needed.
+   Lists must have list items as children, not <wpt> elements,
+   so a <wpt> element cannot be a sibling of a list item,
+   and the collision that the previous rule avoids cannot happen.
+*/
+li:not(:last-child) > .wpt-tests-block:not([open]):last-child,
+dd:not(:last-child) > .wpt-tests-block:not([open]):last-child {
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+.wpt-tests-block:not([open]):not(:hover){
+    opacity: 0.5;
+}
+.wpt-tests-list {
+    list-style: none;
+    display: grid;
+    margin: 0;
+    padding: 0;
+    grid-template-columns: 1fr max-content auto auto;
+    grid-column-gap: .5em;
+}
+.wpt-tests-block hr:last-child {
+    display: none;
+}
+.wpt-test {
+    display: contents;
+}
+.wpt-test > a {
+    text-decoration: underline;
+    border: none;
+}
+.wpt-test > .wpt-name { grid-column: 1; }
+.wpt-test > .wpt-results { grid-column: 2; }
+.wpt-test > .wpt-live { grid-column: 3; }
+.wpt-test > .wpt-source { grid-column: 4; }
+
+.wpt-test > .wpt-results {
+    display: flex;
+    gap: .1em;
+}
+.wpt-test .wpt-result {
+    display: inline-block;
+    height: 1em;
+    width: 1em;
+    border-radius: 50%;
+    position: relative;
+}
+</style>
  <body class="h-entry">
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Subresource Integrity</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-11-30">30 November 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-10-10">10 October 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -470,8 +787,6 @@ dfn > a.self-link::before      { content: "#"; }
       <dd><a class="u-url" href="https://w3c.github.io/webappsec-subresource-integrity/">https://w3c.github.io/webappsec-subresource-integrity/</a>
       <dt>Latest published version:
       <dd><a href="http://www.w3.org/TR/SRI/">http://www.w3.org/TR/SRI/</a>
-      <dt>Previous Versions:
-      <dd><a href="http://www.w3.org/TR/2015/WD-SRI-20151006/" rel="prev">http://www.w3.org/TR/2015/WD-SRI-20151006/</a>
       <dt>Version History:
       <dd><a href="https://github.com/w3c/webappsec-subresource-integrity/commits/gh-pages">https://github.com/w3c/webappsec-subresource-integrity/commits/gh-pages</a>
       <dt>Feedback:
@@ -482,15 +797,13 @@ dfn > a.self-link::before      { content: "#"; }
       <dd class="editor p-author h-card vcard" data-editor-id="68466"><a class="p-name fn u-url url" href="https://frederik-braun.com">Frederik Braun</a> (<span class="p-org org">Mozilla</span>) <a class="u-email email" href="mailto:fbraun@mozilla.com">fbraun@mozilla.com</a>
       <dd class="editor p-author h-card vcard"><a class="p-name fn u-url url" href="https://fmarier.org">François Marier</a> (<span class="p-org org">Mozilla</span>) <a class="u-email email" href="mailto:francois@mozilla.com">francois@mozilla.com</a>
       <dd class="editor p-author h-card vcard"><a class="p-name fn u-url url" href="https://joelweinberger.us">Joel Weinberger</a> (<span class="p-org org">Google Inc.</span>) <a class="u-email email" href="mailto:jww@google.com">jww@google.com</a>
-      <dt>Implementation status:
-      <dd><a href="https://code.google.com/p/chromium/issues/detail?id=355467">Blink/Chromium</a><br><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=992096">Gecko</a>
-      <dt>Implementation report:
-      <dd><a href="https://github.com/w3c/webappsec-subresource-integrity/wiki/Links">https://github.com/w3c/webappsec-subresource-integrity/wiki/Links</a>
+      <dt>Test Suite:
+      <dd class="wpt-overview"><a href="https://wpt.fyi/results/subresource-integrity/">https://wpt.fyi/results/subresource-integrity/</a>
      </dl>
     </div>
    </details>
    <div data-fill-with="warning"></div>
-   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2022 <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>, <a href="https://ev.buaa.edu.cn/">Beihang</a>). W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document" rel="license">permissive document license</a> rules apply. </p>
+   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/policies/#copyright">Copyright</a> © 2024 <a href="https://www.w3.org/">World Wide Web Consortium</a>. <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/policies/#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/policies/#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/copyright/software-license/" rel="license" title="W3C Software and Document License">permissive document license</a> rules apply. </p>
    <hr title="Separator for header">
   </div>
   <div class="p-summary" data-fill-with="abstract">
@@ -514,11 +827,11 @@ dfn > a.self-link::before      { content: "#"; }
 	“[SRI] <em>…summary of comment…</em>” </p>
    <p> This document was produced by the <a href="https://www.w3.org/groups/wg/webappsec">Web Application Security Working Group</a>. </p>
    <p> This document was produced by a group operating under
-	the <a href="https://www.w3.org/Consortium/Patent-Policy/">W3C Patent Policy</a>.
+	the <a href="https://www.w3.org/policies/patent-policy/">W3C Patent Policy</a>.
 	W3C maintains a <a href="https://www.w3.org/groups/wg/webappsec/ipr" rel="disclosure">public list of any patent disclosures</a> made in connection with the deliverables of the group;
 	that page also includes instructions for disclosing a patent.
-	An individual who has actual knowledge of a patent which the individual believes contains <a href="https://www.w3.org/Consortium/Patent-Policy/#def-essential">Essential Claim(s)</a> must disclose the information in accordance with <a href="https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure">section 6 of the W3C Patent Policy</a>. </p>
-   <p> This document is governed by the <a href="https://www.w3.org/2021/Process-20211102/" id="w3c_process_revision">2 November 2021 W3C Process Document</a>. </p>
+	An individual who has actual knowledge of a patent which the individual believes contains <a href="https://www.w3.org/policies/patent-policy/#def-essential">Essential Claim(s)</a> must disclose the information in accordance with <a href="https://www.w3.org/policies/patent-policy/#sec-Disclosure">section 6 of the W3C Patent Policy</a>. </p>
+   <p> This document is governed by the <a href="https://www.w3.org/policies/process/20231103/" id="w3c_process_revision">03 November 2023 W3C Process Document</a>. </p>
    <p></p>
   </div>
   <div data-fill-with="at-risk"></div>
@@ -598,11 +911,11 @@ dfn > a.self-link::before      { content: "#"; }
   wide variety of services and content delivery networks, and must trust
   that the delivered representation is, in fact, what they expected to
   load. If an attacker can trick a user into downloading content from
-  a hostile server (via DNS <a data-link-type="biblio" href="#biblio-rfc1035">[RFC1035]</a> poisoning, or other such means), the author has
+  a hostile server (via DNS <a data-link-type="biblio" href="#biblio-rfc1035" title="Domain names - implementation and specification">[RFC1035]</a> poisoning, or other such means), the author has
   no recourse. Likewise, an attacker who can replace the file on the Content
   Delivery Network (CDN) server has the ability to inject arbitrary content.</p>
    <p>Delivering resources over a secure channel mitigates some of this risk: with
-  TLS <a data-link-type="biblio" href="#biblio-tls">[TLS]</a>, HSTS <a data-link-type="biblio" href="#biblio-rfc6797">[RFC6797]</a>, and pinned public keys <a data-link-type="biblio" href="#biblio-rfc7469">[RFC7469]</a>, a user agent can be fairly certain
+  TLS <a data-link-type="biblio" href="#biblio-tls" title="The Transport Layer Security (TLS) Protocol Version 1.3">[TLS]</a>, HSTS <a data-link-type="biblio" href="#biblio-rfc6797" title="HTTP Strict Transport Security (HSTS)">[RFC6797]</a>, and pinned public keys <a data-link-type="biblio" href="#biblio-rfc7469" title="Public Key Pinning Extension for HTTP">[RFC7469]</a>, a user agent can be fairly certain
   that it is indeed speaking with the server it believes it’s talking to. These
   mechanisms, however, authenticate <em>only</em> the server, <em>not</em> the content. An
   attacker (or administrator) with access to the server can manipulate content with
@@ -621,13 +934,19 @@ dfn > a.self-link::before      { content: "#"; }
    <p>This example can be communicated to a user agent by adding the hash to a <code>script</code> element, like so:</p>
    <div class="example" id="example-59806504">
     <a class="self-link" href="#example-59806504"></a> 
-<pre>&lt;script src="https://example.com/example-framework.js"
-        integrity="sha384-Li9vy3DqF8tnTXuiaAJuML3ky+er10rcgNR/VqsVpcw+ThHmYcwiB1pbOxEbzJr7"
-        crossorigin="anonymous">&lt;/script>
+<pre class="highlight"><c- p>&lt;</c-><c- f>script</c-> <c- e>src</c-><c- o>=</c-><c- s>"https://example.com/example-framework.js"</c->
+        <c- e>integrity</c-><c- o>=</c-><c- s>"sha384-Li9vy3DqF8tnTXuiaAJuML3ky+er10rcgNR/VqsVpcw+ThHmYcwiB1pbOxEbzJr7"</c->
+        <c- e>crossorigin</c-><c- o>=</c-><c- s>"anonymous"</c-><c- p>>&lt;/</c-><c- f>script</c-><c- p>></c->
 </pre>
    </div>
    <p>Scripts, of course, are not the only response type which would benefit
   from integrity validation. The scheme specified here also applies to <code>link</code> and future versions of this specification are likely to expand this coverage.</p>
+   <details class="wpt-tests-block" dir="ltr" lang="en">
+    <summary>Tests</summary>
+    <ul class="wpt-tests-list">
+     <li class="wpt-test"><a class="wpt-name" href="https://wpt.fyi/results/subresource-integrity/subresource-integrity.html" title="subresource-integrity/subresource-integrity.html">subresource-integrity.html</a> <a class="wpt-live" href="http://wpt.live/subresource-integrity/subresource-integrity.html"><small>(live test)</small></a> <a class="wpt-source" href="https://github.com/web-platform-tests/wpt/blob/master/subresource-integrity/subresource-integrity.html"><small>(source)</small></a>
+    </ul>
+   </details>
    <h3 class="heading settled" data-level="1.1" id="goals"><span class="secno">1.1. </span><span class="content">Goals</span><a class="self-link" href="#goals"></a></h3>
    <ol>
     <li data-md>
@@ -651,9 +970,9 @@ dfn > a.self-link::before      { content: "#"; }
   behavior) would change that site in unfortunate ways, the following <a data-link-type="dfn" href="#integrity-metadata" id="ref-for-integrity-metadata">integrity metadata</a> is added to the <code>link</code> element included on the page:</p>
      <div class="example" id="example-ed55c3e6">
       <a class="self-link" href="#example-ed55c3e6"></a> 
-<pre>&lt;link rel="stylesheet" href="https://site53.example.net/style.css"
-      integrity="sha384-+/M6kredJcxdsqkczBUjMLvqyHb1K/JThDXWsBVxMEeZHEaMKEOEct339VItX1zB"
-      crossorigin="anonymous">
+<pre class="highlight"><c- p>&lt;</c-><c- f>link</c-> <c- e>rel</c-><c- o>=</c-><c- s>"stylesheet"</c-> <c- e>href</c-><c- o>=</c-><c- s>"https://site53.example.net/style.css"</c->
+      <c- e>integrity</c-><c- o>=</c-><c- s>"sha384-+/M6kredJcxdsqkczBUjMLvqyHb1K/JThDXWsBVxMEeZHEaMKEOEct339VItX1zB"</c->
+      <c- e>crossorigin</c-><c- o>=</c-><c- s>"anonymous"</c-><c- p>></c->
 </pre>
      </div>
     <li data-md>
@@ -663,9 +982,9 @@ dfn > a.self-link::before      { content: "#"; }
   the script, and adds it to the <code>script</code> element:</p>
      <div class="example" id="example-af0f59ce">
       <a class="self-link" href="#example-af0f59ce"></a> 
-<pre>&lt;script src="https://analytics-r-us.example.com/v1.0/include.js"
-        integrity="sha384-MBO5IDfYaE6c6Aao94oZrIOiC6CGiSN2n4QUbHNPhzk5Xhm0djZLQqTpL0HzTUxk"
-        crossorigin="anonymous">&lt;/script>
+<pre class="highlight"><c- p>&lt;</c-><c- f>script</c-> <c- e>src</c-><c- o>=</c-><c- s>"https://analytics-r-us.example.com/v1.0/include.js"</c->
+        <c- e>integrity</c-><c- o>=</c-><c- s>"sha384-MBO5IDfYaE6c6Aao94oZrIOiC6CGiSN2n4QUbHNPhzk5Xhm0djZLQqTpL0HzTUxk"</c->
+        <c- e>crossorigin</c-><c- o>=</c-><c- s>"anonymous"</c-><c- p>>&lt;/</c-><c- f>script</c-><c- p>></c->
 </pre>
      </div>
     <li data-md>
@@ -677,16 +996,16 @@ dfn > a.self-link::before      { content: "#"; }
    <p>This section defines several terms used throughout the document.</p>
    <p>The term <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="digest">digest</dfn> refers to the base64 encoded result of
   executing a cryptographic hash function on an arbitrary block of data.</p>
-   <p>The terms <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin" id="ref-for-concept-origin">origin</a> and <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#same-origin" id="ref-for-same-origin">same origin</a> are defined in HTML. <a data-link-type="biblio" href="#biblio-html">[HTML]</a></p>
-   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="base64-encoding">base64 encoding</dfn> is defined in <a href="https://tools.ietf.org/html/rfc4648#section-4">Section 4 of RFC 4648</a>. <a data-link-type="biblio" href="#biblio-rfc4648">[RFC4648]</a></p>
-   <p>The <a data-link-type="dfn" href="http://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="termref-for-">SHA-256</a>, <a data-link-type="dfn" href="http://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="termref-for-①">SHA-384</a>, and <a data-link-type="dfn" href="http://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="termref-for-②">SHA-512</a> are part
-  of the <a data-link-type="dfn" href="http://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="termref-for-③">SHA-2</a> set of cryptographic hash functions defined by the
-  NIST. <a data-link-type="biblio" href="#biblio-sha2">[SHA2]</a></p>
+   <p>The terms <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin" id="ref-for-concept-origin">origin</a> and <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#same-origin" id="ref-for-same-origin">same origin</a> are defined in HTML. <a data-link-type="biblio" href="#biblio-html" title="HTML Standard">[HTML]</a></p>
+   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="base64-encoding">base64 encoding</dfn> is defined in <a href="https://tools.ietf.org/html/rfc4648#section-4">Section 4 of RFC 4648</a>. <a data-link-type="biblio" href="#biblio-rfc4648" title="The Base16, Base32, and Base64 Data Encodings">[RFC4648]</a></p>
+   <p>The <a data-link-type="dfn" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something">SHA-256</a>, <a data-link-type="dfn" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something①">SHA-384</a>, and <a data-link-type="dfn" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something②">SHA-512</a> are part
+  of the <a data-link-type="dfn" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something③">SHA-2</a> set of cryptographic hash functions defined by the
+  NIST. <a data-link-type="biblio" href="#biblio-sha2" title="FIPS PUB 180-4, Secure Hash Standard">[SHA2]</a></p>
    <h3 class="heading settled" data-level="2.1" id="grammar-concepts"><span class="secno">2.1. </span><span class="content">Grammatical Concepts</span><a class="self-link" href="#grammar-concepts"></a></h3>
    <p>The Augmented Backus-Naur Form (ABNF) notation used in this document is
-  specified in RFC5234. <a data-link-type="biblio" href="#biblio-abnf">[ABNF]</a></p>
-   <p><a href="https://tools.ietf.org/html/rfc5234#appendix-B.1" id="termref-for-appendix-B.1">Appendix B.1</a> of <a data-link-type="biblio" href="#biblio-abnf">[ABNF]</a> defines <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc5234#appendix-B.1" id="ref-for-appendix-B.1">VCHAR</a> (printing characters).</p>
-   <p><a data-link-type="dfn" href="https://tools.ietf.org/html/rfc5234#appendix-B.1" id="ref-for-appendix-B.1①">WSP</a> (white space) characters are defined in <a href="http://www.w3.org/TR/html5/infrastructure.html#space-character">Section 2.4.1 Common parser idioms</a> of the HTML 5 specification as <code>White_Space characters</code>. <a data-link-type="biblio" href="#biblio-html5">[HTML5]</a></p>
+  specified in RFC5234. <a data-link-type="biblio" href="#biblio-abnf" title="Augmented BNF for Syntax Specifications: ABNF">[ABNF]</a></p>
+   <p><a href="https://tools.ietf.org/html/rfc5234#appendix-B.1" id="58fa9b5f0">Appendix B.1</a> of <a data-link-type="biblio" href="#biblio-abnf" title="Augmented BNF for Syntax Specifications: ABNF">[ABNF]</a> defines the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc5234#appendix-B.1" id="ref-for-appendix-B.1">VCHAR</a> (printing characters) and <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc5234#appendix-B.1" id="ref-for-appendix-B.1①">WSP</a> (whitespace) rules.</p>
+   <p>Content Security Policy defines the <a data-link-type="grammar" href="https://w3c.github.io/webappsec-csp/#grammardef-base64-value" id="ref-for-grammardef-base64-value"><code>base64-value</code></a> and <a data-link-type="grammar" href="https://w3c.github.io/webappsec-csp/#grammardef-hash-algorithm" id="ref-for-grammardef-hash-algorithm"><code>hash-algorithm</code></a> rules. <a data-link-type="biblio" href="#biblio-csp" title="Content Security Policy Level 3">[CSP]</a></p>
    <h2 class="heading settled" data-level="3" id="framework"><span class="secno">3. </span><span class="content">Framework</span><a class="self-link" href="#framework"></a></h2>
    <p>The integrity verification mechanism specified here boils down to the
   process of generating a sufficiently strong cryptographic digest for a
@@ -694,8 +1013,8 @@ dfn > a.self-link::before      { content: "#"; }
   used to verify the response.</p>
    <h3 class="heading settled" data-level="3.1" id="integrity-metadata-description"><span class="secno">3.1. </span><span class="content">Integrity metadata</span><a class="self-link" href="#integrity-metadata-description"></a></h3>
    <p>To verify the integrity of a response, a user agent requires <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="integrity metadata" data-noexport id="integrity-metadata">integrity
-  metadata</dfn> as part of the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org#concept-request" id="ref-for-concept-request">request</a>. This metadata consists of the
-  following pieces of information:</p>
+  metadata</dfn> as part of the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request" id="ref-for-concept-request">request</a>. This metadata consists of
+  the following pieces of information:</p>
    <ul>
     <li data-md>
      <p>cryptographic hash function ("alg")</p>
@@ -706,12 +1025,12 @@ dfn > a.self-link::before      { content: "#"; }
    </ul>
    <p>The hash function and digest MUST be provided in order to validate a
   response’s integrity.</p>
-   <p class="note" role="note"><span>Note:</span> At the moment, no options are defined. However, future versions of
-  the spec may define options, such as MIME types <a data-link-type="biblio" href="#biblio-mime-types">[MIME-TYPES]</a>.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> At the moment, no options are defined. However, future versions of
+  the spec may define options, such as MIME types <a data-link-type="biblio" href="#biblio-mime-types" title="Multipurpose Internet Mail Extensions (MIME) Part Two: Media Types">[MIME-TYPES]</a>.</p>
    <p>This metadata MUST be encoded in the same format as the <code>hash-source</code> (without
   the single quotes) in <a href="http://www.w3.org/TR/CSP2/#source-list-syntax">section 4.2 of the Content
   Security Policy Level 2 specification</a>.</p>
-   <p>For example, given a script resource containing only the string <code>alert('Hello, world.');</code>, an author might choose <a data-link-type="dfn" href="http://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="termref-for-④">SHA-384</a> as a hash function. <code>H8BRh8j48O9oYatfu5AZzq6A9RINhZO5H16dQZngK7T62em8MUt1FLm52t+eX6xO</code> is the <a data-link-type="dfn" href="#base64-encoding" id="ref-for-base64-encoding">base64 encoded</a> digest that results. This can be encoded
+   <p>For example, given a script resource containing only the string <code>alert('Hello,   world.');</code>, an author might choose <a data-link-type="dfn" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something④">SHA-384</a> as a hash function. <code>H8BRh8j48O9oYatfu5AZzq6A9RINhZO5H16dQZngK7T62em8MUt1FLm52t+eX6xO</code> is the <a data-link-type="dfn" href="#base64-encoding" id="ref-for-base64-encoding">base64 encoded</a> digest that results. This can be encoded
   as follows:</p>
    <div class="example" id="example-cc8e7f02">
     <a class="self-link" href="#example-cc8e7f02"></a> 
@@ -722,12 +1041,12 @@ dfn > a.self-link::before      { content: "#"; }
      Digests may be generated using any number of utilities. <a href="https://www.openssl.org/">OpenSSL</a>, for example, is quite commonly
   available. The example in this section is the result of the following command
   line: 
-<pre>echo -n "alert('Hello, world.');" | openssl dgst -sha384 -binary | openssl base64 -A
+<pre class="highlight">echo -n <c- u>"alert('Hello, world.');"</c-> <c- p>|</c-> openssl dgst -sha384 -binary <c- p>|</c-> openssl base64 -A
 </pre>
    </div>
    <h3 class="heading settled" data-level="3.2" id="hash-functions"><span class="secno">3.2. </span><span class="content">Cryptographic hash functions</span><a class="self-link" href="#hash-functions"></a></h3>
-   <p>Conformant user agents MUST support the <a data-link-type="dfn" href="http://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="termref-for-⑤">SHA-256</a>, <a data-link-type="dfn" href="http://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="termref-for-⑥">SHA-384</a>,
-  and <a data-link-type="dfn" href="http://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="termref-for-⑦">SHA-512</a> cryptographic hash functions for use as part of a
+   <p>Conformant user agents MUST support the <a data-link-type="dfn" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something⑤">SHA-256</a>, <a data-link-type="dfn" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something⑥">SHA-384</a>,
+  and <a data-link-type="dfn" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something⑦">SHA-512</a> cryptographic hash functions for use as part of a
   request’s <a data-link-type="dfn" href="#integrity-metadata" id="ref-for-integrity-metadata③">integrity metadata</a> and MAY support additional hash functions.</p>
    <p>User agents SHOULD refuse to support known-weak hashing functions like MD5 or
   SHA-1 and SHOULD restrict supported hashing functions to those known to be
@@ -748,10 +1067,10 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
    <p>Authors may choose to specify both, for example:</p>
    <div class="example" id="example-da4338e9">
     <a class="self-link" href="#example-da4338e9"></a> 
-<pre>&lt;script src="hello_world.js"
-   integrity="sha384-H8BRh8j48O9oYatfu5AZzq6A9RINhZO5H16dQZngK7T62em8MUt1FLm52t+eX6xO
-              sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzCinRE7Af1ofPrw=="
-   crossorigin="anonymous">&lt;/script>
+<pre class="highlight"><c- p>&lt;</c-><c- f>script</c-> <c- e>src</c-><c- o>=</c-><c- s>"hello_world.js"</c->
+   <c- e>integrity</c-><c- o>=</c-><c- s>"sha384-H8BRh8j48O9oYatfu5AZzq6A9RINhZO5H16dQZngK7T62em8MUt1FLm52t+eX6xO</c->
+<c- s>              sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzCinRE7Af1ofPrw=="</c->
+   <c- e>crossorigin</c-><c- o>=</c-><c- s>"anonymous"</c-><c- p>>&lt;/</c-><c- f>script</c-><c- p>></c->
 </pre>
    </div>
    <p>In this case, the user agent will choose the strongest hash function in the
@@ -771,8 +1090,8 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
   hash functions and return the empty string if the priority is equal. That is, if
   a user agent implemented a function like <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="getprioritizedhashfunction">getPrioritizedHashFunction</dfn>(a,
   b) it would return the hash function the user agent considers the most
-  collision-resistant.  For example, <code>getPrioritizedHashFunction('sha256', 'sha512')</code> would return <code>'sha512'</code> and <code>getPrioritizedHashFunction('sha256', 'sha256')</code> would return the empty string.</p>
-   <p class="note" role="note"><span>Note:</span> The <a data-link-type="dfn" href="#getprioritizedhashfunction" id="ref-for-getprioritizedhashfunction">getPrioritizedHashFunction</a> is an internal
+  collision-resistant.  For example, <code>getPrioritizedHashFunction('sha256',   'sha512')</code> would return <code>'sha512'</code> and <code>getPrioritizedHashFunction('sha256',   'sha256')</code> would return the empty string.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> The <a data-link-type="dfn" href="#getprioritizedhashfunction" id="ref-for-getprioritizedhashfunction">getPrioritizedHashFunction</a> is an internal
   implementation detail. It is not an API that implementors
   provide to web applications. It is used in this document
   only to simplify the algorithm description.</p>
@@ -794,24 +1113,24 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
      <p>For each <var>item</var> returned by <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#strictly-split" id="ref-for-strictly-split">splitting</a> <var>metadata</var> on spaces:</p>
      <ol>
       <li data-md>
-       <p>Let <var>hash-with-opt-token-list</var> be the result of <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#strictly-split" id="ref-for-strictly-split①">splitting</a> <var>item</var> on U+003F (?).</p>
+       <p>Let <var>expression-and-options</var> be the result of <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#strictly-split" id="ref-for-strictly-split①">splitting</a> <var>item</var> on U+003F (?).</p>
       <li data-md>
-       <p>Let <var>hash-expression</var> be <var>hash-with-opt-token-list</var>[0].</p>
+       <p>Let <var>algorithm-expression</var> be <var>expression-and-options</var>[0].</p>
       <li data-md>
        <p>Let <var>base64-value</var> be the empty string.</p>
       <li data-md>
-       <p>Let <var>hash-expr-token-list</var> be the result of <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#strictly-split" id="ref-for-strictly-split②">splitting</a> <var>hash-expression</var> on U+002D (-).</p>
+       <p>Let <var>algorithm-and-value</var> be the result of <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#strictly-split" id="ref-for-strictly-split②">splitting</a> <var>algorithm-expression</var> on U+002D (-).</p>
       <li data-md>
-       <p>Let <var>algorithm</var> be <var>hash-expr-token-list</var>[0].</p>
+       <p>Let <var>algorithm</var> be <var>algorithm-and-value</var>[0].</p>
       <li data-md>
-       <p>If <var>hash-expr-token-list</var>[1] <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain">exists</a>, set <var>base64-value</var> to <var>hash-expr-token-list</var>[1].</p>
+       <p>If <var>algorithm-and-value</var>[1] <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain">exists</a>, set <var>base64-value</var> to <var>algorithm-and-value</var>[1].</p>
       <li data-md>
        <p>If <var>algorithm</var> is not a hash function recognized by the user agent, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#iteration-continue" id="ref-for-iteration-continue">continue</a>.</p>
       <li data-md>
        <p>Let <var>metadata</var> be the ordered map  «["alg" → <var>algorithm</var>,
  "val" → <var>base64-value</var>]».</p>
-       <p class="note" role="note"><span>Note:</span> Since no <code>options</code> are defined (see the <a href="#integrity-metadata-description">§ 3.1 Integrity metadata</a>), a corresponding entry is not set
- in <var>metadata</var>. If <code>options</code> are defined in a future version, <var>hash-with-opt-token-list</var>[1] can be utilized as <code>options</code>.</p>
+       <p class="note" role="note"><span class="marker">Note:</span> Since no <code>options</code> are defined (see the <a href="#integrity-metadata-description">§ 3.1 Integrity metadata</a>), a corresponding entry is not set
+ in <var>metadata</var>. If <code>options</code> are defined in a future version, <var>expression-and-options</var>[1] can be utilized as <code>options</code>.</p>
       <li data-md>
        <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append">Append</a> <var>metadata</var> to <var>result</var>.</p>
      </ol>
@@ -867,28 +1186,28 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
   functions. For example, a developer might write a <code>script</code> element such as:</p>
    <div class="example" id="example-3e451647">
     <a class="self-link" href="#example-3e451647"></a> 
-<pre>&lt;script src="https://example.com/example-framework.js"
-        integrity="sha384-Li9vy3DqF8tnTXuiaAJuML3ky+er10rcgNR/VqsVpcw+ThHmYcwiB1pbOxEbzJr7
-                   sha384-+/M6kredJcxdsqkczBUjMLvqyHb1K/JThDXWsBVxMEeZHEaMKEOEct339VItX1zB"
-        crossorigin="anonymous">&lt;/script>
+<pre class="highlight"><c- p>&lt;</c-><c- f>script</c-> <c- e>src</c-><c- o>=</c-><c- s>"https://example.com/example-framework.js"</c->
+        <c- e>integrity</c-><c- o>=</c-><c- s>"sha384-Li9vy3DqF8tnTXuiaAJuML3ky+er10rcgNR/VqsVpcw+ThHmYcwiB1pbOxEbzJr7</c->
+<c- s>                   sha384-+/M6kredJcxdsqkczBUjMLvqyHb1K/JThDXWsBVxMEeZHEaMKEOEct339VItX1zB"</c->
+        <c- e>crossorigin</c-><c- o>=</c-><c- s>"anonymous"</c-><c- p>>&lt;/</c-><c- f>script</c-><c- p>></c->
 </pre>
    </div>
    <p>which would allow the user agent to accept two different content payloads, one
-  of which matches the first <a data-link-type="dfn" href="http://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="termref-for-⑧">SHA-384</a> hash value and the other matches the second <a data-link-type="dfn" href="http://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="termref-for-⑨">SHA-384</a> hash value.</p>
-   <p class="note" role="note"><span>Note:</span> User agents may allow users to modify the result of this algorithm via
+  of which matches the first <a data-link-type="dfn" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something⑧">SHA-384</a> hash value and the other matches the second <a data-link-type="dfn" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something⑨">SHA-384</a> hash value.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> User agents may allow users to modify the result of this algorithm via
   user preferences, bookmarklets, third-party additions to the user agent, and
   other such mechanisms. For example, redirects generated by an extension like <a href="https://www.eff.org/https-everywhere">HTTPS Everywhere</a> could load and
   execute correctly, even if the HTTPS version of a resource differs from the HTTP
   version.</p>
-   <p class="note" role="note"><span>Note:</span> Subresource Integrity requires CORS and it is a logical error
+   <p class="note" role="note"><span class="marker">Note:</span> Subresource Integrity requires CORS and it is a logical error
   to attempt to use it without CORS. User agents are encouraged to report a
-  warning message to the developer console to explain this failure. <a data-link-type="biblio" href="#biblio-fetch">[Fetch]</a></p>
+  warning message to the developer console to explain this failure. <a data-link-type="biblio" href="#biblio-fetch" title="Fetch Standard">[Fetch]</a></p>
    <h3 class="heading settled" data-level="3.4" id="verification-of-html-document-subresources"><span class="secno">3.4. </span><span class="content">Verification of HTML document subresources</span><a class="self-link" href="#verification-of-html-document-subresources"></a></h3>
    <p>A variety of HTML elements result in requests for resources that are to be
   embedded into the document, or executed in its context. To support integrity
   metadata for some of these elements, a new <code>integrity</code> attribute is added to
-  the list of content attributes for the <code>link</code> and <code>script</code> elements. <a data-link-type="biblio" href="#biblio-html">[HTML]</a></p>
-   <p class="note" role="note"><span>Note:</span> A future revision of this specification is likely to include integrity support
+  the list of content attributes for the <code>link</code> and <code>script</code> elements. <a data-link-type="biblio" href="#biblio-html" title="HTML Standard">[HTML]</a></p>
+   <p class="note" role="note"><span class="marker">Note:</span> A future revision of this specification is likely to include integrity support
   for all possible subresources, i.e., <code>a</code>, <code>audio</code>, <code>embed</code>, <code>iframe</code>, <code>img</code>, <code>link</code>, <code>object</code>, <code>script</code>, <code>source</code>, <code>track</code>, and <code>video</code> elements.</p>
    <h3 class="heading settled" data-level="3.5" id="the-integrity-attribute"><span class="secno">3.5. </span><span class="content">The <code>integrity</code> attribute</span><a class="self-link" href="#the-integrity-attribute"></a></h3>
    <p>The <code>integrity</code> attribute represents <a data-link-type="dfn" href="#integrity-metadata" id="ref-for-integrity-metadata⑤">integrity metadata</a> for an element.
@@ -897,22 +1216,20 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
 <pre><dfn data-dfn-type="grammar" data-export id="grammardef-integrity-metadata">integrity-metadata<a class="self-link" href="#grammardef-integrity-metadata"></a></dfn> = *<a data-link-type="grammar" href="https://tools.ietf.org/html/rfc5234#appendix-B.1" id="ref-for-appendix-B.1②">WSP</a> <a data-link-type="grammar" href="#grammardef-hash-with-options" id="ref-for-grammardef-hash-with-options">hash-with-options</a> *(1*<a data-link-type="grammar" href="https://tools.ietf.org/html/rfc5234#appendix-B.1" id="ref-for-appendix-B.1③">WSP</a> <a data-link-type="grammar" href="#grammardef-hash-with-options" id="ref-for-grammardef-hash-with-options①">hash-with-options</a> ) *<a data-link-type="grammar" href="https://tools.ietf.org/html/rfc5234#appendix-B.1" id="ref-for-appendix-B.1④">WSP</a> / *<a data-link-type="grammar" href="https://tools.ietf.org/html/rfc5234#appendix-B.1" id="ref-for-appendix-B.1⑤">WSP</a>
 <dfn class="dfn-paneled" data-dfn-type="grammar" data-export id="grammardef-hash-with-options">hash-with-options</dfn>  = <a data-link-type="grammar" href="#grammardef-hash-expression" id="ref-for-grammardef-hash-expression">hash-expression</a> *("?" <a data-link-type="grammar" href="#grammardef-option-expression" id="ref-for-grammardef-option-expression">option-expression</a>)
 <dfn class="dfn-paneled" data-dfn-type="grammar" data-export id="grammardef-option-expression">option-expression</dfn>  = *<a data-link-type="grammar" href="https://tools.ietf.org/html/rfc5234#appendix-B.1" id="ref-for-appendix-B.1⑥">VCHAR</a>
-<dfn class="dfn-paneled" data-dfn-type="grammar" data-export id="grammardef-hash-algo">hash-algo</dfn>          = &lt;hash-algo production from [Content Security Policy Level 2, section 4.2]>
-<dfn class="dfn-paneled" data-dfn-type="grammar" data-export id="grammardef-base64-value">base64-value</dfn>       = &lt;base64-value production from [Content Security Policy Level 2, section 4.2]>
-<dfn class="dfn-paneled" data-dfn-type="grammar" data-export id="grammardef-hash-expression">hash-expression</dfn>    = <a data-link-type="grammar" href="#grammardef-hash-algo" id="ref-for-grammardef-hash-algo">hash-algo</a> "-" <a data-link-type="grammar" href="#grammardef-base64-value" id="ref-for-grammardef-base64-value">base64-value</a>
+<dfn class="dfn-paneled" data-dfn-type="grammar" data-export id="grammardef-hash-expression">hash-expression</dfn>    = <a data-link-type="grammar" href="https://w3c.github.io/webappsec-csp/#grammardef-hash-algorithm" id="ref-for-grammardef-hash-algorithm①">hash-algorithm</a> "-" <a data-link-type="grammar" href="https://w3c.github.io/webappsec-csp/#grammardef-base64-value" id="ref-for-grammardef-base64-value①">base64-value</a>
 </pre>
    <p><code>option-expression</code>s are associated on a per <code>hash-expression</code> basis and are
   applied only to the <code>hash-expression</code> that immediately precedes it.</p>
    <p>In order for user agents to remain fully forwards compatible with future
   options, the user agent MUST ignore all unrecognized <code>option-expression</code>s.</p>
-   <p class="note" role="note"><span>Note:</span> Note that while the <code>option-expression</code> has been reserved in the syntax,
+   <p class="note" role="note"><span class="marker">Note:</span> Note that while the <code>option-expression</code> has been reserved in the syntax,
   no options have been defined. It is likely that a future version of the spec
   will define a more specific syntax for options, so it is defined here as broadly
   as possible.</p>
    <h3 class="heading settled" data-level="3.6" id="handling-integrity-violations"><span class="secno">3.6. </span><span class="content">Handling integrity violations</span><a class="self-link" href="#handling-integrity-violations"></a></h3>
    <p>The user agent will refuse to render or execute responses that fail an integrity
-  check, instead returning a network error as defined in Fetch <a data-link-type="biblio" href="#biblio-fetch">[Fetch]</a>.</p>
-   <p class="note" role="note"><span>Note:</span> On a failed integrity check, an <code>error</code> event is fired. Developers
+  check, instead returning a network error as defined in Fetch <a data-link-type="biblio" href="#biblio-fetch" title="Fetch Standard">[Fetch]</a>.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> On a failed integrity check, an <code>error</code> event is fired. Developers
   wishing to provide a canonical fallback resource (e.g., a resource not served
   from a CDN, perhaps from a secondary, trusted, but slower source) can catch this <code>error</code> event and provide an appropriate handler to replace the
   failed resource with a different one.</p>
@@ -930,13 +1247,13 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
    <h2 class="heading settled" data-level="5" id="security-considerations"><span class="secno">5. </span><span class="content">Security and Privacy Considerations</span><a class="self-link" href="#security-considerations"></a></h2>
    <p><em> This section is not normative.</em></p>
    <h3 class="heading settled" data-level="5.1" id="non-secure-contexts"><span class="secno">5.1. </span><span class="content">Non-secure contexts remain non-secure</span><a class="self-link" href="#non-secure-contexts"></a></h3>
-   <p><a data-link-type="dfn" href="#integrity-metadata" id="ref-for-integrity-metadata⑦">Integrity metadata</a> delivered by a context that is not a <a data-link-type="dfn" href="http://www.w3.org/TR/powerful-features/#secure-context" id="ref-for-secure-context">Secure
+   <p><a data-link-type="dfn" href="#integrity-metadata" id="ref-for-integrity-metadata⑦">Integrity metadata</a> delivered by a context that is not a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#secure-context" id="ref-for-secure-context">Secure
   Context</a> such as an HTTP page, only protects an origin against a compromise
   of the server where an external resources is hosted. Network attackers can alter
   the digest in-flight (or remove it entirely, or do absolutely anything else to
   the document), just as they could alter the response the hash is meant to
   validate.  Thus, it is recommended that authors deliver integrity metadata only
-  to a <a data-link-type="dfn" href="http://www.w3.org/TR/powerful-features/#secure-context" id="ref-for-secure-context①">Secure Context</a>. See also <a href="http://www.w3.org/2001/tag/doc/web-https ">Securing the Web</a>.</p>
+  to a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#secure-context" id="ref-for-secure-context①">Secure Context</a>. See also <a href="http://www.w3.org/2001/tag/doc/web-https ">Securing the Web</a>.</p>
    <h3 class="heading settled" data-level="5.2" id="hash-collision-attacks"><span class="secno">5.2. </span><span class="content">Hash collision attacks</span><a class="self-link" href="#hash-collision-attacks"></a></h3>
    <p>Digests are only as strong as the hash function used to generate them. It is
   recommended that user agents refuse to support known-weak hashing functions and
@@ -949,8 +1266,8 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
   expected and, in some cases, broken, so it is important that user agents stay
   aware of these developments.</p>
    <h3 class="heading settled" data-level="5.3" id="cross-origin-data-leakage"><span class="secno">5.3. </span><span class="content">Cross-origin data leakage</span><a class="self-link" href="#cross-origin-data-leakage"></a></h3>
-   <p>This specification requires the <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#cors-settings-attributes" id="ref-for-cors-settings-attributes">CORS settings attribute</a> to be present on
-  integrity-protected cross-origin requests. If that requirement were omitted,
+   <p>This specification requires integrity-protected cross-origin requests to use the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#cors-protocol" id="ref-for-cors-protocol">CORS protocol</a> to ensure that the resource’s content is explicitly shared
+  with the requestor. If that requirement were omitted,
   attackers could violate the <a href="http://www.w3.org/Security/wiki/Same_Origin_Policy">same-origin policy</a> and determine whether a cross-origin resource has certain content.</p>
    <p>Attackers would attempt to load the resource with a known digest, and
   watch for load failures. If the load fails, the attacker could surmise
@@ -961,7 +1278,7 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
   static resource. Consider a JSON response that looks like this:</p>
    <div class="example" id="example-2319c0a9">
     <a class="self-link" href="#example-2319c0a9"></a> 
-<pre>{'status': 'authenticated', 'username': 'admin'}
+<pre class="highlight"><c- p>{</c->'s<c- kc>tatus</c->'<c- p>:</c-> 'au<c- kc>t</c->he<c- kc>nt</c->ica<c- kc>te</c->d'<c- p>,</c-> 'user<c- kc>na</c->me'<c- p>:</c-> 'admi<c- kc>n</c->'<c- p>}</c->
 </pre>
    </div>
    <p>An attacker could precompute hashes for the response with a variety of
@@ -987,7 +1304,7 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
     However, for readability,
     these words do not appear in all uppercase letters in this specification. </p>
    <p>All of the text of this specification is normative
-    except sections explicitly marked as non-normative, examples, and notes. <a data-link-type="biblio" href="#biblio-rfc2119">[RFC2119]</a> </p>
+    except sections explicitly marked as non-normative, examples, and notes. <a data-link-type="biblio" href="#biblio-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">[RFC2119]</a> </p>
    <p>Examples in this specification are introduced with the words “for example”
     or are set apart from the normative text
     with <code>class="example"</code>,
@@ -1001,210 +1318,94 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
     with <code>class="note"</code>,
     like this: </p>
    <p class="note" role="note">Note, this is an informative note.</p>
-   <h3 class="no-ref no-num heading settled" id="w3c-conformant-algorithms"><span class="content">Conformant Algorithms</span><a class="self-link" href="#w3c-conformant-algorithms"></a></h3>
-   <p>Requirements phrased in the imperative as part of algorithms
+   <details class="wpt-tests-block" dir="ltr" lang="en" open>
+    <summary>Tests</summary>
+    <p>Tests relating to the content of this specification
+                     may be documented in “Tests” blocks like this one.
+                     Any such block is non-normative.</p>
+    <ul class="wpt-tests-list"></ul>
+    <hr>
+   </details>
+   <section>
+    <h3 class="no-ref no-num heading settled" id="w3c-conformant-algorithms"><span class="content">Conformant Algorithms</span><a class="self-link" href="#w3c-conformant-algorithms"></a></h3>
+    <p>Requirements phrased in the imperative as part of algorithms
     (such as "strip any leading space characters"
     or "return false and abort these steps")
     are to be interpreted with the meaning of the key word
     ("must", "should", "may", etc)
     used in introducing the algorithm. </p>
-   <p>Conformance requirements phrased as algorithms or specific steps
+    <p>Conformance requirements phrased as algorithms or specific steps
     can be implemented in any manner,
     so long as the end result is equivalent.
     In particular, the algorithms defined in this specification
     are intended to be easy to understand
     and are not intended to be performant.
     Implementers are encouraged to optimize. </p>
+   </section>
   </div>
 <script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script>
   <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
   <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
   <ul class="index">
    <li><a href="#base64-encoding">base64 encoding</a><span>, in § 2</span>
-   <li><a href="#grammardef-base64-value">base64-value</a><span>, in § 3.5</span>
    <li><a href="#digest">digest</a><span>, in § 2</span>
    <li><a href="#does-response-match-metadatalist">Do bytes match metadataList?</a><span>, in § 3.3.3</span>
    <li><a href="#getprioritizedhashfunction">getPrioritizedHashFunction</a><span>, in § 3.2.2</span>
-   <li><a href="#grammardef-hash-algo">hash-algo</a><span>, in § 3.5</span>
    <li><a href="#grammardef-hash-expression">hash-expression</a><span>, in § 3.5</span>
    <li><a href="#grammardef-hash-with-options">hash-with-options</a><span>, in § 3.5</span>
    <li><a href="#integrity-metadata">integrity metadata</a><span>, in § 3.1</span>
    <li><a href="#grammardef-integrity-metadata">integrity-metadata</a><span>, in § 3.5</span>
    <li><a href="#grammardef-option-expression">option-expression</a><span>, in § 3.5</span>
   </ul>
-  <aside class="dfn-panel" data-for="term-for-appendix-B.1">
-   <a href="https://tools.ietf.org/html/rfc5234#appendix-B.1">https://tools.ietf.org/html/rfc5234#appendix-B.1</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#termref-for-appendix-B.1">2.1. Grammatical Concepts</a> <a href="#ref-for-appendix-B.1">(2)</a> <a href="#ref-for-appendix-B.1①">(3)</a>
-    <li><a href="#ref-for-appendix-B.1②">3.5. The integrity attribute</a> <a href="#ref-for-appendix-B.1③">(2)</a> <a href="#ref-for-appendix-B.1④">(3)</a> <a href="#ref-for-appendix-B.1⑤">(4)</a> <a href="#ref-for-appendix-B.1⑥">(5)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-appendix-B.1">
-   <a href="https://tools.ietf.org/html/rfc5234#appendix-B.1">https://tools.ietf.org/html/rfc5234#appendix-B.1</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#termref-for-appendix-B.1">2.1. Grammatical Concepts</a> <a href="#ref-for-appendix-B.1">(2)</a> <a href="#ref-for-appendix-B.1①">(3)</a>
-    <li><a href="#ref-for-appendix-B.1②">3.5. The integrity attribute</a> <a href="#ref-for-appendix-B.1③">(2)</a> <a href="#ref-for-appendix-B.1④">(3)</a> <a href="#ref-for-appendix-B.1⑤">(4)</a> <a href="#ref-for-appendix-B.1⑥">(5)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-request">
-   <a href="https://fetch.spec.whatwg.org#concept-request">https://fetch.spec.whatwg.org#concept-request</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-request">3.1. Integrity metadata</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-origin">
-   <a href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin">https://html.spec.whatwg.org/multipage/browsers.html#concept-origin</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-origin">2. Key Concepts and Terminology</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-same-origin">
-   <a href="https://html.spec.whatwg.org/multipage/browsers.html#same-origin">https://html.spec.whatwg.org/multipage/browsers.html#same-origin</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-same-origin">2. Key Concepts and Terminology</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-cors-settings-attributes">
-   <a href="http://www.w3.org/TR/html5/infrastructure.html#cors-settings-attributes">http://www.w3.org/TR/html5/infrastructure.html#cors-settings-attributes</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-cors-settings-attributes">5.3. Cross-origin data leakage</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-list-append">
-   <a href="https://infra.spec.whatwg.org/#list-append">https://infra.spec.whatwg.org/#list-append</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-list-append">3.3.2. Parse metadata</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-iteration-continue">
-   <a href="https://infra.spec.whatwg.org/#iteration-continue">https://infra.spec.whatwg.org/#iteration-continue</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-iteration-continue">3.3.2. Parse metadata</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-list-contain">
-   <a href="https://infra.spec.whatwg.org/#list-contain">https://infra.spec.whatwg.org/#list-contain</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-list-contain">3.3.2. Parse metadata</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-list-is-empty">
-   <a href="https://infra.spec.whatwg.org/#list-is-empty">https://infra.spec.whatwg.org/#list-is-empty</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-list-is-empty">3.3.4. Do bytes match metadataList?</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-strictly-split">
-   <a href="https://infra.spec.whatwg.org/#strictly-split">https://infra.spec.whatwg.org/#strictly-split</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-strictly-split">3.3.2. Parse metadata</a> <a href="#ref-for-strictly-split①">(2)</a> <a href="#ref-for-strictly-split②">(3)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-section-5.2">
-   <a href="https://tools.ietf.org/html/rfc7234#section-5.2">https://tools.ietf.org/html/rfc7234#section-5.2</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-section-5.2">4. Proxies</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-section-5.2.1.6">
-   <a href="https://tools.ietf.org/html/rfc7234#section-5.2.1.6">https://tools.ietf.org/html/rfc7234#section-5.2.1.6</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-section-5.2.1.6">4. Proxies</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-secure-context">
-   <a href="http://www.w3.org/TR/powerful-features/#secure-context">http://www.w3.org/TR/powerful-features/#secure-context</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-secure-context">5.1. Non-secure contexts remain non-secure</a> <a href="#ref-for-secure-context①">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-">
-   <a href="http://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#">http://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#termref-for-">2. Key Concepts and Terminology</a> <a href="#termref-for-">(2)</a> <a href="#termref-for-">(3)</a> <a href="#termref-for-">(4)</a>
-    <li><a href="#termref-for-">3.1. Integrity metadata</a>
-    <li><a href="#termref-for-">3.2. Cryptographic hash functions</a> <a href="#termref-for-">(2)</a> <a href="#termref-for-">(3)</a>
-    <li><a href="#termref-for-">3.3.4. Do bytes match metadataList?</a> <a href="#termref-for-">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-">
-   <a href="http://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#">http://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#termref-for-">2. Key Concepts and Terminology</a> <a href="#termref-for-">(2)</a> <a href="#termref-for-">(3)</a> <a href="#termref-for-">(4)</a>
-    <li><a href="#termref-for-">3.1. Integrity metadata</a>
-    <li><a href="#termref-for-">3.2. Cryptographic hash functions</a> <a href="#termref-for-">(2)</a> <a href="#termref-for-">(3)</a>
-    <li><a href="#termref-for-">3.3.4. Do bytes match metadataList?</a> <a href="#termref-for-">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-">
-   <a href="http://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#">http://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#termref-for-">2. Key Concepts and Terminology</a> <a href="#termref-for-">(2)</a> <a href="#termref-for-">(3)</a> <a href="#termref-for-">(4)</a>
-    <li><a href="#termref-for-">3.1. Integrity metadata</a>
-    <li><a href="#termref-for-">3.2. Cryptographic hash functions</a> <a href="#termref-for-">(2)</a> <a href="#termref-for-">(3)</a>
-    <li><a href="#termref-for-">3.3.4. Do bytes match metadataList?</a> <a href="#termref-for-">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-">
-   <a href="http://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#">http://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#termref-for-">2. Key Concepts and Terminology</a> <a href="#termref-for-">(2)</a> <a href="#termref-for-">(3)</a> <a href="#termref-for-">(4)</a>
-    <li><a href="#termref-for-">3.1. Integrity metadata</a>
-    <li><a href="#termref-for-">3.2. Cryptographic hash functions</a> <a href="#termref-for-">(2)</a> <a href="#termref-for-">(3)</a>
-    <li><a href="#termref-for-">3.3.4. Do bytes match metadataList?</a> <a href="#termref-for-">(2)</a>
-   </ul>
-  </aside>
   <h3 class="no-num no-ref heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
   <ul class="index">
    <li>
     <a data-link-type="biblio">[ABNF]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-appendix-B.1">vchar</span>
-     <li><span class="dfn-paneled" id="term-for-appendix-B.1①">wsp</span>
+     <li><span class="dfn-paneled" id="c6544229">vchar</span>
+     <li><span class="dfn-paneled" id="bed34579">wsp</span>
+    </ul>
+   <li>
+    <a data-link-type="biblio">[CSP]</a> defines the following terms:
+    <ul>
+     <li><span class="dfn-paneled" id="aa9871ba">base64-value</span>
+     <li><span class="dfn-paneled" id="b123cff6">hash-algorithm</span>
     </ul>
    <li>
     <a data-link-type="biblio">[Fetch]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-concept-request">request</span>
+     <li><span class="dfn-paneled" id="a2a30ba8">cors protocol</span>
+     <li><span class="dfn-paneled" id="55213b5b">request</span>
     </ul>
    <li>
     <a data-link-type="biblio">[HTML]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-concept-origin">origin</span>
-     <li><span class="dfn-paneled" id="term-for-same-origin">same origin</span>
-    </ul>
-   <li>
-    <a data-link-type="biblio">[HTML5]</a> defines the following terms:
-    <ul>
-     <li><span class="dfn-paneled" id="term-for-cors-settings-attributes">cors settings attribute</span>
+     <li><span class="dfn-paneled" id="086e3aff">origin</span>
+     <li><span class="dfn-paneled" id="7393da89">same origin</span>
+     <li><span class="dfn-paneled" id="65181da8">secure context</span>
     </ul>
    <li>
     <a data-link-type="biblio">[INFRA]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-list-append">append</span>
-     <li><span class="dfn-paneled" id="term-for-iteration-continue">continue</span>
-     <li><span class="dfn-paneled" id="term-for-list-contain">exist</span>
-     <li><span class="dfn-paneled" id="term-for-list-is-empty">is empty</span>
-     <li><span class="dfn-paneled" id="term-for-strictly-split">strictly split</span>
+     <li><span class="dfn-paneled" id="53275e46">append</span>
+     <li><span class="dfn-paneled" id="f937b7b6">continue</span>
+     <li><span class="dfn-paneled" id="75393c04">exist</span>
+     <li><span class="dfn-paneled" id="6b815fdd">is empty</span>
+     <li><span class="dfn-paneled" id="e5fc5b88">strictly split</span>
     </ul>
    <li>
     <a data-link-type="biblio">[RFC7234]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-section-5.2">cache-control</span>
-     <li><span class="dfn-paneled" id="term-for-section-5.2.1.6">no-transform</span>
-    </ul>
-   <li>
-    <a data-link-type="biblio">[SECURE-CONTEXTS]</a> defines the following terms:
-    <ul>
-     <li><span class="dfn-paneled" id="term-for-secure-context">secure context</span>
+     <li><span class="dfn-paneled" id="b3a57b71">cache-control</span>
+     <li><span class="dfn-paneled" id="5f693367">no-transform</span>
     </ul>
    <li>
     <a data-link-type="biblio">[SHA2]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-">sha-2</span>
-     <li><span class="dfn-paneled" id="term-for-①">sha-256</span>
-     <li><span class="dfn-paneled" id="term-for-②">sha-384</span>
-     <li><span class="dfn-paneled" id="term-for-③">sha-512</span>
+     <li><span class="dfn-paneled" id="104bce7f">sha-2</span>
+     <li><span class="dfn-paneled" id="0de10dfb">sha-256</span>
+     <li><span class="dfn-paneled" id="bbbbe32e">sha-384</span>
+     <li><span class="dfn-paneled" id="92ff7496">sha-512</span>
     </ul>
   </ul>
   <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
@@ -1212,12 +1413,12 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
   <dl>
    <dt id="biblio-abnf">[ABNF]
    <dd>D. Crocker, Ed.; P. Overell. <a href="https://www.rfc-editor.org/rfc/rfc5234"><cite>Augmented BNF for Syntax Specifications: ABNF</cite></a>. January 2008. Internet Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc5234">https://www.rfc-editor.org/rfc/rfc5234</a>
+   <dt id="biblio-csp">[CSP]
+   <dd>Mike West; Antonio Sartori. <a href="https://w3c.github.io/webappsec-csp/"><cite>Content Security Policy Level 3</cite></a>. URL: <a href="https://w3c.github.io/webappsec-csp/">https://w3c.github.io/webappsec-csp/</a>
    <dt id="biblio-fetch">[Fetch]
    <dd>Anne van Kesteren. <a href="https://fetch.spec.whatwg.org/"><cite>Fetch Standard</cite></a>. Living Standard. URL: <a href="https://fetch.spec.whatwg.org/">https://fetch.spec.whatwg.org/</a>
    <dt id="biblio-html">[HTML]
    <dd>Anne van Kesteren; et al. <a href="https://html.spec.whatwg.org/multipage/"><cite>HTML Standard</cite></a>. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
-   <dt id="biblio-html5">[HTML5]
-   <dd>Ian Hickson; et al. <a href="https://www.w3.org/html/wg/drafts/html/master/"><cite>HTML5</cite></a>. URL: <a href="https://www.w3.org/html/wg/drafts/html/master/">https://www.w3.org/html/wg/drafts/html/master/</a>
    <dt id="biblio-infra">[INFRA]
    <dd>Anne van Kesteren; Domenic Denicola. <a href="https://infra.spec.whatwg.org/"><cite>Infra Standard</cite></a>. Living Standard. URL: <a href="https://infra.spec.whatwg.org/">https://infra.spec.whatwg.org/</a>
    <dt id="biblio-mime-types">[MIME-TYPES]
@@ -1228,8 +1429,6 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
    <dd>S. Josefsson. <a href="https://www.rfc-editor.org/rfc/rfc4648"><cite>The Base16, Base32, and Base64 Data Encodings</cite></a>. October 2006. Proposed Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc4648">https://www.rfc-editor.org/rfc/rfc4648</a>
    <dt id="biblio-rfc7234">[RFC7234]
    <dd>R. Fielding, Ed.; M. Nottingham, Ed.; J. Reschke, Ed.. <a href="https://httpwg.org/specs/rfc7234.html"><cite>Hypertext Transfer Protocol (HTTP/1.1): Caching</cite></a>. June 2014. Proposed Standard. URL: <a href="https://httpwg.org/specs/rfc7234.html">https://httpwg.org/specs/rfc7234.html</a>
-   <dt id="biblio-secure-contexts">[SECURE-CONTEXTS]
-   <dd>Mike West; Yan Zhu. <a href="https://w3c.github.io/webappsec-secure-contexts/"><cite>Secure Contexts</cite></a>. WD. URL: <a href="https://w3c.github.io/webappsec-secure-contexts/">https://w3c.github.io/webappsec-secure-contexts/</a>
    <dt id="biblio-sha2">[SHA2]
    <dd><a href="http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf"><cite>FIPS PUB 180-4, Secure Hash Standard</cite></a>. URL: <a href="http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf</a>
   </dl>
@@ -1244,127 +1443,654 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
    <dt id="biblio-tls">[TLS]
    <dd>E. Rescorla. <a href="https://www.rfc-editor.org/rfc/rfc8446"><cite>The Transport Layer Security (TLS) Protocol Version 1.3</cite></a>. August 2018. Proposed Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc8446">https://www.rfc-editor.org/rfc/rfc8446</a>
   </dl>
-  <aside class="dfn-panel" data-for="digest">
-   <b><a href="#digest">#digest</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-digest">3.1. Integrity metadata</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="base64-encoding">
-   <b><a href="#base64-encoding">#base64-encoding</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-base64-encoding">3.1. Integrity metadata</a>
-    <li><a href="#ref-for-base64-encoding①">3.3.1. Apply algorithm to bytes</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="integrity-metadata">
-   <b><a href="#integrity-metadata">#integrity-metadata</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-integrity-metadata">1.2.1. Resource Integrity</a> <a href="#ref-for-integrity-metadata①">(2)</a> <a href="#ref-for-integrity-metadata②">(3)</a>
-    <li><a href="#ref-for-integrity-metadata③">3.2. Cryptographic hash functions</a>
-    <li><a href="#ref-for-integrity-metadata④">3.2.1. Agility</a>
-    <li><a href="#ref-for-integrity-metadata⑤">3.5. The integrity attribute</a>
-    <li><a href="#ref-for-integrity-metadata⑥">4. Proxies</a>
-    <li><a href="#ref-for-integrity-metadata⑦">5.1. Non-secure contexts remain non-secure</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="getprioritizedhashfunction">
-   <b><a href="#getprioritizedhashfunction">#getprioritizedhashfunction</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-getprioritizedhashfunction">3.2.2. Priority</a>
-    <li><a href="#ref-for-getprioritizedhashfunction①">3.3.3. Get the strongest metadata from set</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="does-response-match-metadatalist">
-   <b><a href="#does-response-match-metadatalist">#does-response-match-metadatalist</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-does-response-match-metadatalist">3.2.1. Agility</a>
-    <li><a href="#ref-for-does-response-match-metadatalist">3.3.4. Do bytes match metadataList?</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="grammardef-hash-with-options">
-   <b><a href="#grammardef-hash-with-options">#grammardef-hash-with-options</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-grammardef-hash-with-options">3.5. The integrity attribute</a> <a href="#ref-for-grammardef-hash-with-options①">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="grammardef-option-expression">
-   <b><a href="#grammardef-option-expression">#grammardef-option-expression</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-grammardef-option-expression">3.5. The integrity attribute</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="grammardef-hash-algo">
-   <b><a href="#grammardef-hash-algo">#grammardef-hash-algo</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-grammardef-hash-algo">3.5. The integrity attribute</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="grammardef-base64-value">
-   <b><a href="#grammardef-base64-value">#grammardef-base64-value</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-grammardef-base64-value">3.5. The integrity attribute</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="grammardef-hash-expression">
-   <b><a href="#grammardef-hash-expression">#grammardef-hash-expression</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-grammardef-hash-expression">3.5. The integrity attribute</a>
-   </ul>
-  </aside>
-<script>/* script-dfn-panel */
+<script>/* Boilerplate: script-dfn-panel */
+"use strict";
+{
+    const dfnsJson = window.dfnsJson || {};
 
-document.body.addEventListener("click", function(e) {
-    var queryAll = function(sel) { return [].slice.call(document.querySelectorAll(sel)); }
-    // Find the dfn element or panel, if any, that was clicked on.
-    var el = e.target;
-    var target;
-    var hitALink = false;
-    while(el.parentElement) {
-        if(el.tagName == "A") {
-            // Clicking on a link in a <dfn> shouldn't summon the panel
-            hitALink = true;
-        }
-        if(el.classList.contains("dfn-paneled")) {
-            target = "dfn";
-            break;
-        }
-        if(el.classList.contains("dfn-panel")) {
-            target = "dfn-panel";
-            break;
-        }
-        el = el.parentElement;
+    function genDfnPanel({dfnID, url, dfnText, refSections, external}) {
+        return mk.aside({
+            class: "dfn-panel",
+            id: `infopanel-for-${dfnID}`,
+            "data-for": dfnID,
+            "aria-labelled-by":`infopaneltitle-for-${dfnID}`,
+            },
+            mk.span({id:`infopaneltitle-for-${dfnID}`, style:"display:none"},
+                `Info about the '${dfnText}' ${external?"external":""} reference.`),
+            mk.a({href:url}, url),
+            mk.b({}, "Referenced in:"),
+            mk.ul({},
+                ...refSections.map(section=>
+                    mk.li({},
+                        ...section.refs.map((ref, refI)=>
+                            [
+                                mk.a({
+                                    href: `#${ref.id}`
+                                    },
+                                    (refI == 0) ? section.title : `(${refI + 1})`
+                                ),
+                                " ",
+                            ]
+                        ),
+                    ),
+                ),
+            ),
+        );
     }
-    if(target != "dfn-panel") {
-        // Turn off any currently "on" or "activated" panels.
-        queryAll(".dfn-panel.on, .dfn-panel.activated").forEach(function(el){
-            el.classList.remove("on");
-            el.classList.remove("activated");
-        });
-    }
-    if(target == "dfn" && !hitALink) {
-        // open the panel
-        var dfnPanel = document.querySelector(".dfn-panel[data-for='" + el.id + "']");
-        if(dfnPanel) {
-            dfnPanel.classList.add("on");
-            var rect = el.getBoundingClientRect();
-            dfnPanel.style.left = window.scrollX + rect.right + 5 + "px";
-            dfnPanel.style.top = window.scrollY + rect.top + "px";
-            var panelRect = dfnPanel.getBoundingClientRect();
-            var panelWidth = panelRect.right - panelRect.left;
-            if(panelRect.right > document.body.scrollWidth && (rect.left - (panelWidth + 5)) > 0) {
-                // Reposition, because the panel is overflowing
-                dfnPanel.style.left = window.scrollX + rect.left - (panelWidth + 5) + "px";
+
+    function genAllDfnPanels() {
+        for(const panelData of Object.values(window.dfnpanelData)) {
+            const dfnID = panelData.dfnID;
+            const dfn = document.getElementById(dfnID);
+            if(!dfn) {
+                console.log(`Can't find dfn#${dfnID}.`, panelData);
+            } else {
+                const panel = genDfnPanel(panelData);
+                append(document.body, panel);
+                insertDfnPopupAction(dfn, panel)
             }
-        } else {
-            console.log("Couldn't find .dfn-panel[data-for='" + el.id + "']");
         }
-    } else if(target == "dfn-panel") {
-        // Switch it to "activated" state, which pins it.
-        el.classList.add("activated");
-        el.style.left = null;
-        el.style.top = null;
     }
 
+    document.addEventListener("DOMContentLoaded", ()=>{
+        genAllDfnPanels();
+
+        // Add popup behavior to all dfns to show the corresponding dfn-panel.
+        var dfns = queryAll('.dfn-paneled');
+        for(let dfn of dfns) { ; }
+
+        document.body.addEventListener("click", (e) => {
+            // If not handled already, just hide all dfn panels.
+            hideAllDfnPanels();
+        });
+    })
+
+
+    function hideAllDfnPanels() {
+        // Turn off any currently "on" or "activated" panels.
+        queryAll(".dfn-panel.on, .dfn-panel.activated").forEach(el=>hideDfnPanel(el));
+    }
+
+    function showDfnPanel(dfnPanel, dfn) {
+        hideAllDfnPanels(); // Only display one at this time.
+        dfn.setAttribute("aria-expanded", "true");
+        dfnPanel.classList.add("on");
+        dfnPanel.style.left = "5px";
+        dfnPanel.style.top = "0px";
+        const panelRect = dfnPanel.getBoundingClientRect();
+        const panelWidth = panelRect.right - panelRect.left;
+        if (panelRect.right > document.body.scrollWidth) {
+            // Panel's overflowing the screen.
+            // Just drop it below the dfn and flip it rightward instead.
+            // This still wont' fix things if the screen is *really* wide,
+            // but fixing that's a lot harder without 'anchor()'.
+            dfnPanel.style.top = "1.5em";
+            dfnPanel.style.left = "auto";
+            dfnPanel.style.right = "0px";
+        }
+    }
+
+    function pinDfnPanel(dfnPanel) {
+        // Switch it to "activated" state, which pins it.
+        dfnPanel.classList.add("activated");
+        dfnPanel.style.left = null;
+        dfnPanel.style.top = null;
+    }
+
+    function hideDfnPanel(dfnPanel, dfn) {
+        if(!dfn) {
+            dfn = document.getElementById(dfnPanel.getAttribute("data-for"));
+        }
+        dfn.setAttribute("aria-expanded", "false")
+        dfnPanel.classList.remove("on");
+        dfnPanel.classList.remove("activated");
+    }
+
+    function toggleDfnPanel(dfnPanel, dfn) {
+        if(dfnPanel.classList.contains("on")) {
+            hideDfnPanel(dfnPanel, dfn);
+        } else {
+            showDfnPanel(dfnPanel, dfn);
+        }
+    }
+
+    function insertDfnPopupAction(dfn, dfnPanel) {
+        // Find dfn panel
+        const panelWrapper = document.createElement('span');
+        panelWrapper.appendChild(dfnPanel);
+        panelWrapper.style.position = "relative";
+        panelWrapper.style.height = "0px";
+        dfn.insertAdjacentElement("afterend", panelWrapper);
+        dfn.setAttribute('role', 'button');
+        dfn.setAttribute('aria-expanded', 'false')
+        dfn.tabIndex = 0;
+        dfn.classList.add('has-dfn-panel');
+        dfn.addEventListener('click', (event) => {
+            showDfnPanel(dfnPanel, dfn);
+            event.stopPropagation();
+        });
+        dfn.addEventListener('keypress', (event) => {
+            const kc = event.keyCode;
+            // 32->Space, 13->Enter
+            if(kc == 32 || kc == 13) {
+                toggleDfnPanel(dfnPanel, dfn);
+                event.stopPropagation();
+                event.preventDefault();
+            }
+        });
+
+        dfnPanel.addEventListener('click', (event) => {
+            if (event.target.nodeName == 'A') {
+                pinDfnPanel(dfnPanel);
+            }
+            event.stopPropagation();
+        });
+
+        dfnPanel.addEventListener('keydown', (event) => {
+            if(event.keyCode == 27) { // Escape key
+                hideDfnPanel(dfnPanel, dfn);
+                event.stopPropagation();
+                event.preventDefault();
+            }
+        })
+    }
+}
+</script>
+<script>/* Boilerplate: script-dfn-panel */
+"use strict";
+{
+    const dfnsJson = window.dfnsJson || {};
+
+    function genDfnPanel({dfnID, url, dfnText, refSections, external}) {
+        return mk.aside({
+            class: "dfn-panel",
+            id: `infopanel-for-${dfnID}`,
+            "data-for": dfnID,
+            "aria-labelled-by":`infopaneltitle-for-${dfnID}`,
+            },
+            mk.span({id:`infopaneltitle-for-${dfnID}`, style:"display:none"},
+                `Info about the '${dfnText}' ${external?"external":""} reference.`),
+            mk.a({href:url}, url),
+            mk.b({}, "Referenced in:"),
+            mk.ul({},
+                ...refSections.map(section=>
+                    mk.li({},
+                        ...section.refs.map((ref, refI)=>
+                            [
+                                mk.a({
+                                    href: `#${ref.id}`
+                                    },
+                                    (refI == 0) ? section.title : `(${refI + 1})`
+                                ),
+                                " ",
+                            ]
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+
+    function genAllDfnPanels() {
+        for(const panelData of Object.values(window.dfnpanelData)) {
+            const dfnID = panelData.dfnID;
+            const dfn = document.getElementById(dfnID);
+            if(!dfn) {
+                console.log(`Can't find dfn#${dfnID}.`, panelData);
+            } else {
+                const panel = genDfnPanel(panelData);
+                append(document.body, panel);
+                insertDfnPopupAction(dfn, panel)
+            }
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", ()=>{
+        genAllDfnPanels();
+
+        // Add popup behavior to all dfns to show the corresponding dfn-panel.
+        var dfns = queryAll('.dfn-paneled');
+        for(let dfn of dfns) { ; }
+
+        document.body.addEventListener("click", (e) => {
+            // If not handled already, just hide all dfn panels.
+            hideAllDfnPanels();
+        });
+    })
+
+
+    function hideAllDfnPanels() {
+        // Turn off any currently "on" or "activated" panels.
+        queryAll(".dfn-panel.on, .dfn-panel.activated").forEach(el=>hideDfnPanel(el));
+    }
+
+    function showDfnPanel(dfnPanel, dfn) {
+        hideAllDfnPanels(); // Only display one at this time.
+        dfn.setAttribute("aria-expanded", "true");
+        dfnPanel.classList.add("on");
+        dfnPanel.style.left = "5px";
+        dfnPanel.style.top = "0px";
+        const panelRect = dfnPanel.getBoundingClientRect();
+        const panelWidth = panelRect.right - panelRect.left;
+        if (panelRect.right > document.body.scrollWidth) {
+            // Panel's overflowing the screen.
+            // Just drop it below the dfn and flip it rightward instead.
+            // This still wont' fix things if the screen is *really* wide,
+            // but fixing that's a lot harder without 'anchor()'.
+            dfnPanel.style.top = "1.5em";
+            dfnPanel.style.left = "auto";
+            dfnPanel.style.right = "0px";
+        }
+    }
+
+    function pinDfnPanel(dfnPanel) {
+        // Switch it to "activated" state, which pins it.
+        dfnPanel.classList.add("activated");
+        dfnPanel.style.left = null;
+        dfnPanel.style.top = null;
+    }
+
+    function hideDfnPanel(dfnPanel, dfn) {
+        if(!dfn) {
+            dfn = document.getElementById(dfnPanel.getAttribute("data-for"));
+        }
+        dfn.setAttribute("aria-expanded", "false")
+        dfnPanel.classList.remove("on");
+        dfnPanel.classList.remove("activated");
+    }
+
+    function toggleDfnPanel(dfnPanel, dfn) {
+        if(dfnPanel.classList.contains("on")) {
+            hideDfnPanel(dfnPanel, dfn);
+        } else {
+            showDfnPanel(dfnPanel, dfn);
+        }
+    }
+
+    function insertDfnPopupAction(dfn, dfnPanel) {
+        // Find dfn panel
+        const panelWrapper = document.createElement('span');
+        panelWrapper.appendChild(dfnPanel);
+        panelWrapper.style.position = "relative";
+        panelWrapper.style.height = "0px";
+        dfn.insertAdjacentElement("afterend", panelWrapper);
+        dfn.setAttribute('role', 'button');
+        dfn.setAttribute('aria-expanded', 'false')
+        dfn.tabIndex = 0;
+        dfn.classList.add('has-dfn-panel');
+        dfn.addEventListener('click', (event) => {
+            showDfnPanel(dfnPanel, dfn);
+            event.stopPropagation();
+        });
+        dfn.addEventListener('keypress', (event) => {
+            const kc = event.keyCode;
+            // 32->Space, 13->Enter
+            if(kc == 32 || kc == 13) {
+                toggleDfnPanel(dfnPanel, dfn);
+                event.stopPropagation();
+                event.preventDefault();
+            }
+        });
+
+        dfnPanel.addEventListener('click', (event) => {
+            if (event.target.nodeName == 'A') {
+                pinDfnPanel(dfnPanel);
+            }
+            event.stopPropagation();
+        });
+
+        dfnPanel.addEventListener('keydown', (event) => {
+            if(event.keyCode == 27) { // Escape key
+                hideDfnPanel(dfnPanel, dfn);
+                event.stopPropagation();
+                event.preventDefault();
+            }
+        })
+    }
+}
+</script>
+<script>/* Boilerplate: script-dfn-panel-json */
+window.dfnpanelData = {};
+window.dfnpanelData['c6544229'] = {"dfnID": "c6544229", "url": "https://tools.ietf.org/html/rfc5234#appendix-B.1", "dfnText": "vchar", "refSections": [{"refs": [{"id": "58fa9b5f0"}, {"id": "ref-for-appendix-B.1"}, {"id": "ref-for-appendix-B.1\u2460"}], "title": "2.1. Grammatical Concepts"}, {"refs": [{"id": "ref-for-appendix-B.1\u2461"}, {"id": "ref-for-appendix-B.1\u2462"}, {"id": "ref-for-appendix-B.1\u2463"}, {"id": "ref-for-appendix-B.1\u2464"}, {"id": "ref-for-appendix-B.1\u2465"}], "title": "3.5. The integrity attribute"}], "external": true};
+window.dfnpanelData['bed34579'] = {"dfnID": "bed34579", "url": "https://tools.ietf.org/html/rfc5234#appendix-B.1", "dfnText": "wsp", "refSections": [{"refs": [{"id": "58fa9b5f0"}, {"id": "ref-for-appendix-B.1"}, {"id": "ref-for-appendix-B.1\u2460"}], "title": "2.1. Grammatical Concepts"}, {"refs": [{"id": "ref-for-appendix-B.1\u2461"}, {"id": "ref-for-appendix-B.1\u2462"}, {"id": "ref-for-appendix-B.1\u2463"}, {"id": "ref-for-appendix-B.1\u2464"}, {"id": "ref-for-appendix-B.1\u2465"}], "title": "3.5. The integrity attribute"}], "external": true};
+window.dfnpanelData['aa9871ba'] = {"dfnID": "aa9871ba", "url": "https://w3c.github.io/webappsec-csp/#grammardef-base64-value", "dfnText": "base64-value", "refSections": [{"refs": [{"id": "ref-for-grammardef-base64-value"}], "title": "2.1. Grammatical Concepts"}, {"refs": [{"id": "ref-for-grammardef-base64-value\u2460"}], "title": "3.5. The integrity attribute"}], "external": true};
+window.dfnpanelData['b123cff6'] = {"dfnID": "b123cff6", "url": "https://w3c.github.io/webappsec-csp/#grammardef-hash-algorithm", "dfnText": "hash-algorithm", "refSections": [{"refs": [{"id": "ref-for-grammardef-hash-algorithm"}], "title": "2.1. Grammatical Concepts"}, {"refs": [{"id": "ref-for-grammardef-hash-algorithm\u2460"}], "title": "3.5. The integrity attribute"}], "external": true};
+window.dfnpanelData['a2a30ba8'] = {"dfnID": "a2a30ba8", "url": "https://fetch.spec.whatwg.org/#cors-protocol", "dfnText": "cors protocol", "refSections": [{"refs": [{"id": "ref-for-cors-protocol"}], "title": "5.3. Cross-origin data leakage"}], "external": true};
+window.dfnpanelData['55213b5b'] = {"dfnID": "55213b5b", "url": "https://fetch.spec.whatwg.org/#concept-request", "dfnText": "request", "refSections": [{"refs": [{"id": "ref-for-concept-request"}], "title": "3.1. Integrity metadata"}], "external": true};
+window.dfnpanelData['086e3aff'] = {"dfnID": "086e3aff", "url": "https://html.spec.whatwg.org/multipage/browsers.html#concept-origin", "dfnText": "origin", "refSections": [{"refs": [{"id": "ref-for-concept-origin"}], "title": "2. Key Concepts and Terminology"}], "external": true};
+window.dfnpanelData['7393da89'] = {"dfnID": "7393da89", "url": "https://html.spec.whatwg.org/multipage/browsers.html#same-origin", "dfnText": "same origin", "refSections": [{"refs": [{"id": "ref-for-same-origin"}], "title": "2. Key Concepts and Terminology"}], "external": true};
+window.dfnpanelData['65181da8'] = {"dfnID": "65181da8", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#secure-context", "dfnText": "secure context", "refSections": [{"refs": [{"id": "ref-for-secure-context"}, {"id": "ref-for-secure-context\u2460"}], "title": "5.1. Non-secure contexts remain non-secure"}], "external": true};
+window.dfnpanelData['53275e46'] = {"dfnID": "53275e46", "url": "https://infra.spec.whatwg.org/#list-append", "dfnText": "append", "refSections": [{"refs": [{"id": "ref-for-list-append"}], "title": "3.3.2. Parse metadata"}], "external": true};
+window.dfnpanelData['f937b7b6'] = {"dfnID": "f937b7b6", "url": "https://infra.spec.whatwg.org/#iteration-continue", "dfnText": "continue", "refSections": [{"refs": [{"id": "ref-for-iteration-continue"}], "title": "3.3.2. Parse metadata"}], "external": true};
+window.dfnpanelData['75393c04'] = {"dfnID": "75393c04", "url": "https://infra.spec.whatwg.org/#list-contain", "dfnText": "exist", "refSections": [{"refs": [{"id": "ref-for-list-contain"}], "title": "3.3.2. Parse metadata"}], "external": true};
+window.dfnpanelData['6b815fdd'] = {"dfnID": "6b815fdd", "url": "https://infra.spec.whatwg.org/#list-is-empty", "dfnText": "is empty", "refSections": [{"refs": [{"id": "ref-for-list-is-empty"}], "title": "3.3.4. Do bytes match metadataList?"}], "external": true};
+window.dfnpanelData['e5fc5b88'] = {"dfnID": "e5fc5b88", "url": "https://infra.spec.whatwg.org/#strictly-split", "dfnText": "strictly split", "refSections": [{"refs": [{"id": "ref-for-strictly-split"}, {"id": "ref-for-strictly-split\u2460"}, {"id": "ref-for-strictly-split\u2461"}], "title": "3.3.2. Parse metadata"}], "external": true};
+window.dfnpanelData['b3a57b71'] = {"dfnID": "b3a57b71", "url": "https://tools.ietf.org/html/rfc7234#section-5.2", "dfnText": "cache-control", "refSections": [{"refs": [{"id": "ref-for-section-5.2"}], "title": "4. Proxies"}], "external": true};
+window.dfnpanelData['5f693367'] = {"dfnID": "5f693367", "url": "https://tools.ietf.org/html/rfc7234#section-5.2.1.6", "dfnText": "no-transform", "refSections": [{"refs": [{"id": "ref-for-section-5.2.1.6"}], "title": "4. Proxies"}], "external": true};
+window.dfnpanelData['104bce7f'] = {"dfnID": "104bce7f", "url": "https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#", "dfnText": "sha-2", "refSections": [{"refs": [{"id": "ref-for-something"}, {"id": "ref-for-something\u2460"}, {"id": "ref-for-something\u2461"}, {"id": "ref-for-something\u2462"}], "title": "2. Key Concepts and Terminology"}, {"refs": [{"id": "ref-for-something\u2463"}], "title": "3.1. Integrity metadata"}, {"refs": [{"id": "ref-for-something\u2464"}, {"id": "ref-for-something\u2465"}, {"id": "ref-for-something\u2466"}], "title": "3.2. Cryptographic hash functions"}, {"refs": [{"id": "ref-for-something\u2467"}, {"id": "ref-for-something\u2468"}], "title": "3.3.4. Do bytes match metadataList?"}], "external": true};
+window.dfnpanelData['0de10dfb'] = {"dfnID": "0de10dfb", "url": "https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#", "dfnText": "sha-256", "refSections": [{"refs": [{"id": "ref-for-something"}, {"id": "ref-for-something\u2460"}, {"id": "ref-for-something\u2461"}, {"id": "ref-for-something\u2462"}], "title": "2. Key Concepts and Terminology"}, {"refs": [{"id": "ref-for-something\u2463"}], "title": "3.1. Integrity metadata"}, {"refs": [{"id": "ref-for-something\u2464"}, {"id": "ref-for-something\u2465"}, {"id": "ref-for-something\u2466"}], "title": "3.2. Cryptographic hash functions"}, {"refs": [{"id": "ref-for-something\u2467"}, {"id": "ref-for-something\u2468"}], "title": "3.3.4. Do bytes match metadataList?"}], "external": true};
+window.dfnpanelData['bbbbe32e'] = {"dfnID": "bbbbe32e", "url": "https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#", "dfnText": "sha-384", "refSections": [{"refs": [{"id": "ref-for-something"}, {"id": "ref-for-something\u2460"}, {"id": "ref-for-something\u2461"}, {"id": "ref-for-something\u2462"}], "title": "2. Key Concepts and Terminology"}, {"refs": [{"id": "ref-for-something\u2463"}], "title": "3.1. Integrity metadata"}, {"refs": [{"id": "ref-for-something\u2464"}, {"id": "ref-for-something\u2465"}, {"id": "ref-for-something\u2466"}], "title": "3.2. Cryptographic hash functions"}, {"refs": [{"id": "ref-for-something\u2467"}, {"id": "ref-for-something\u2468"}], "title": "3.3.4. Do bytes match metadataList?"}], "external": true};
+window.dfnpanelData['92ff7496'] = {"dfnID": "92ff7496", "url": "https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#", "dfnText": "sha-512", "refSections": [{"refs": [{"id": "ref-for-something"}, {"id": "ref-for-something\u2460"}, {"id": "ref-for-something\u2461"}, {"id": "ref-for-something\u2462"}], "title": "2. Key Concepts and Terminology"}, {"refs": [{"id": "ref-for-something\u2463"}], "title": "3.1. Integrity metadata"}, {"refs": [{"id": "ref-for-something\u2464"}, {"id": "ref-for-something\u2465"}, {"id": "ref-for-something\u2466"}], "title": "3.2. Cryptographic hash functions"}, {"refs": [{"id": "ref-for-something\u2467"}, {"id": "ref-for-something\u2468"}], "title": "3.3.4. Do bytes match metadataList?"}], "external": true};
+window.dfnpanelData['digest'] = {"dfnID": "digest", "url": "#digest", "dfnText": "digest", "refSections": [{"refs": [{"id": "ref-for-digest"}], "title": "3.1. Integrity metadata"}], "external": false};
+window.dfnpanelData['base64-encoding'] = {"dfnID": "base64-encoding", "url": "#base64-encoding", "dfnText": "base64 encoding", "refSections": [{"refs": [{"id": "ref-for-base64-encoding"}], "title": "3.1. Integrity metadata"}, {"refs": [{"id": "ref-for-base64-encoding\u2460"}], "title": "3.3.1. Apply algorithm to bytes"}], "external": false};
+window.dfnpanelData['integrity-metadata'] = {"dfnID": "integrity-metadata", "url": "#integrity-metadata", "dfnText": "integrity\n  metadata", "refSections": [{"refs": [{"id": "ref-for-integrity-metadata"}, {"id": "ref-for-integrity-metadata\u2460"}, {"id": "ref-for-integrity-metadata\u2461"}], "title": "1.2.1. Resource Integrity"}, {"refs": [{"id": "ref-for-integrity-metadata\u2462"}], "title": "3.2. Cryptographic hash functions"}, {"refs": [{"id": "ref-for-integrity-metadata\u2463"}], "title": "3.2.1. Agility"}, {"refs": [{"id": "ref-for-integrity-metadata\u2464"}], "title": "3.5. The integrity attribute"}, {"refs": [{"id": "ref-for-integrity-metadata\u2465"}], "title": "4. Proxies"}, {"refs": [{"id": "ref-for-integrity-metadata\u2466"}], "title": "5.1. Non-secure contexts remain non-secure"}], "external": false};
+window.dfnpanelData['getprioritizedhashfunction'] = {"dfnID": "getprioritizedhashfunction", "url": "#getprioritizedhashfunction", "dfnText": "getPrioritizedHashFunction", "refSections": [{"refs": [{"id": "ref-for-getprioritizedhashfunction"}], "title": "3.2.2. Priority"}, {"refs": [{"id": "ref-for-getprioritizedhashfunction\u2460"}], "title": "3.3.3. Get the strongest metadata from set"}], "external": false};
+window.dfnpanelData['does-response-match-metadatalist'] = {"dfnID": "does-response-match-metadatalist", "url": "#does-response-match-metadatalist", "dfnText": "3.3.4. Do bytes match metadataList?", "refSections": [{"refs": [{"id": "ref-for-does-response-match-metadatalist"}], "title": "3.2.1. Agility"}, {"refs": [{"id": "ref-for-does-response-match-metadatalist"}], "title": "3.3.4. Do bytes match metadataList?"}], "external": false};
+window.dfnpanelData['grammardef-hash-with-options'] = {"dfnID": "grammardef-hash-with-options", "url": "#grammardef-hash-with-options", "dfnText": "hash-with-options", "refSections": [{"refs": [{"id": "ref-for-grammardef-hash-with-options"}, {"id": "ref-for-grammardef-hash-with-options\u2460"}], "title": "3.5. The integrity attribute"}], "external": false};
+window.dfnpanelData['grammardef-option-expression'] = {"dfnID": "grammardef-option-expression", "url": "#grammardef-option-expression", "dfnText": "option-expression", "refSections": [{"refs": [{"id": "ref-for-grammardef-option-expression"}], "title": "3.5. The integrity attribute"}], "external": false};
+window.dfnpanelData['grammardef-hash-expression'] = {"dfnID": "grammardef-hash-expression", "url": "#grammardef-hash-expression", "dfnText": "hash-expression", "refSections": [{"refs": [{"id": "ref-for-grammardef-hash-expression"}], "title": "3.5. The integrity attribute"}], "external": false};
+</script>
+<script>/* Boilerplate: script-dom-helper */
+function query(sel) { return document.querySelector(sel); }
+
+function queryAll(sel) { return [...document.querySelectorAll(sel)]; }
+
+function iter(obj) {
+	if(!obj) return [];
+	var it = obj[Symbol.iterator];
+	if(it) return it;
+	return Object.entries(obj);
+}
+
+function mk(tagname, attrs, ...children) {
+	const el = document.createElement(tagname);
+	for(const [k,v] of iter(attrs)) {
+		if(k.slice(0,3) == "_on") {
+			const eventName = k.slice(3);
+			el.addEventListener(eventName, v);
+		} else if(k[0] == "_") {
+			// property, not attribute
+			el[k.slice(1)] = v;
+		} else {
+			if(v === false || v == null) {
+        continue;
+      } else if(v === true) {
+        el.setAttribute(k, "");
+        continue;
+      } else {
+  			el.setAttribute(k, v);
+      }
+		}
+	}
+	append(el, children);
+	return el;
+}
+
+/* Create shortcuts for every known HTML element */
+[
+  "a",
+  "abbr",
+  "acronym",
+  "address",
+  "applet",
+  "area",
+  "article",
+  "aside",
+  "audio",
+  "b",
+  "base",
+  "basefont",
+  "bdo",
+  "big",
+  "blockquote",
+  "body",
+  "br",
+  "button",
+  "canvas",
+  "caption",
+  "center",
+  "cite",
+  "code",
+  "col",
+  "colgroup",
+  "datalist",
+  "dd",
+  "del",
+  "details",
+  "dfn",
+  "dialog",
+  "div",
+  "dl",
+  "dt",
+  "em",
+  "embed",
+  "fieldset",
+  "figcaption",
+  "figure",
+  "font",
+  "footer",
+  "form",
+  "frame",
+  "frameset",
+  "head",
+  "header",
+  "h1",
+  "h2",
+  "h3",
+  "h4",
+  "h5",
+  "h6",
+  "hr",
+  "html",
+  "i",
+  "iframe",
+  "img",
+  "input",
+  "ins",
+  "kbd",
+  "label",
+  "legend",
+  "li",
+  "link",
+  "main",
+  "map",
+  "mark",
+  "meta",
+  "meter",
+  "nav",
+  "nobr",
+  "noscript",
+  "object",
+  "ol",
+  "optgroup",
+  "option",
+  "output",
+  "p",
+  "param",
+  "pre",
+  "progress",
+  "q",
+  "s",
+  "samp",
+  "script",
+  "section",
+  "select",
+  "small",
+  "source",
+  "span",
+  "strike",
+  "strong",
+  "style",
+  "sub",
+  "summary",
+  "sup",
+  "table",
+  "tbody",
+  "td",
+  "template",
+  "textarea",
+  "tfoot",
+  "th",
+  "thead",
+  "time",
+  "title",
+  "tr",
+  "u",
+  "ul",
+  "var",
+  "video",
+  "wbr",
+  "xmp",
+].forEach(tagname=>{
+	mk[tagname] = (...args) => mk(tagname, ...args);
 });
+
+function* nodesFromChildList(children) {
+	for(const child of children.flat(Infinity)) {
+		if(child instanceof Node) {
+			yield child;
+		} else {
+			yield new Text(child);
+		}
+	}
+}
+function append(el, ...children) {
+	for(const child of nodesFromChildList(children)) {
+		if(el instanceof Node) el.appendChild(child);
+		else el.push(child);
+	}
+	return el;
+}
+
+function insertAfter(el, ...children) {
+	for(const child of nodesFromChildList(children)) {
+		el.parentNode.insertBefore(child, el.nextSibling);
+	}
+	return el;
+}
+
+function clearContents(el) {
+	el.innerHTML = "";
+	return el;
+}
+
+function parseHTML(markup) {
+	if(markup.toLowerCase().trim().indexOf('<!doctype') === 0) {
+		const doc = document.implementation.createHTMLDocument("");
+		doc.documentElement.innerHTML = markup;
+		return doc;
+	} else {
+		const el = mk.template({});
+		el.innerHTML = markup;
+		return el.content;
+	}
+}
+</script>
+<script>/* Boilerplate: script-wpt */
+let wptPath = "/subresource-integrity/";
+"use strict";
+
+document.addEventListener("DOMContentLoaded", async ()=>{
+    if(wptPath == "/") return;
+
+    const runsUrl = "https://wpt.fyi/api/runs?label=master&label=stable&max-count=1&product=chrome&product=firefox&product=safari&product=edge";
+    const runs = await (await fetch(runsUrl)).json();
+
+    const testResults = await (await fetch("https://wpt.fyi/api/search", {
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json",
+        },
+        body: JSON.stringify({
+            "run_ids": runs.map(x=>x.id),
+            "query": {"path": wptPath},
+        })
+    })).json();
+
+    const browsers = runs.map(x=>({name:x.browser_name, version:x.browser_version, passes:0, total: 0}));
+    const resultsFromPath = new Map(testResults.results.map(result=>{
+        const testPath = result.test;
+        const passes = result.legacy_status.map(x=>[x.passes, x.total]);
+        return [testPath, passes];
+    }));
+    const seenTests = new Set();
+    document.querySelectorAll(".wpt-name").forEach(nameEl=>{
+        const passData = resultsFromPath.get("/" + nameEl.getAttribute("title"));
+        if(!passData) {
+            console.log("Couldn't find test in results:", nameEl);
+            return
+        }
+        const numTests = passData[0][1];
+        if(numTests > 1) {
+            nameEl.insertAdjacentElement("beforeend",
+                el("small", {}, ` (${numTests} tests)`));
+        }
+        if(passData == undefined) return;
+        const resultsEl = el("span",{"class":"wpt-results"},
+            ...passData.map((p,i) => el("span",
+            {
+                "title": `${browsers[i].name} ${p[0]}/${p[1]}`,
+                "class": "wpt-result",
+                "style": `background: conic-gradient(forestgreen ${p[0]/p[1]*360}deg, darkred 0deg);`,
+            })),
+        );
+        nameEl.insertAdjacentElement("afterend", resultsEl);
+
+        // Only update the summary pass/total count if we haven't seen this
+        // test before, to support authors listing the same test multiple times
+        // in a spec.
+        if (!seenTests.has(nameEl.getAttribute("title"))) {
+            seenTests.add(nameEl.getAttribute("title"));
+            passData.forEach((p,i) => {
+                browsers[i].passes += p[0];
+                browsers[i].total += p[1];
+            });
+        }
+    });
+    const overview = document.querySelector(".wpt-overview");
+    if(overview) {
+        overview.appendChild(el('ul',{}, ...browsers.map(formatWptResult)));
+        document.head.appendChild(el('style', {},
+            `.wpt-overview ul { display: flex; flex-flow: row wrap; gap: .2em; justify-content: start; list-style: none; padding: 0; margin: 0;}
+             .wpt-overview li { padding: .25em 1em; color: black; text-align: center; }
+             .wpt-overview img { height: 1.5em; height: max(1.5em, 32px); background: transparent; }
+             .wpt-overview .browser { font-weight: bold; }
+             .wpt-overview .passes-none { background: #e57373; }
+             .wpt-overview .passes-hardly { background: #ffb74d; }
+             .wpt-overview .passes-a-few { background: #ffd54f; }
+             .wpt-overview .passes-half { background: #fff176; }
+             .wpt-overview .passes-lots { background: #dce775; }
+             .wpt-overview .passes-most { background: #aed581; }
+             .wpt-overview .passes-all { background: #81c784; }`));
+    }
+});
+function el(name, attrs, ...content) {
+    const x = document.createElement(name);
+    for(const [k,v] of Object.entries(attrs)) {
+        x.setAttribute(k, v);
+    }
+    for(let child of content) {
+        if(typeof child == "string") child = document.createTextNode(child);
+        try {
+        x.appendChild(child);
+        } catch(e) { console.log({x, child}); }
+    }
+    return x;
+}
+function formatWptResult({name, version, passes, total}) {
+    const passRate = passes/total;
+    let passClass = "";
+    if(passRate == 0)      passClass = "passes-none";
+    else if(passRate < .2) passClass = "passes-hardly";
+    else if(passRate < .4) passClass = "passes-a-few";
+    else if(passRate < .6) passClass = "passes-half";
+    else if(passRate < .8) passClass = "passes-lots";
+    else if(passRate < 1)  passClass = "passes-most";
+    else                   passClass = "passes-all";
+
+    name = name[0].toUpperCase() + name.slice(1);
+    const shortVersion = /^\d+/.exec(version);
+    const icon = []
+
+    if(name == "Chrome") icon.push(el('img', {alt:"", src:"https://wpt.fyi/static/chrome_64x64.png"}));
+    if(name == "Edge") icon.push(el('img', {alt:"", src:"https://wpt.fyi/static/edge_64x64.png"}));
+    if(name == "Safari") icon.push(el('img', {alt:"", src:"https://wpt.fyi/static/safari_64x64.png"}));
+    if(name == "Firefox") icon.push(el('img', {alt:"", src:"https://wpt.fyi/static/firefox_64x64.png"}));
+
+    return el('li', {"class":passClass},
+        el('nobr', {'class':'browser'}, ...icon, ` ${name} ${shortVersion}`),
+        el('br', {}),
+        el('nobr', {'class':'pass-rate'}, `${passes}/${total}`)
+    );
+}
 </script>

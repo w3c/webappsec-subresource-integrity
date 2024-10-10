@@ -180,6 +180,17 @@ spec:csp3; type:grammar; text:base64-value
   of the <a>SHA-2</a> set of cryptographic hash functions defined by the
   NIST. [[!SHA2]]
 
+  The <dfn>valid SRI hash algorithm token set</dfn> is the [=ordered set=]
+  « "`sha256`", "`sha384`", "`sha512`" » (corresponding to [=SHA-256=],
+  [=SHA-384=], and [=SHA-512=] respectively). The ordering of this set is
+  meaningful, with stronger algorithms appearing later in the set. See
+  [[#priority]] and [[#get-the-strongest-metadata]] for
+  additional information.
+
+  A string is a <dfn>valid SRI hash algorithm token</dfn> if its
+  [=ASCII lowercase=] is [=set/contained=] in the
+  [=valid SRI hash algorithm token set=].
+
   ## Grammatical Concepts ## {#grammar-concepts}
 
   The Augmented Backus-Naur Form (ABNF) notation used in this document is
@@ -251,13 +262,13 @@ spec:csp3; type:grammar; text:base64-value
 
   Conformant user agents MUST support the <a>SHA-256</a>, <a>SHA-384</a>,
   and <a>SHA-512</a> cryptographic hash functions for use as part of a
-  request's <a>integrity metadata</a> and MAY support additional hash functions.
+  request's <a>integrity metadata</a> and MAY support additional hash functions
+  defined in future iterations of this document.
 
-  User agents SHOULD refuse to support known-weak hashing functions like MD5 or
-  SHA-1 and SHOULD restrict supported hashing functions to those known to be
-  collision-resistant. Additionally, user agents SHOULD re-evaluate their
-  supported hash functions on a regular basis and deprecate support for those
-  functions that have become insecure. See [[#hash-collision-attacks]].
+  NOTE: The algorithms supported in this document are (currently!) believed to be
+  resistent to second-preimage and collision attacks. Future additions/removals
+  from the set of supported algorithms would be well-advised to apply similar
+  standard. See [[#hash-collision-attacks]].
 
   ### Agility ### {#agility}
 
@@ -301,18 +312,15 @@ spec:csp3; type:grammar; text:base64-value
 
   ### Priority ### {#priority}
 
-  User agents must provide a mechanism for determining the relative priority of two
-  hash functions and return the empty string if the priority is equal. That is, if
-  a user agent implemented a function like <dfn>getPrioritizedHashFunction</dfn>(a,
-  b) it would return the hash function the user agent considers the most
-  collision-resistant.  For example, `getPrioritizedHashFunction('sha256',
-  'sha512')` would return `'sha512'` and `getPrioritizedHashFunction('sha256',
-  'sha256')` would return the empty string.
+  The prioritization of hash algorithms is specified via the ordering of their
+  respective tokens in the [=valid SRI hash algorithm token set=]. Algorithms
+  appearing earlier in that set are weaker than algorithms appearing later in
+  that set.
 
-  Note: The <a>getPrioritizedHashFunction</a> is an internal
-  implementation detail. It is not an API that implementors
-  provide to web applications. It is used in this document
-  only to simplify the algorithm description.
+  As currently specified, [=SHA-256=] is weaker than [=SHA-384=], which is in
+  turn weaker than [=SHA-512=]. No other hashing algorithms are currently
+  supported by this specification.
+
 
   ## Response verification algorithms ## {#verification-algorithms}
 
@@ -338,10 +346,10 @@ spec:csp3; type:grammar; text:base64-value
       5.  Let |algorithm| be |algorithm-and-value|[0].
       6.  If |algorithm-and-value|[1] <a for=list>exists</a>, set
           |base64-value| to |algorithm-and-value|[1].
-      7.  If |algorithm| is not a hash function recognized by the user agent,
-           [=continue=].
-      8. Let |metadata| be the ordered map  «["alg" → |algorithm|,
-         "val" → |base64-value|]».
+      7.  If |algorithm| is not a [=valid SRI hash algorithm token=], then
+          [=iteration/continue=].
+      8.  Let |metadata| be the ordered map  «["alg" → |algorithm|,
+          "val" → |base64-value|]».
 
          Note: Since no `options` are defined (see the
          [[#integrity-metadata-description]]), a corresponding entry is not set
@@ -356,18 +364,21 @@ spec:csp3; type:grammar; text:base64-value
   1.  Let |result| be the empty set and |strongest| be the empty
       string.
   2.  For each |item| in |set|:
-      1.  If |result| is the empty set, add |item| to
-          |result| and set |strongest| to |item|, skip
-          to the next |item|.
-      2.  Let |currentAlgorithm| be the |alg| component of
-          |strongest|.
-      3.  Let |newAlgorithm| be the |alg| component of
-          |item|.
-      4.  If the result of <a lt="getPrioritizedHashFunction">
-          getPrioritizedHashFunction(|currentAlgorithm|, |newAlgorithm|)</a>
-          is the empty string, add |item| to |result|. If the result is
-          |newAlgorithm|, set |strongest| to |item|, set |result| to the empty
-          set, and add |item| to |result|.
+      1.  Assert: |item|["`alg`"] is a [=valid SRI hash algorithm token=].
+      2.  If |result| is the empty set, then:
+          1. [=set/Append=] |item| to |result|.
+          2. Set |strongest| to |item|.
+          3. [=iteration/Continue=].
+      3.  Let |currentAlgorithm| be |strongest|["`alg`"], and |currentAlgorithmIndex|
+          be the index of |currentAlgorithm| in the [=valid SRI hash algorithm token set=].
+      4.  Let |newAlgorithm| be the |item|["`alg`"], and |newAlgorithmIndex|
+          be the index of |newAlgorithm| in the [=valid SRI hash algorithm token set=].
+      5.  If |newAlgorithmIndex| is less than |currentAlgorithmIndex|, [=iteration/continue=].
+      6.  Otherwise, if |newAlgorithmIndex| is greater than |currentAlgorithmIndex|:
+          1.  Set |strongest| to |item|.
+          2.  Set |result| to « |item| ».
+      7.  Otherwise, |newAlgorithmIndex| and |currentAlgorithmIndex| are the
+          same value. [=set/Append=] |item| to |result|.
   3.  Return |result|.
 
 <h4 dfn export id=does-response-match-metadatalist>Do |bytes| match |metadataList|?</h4>

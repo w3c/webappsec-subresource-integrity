@@ -349,7 +349,6 @@ spec:csp3; type:grammar; text:base64-value
   The following list contains the set of <dfn noexport>known tokens</dfn>:
 
     * `script` requires SRI for scripts
-    * `style` requires SRI for style sheets
 
 
   ### Parsing `require-sri-for` ### {#parse-require-sri-for}
@@ -382,8 +381,8 @@ spec:csp3; type:grammar; text:base64-value
 
       Note: This logic means that request with matched <a>destination</a> and missing <a>integrity metadata</a>
       will be blocked even if it is not currently possible to set it's <a>integrity metadata</a>.
-      Such requests are originated by, for example, <code>importScripts()</code>, CSS' <code>@import</code>,
-      or `script`/`style` elements without crossorigin content attribute.
+      Such requests are originated by, for example, <code>importScripts()</code>,
+      or `script` elements without crossorigin content attribute.
 
 
   3.  Return "Allowed".
@@ -392,7 +391,7 @@ spec:csp3; type:grammar; text:base64-value
     A page with the following Content Security Policy:
 
     <pre>
-      Content-Security-Policy: <a>require-sri-for</a> script style
+      Content-Security-Policy: <a>require-sri-for</a> script
     </pre>
 
     is equivalent to Content Security Policy delivered through `<meta>`
@@ -400,12 +399,12 @@ spec:csp3; type:grammar; text:base64-value
 
     <pre>
       &lt;meta http-equiv="Content-Security-Policy"
-            content="<a>require-sri-for</a> script style"&gt;
+            content="<a>require-sri-for</a> script"&gt;
     </pre>
 
 
     and requires <a>integrity metadata</a> be present in `script`
-    and `link` HTML elements that contain `src` attribute.
+    elements that contain `src` attribute.
   </div>
 
 

@@ -381,10 +381,16 @@ spec:csp3; type:grammar; text:base64-value
   1.  Let |protected resource types| be the result of executing
       [[#parse-require-sri-for]] on this <a>directive</a>'s <a for="directive">value</a>.
 
-  2.  If |request|'s <a for=request>url</a>'s <a for=url>scheme</a> is not "blob" nor "data",
-      |request|'s <a for=request>destination</a> is a <a>ASCII case-insensitive match</a> for at least
-      one token in |protected resource types|, and |request|'s <a>integrity metadata</a>
-      is the empty string, return "Blocked".
+  2.  If |request|'s <a for=request>url</a>'s <a for=url>scheme</a> is "blob" or "data",
+      return "Allowed".
+
+  3.  If |request|'s <a for=request>destination</a> is not an <a>ASCII case-insensitive
+      match</a> for at least one token in |protected resource types|, return "Allowed".
+
+  4.  Let |parsedMetadata| be the result of <a href="#parse-metadata">parsing</a> |request|'s
+      <a>integrity metadata</a>.
+
+  5.  If |parsedMetadata| is not the empty <a for=/>set</a>, return "Allowed".
 
       Note: This logic means that request with matched <a for=request>destination</a> and missing
       <a>integrity metadata</a> will be blocked even if it is not currently possible to set its
@@ -392,7 +398,7 @@ spec:csp3; type:grammar; text:base64-value
       Such requests are originated by, for example, <code>importScripts()</code>,
       or `script` elements without crossorigin content attribute.
 
-  3.  Return "Allowed".
+  3.  Return "Blocked".
 
   <div class="example">
     A page with the following Content Security Policy:

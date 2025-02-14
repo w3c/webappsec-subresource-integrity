@@ -28,9 +28,17 @@ spec: ABNF; urlPrefix: https://tools.ietf.org/html/rfc5234
   type: dfn
     text: VCHAR; url: appendix-B.1
     text: WSP; url: appendix-B.1
+    text: OWS; url: appendix-B.1
   type: grammar
     text: VCHAR; url: appendix-B.1
     text: WSP; url: appendix-B.1
+    text: OWS; url: appendix-B.1
+
+spec: HTTP; urlPrefix: https://tools.ietf.org/html/rfc7230
+  type: dfn
+    text: token; url: #section-3.2.6
+  type: grammar
+    text: token; url: #section-3.2.6
 
 spec: CSP; urlPrefix: https://w3c.github.io/webappsec-csp/
   type: dfn
@@ -214,8 +222,6 @@ spec:csp3; type:grammar; text:base64-value
   Content Security Policy defines the <a grammar>`base64-value`</a> and
   <a grammar>`hash-algorithm`</a> rules. [[!CSP]]
 
-  </section>
-
   <!-- ####################################################################### -->
 
   # Framework # {#framework}
@@ -343,7 +349,7 @@ spec:csp3; type:grammar; text:base64-value
 
   <pre dfn-type="grammar" link-type="grammar">
       directive-name  = "require-sri-for"
-      directive-value = <a grammar>token</a> *( <a>RWS</a> <a>token</a> )
+      directive-value = <a grammar>token</a> *( <a>OWS</a> <a>token</a> )
   </pre>
 
   The following list contains the set of <dfn noexport>known tokens</dfn>:
@@ -358,7 +364,7 @@ spec:csp3; type:grammar; text:base64-value
 
   1.  Let the set of |protected resource types| that require SRI be the empty set.
 
-  2.  For each |token| in the result of <a lt="split a string on spaces">
+  2.  For each |token| in the result of <a lt="split a string on ascii whitespace">
       splitting |token list| on spaces</a>, if token matches the grammar
       for <a>require-sri-for</a> and is a <a>ASCII case-insensitive match</a>
       for any of the <a>known token</a>s, add |token| to |protected resource types|.
@@ -370,20 +376,21 @@ spec:csp3; type:grammar; text:base64-value
 
   This directive’s <a>pre-request check</a> is as follows:
 
-  Given a <a>request</a> (|request|) and a <a>policy</a> (|policy|):
+  Given a <a for="/">request</a> (|request|) and a <a>policy</a> (<var ignore>policy</var>):
 
   1.  Let |protected resource types| be the result of executing
       [[#parse-require-sri-for]] on this <a>directive</a>'s <a for="directive">value</a>.
 
-  2.  If |request|'s <a>destination</a> is a <a>ASCII case-insensitive match</a> for at least
-      one token in |protected resource types|, and |request|'s integrity metadata
+  2.  If |request|'s <a for=request>url</a>'s <a for=url>scheme</a> is not "blob" nor "data",
+      |request|'s <a for=request>destination</a> is a <a>ASCII case-insensitive match</a> for at least
+      one token in |protected resource types|, and |request|'s <a>integrity metadata</a>
       is the empty string, return "Blocked".
 
-      Note: This logic means that request with matched <a>destination</a> and missing <a>integrity metadata</a>
-      will be blocked even if it is not currently possible to set it's <a>integrity metadata</a>.
+      Note: This logic means that request with matched <a for=request>destination</a> and missing
+      <a>integrity metadata</a> will be blocked even if it is not currently possible to set its
+      <a>integrity metadata</a>.
       Such requests are originated by, for example, <code>importScripts()</code>,
       or `script` elements without crossorigin content attribute.
-
 
   3.  Return "Allowed".
 

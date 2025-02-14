@@ -362,7 +362,7 @@ spec:csp3; type:grammar; text:base64-value
   Given a string (|token list|), this algorithm returns a list of resource
   types which will require integrity checks:
 
-  1.  Let the set of |protected resource types| that require SRI be the empty set.
+  1.  Let |protected resource types| be the empty <a for=/>set</a>.
 
   2.  For each |token| in the result of <a lt="split a string on ascii whitespace">
       splitting |token list| on spaces</a>, if token matches the grammar
@@ -381,16 +381,24 @@ spec:csp3; type:grammar; text:base64-value
   1.  Let |protected resource types| be the result of executing
       [[#parse-require-sri-for]] on this <a>directive</a>'s <a for="directive">value</a>.
 
-  2.  If |request|'s <a for=request>url</a>'s <a for=url>scheme</a> is "blob" or "data",
+  2.  Let |protected| be a <a>boolean</a>, initially set to false.
+
+  3.  <a for=set>For each</a> |token| of |protected resource types|, 
+      if |request|'s <a for=request>destination</a> is an <a>ASCII case-insensitive match</a> for |token|,
+      set |protected| to true.
+
+  4.  If |request|'s <a for=request>url</a>'s <a for=url>scheme</a> is "blob" or "data",
       return "Allowed".
 
-  3.  If |request|'s <a for=request>destination</a> is not an <a>ASCII case-insensitive
-      match</a> for at least one token in |protected resource types|, return "Allowed".
+  5.  If |protected| is false,
+      return "Allowed".
 
-  4.  Let |parsedMetadata| be the result of <a href="#parse-metadata">parsing</a> |request|'s
+  6.  Let |parsedMetadata| be the result of <a href="#parse-metadata">parsing</a> |request|'s
       <a>integrity metadata</a>.
 
-  5.  If |parsedMetadata| is not the empty <a for=/>set</a>, return "Allowed".
+  7.  If |request|'s <a for=request>mode</a> is not "no-cors" and
+      |parsedMetadata| is not the empty <a for=/>set</a>,
+      return "Allowed".
 
       Note: This logic means that request with matched <a for=request>destination</a> and missing
       <a>integrity metadata</a> will be blocked even if it is not currently possible to set its
@@ -398,7 +406,7 @@ spec:csp3; type:grammar; text:base64-value
       Such requests are originated by, for example, <code>importScripts()</code>,
       or `script` elements without crossorigin content attribute.
 
-  3.  Return "Blocked".
+  8.  Return "Blocked".
 
   <div class="example">
     A page with the following Content Security Policy:

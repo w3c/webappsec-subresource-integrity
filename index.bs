@@ -378,17 +378,23 @@ spec:csp3; type:grammar; text:base64-value
 
   Given a <a for="/">request</a> (|request|) and a <a>policy</a> (<var ignore>policy</var>):
 
-  1.  Let |protected resource types| be the result of executing
+  1.  If |request|'s <a for=request>url</a>'s <a for=url>scheme</a> <a>is local</a>,
+      return "Allowed".
+
+  2.  Let |protected resource types| be the result of executing
       [[#parse-require-sri-for]] on this <a>directive</a>'s <a for="directive">value</a>.
 
-  2.  Let |protected| be a <a>boolean</a>, initially set to false.
+  3.  Let |protected| be a <a>boolean</a>, initially set to false.
 
-  3.  <a for=set>For each</a> |token| of |protected resource types|, 
+  4.  <a for=set>For each</a> |token| of |protected resource types|, 
       if |request|'s <a for=request>destination</a> is an <a>ASCII case-insensitive match</a> for |token|,
       set |protected| to true.
 
-  4.  If |request|'s <a for=request>url</a>'s <a for=url>scheme</a> is "blob" or "data",
-      return "Allowed".
+  Note: Matching tokens to the request's destination means that worker and worklets will not be covered by `require-sri-for script`,
+        and will not require integrity checks when it's defined.
+        Once we have a way to define integrity metadata for workers or worklets
+        (e.g. [HTML#10858](https://github.com/whatwg/html/pull/10858)), we would be able to add a separate token for them.
+        
 
   5.  If |protected| is false,
       return "Allowed".

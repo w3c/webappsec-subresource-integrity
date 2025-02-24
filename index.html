@@ -5,9 +5,9 @@
   <title>Subresource Integrity</title>
   <meta content="ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
-  <meta content="Bikeshed version 97a1608be, updated Mon Feb 3 16:09:34 2025 -0800" name="generator">
+  <meta content="Bikeshed version 60c422380, updated Thu Feb 20 19:11:22 2025 -0800" name="generator">
   <link href="http://www.w3.org/TR/SRI/" rel="canonical">
-  <meta content="d4f5d7b49e4f142de42ee75ce9bea28972d9a0ff" name="revision">
+  <meta content="ac31b01f690d3dc79e74282c8a5d85fdcc95f42f" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>/* Boilerplate: style-autolinks */
@@ -827,7 +827,7 @@ dd:not(:last-child) > .wpt-tests-block:not([open]):last-child {
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Subresource Integrity</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2025-02-13">13 February 2025</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2025-02-24">24 February 2025</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -921,7 +921,8 @@ fetched resource has been delivered without unexpected manipulation.</p>
        </ol>
       <li><a href="#verification-of-html-document-subresources"><span class="secno">3.4</span> <span class="content">Verification of HTML document subresources</span></a>
       <li><a href="#the-integrity-attribute"><span class="secno">3.5</span> <span class="content">The <code>integrity</code> attribute</span></a>
-      <li><a href="#handling-integrity-violations"><span class="secno">3.6</span> <span class="content">Handling integrity violations</span></a>
+      <li><a href="#the-integrity-link-processing-option"><span class="secno">3.6</span> <span class="content">The <code>integrity</code> link processing option</span></a>
+      <li><a href="#handling-integrity-violations"><span class="secno">3.7</span> <span class="content">Handling integrity violations</span></a>
      </ol>
     <li><a href="#proxies"><span class="secno">4</span> <span class="content">Proxies</span></a>
     <li>
@@ -1046,17 +1047,17 @@ fetched resource has been delivered without unexpected manipulation.</p>
   executing a cryptographic hash function on an arbitrary block of data.</p>
    <p>The terms <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin" id="ref-for-concept-origin">origin</a> and <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#same-origin" id="ref-for-same-origin">same origin</a> are defined in HTML. <a data-link-type="biblio" href="#biblio-html" title="HTML Standard">[HTML]</a></p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="base64-encoding">base64 encoding</dfn> is defined in <a href="https://tools.ietf.org/html/rfc4648#section-4">Section 4 of RFC 4648</a>. <a data-link-type="biblio" href="#biblio-rfc4648" title="The Base16, Base32, and Base64 Data Encodings">[RFC4648]</a></p>
-   <p>The <a data-link-type="dfn" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something">SHA-256</a>, <a data-link-type="dfn" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something①">SHA-384</a>, and <a data-link-type="dfn" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something②">SHA-512</a> are part
-  of the <a data-link-type="dfn" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something③">SHA-2</a> set of cryptographic hash functions defined by the
+   <p>The <a data-link-type="dfn" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something">SHA-256</a>, <a data-link-type="dfn" data-refhint-key="37de769a" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something①">SHA-384</a>, and <a data-link-type="dfn" data-refhint-key="a801f883" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something②">SHA-512</a> are part
+  of the <a data-link-type="dfn" data-refhint-key="14c46ca8" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something③">SHA-2</a> set of cryptographic hash functions defined by the
   NIST. <a data-link-type="biblio" href="#biblio-sha2" title="FIPS PUB 180-4, Secure Hash Standard">[SHA2]</a></p>
-   <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="valid-sri-hash-algorithm-token-set">valid SRI hash algorithm token set</dfn> is the <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set">ordered set</a> « "<code>sha256</code>", "<code>sha384</code>", "<code>sha512</code>" » (corresponding to <a data-link-type="dfn" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something④">SHA-256</a>, <a data-link-type="dfn" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something⑤">SHA-384</a>, and <a data-link-type="dfn" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something⑥">SHA-512</a> respectively). The ordering of this set is
+   <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="valid-sri-hash-algorithm-token-set">valid SRI hash algorithm token set</dfn> is the <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set">ordered set</a> « "<code>sha256</code>", "<code>sha384</code>", "<code>sha512</code>" » (corresponding to <a data-link-type="dfn" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something④">SHA-256</a>, <a data-link-type="dfn" data-refhint-key="37de769a" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something⑤">SHA-384</a>, and <a data-link-type="dfn" data-refhint-key="a801f883" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something⑥">SHA-512</a> respectively). The ordering of this set is
   meaningful, with stronger algorithms appearing later in the set. See <a href="#priority">§ 3.2.2 Priority</a> and <a href="#get-the-strongest-metadata">§ 3.3.3 Get the strongest metadata from set</a> for
   additional information.</p>
    <p>A string is a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="valid-sri-hash-algorithm-token">valid SRI hash algorithm token</dfn> if its <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ascii-lowercase" id="ref-for-ascii-lowercase">ASCII lowercase</a> is <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain">contained</a> in the <a data-link-type="dfn" href="#valid-sri-hash-algorithm-token-set" id="ref-for-valid-sri-hash-algorithm-token-set">valid SRI hash algorithm token set</a>.</p>
    <h3 class="heading settled" data-level="2.1" id="grammar-concepts"><span class="secno">2.1. </span><span class="content">Grammatical Concepts</span><a class="self-link" href="#grammar-concepts"></a></h3>
    <p>The Augmented Backus-Naur Form (ABNF) notation used in this document is
   specified in RFC5234. <a data-link-type="biblio" href="#biblio-abnf" title="Augmented BNF for Syntax Specifications: ABNF">[ABNF]</a></p>
-   <p><a href="https://tools.ietf.org/html/rfc5234#appendix-B.1" id="58fa9b5f0">Appendix B.1</a> of <a data-link-type="biblio" href="#biblio-abnf" title="Augmented BNF for Syntax Specifications: ABNF">[ABNF]</a> defines the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc5234#appendix-B.1" id="ref-for-appendix-B.1">VCHAR</a> (printing characters) and <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc5234#appendix-B.1" id="ref-for-appendix-B.1①">WSP</a> (whitespace) rules.</p>
+   <p><a href="https://tools.ietf.org/html/rfc5234#appendix-B.1" id="58fa9b5f0">Appendix B.1</a> of <a data-link-type="biblio" href="#biblio-abnf" title="Augmented BNF for Syntax Specifications: ABNF">[ABNF]</a> defines the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc5234#appendix-B.1" id="ref-for-appendix-B.1">VCHAR</a> (printing characters) and <a data-link-type="dfn" data-refhint-key="fc7b3d90" href="https://tools.ietf.org/html/rfc5234#appendix-B.1" id="ref-for-appendix-B.1①">WSP</a> (whitespace) rules.</p>
    <p>Content Security Policy defines the <a data-link-type="grammar" href="https://w3c.github.io/webappsec-csp/#grammardef-base64-value" id="ref-for-grammardef-base64-value"><code>base64-value</code></a> and <a data-link-type="grammar" href="https://w3c.github.io/webappsec-csp/#grammardef-hash-algorithm" id="ref-for-grammardef-hash-algorithm"><code>hash-algorithm</code></a> rules. <a data-link-type="biblio" href="#biblio-csp" title="Content Security Policy Level 3">[CSP]</a></p>
    <h2 class="heading settled" data-level="3" id="framework"><span class="secno">3. </span><span class="content">Framework</span><a class="self-link" href="#framework"></a></h2>
    <p>The integrity verification mechanism specified here boils down to the
@@ -1082,7 +1083,7 @@ fetched resource has been delivered without unexpected manipulation.</p>
    <p>This metadata MUST be encoded in the same format as the <code>hash-source</code> (without
   the single quotes) in <a href="http://www.w3.org/TR/CSP2/#source-list-syntax">section 4.2 of the Content
   Security Policy Level 2 specification</a>.</p>
-   <p>For example, given a script resource containing only the string <code>alert('Hello,   world.');</code>, an author might choose <a data-link-type="dfn" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something⑦">SHA-384</a> as a hash function. <code>H8BRh8j48O9oYatfu5AZzq6A9RINhZO5H16dQZngK7T62em8MUt1FLm52t+eX6xO</code> is the <a data-link-type="dfn" href="#base64-encoding" id="ref-for-base64-encoding">base64 encoded</a> digest that results. This can be encoded
+   <p>For example, given a script resource containing only the string <code>alert('Hello,   world.');</code>, an author might choose <a data-link-type="dfn" data-refhint-key="37de769a" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something⑦">SHA-384</a> as a hash function. <code>H8BRh8j48O9oYatfu5AZzq6A9RINhZO5H16dQZngK7T62em8MUt1FLm52t+eX6xO</code> is the <a data-link-type="dfn" href="#base64-encoding" id="ref-for-base64-encoding">base64 encoded</a> digest that results. This can be encoded
   as follows:</p>
    <div class="example" id="example-cc8e7f02">
     <a class="self-link" href="#example-cc8e7f02"></a> 
@@ -1097,8 +1098,8 @@ fetched resource has been delivered without unexpected manipulation.</p>
 </pre>
    </div>
    <h3 class="heading settled" data-level="3.2" id="hash-functions"><span class="secno">3.2. </span><span class="content">Cryptographic hash functions</span><a class="self-link" href="#hash-functions"></a></h3>
-   <p>Conformant user agents MUST support the <a data-link-type="dfn" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something⑧">SHA-256</a>, <a data-link-type="dfn" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something⑨">SHA-384</a>,
-  and <a data-link-type="dfn" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something①⓪">SHA-512</a> cryptographic hash functions for use as part of a
+   <p>Conformant user agents MUST support the <a data-link-type="dfn" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something⑧">SHA-256</a>, <a data-link-type="dfn" data-refhint-key="37de769a" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something⑨">SHA-384</a>,
+  and <a data-link-type="dfn" data-refhint-key="a801f883" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something①⓪">SHA-512</a> cryptographic hash functions for use as part of a
   request’s <a data-link-type="dfn" href="#integrity-metadata" id="ref-for-integrity-metadata③">integrity metadata</a> and MAY support additional hash functions
   defined in future iterations of this document.</p>
    <p class="note" role="note"><span class="marker">NOTE:</span> The algorithms supported in this document are (currently!) believed to be
@@ -1142,8 +1143,8 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
   respective tokens in the <a data-link-type="dfn" href="#valid-sri-hash-algorithm-token-set" id="ref-for-valid-sri-hash-algorithm-token-set①">valid SRI hash algorithm token set</a>. Algorithms
   appearing earlier in that set are weaker than algorithms appearing later in
   that set.</p>
-   <p>As currently specified, <a data-link-type="dfn" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something①①">SHA-256</a> is weaker than <a data-link-type="dfn" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something①②">SHA-384</a>, which is in
-  turn weaker than <a data-link-type="dfn" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something①③">SHA-512</a>. No other hashing algorithms are currently
+   <p>As currently specified, <a data-link-type="dfn" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something①①">SHA-256</a> is weaker than <a data-link-type="dfn" data-refhint-key="37de769a" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something①②">SHA-384</a>, which is in
+  turn weaker than <a data-link-type="dfn" data-refhint-key="a801f883" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something①③">SHA-512</a>. No other hashing algorithms are currently
   supported by this specification.</p>
    <h3 class="heading settled" data-level="3.3" id="verification-algorithms"><span class="secno">3.3. </span><span class="content">Response verification algorithms</span><a class="self-link" href="#verification-algorithms"></a></h3>
    <h4 class="heading settled" data-level="3.3.1" id="apply-algorithm-to-response"><span class="secno">3.3.1. </span><span class="content">Apply <var>algorithm</var> to <var>bytes</var></span><a class="self-link" href="#apply-algorithm-to-response"></a></h4>
@@ -1262,7 +1263,7 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
 </pre>
    </div>
    <p>which would allow the user agent to accept two different content payloads, one
-  of which matches the first <a data-link-type="dfn" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something①④">SHA-384</a> hash value and the other matches the second <a data-link-type="dfn" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something①⑤">SHA-384</a> hash value.</p>
+  of which matches the first <a data-link-type="dfn" data-refhint-key="37de769a" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something①④">SHA-384</a> hash value and the other matches the second <a data-link-type="dfn" data-refhint-key="37de769a" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something①⑤">SHA-384</a> hash value.</p>
    <p class="note" role="note"><span class="marker">Note:</span> User agents may allow users to modify the result of this algorithm via
   user preferences, bookmarklets, third-party additions to the user agent, and
   other such mechanisms. For example, redirects generated by an extension like <a href="https://www.eff.org/https-everywhere">HTTPS Everywhere</a> could load and
@@ -1282,9 +1283,9 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
    <p>The <code>integrity</code> attribute represents <a data-link-type="dfn" href="#integrity-metadata" id="ref-for-integrity-metadata⑤">integrity metadata</a> for an element.
   The value of the attribute MUST be either the empty string, or at least one
   valid metadata as described by the following ABNF grammar:</p>
-<pre><dfn class="dfn-paneled" data-dfn-type="grammar" data-export id="grammardef-integrity-metadata">integrity-metadata</dfn> = *<a data-link-type="grammar" href="https://tools.ietf.org/html/rfc5234#appendix-B.1" id="ref-for-appendix-B.1②">WSP</a> <a data-link-type="grammar" href="#grammardef-hash-with-options" id="ref-for-grammardef-hash-with-options">hash-with-options</a> *(1*<a data-link-type="grammar" href="https://tools.ietf.org/html/rfc5234#appendix-B.1" id="ref-for-appendix-B.1③">WSP</a> <a data-link-type="grammar" href="#grammardef-hash-with-options" id="ref-for-grammardef-hash-with-options①">hash-with-options</a> ) *<a data-link-type="grammar" href="https://tools.ietf.org/html/rfc5234#appendix-B.1" id="ref-for-appendix-B.1④">WSP</a> / *<a data-link-type="grammar" href="https://tools.ietf.org/html/rfc5234#appendix-B.1" id="ref-for-appendix-B.1⑤">WSP</a>
+<pre><dfn class="dfn-paneled" data-dfn-type="grammar" data-export id="grammardef-integrity-metadata">integrity-metadata</dfn> = *<a data-link-type="grammar" data-refhint-key="fc7b3d90" href="https://tools.ietf.org/html/rfc5234#appendix-B.1" id="ref-for-appendix-B.1②">WSP</a> <a data-link-type="grammar" href="#grammardef-hash-with-options" id="ref-for-grammardef-hash-with-options">hash-with-options</a> *(1*<a data-link-type="grammar" data-refhint-key="fc7b3d90" href="https://tools.ietf.org/html/rfc5234#appendix-B.1" id="ref-for-appendix-B.1③">WSP</a> <a data-link-type="grammar" href="#grammardef-hash-with-options" id="ref-for-grammardef-hash-with-options①">hash-with-options</a> ) *<a data-link-type="grammar" data-refhint-key="fc7b3d90" href="https://tools.ietf.org/html/rfc5234#appendix-B.1" id="ref-for-appendix-B.1④">WSP</a> / *<a data-link-type="grammar" data-refhint-key="fc7b3d90" href="https://tools.ietf.org/html/rfc5234#appendix-B.1" id="ref-for-appendix-B.1⑤">WSP</a>
 <dfn class="dfn-paneled" data-dfn-type="grammar" data-export id="grammardef-hash-with-options">hash-with-options</dfn>  = <a data-link-type="grammar" href="#grammardef-hash-expression" id="ref-for-grammardef-hash-expression">hash-expression</a> *("?" <a data-link-type="grammar" href="#grammardef-option-expression" id="ref-for-grammardef-option-expression">option-expression</a>)
-<dfn class="dfn-paneled" data-dfn-type="grammar" data-export id="grammardef-option-expression">option-expression</dfn>  = *<a data-link-type="grammar" href="https://tools.ietf.org/html/rfc5234#appendix-B.1" id="ref-for-appendix-B.1⑥">VCHAR</a>
+<dfn class="dfn-paneled" data-dfn-type="grammar" data-export id="grammardef-option-expression">option-expression</dfn>  = *<a data-link-type="grammar" data-refhint-key="3fed24ef" href="https://tools.ietf.org/html/rfc5234#appendix-B.1" id="ref-for-appendix-B.1⑥">VCHAR</a>
 <dfn class="dfn-paneled" data-dfn-type="grammar" data-export id="grammardef-hash-expression">hash-expression</dfn>    = <a data-link-type="grammar" href="https://w3c.github.io/webappsec-csp/#grammardef-hash-algorithm" id="ref-for-grammardef-hash-algorithm①">hash-algorithm</a> "-" <a data-link-type="grammar" href="https://w3c.github.io/webappsec-csp/#grammardef-base64-value" id="ref-for-grammardef-base64-value①">base64-value</a>
 </pre>
    <p><code>option-expression</code>s are associated on a per <code>hash-expression</code> basis and are
@@ -1295,7 +1296,13 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
   no options have been defined. It is likely that a future version of the spec
   will define a more specific syntax for options, so it is defined here as broadly
   as possible.</p>
-   <h3 class="heading settled" data-level="3.6" id="handling-integrity-violations"><span class="secno">3.6. </span><span class="content">Handling integrity violations</span><a class="self-link" href="#handling-integrity-violations"></a></h3>
+   <h3 class="heading settled" data-level="3.6" id="the-integrity-link-processing-option"><span class="secno">3.6. </span><span class="content">The <code>integrity</code> link processing option</span><a class="self-link" href="#the-integrity-link-processing-option"></a></h3>
+   <p><a data-link-type="dfn" href="#integrity-metadata" id="ref-for-integrity-metadata⑥">Integrity metadata</a> can also be specified for `<code><a data-link-type="http-header">link</a></code>` HTTP response headers
+  as an <code>integrity</code> link parameter which MUST be specified using the same <a data-link-type="grammar" href="#grammardef-integrity-metadata" id="ref-for-grammardef-integrity-metadata"><code>integrity-metadata</code></a> grammar that applies to <code>integrity</code> attributes
+  on elements. For example:</p>
+<pre class="language-http highlight">Link: &lt;/style.css>; rel=preload; as=style;  crossorigin="anonymous"; integrity="sha256-[digest goes here]"
+</pre>
+   <h3 class="heading settled" data-level="3.7" id="handling-integrity-violations"><span class="secno">3.7. </span><span class="content">Handling integrity violations</span><a class="self-link" href="#handling-integrity-violations"></a></h3>
    <p>The user agent will refuse to render or execute responses that fail an integrity
   check, instead returning a network error as defined in Fetch <a data-link-type="biblio" href="#biblio-fetch" title="Fetch Standard">[Fetch]</a>.</p>
    <p class="note" role="note"><span class="marker">Note:</span> On a failed integrity check, an <code>error</code> event is fired. Developers
@@ -1306,7 +1313,7 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
    <p>Optimizing proxies and other intermediate servers which modify the
   responses MUST ensure that the digest associated
   with those responses stays in sync with the new content. One option
-  is to ensure that the <a data-link-type="dfn" href="#integrity-metadata" id="ref-for-integrity-metadata⑥">integrity metadata</a> associated with
+  is to ensure that the <a data-link-type="dfn" href="#integrity-metadata" id="ref-for-integrity-metadata⑦">integrity metadata</a> associated with
   resources is updated. Another
   would be simply to deliver only the canonical version of resources
   for which a page author has requested integrity verification.</p>
@@ -1316,7 +1323,7 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
    <h2 class="heading settled" data-level="5" id="security-considerations"><span class="secno">5. </span><span class="content">Security and Privacy Considerations</span><a class="self-link" href="#security-considerations"></a></h2>
    <p><em> This section is not normative.</em></p>
    <h3 class="heading settled" data-level="5.1" id="non-secure-contexts"><span class="secno">5.1. </span><span class="content">Non-secure contexts remain non-secure</span><a class="self-link" href="#non-secure-contexts"></a></h3>
-   <p><a data-link-type="dfn" href="#integrity-metadata" id="ref-for-integrity-metadata⑦">Integrity metadata</a> delivered by a context that is not a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#secure-context" id="ref-for-secure-context">Secure
+   <p><a data-link-type="dfn" href="#integrity-metadata" id="ref-for-integrity-metadata⑧">Integrity metadata</a> delivered by a context that is not a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#secure-context" id="ref-for-secure-context">Secure
   Context</a> such as an HTTP page, only protects an origin against a compromise
   of the server where an external resources is hosted. Network attackers can alter
   the digest in-flight (or remove it entirely, or do absolutely anything else to
@@ -1746,9 +1753,9 @@ let dfnPanelData = {
 "f937b7b6": {"dfnID":"f937b7b6","dfnText":"continue","external":true,"refSections":[{"refs":[{"id":"ref-for-iteration-continue"}],"title":"3.3.2. Parse metadata"},{"refs":[{"id":"ref-for-iteration-continue\u2460"},{"id":"ref-for-iteration-continue\u2461"}],"title":"3.3.3. Get the strongest metadata from set"}],"url":"https://infra.spec.whatwg.org/#iteration-continue"},
 "grammardef-hash-expression": {"dfnID":"grammardef-hash-expression","dfnText":"hash-expression","external":false,"refSections":[{"refs":[{"id":"ref-for-grammardef-hash-expression"}],"title":"3.5. The integrity attribute"}],"url":"#grammardef-hash-expression"},
 "grammardef-hash-with-options": {"dfnID":"grammardef-hash-with-options","dfnText":"hash-with-options","external":false,"refSections":[{"refs":[{"id":"ref-for-grammardef-hash-with-options"},{"id":"ref-for-grammardef-hash-with-options\u2460"}],"title":"3.5. The integrity attribute"}],"url":"#grammardef-hash-with-options"},
-"grammardef-integrity-metadata": {"dfnID":"grammardef-integrity-metadata","dfnText":"integrity-metadata","external":false,"refSections":[],"url":"#grammardef-integrity-metadata"},
+"grammardef-integrity-metadata": {"dfnID":"grammardef-integrity-metadata","dfnText":"integrity-metadata","external":false,"refSections":[{"refs":[{"id":"ref-for-grammardef-integrity-metadata"}],"title":"3.6. The integrity link processing option"}],"url":"#grammardef-integrity-metadata"},
 "grammardef-option-expression": {"dfnID":"grammardef-option-expression","dfnText":"option-expression","external":false,"refSections":[{"refs":[{"id":"ref-for-grammardef-option-expression"}],"title":"3.5. The integrity attribute"}],"url":"#grammardef-option-expression"},
-"integrity-metadata": {"dfnID":"integrity-metadata","dfnText":"integrity\n  metadata","external":false,"refSections":[{"refs":[{"id":"ref-for-integrity-metadata"},{"id":"ref-for-integrity-metadata\u2460"},{"id":"ref-for-integrity-metadata\u2461"}],"title":"1.2.1. Resource Integrity"},{"refs":[{"id":"ref-for-integrity-metadata\u2462"}],"title":"3.2. Cryptographic hash functions"},{"refs":[{"id":"ref-for-integrity-metadata\u2463"}],"title":"3.2.1. Agility"},{"refs":[{"id":"ref-for-integrity-metadata\u2464"}],"title":"3.5. The integrity attribute"},{"refs":[{"id":"ref-for-integrity-metadata\u2465"}],"title":"4. Proxies"},{"refs":[{"id":"ref-for-integrity-metadata\u2466"}],"title":"5.1. Non-secure contexts remain non-secure"}],"url":"#integrity-metadata"},
+"integrity-metadata": {"dfnID":"integrity-metadata","dfnText":"integrity\n  metadata","external":false,"refSections":[{"refs":[{"id":"ref-for-integrity-metadata"},{"id":"ref-for-integrity-metadata\u2460"},{"id":"ref-for-integrity-metadata\u2461"}],"title":"1.2.1. Resource Integrity"},{"refs":[{"id":"ref-for-integrity-metadata\u2462"}],"title":"3.2. Cryptographic hash functions"},{"refs":[{"id":"ref-for-integrity-metadata\u2463"}],"title":"3.2.1. Agility"},{"refs":[{"id":"ref-for-integrity-metadata\u2464"}],"title":"3.5. The integrity attribute"},{"refs":[{"id":"ref-for-integrity-metadata\u2465"}],"title":"3.6. The integrity link processing option"},{"refs":[{"id":"ref-for-integrity-metadata\u2466"}],"title":"4. Proxies"},{"refs":[{"id":"ref-for-integrity-metadata\u2467"}],"title":"5.1. Non-secure contexts remain non-secure"}],"url":"#integrity-metadata"},
 "valid-sri-hash-algorithm-token": {"dfnID":"valid-sri-hash-algorithm-token","dfnText":"valid SRI hash algorithm token","external":false,"refSections":[{"refs":[{"id":"ref-for-valid-sri-hash-algorithm-token"}],"title":"3.3.2. Parse metadata"},{"refs":[{"id":"ref-for-valid-sri-hash-algorithm-token\u2460"}],"title":"3.3.3. Get the strongest metadata from set"}],"url":"#valid-sri-hash-algorithm-token"},
 "valid-sri-hash-algorithm-token-set": {"dfnID":"valid-sri-hash-algorithm-token-set","dfnText":"valid SRI hash algorithm token set","external":false,"refSections":[{"refs":[{"id":"ref-for-valid-sri-hash-algorithm-token-set"}],"title":"2. Key Concepts and Terminology"},{"refs":[{"id":"ref-for-valid-sri-hash-algorithm-token-set\u2460"}],"title":"3.2.2. Priority"},{"refs":[{"id":"ref-for-valid-sri-hash-algorithm-token-set\u2461"},{"id":"ref-for-valid-sri-hash-algorithm-token-set\u2462"}],"title":"3.3.3. Get the strongest metadata from set"}],"url":"#valid-sri-hash-algorithm-token-set"},
 };
@@ -2143,10 +2150,16 @@ let refsData = {
 "#digest": {"displayText":"digest","export":true,"for_":[],"level":"","normative":true,"shortname":"sri","spec":"sri","status":"local","text":"digest","type":"dfn","url":"#digest"},
 "#grammardef-hash-expression": {"displayText":"hash-expression","export":true,"for_":[],"level":"","normative":true,"shortname":"sri","spec":"sri","status":"local","text":"hash-expression","type":"grammar","url":"#grammardef-hash-expression"},
 "#grammardef-hash-with-options": {"displayText":"hash-with-options","export":true,"for_":[],"level":"","normative":true,"shortname":"sri","spec":"sri","status":"local","text":"hash-with-options","type":"grammar","url":"#grammardef-hash-with-options"},
+"#grammardef-integrity-metadata": {"displayText":"integrity-metadata","export":true,"for_":[],"level":"","normative":true,"shortname":"sri","spec":"sri","status":"local","text":"integrity-metadata","type":"grammar","url":"#grammardef-integrity-metadata"},
 "#grammardef-option-expression": {"displayText":"option-expression","export":true,"for_":[],"level":"","normative":true,"shortname":"sri","spec":"sri","status":"local","text":"option-expression","type":"grammar","url":"#grammardef-option-expression"},
 "#integrity-metadata": {"displayText":"integrity metadata","export":true,"for_":[],"level":"","normative":true,"shortname":"sri","spec":"sri","status":"local","text":"integrity metadata","type":"dfn","url":"#integrity-metadata"},
 "#valid-sri-hash-algorithm-token": {"displayText":"valid sri hash algorithm token","export":true,"for_":[],"level":"","normative":true,"shortname":"sri","spec":"sri","status":"local","text":"valid sri hash algorithm token","type":"dfn","url":"#valid-sri-hash-algorithm-token"},
 "#valid-sri-hash-algorithm-token-set": {"displayText":"valid sri hash algorithm token set","export":true,"for_":[],"level":"","normative":true,"shortname":"sri","spec":"sri","status":"local","text":"valid sri hash algorithm token set","type":"dfn","url":"#valid-sri-hash-algorithm-token-set"},
+"14c46ca8_https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#": {"displayText":"SHA-2","export":true,"for_":[],"level":"","normative":true,"shortname":"sha2","spec":"sha2","status":"anchor-block","text":"sha-2","type":"dfn","url":"https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#"},
+"37de769a_https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#": {"displayText":"SHA-384","export":true,"for_":[],"level":"","normative":true,"shortname":"sha2","spec":"sha2","status":"anchor-block","text":"sha-384","type":"dfn","url":"https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#"},
+"3fed24ef_https://tools.ietf.org/html/rfc5234#appendix-B.1": {"displayText":"VCHAR","export":true,"for_":[],"level":"","normative":true,"shortname":"abnf","spec":"abnf","status":"anchor-block","text":"vchar","type":"grammar","url":"https://tools.ietf.org/html/rfc5234#appendix-B.1"},
+"a801f883_https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#": {"displayText":"SHA-512","export":true,"for_":[],"level":"","normative":true,"shortname":"sha2","spec":"sha2","status":"anchor-block","text":"sha-512","type":"dfn","url":"https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#"},
+"fc7b3d90_https://tools.ietf.org/html/rfc5234#appendix-B.1": {"displayText":"WSP","export":true,"for_":[],"level":"","normative":true,"shortname":"abnf","spec":"abnf","status":"anchor-block","text":"wsp","type":"dfn","url":"https://tools.ietf.org/html/rfc5234#appendix-B.1"},
 "https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#": {"displayText":"SHA-256","export":true,"for_":[],"level":"","normative":true,"shortname":"sha2","spec":"sha2","status":"anchor-block","text":"sha-256","type":"dfn","url":"https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#"},
 "https://fetch.spec.whatwg.org/#concept-request": {"displayText":"request","export":true,"for_":[],"level":"1","normative":true,"shortname":"fetch","spec":"fetch","status":"current","text":"request","type":"dfn","url":"https://fetch.spec.whatwg.org/#concept-request"},
 "https://fetch.spec.whatwg.org/#cors-protocol": {"displayText":"CORS protocol","export":true,"for_":[],"level":"1","normative":true,"shortname":"fetch","spec":"fetch","status":"current","text":"cors protocol","type":"dfn","url":"https://fetch.spec.whatwg.org/#cors-protocol"},
@@ -2247,7 +2260,12 @@ function hideRefHint(refHint) {
 function showRefHint(link) {
     if(link.classList.contains("dfn-link")) return;
     const url = link.getAttribute("href");
-    const ref = refsData[url];
+    const refHintKey = link.getAttribute("data-refhint-key");
+    let key = url;
+    if(refHintKey) {
+        key = refHintKey + "_" + url;
+    }
+    const ref = refsData[key];
     if(!ref) return;
 
     hideAllRefHints(); // Only display one at this time.

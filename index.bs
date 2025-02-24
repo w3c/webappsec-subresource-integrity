@@ -460,6 +460,18 @@ spec:csp3; type:grammar; text:base64-value
   will define a more specific syntax for options, so it is defined here as broadly
   as possible.
 
+  ## The `integrity` link processing option ## {#the-integrity-link-processing-option}
+
+  <a>Integrity metadata</a> can also be specified for [:link:] HTTP response headers
+  as an `integrity` link parameter which MUST be specified using the same
+  <a grammar>`integrity-metadata`</a> grammar that applies to `integrity` attributes
+  on elements. For example:
+
+  ```http
+  Link: </style.css>; rel=preload; as=style;  crossorigin="anonymous"; integrity="sha256-[digest goes here]"
+  ```
+  
+
   ## Handling integrity violations ## {#handling-integrity-violations}
 
   The user agent will refuse to render or execute responses that fail an integrity

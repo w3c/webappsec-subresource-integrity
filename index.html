@@ -5,9 +5,9 @@
   <title>Subresource Integrity</title>
   <meta content="ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
-  <meta content="Bikeshed version 60c422380, updated Thu Feb 20 19:11:22 2025 -0800" name="generator">
+  <meta content="Bikeshed version b25686b9f, updated Fri Mar 14 14:15:20 2025 -0700" name="generator">
   <link href="http://www.w3.org/TR/SRI/" rel="canonical">
-  <meta content="ac31b01f690d3dc79e74282c8a5d85fdcc95f42f" name="revision">
+  <meta content="66e3d4180b0d460de4c6002c2ee4264b4d05d3ab" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>/* Boilerplate: style-autolinks */
@@ -827,7 +827,7 @@ dd:not(:last-child) > .wpt-tests-block:not([open]):last-child {
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Subresource Integrity</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2025-02-24">24 February 2025</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2025-03-20">20 March 2025</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -841,9 +841,10 @@ dd:not(:last-child) > .wpt-tests-block:not([open]):last-child {
       <dt>Feedback:
       <dd><span><a href="mailto:public-webappsec@w3.org?subject=%5BSRI%5D%20YOUR%20TOPIC%20HERE">public-webappsec@w3.org</a> with subject line “<kbd>[SRI] <i data-lt>… message topic …</i></kbd>” (<a href="https://lists.w3.org/Archives/Public/public-webappsec/" rel="discussion">archives</a>)</span>
       <dd><a href="https://github.com/w3c/webappsec-subresource-integrity/issues/">GitHub</a>
-      <dt class="editor">Editors:
-      <dd class="editor p-author h-card vcard"><a class="p-name fn u-url url" href="http://devd.me">Devdatta Akhawe</a> (<span class="p-org org">Dropbox Inc.</span>) <a class="u-email email" href="mailto:dev.akhawe@gmail.com">dev.akhawe@gmail.com</a>
+      <dt class="editor">Editor:
       <dd class="editor p-author h-card vcard" data-editor-id="68466"><a class="p-name fn u-url url" href="https://frederik-braun.com">Frederik Braun</a> (<span class="p-org org">Mozilla</span>) <a class="u-email email" href="mailto:fbraun@mozilla.com">fbraun@mozilla.com</a>
+      <dt class="editor">Former Editors:
+      <dd class="editor p-author h-card vcard"><a class="p-name fn u-url url" href="http://devd.me">Devdatta Akhawe</a> (<span class="p-org org">Dropbox Inc.</span>) <a class="u-email email" href="mailto:dev.akhawe@gmail.com">dev.akhawe@gmail.com</a>
       <dd class="editor p-author h-card vcard"><a class="p-name fn u-url url" href="https://fmarier.org">François Marier</a> (<span class="p-org org">Mozilla</span>) <a class="u-email email" href="mailto:francois@mozilla.com">francois@mozilla.com</a>
       <dd class="editor p-author h-card vcard"><a class="p-name fn u-url url" href="https://joelweinberger.us">Joel Weinberger</a> (<span class="p-org org">Google Inc.</span>) <a class="u-email email" href="mailto:jww@google.com">jww@google.com</a>
       <dt>Test Suite:
@@ -2146,15 +2147,15 @@ function genLinkingSyntaxes(dfn) {
 "use strict";
 {
 let refsData = {
-"#base64-encoding": {"displayText":"base64 encoding","export":true,"for_":[],"level":"","normative":true,"shortname":"sri","spec":"sri","status":"local","text":"base64 encoding","type":"dfn","url":"#base64-encoding"},
-"#digest": {"displayText":"digest","export":true,"for_":[],"level":"","normative":true,"shortname":"sri","spec":"sri","status":"local","text":"digest","type":"dfn","url":"#digest"},
-"#grammardef-hash-expression": {"displayText":"hash-expression","export":true,"for_":[],"level":"","normative":true,"shortname":"sri","spec":"sri","status":"local","text":"hash-expression","type":"grammar","url":"#grammardef-hash-expression"},
-"#grammardef-hash-with-options": {"displayText":"hash-with-options","export":true,"for_":[],"level":"","normative":true,"shortname":"sri","spec":"sri","status":"local","text":"hash-with-options","type":"grammar","url":"#grammardef-hash-with-options"},
-"#grammardef-integrity-metadata": {"displayText":"integrity-metadata","export":true,"for_":[],"level":"","normative":true,"shortname":"sri","spec":"sri","status":"local","text":"integrity-metadata","type":"grammar","url":"#grammardef-integrity-metadata"},
-"#grammardef-option-expression": {"displayText":"option-expression","export":true,"for_":[],"level":"","normative":true,"shortname":"sri","spec":"sri","status":"local","text":"option-expression","type":"grammar","url":"#grammardef-option-expression"},
-"#integrity-metadata": {"displayText":"integrity metadata","export":true,"for_":[],"level":"","normative":true,"shortname":"sri","spec":"sri","status":"local","text":"integrity metadata","type":"dfn","url":"#integrity-metadata"},
-"#valid-sri-hash-algorithm-token": {"displayText":"valid sri hash algorithm token","export":true,"for_":[],"level":"","normative":true,"shortname":"sri","spec":"sri","status":"local","text":"valid sri hash algorithm token","type":"dfn","url":"#valid-sri-hash-algorithm-token"},
-"#valid-sri-hash-algorithm-token-set": {"displayText":"valid sri hash algorithm token set","export":true,"for_":[],"level":"","normative":true,"shortname":"sri","spec":"sri","status":"local","text":"valid sri hash algorithm token set","type":"dfn","url":"#valid-sri-hash-algorithm-token-set"},
+"#base64-encoding": {"displayText":"base64 encoding","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"base64 encoding","type":"dfn","url":"#base64-encoding"},
+"#digest": {"displayText":"digest","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"digest","type":"dfn","url":"#digest"},
+"#grammardef-hash-expression": {"displayText":"hash-expression","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"hash-expression","type":"grammar","url":"#grammardef-hash-expression"},
+"#grammardef-hash-with-options": {"displayText":"hash-with-options","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"hash-with-options","type":"grammar","url":"#grammardef-hash-with-options"},
+"#grammardef-integrity-metadata": {"displayText":"integrity-metadata","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"integrity-metadata","type":"grammar","url":"#grammardef-integrity-metadata"},
+"#grammardef-option-expression": {"displayText":"option-expression","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"option-expression","type":"grammar","url":"#grammardef-option-expression"},
+"#integrity-metadata": {"displayText":"integrity metadata","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"integrity metadata","type":"dfn","url":"#integrity-metadata"},
+"#valid-sri-hash-algorithm-token": {"displayText":"valid sri hash algorithm token","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"valid sri hash algorithm token","type":"dfn","url":"#valid-sri-hash-algorithm-token"},
+"#valid-sri-hash-algorithm-token-set": {"displayText":"valid sri hash algorithm token set","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"valid sri hash algorithm token set","type":"dfn","url":"#valid-sri-hash-algorithm-token-set"},
 "14c46ca8_https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#": {"displayText":"SHA-2","export":true,"for_":[],"level":"","normative":true,"shortname":"sha2","spec":"sha2","status":"anchor-block","text":"sha-2","type":"dfn","url":"https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#"},
 "37de769a_https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#": {"displayText":"SHA-384","export":true,"for_":[],"level":"","normative":true,"shortname":"sha2","spec":"sha2","status":"anchor-block","text":"sha-384","type":"dfn","url":"https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#"},
 "3fed24ef_https://tools.ietf.org/html/rfc5234#appendix-B.1": {"displayText":"VCHAR","export":true,"for_":[],"level":"","normative":true,"shortname":"abnf","spec":"abnf","status":"anchor-block","text":"vchar","type":"grammar","url":"https://tools.ietf.org/html/rfc5234#appendix-B.1"},

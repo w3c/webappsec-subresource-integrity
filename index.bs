@@ -4,11 +4,11 @@ Status: ED
 ED: https://w3c.github.io/webappsec-subresource-integrity/
 TR: http://www.w3.org/TR/SRI/
 Shortname: SRI
-Level: none
-Editor: Devdatta Akhawe, Dropbox Inc., http://devd.me, dev.akhawe@gmail.com
+Level: 2
 Editor: Frederik Braun 68466, Mozilla, https://frederik-braun.com, fbraun@mozilla.com
-Editor: François Marier, Mozilla, https://fmarier.org, francois@mozilla.com
-Editor: Joel Weinberger, Google Inc., https://joelweinberger.us, jww@google.com
+Former Editor: Devdatta Akhawe, Dropbox Inc., http://devd.me, dev.akhawe@gmail.com
+Former Editor: François Marier, Mozilla, https://fmarier.org, francois@mozilla.com
+Former Editor: Joel Weinberger, Google Inc., https://joelweinberger.us, jww@google.com
 Abstract:
   This specification defines a mechanism by which user agents may verify that a
   fetched resource has been delivered without unexpected manipulation.

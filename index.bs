@@ -341,14 +341,14 @@ spec:csp3; type:grammar; text:base64-value
 
   ## Request verification algorithms ## {#request-verification-algorithms}
 
-  ### Opting-in  ### {#opt-in-require-sri-for}
+  ### Opting-in  ### {#opt-in-integrity-required}
 
   Authors may opt a {{Document}} to require SRI metadata be present for 
-  some resource types via a <dfn export>require-sri-for</dfn> <a>Content
+  some resource types via a <dfn export>integrity-required</dfn> <a>Content
   Security Policy</a> directive defined by the following ABNF grammar:
 
   <pre dfn-type="grammar" link-type="grammar">
-      directive-name  = "require-sri-for"
+      directive-name  = "integrity-required"
       directive-value = <a grammar>token</a> *( <a>OWS</a> <a>token</a> )
   </pre>
 
@@ -357,7 +357,7 @@ spec:csp3; type:grammar; text:base64-value
     * `script` requires SRI for scripts
 
 
-  ### Parsing `require-sri-for` ### {#parse-require-sri-for}
+  ### Parsing `integrity-required` ### {#parse-integrity-required}
 
   Given a string (|token list|), this algorithm returns a list of resource
   types which will require integrity checks:
@@ -366,7 +366,7 @@ spec:csp3; type:grammar; text:base64-value
 
   2.  For each |token| in the result of <a lt="split a string on ascii whitespace">
       splitting |token list| on spaces</a>, if token matches the grammar
-      for <a>require-sri-for</a> and is a <a>ASCII case-insensitive match</a>
+      for <a>integrity-required</a> and is a <a>ASCII case-insensitive match</a>
       for any of the <a>known token</a>s, add |token| to |protected resource types|.
       Otherwise, ignore the token.
 
@@ -382,7 +382,7 @@ spec:csp3; type:grammar; text:base64-value
       return "Allowed".
 
   2.  Let |protected resource types| be the result of executing
-      [[#parse-require-sri-for]] on this <a>directive</a>'s <a for="directive">value</a>.
+      [[#parse-integrity-required]] on this <a>directive</a>'s <a for="directive">value</a>.
 
   3.  Let |protected| be a <a>boolean</a>, initially set to false.
 
@@ -390,7 +390,7 @@ spec:csp3; type:grammar; text:base64-value
       if |request|'s <a for=request>destination</a> is an <a>ASCII case-insensitive match</a> for |token|,
       set |protected| to true.
 
-  Note: Matching tokens to the request's destination means that worker and worklets will not be covered by `require-sri-for script`,
+  Note: Matching tokens to the request's destination means that worker and worklets will not be covered by `integrity-required script`,
         and will not require integrity checks when it's defined.
         Once we have a way to define integrity metadata for workers or worklets
         (e.g. [HTML#10858](https://github.com/whatwg/html/pull/10858)), we would be able to add a separate token for them.
@@ -418,7 +418,7 @@ spec:csp3; type:grammar; text:base64-value
     A page with the following Content Security Policy:
 
     <pre>
-      Content-Security-Policy: <a>require-sri-for</a> script
+      Content-Security-Policy: <a>integrity-required</a> script
     </pre>
 
     is equivalent to Content Security Policy delivered through `<meta>`
@@ -426,7 +426,7 @@ spec:csp3; type:grammar; text:base64-value
 
     <pre>
       &lt;meta http-equiv="Content-Security-Policy"
-            content="<a>require-sri-for</a> script"&gt;
+            content="<a>integrity-required</a> script"&gt;
     </pre>
 
 
@@ -667,8 +667,8 @@ spec:csp3; type:grammar; text:base64-value
     The Content Security Policy Directive registry should be updated with the
     following directives and references [[!RFC7762]]:
 
-    :   <a>`require-sri-for`</a>
-    ::  This document (see [[#opt-in-require-sri-for]])
+    :   <a>`integrity-required`</a>
+    ::  This document (see [[#opt-in-integrity-required]])
   </section>
 
   <!-- ####################################################################### -->

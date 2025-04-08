@@ -44,9 +44,17 @@ spec: SHA2; urlPrefix: https://csrc.nist.gov/publications/fips/fips180-4/fips-18
     text: SHA-256; url: #
     text: SHA-384; url: #
     text: SHA-512; url: #
+
 spec: RFC8288; urlPrefix: https://tools.ietf.org/html/rfc8288
   type: http-header
     text: link
+
+spec RFC9651; urlPrefix: https://tools.ietf.org/html/rfc9651
+  type: dfn
+    text: Dictionary; url: name-dictionaries
+    text: inner list; url: name-inner-lists
+    text: token; url: name-tokens
+
 </pre>
 <pre class="link-defaults">
 spec:csp3; type:grammar; text:base64-value
@@ -485,6 +493,15 @@ spec:csp3; type:grammar; text:base64-value
   failed resource with a different one.
 
   <!-- ####################################################################### -->
+  
+  ## Integrity-Policy ## {#integrity-policy}
+  The `Integrity-Policy` HTTP header enables a document to enforce a policy regarding
+  the integrity metadata requirements on all the subresources it loads of certain
+  destinations.
+
+  It is a <a>Dictionary</a> [[RFC9651]], with every member-value being an
+  <a>inner list</a> of <a>tokens</a>.
+  
 
   # Proxies # {#proxies}
 

@@ -19,7 +19,7 @@ Version History: https://github.com/w3c/webappsec-subresource-integrity/commits/
 WPT Path Prefix: /subresource-integrity/
 WPT Display: closed
 
-Markup Shorthands: css off, markdown on
+Markup Shorthands: css off, markdown on, http on
 Ignored Vars: src, resource, val
 </pre>
 
@@ -44,6 +44,9 @@ spec: SHA2; urlPrefix: https://csrc.nist.gov/publications/fips/fips180-4/fips-18
     text: SHA-256; url: #
     text: SHA-384; url: #
     text: SHA-512; url: #
+spec: RFC8288; urlPrefix: https://tools.ietf.org/html/rfc8288
+  type: http-header
+    text: link
 </pre>
 <pre class="link-defaults">
 spec:csp3; type:grammar; text:base64-value
@@ -202,8 +205,6 @@ spec:csp3; type:grammar; text:base64-value
 
   Content Security Policy defines the <a grammar>`base64-value`</a> and
   <a grammar>`hash-algorithm`</a> rules. [[!CSP]]
-
-  </section>
 
   <!-- ####################################################################### -->
 

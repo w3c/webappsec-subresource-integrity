@@ -7,7 +7,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <meta content="Bikeshed version b25686b9f, updated Fri Mar 14 14:15:20 2025 -0700" name="generator">
   <link href="http://www.w3.org/TR/SRI/" rel="canonical">
-  <meta content="66e3d4180b0d460de4c6002c2ee4264b4d05d3ab" name="revision">
+  <meta content="68399a2ca4190c4024938fcd4e780482488c4bb7" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>/* Boilerplate: style-autolinks */
@@ -827,7 +827,7 @@ dd:not(:last-child) > .wpt-tests-block:not([open]):last-child {
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Subresource Integrity</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2025-03-20">20 March 2025</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2025-04-09">9 April 2025</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -1298,7 +1298,7 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
   will define a more specific syntax for options, so it is defined here as broadly
   as possible.</p>
    <h3 class="heading settled" data-level="3.6" id="the-integrity-link-processing-option"><span class="secno">3.6. </span><span class="content">The <code>integrity</code> link processing option</span><a class="self-link" href="#the-integrity-link-processing-option"></a></h3>
-   <p><a data-link-type="dfn" href="#integrity-metadata" id="ref-for-integrity-metadata⑥">Integrity metadata</a> can also be specified for `<code><a data-link-type="http-header">link</a></code>` HTTP response headers
+   <p><a data-link-type="dfn" href="#integrity-metadata" id="ref-for-integrity-metadata⑥">Integrity metadata</a> can also be specified for `<code><a data-link-type="http-header" href="https://tools.ietf.org/html/rfc8288#link" id="ref-for-link">link</a></code>` HTTP response headers
   as an <code>integrity</code> link parameter which MUST be specified using the same <a data-link-type="grammar" href="#grammardef-integrity-metadata" id="ref-for-grammardef-integrity-metadata"><code>integrity-metadata</code></a> grammar that applies to <code>integrity</code> attributes
   on elements. For example:</p>
 <pre class="language-http highlight">Link: &lt;/style.css>; rel=preload; as=style;  crossorigin="anonymous"; integrity="sha256-[digest goes here]"
@@ -1482,6 +1482,11 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
      <li><span class="dfn-paneled" id="5f693367">no-transform</span>
     </ul>
    <li>
+    <a data-link-type="biblio">[RFC8288]</a> defines the following terms:
+    <ul>
+     <li><span class="dfn-paneled" id="d1364af2">link</span>
+    </ul>
+   <li>
     <a data-link-type="biblio">[SHA2]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="104bce7f">SHA-2</span>
@@ -1511,6 +1516,8 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
    <dd>S. Josefsson. <a href="https://www.rfc-editor.org/rfc/rfc4648"><cite>The Base16, Base32, and Base64 Data Encodings</cite></a>. October 2006. Proposed Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc4648">https://www.rfc-editor.org/rfc/rfc4648</a>
    <dt id="biblio-rfc7234">[RFC7234]
    <dd>R. Fielding, Ed.; M. Nottingham, Ed.; J. Reschke, Ed.. <a href="https://httpwg.org/specs/rfc7234.html"><cite>Hypertext Transfer Protocol (HTTP/1.1): Caching</cite></a>. June 2014. Proposed Standard. URL: <a href="https://httpwg.org/specs/rfc7234.html">https://httpwg.org/specs/rfc7234.html</a>
+   <dt id="biblio-rfc8288">[RFC8288]
+   <dd>M. Nottingham. <a href="https://httpwg.org/specs/rfc8288.html"><cite>Web Linking</cite></a>. October 2017. Proposed Standard. URL: <a href="https://httpwg.org/specs/rfc8288.html">https://httpwg.org/specs/rfc8288.html</a>
    <dt id="biblio-sha2">[SHA2]
    <dd><a href="http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf"><cite>FIPS PUB 180-4, Secure Hash Standard</cite></a>. URL: <a href="http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf</a>
   </dl>
@@ -1748,6 +1755,7 @@ let dfnPanelData = {
 "bbbbe32e": {"dfnID":"bbbbe32e","dfnText":"SHA-384","external":true,"refSections":[{"refs":[{"id":"ref-for-something"},{"id":"ref-for-something\u2460"},{"id":"ref-for-something\u2461"},{"id":"ref-for-something\u2462"},{"id":"ref-for-something\u2463"},{"id":"ref-for-something\u2464"},{"id":"ref-for-something\u2465"}],"title":"2. Key Concepts and Terminology"},{"refs":[{"id":"ref-for-something\u2466"}],"title":"3.1. Integrity metadata"},{"refs":[{"id":"ref-for-something\u2467"},{"id":"ref-for-something\u2468"},{"id":"ref-for-something\u2460\u24ea"}],"title":"3.2. Cryptographic hash functions"},{"refs":[{"id":"ref-for-something\u2460\u2460"},{"id":"ref-for-something\u2460\u2461"},{"id":"ref-for-something\u2460\u2462"}],"title":"3.2.2. Priority"},{"refs":[{"id":"ref-for-something\u2460\u2463"},{"id":"ref-for-something\u2460\u2464"}],"title":"3.3.4. Do bytes match metadataList?"}],"url":"https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#"},
 "bed34579": {"dfnID":"bed34579","dfnText":"WSP","external":true,"refSections":[{"refs":[{"id":"58fa9b5f0"},{"id":"ref-for-appendix-B.1"},{"id":"ref-for-appendix-B.1\u2460"}],"title":"2.1. Grammatical Concepts"},{"refs":[{"id":"ref-for-appendix-B.1\u2461"},{"id":"ref-for-appendix-B.1\u2462"},{"id":"ref-for-appendix-B.1\u2463"},{"id":"ref-for-appendix-B.1\u2464"},{"id":"ref-for-appendix-B.1\u2465"}],"title":"3.5. The integrity attribute"}],"url":"https://tools.ietf.org/html/rfc5234#appendix-B.1"},
 "c6544229": {"dfnID":"c6544229","dfnText":"VCHAR","external":true,"refSections":[{"refs":[{"id":"58fa9b5f0"},{"id":"ref-for-appendix-B.1"},{"id":"ref-for-appendix-B.1\u2460"}],"title":"2.1. Grammatical Concepts"},{"refs":[{"id":"ref-for-appendix-B.1\u2461"},{"id":"ref-for-appendix-B.1\u2462"},{"id":"ref-for-appendix-B.1\u2463"},{"id":"ref-for-appendix-B.1\u2464"},{"id":"ref-for-appendix-B.1\u2465"}],"title":"3.5. The integrity attribute"}],"url":"https://tools.ietf.org/html/rfc5234#appendix-B.1"},
+"d1364af2": {"dfnID":"d1364af2","dfnText":"link","external":true,"refSections":[{"refs":[{"id":"ref-for-link"}],"title":"3.6. The integrity link processing option"}],"url":"https://tools.ietf.org/html/rfc8288#link"},
 "digest": {"dfnID":"digest","dfnText":"digest","external":false,"refSections":[{"refs":[{"id":"ref-for-digest"}],"title":"3.1. Integrity metadata"}],"url":"#digest"},
 "does-response-match-metadatalist": {"dfnID":"does-response-match-metadatalist","dfnText":"3.3.4. Do bytes match metadataList?","external":false,"refSections":[{"refs":[{"id":"ref-for-does-response-match-metadatalist"}],"title":"3.2.1. Agility"},{"refs":[{"id":"ref-for-does-response-match-metadatalist"}],"title":"3.3.4. Do bytes match metadataList?"}],"url":"#does-response-match-metadatalist"},
 "e5fc5b88": {"dfnID":"e5fc5b88","dfnText":"strictly split","external":true,"refSections":[{"refs":[{"id":"ref-for-strictly-split"},{"id":"ref-for-strictly-split\u2460"},{"id":"ref-for-strictly-split\u2461"}],"title":"3.3.2. Parse metadata"}],"url":"https://infra.spec.whatwg.org/#strictly-split"},
@@ -2178,6 +2186,7 @@ let refsData = {
 "https://tools.ietf.org/html/rfc5234#appendix-B.1": {"displayText":"VCHAR","export":true,"for_":[],"level":"","normative":true,"shortname":"abnf","spec":"abnf","status":"anchor-block","text":"vchar","type":"dfn","url":"https://tools.ietf.org/html/rfc5234#appendix-B.1"},
 "https://tools.ietf.org/html/rfc7234#section-5.2": {"displayText":"Cache-Control","export":true,"for_":[],"level":"","normative":true,"shortname":"rfc7234","spec":"rfc7234","status":"anchor-block","text":"cache-control","type":"dfn","url":"https://tools.ietf.org/html/rfc7234#section-5.2"},
 "https://tools.ietf.org/html/rfc7234#section-5.2.1.6": {"displayText":"no-transform","export":true,"for_":[],"level":"","normative":true,"shortname":"rfc7234","spec":"rfc7234","status":"anchor-block","text":"no-transform","type":"dfn","url":"https://tools.ietf.org/html/rfc7234#section-5.2.1.6"},
+"https://tools.ietf.org/html/rfc8288#link": {"displayText":"link","export":true,"for_":[],"level":"","normative":true,"shortname":"rfc8288","spec":"rfc8288","status":"anchor-block","text":"link","type":"http-header","url":"https://tools.ietf.org/html/rfc8288#link"},
 "https://w3c.github.io/webappsec-csp/#grammardef-base64-value": {"displayText":"base64-value","export":true,"for_":[],"level":"3","normative":true,"shortname":"csp","spec":"csp3","status":"current","text":"base64-value","type":"grammar","url":"https://w3c.github.io/webappsec-csp/#grammardef-base64-value"},
 "https://w3c.github.io/webappsec-csp/#grammardef-hash-algorithm": {"displayText":"hash-algorithm","export":true,"for_":[],"level":"3","normative":true,"shortname":"csp","spec":"csp3","status":"current","text":"hash-algorithm","type":"grammar","url":"https://w3c.github.io/webappsec-csp/#grammardef-hash-algorithm"},
 };

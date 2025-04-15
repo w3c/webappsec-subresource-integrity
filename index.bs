@@ -32,6 +32,22 @@ spec: ABNF; urlPrefix: https://tools.ietf.org/html/rfc5234
     text: VCHAR; url: appendix-B.1
     text: WSP; url: appendix-B.1
 
+spec: INFRA; urlPrefix: https://infra.spec.whatwg.org
+  type: dfn
+    text: list; url: list
+
+spec: HTML; urlPrefix: https://html.spec.whatwg.org/C
+  type: dfn
+    text: policy container; url: policy-container
+
+spec: FETCH; urlPrefix: https://fetch.spec.whatwg.org/
+  type: dfn
+    text: request; url: concept-request 
+    text: response; url: concept-response 
+    text: header list; url: concept-response-header-list
+    text: header; url: concept-header
+    text: main fetch; url: main-fetch
+
 spec: RFC7234; urlPrefix: https://tools.ietf.org/html/rfc7234
   type: dfn
     text: Cache-Control; url: section-5.2
@@ -54,6 +70,7 @@ spec: RFC9651; urlPrefix: https://tools.ietf.org/html/rfc9651
     text: Dictionary; url: name-dictionaries
     text: inner list; url: name-inner-lists
     text: token; url: name-tokens
+    text: parsing a dictionary; url: name-parsing-a-dictionary
 
 </pre>
 <pre class="link-defaults">
@@ -494,7 +511,7 @@ spec:csp3; type:grammar; text:base64-value
 
   <!-- ####################################################################### -->
   
-  ## Integrity-Policy ## {#integrity-policy}
+  ## Integrity-Policy ## {#integrity-policy-section}
   The `Integrity-Policy` and `Integrity-Policy-Report-Only` HTTP headers enable a document to
   enforce a policy regarding the integrity metadata requirements on all the subresources it
   loads of certain <a>destinations</a>.
@@ -508,39 +525,39 @@ spec:csp3; type:grammar; text:base64-value
     * <dfn>destination</dfn>, a string which is the empty string or "script". Initially the empty string.
     * <dfn>endpoints</dfn>, a <a>list</a> of strings, initially empty.
 
-  When <dfn>processing an integrity policy</dfn>, with |value|, do the following:
+  When <dfn>processing an integrity policy</dfn>, with |input|, do the following:
   1) Let |integrity policy| be a new <a>integrity policy struct</a>.
-  1) Let <var>dictionary</var> be the result of <a>parsing a dictionary</a> with |input|.
-  1) If dictionary['enforcement'] exists:
-    1) If its value is "block", set |integrity policy|'s |enforcement| to "block".
-    1) Otherwise, set |integrity policy|'s |enforcement| to the empty string.
-  1) If dictionary['sources'] exists:
-    1) If its value <a>contains</a> "inline", set |integrity policy|'s |source| to "inline".
-    1) Otherwise, set |integrity policy|'s |source| to the empty string.
-  1) If dictionary['destinations'] exists:
-    1) If its value <a>contains</a> "script", set |integrity policy|'s |destination| to "script".
-  1) if dictionary['endpoints'] exists:
-    1) Set |integrity policy|'s |endpoints| to dictionary['endpoints'].
+  1) Let |dictionary| be the result of <a>parsing a dictionary</a> with |input|.
+  1) If |dictionary|['enforcement'] exists:
+    1) If its value is "block", set |integrity policy|'s <a>enforcement</a> to "block".
+    1) Otherwise, set |integrity policy|'s <a>enforcement</a> to the empty string.
+  1) If |dictionary|['sources'] exists:
+    1) If its value <a>contains</a> "inline", set |integrity policy|'s <a>source</a> to "inline".
+    1) Otherwise, set |integrity policy|'s <a>source</a> to the empty string.
+  1) If |dictionary|['destinations'] exists:
+    1) If its value <a>contains</a> "script", set |integrity policy|'s <a>destination</a> to "script".
+  1) if |dictionary|['endpoints'] exists:
+    1) Set |integrity policy|'s <a>endpoints</a> to |dictionary|['endpoints'].
   1) return |integrity policy|
   
-  Each <a>Document</a> has an <dfn>integrity policy</dfn>, an <a>integrity policy struct</a>.
-  Each <a>Document</a> has an <dfn>integrity policy report only</dfn>, an <a>integrity policy struct</a>.
-
-  ### Parse Integrity-Policy headers
-  Given a <a>response<a> |response| and a <a>Document</a> |document|, do the following:
+  ### Parse Integrity-Policy headers ### {#parse-integrity-policy-headers-section}
+  To <dfn>parse Integrity-Policy headers</dfn>, given a <a>Response</a> |response|
+  and a <a>policy container</a> |container|, do the following:
   1) Let |headers| be |response|'s <a>header list</a>.
   1) If |headers| <a>contains</a> a <a>header</a> whose <a>header name</a> is "Integrity-Policy",
-     let |document|'s <a>integrity policy</a> be the result of running <a>processing an integrity policy</a>
+     let |container|'s <a>integrity policy</a> be the result of running <a>processing an integrity policy</a>
      with the corresponding <a>header value</a>.
   1) If |headers| <a>contains</a> a <a>header</a> whose <a>header name</a> is "Integrity-Policy-Report-Only",
-     let |document|'s <a>integrity policy report only</a> be the result of running <a>processing an integrity
+     let |container|'s <a>report only integrity policy</a> be the result of running <a>processing an integrity
      policy</a> with the corresponding <a>header value</a>.
   
-  ### Should request be blocked by Integrity Policy ### {#should-request-be-blocked-by-integrity-policy}
-  Given a <a>request</a> |request| and a <a>Document</a> |document|, do the following:
-  1) if |request|'s <a>integrity metadata</a> is not empty, return false.
-  1) Let |policy| be |document|'s <a>integrity policy</a>.
-  1) Let |report policy| be |document|'s <a>integrity policy report only</a>.
+  ### Should request be blocked by Integrity Policy ### {#should-request-be-blocked-by-integrity-policy-section}
+  To determine <dfn>should request be blocked by integrity policy</dfn>, given a <a>request</a> |request|,
+  do the following:
+  1) Let |policy container| be |request|'s <a>policy container</a>.
+  1) if |request|'s <a>integrity metadata</a> is not empty, return "Allowed".
+  1) Let |policy| be |policy container|'s <a>integrity policy</a>.
+  1) Let |report policy| be |policy container|'s <a>report only integrity policy</a>.
   1) Let |block| be a boolean, initially false.
   1) Let |report block| be a boolean, initially false.
   1) if |policy|'s <a>enforcement</a> is "block" and |policy|'s <a>source</a> is "inline" and |policy|'s
@@ -551,11 +568,27 @@ spec:csp3; type:grammar; text:base64-value
   1) If |block| or |report block|, <a>fire a violation event</a>.
   1) If |block|, <a>report violation</a> with |policy|'s <a>endpoints</a>.
   1) If |report block|, <a>report violation</a> with |report policy|'s <a>endpoints</a>.
+  1) If |block|, return "Blocked". Otherwise, return "Allowed".
  
   ### Fire a violation event ### {#fire-violation-event}
-  ### Report violatoin ### {#report-violation}
+  To <dfn>fire a violation event</dfn>, do the following:
+  1) TODO
 
-  ### Fetch integration ### {#fetch-integration}
+  ### Report violation ### {#report-violation-section}
+  To <dfn>report violation</dfn> given a <a>list</a> |endpoints|, do the following:
+  1) TODO do something with |endpoints|
+
+  ### Integration ### {#integration}
+
+  A <a>policy container</a> has extra items:
+  * <dfn>integrity policy</dfn>, an <a>integrity policy struct</a>.
+  * <dfn>report only integrity policy</dfn>, an <a>integrity policy struct</a>.
+
+  Add an extra step to <a>create a policy container from a fetch response</a> before it returns, that runs
+  <a>parse Integrity-Policy headers</a> with <var ignore>response</var> and <var ignore>result</var>.
+
+  Expand step 7 of <a>main fetch</a> to call <a>should request be blocked by integrity policy</a>
+  and return a <a>network error</a> if it returns "blocked"
 
   # Proxies # {#proxies}
 

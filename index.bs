@@ -32,6 +32,14 @@ spec: ABNF; urlPrefix: https://tools.ietf.org/html/rfc5234
     text: VCHAR; url: appendix-B.1
     text: WSP; url: appendix-B.1
 
+spec: CSP; urlPrefix: https://www.w3.org/TR/CSP3/
+  type: dfn
+    text: strip url for use in reports; url: strip-url-for-use-in-reports
+
+spec: DOM; urlPrefix: https://dom.spec.whatwg.org/
+  type: dfn
+    text: document url; url: concept-document-url
+
 spec: INFRA; urlPrefix: https://infra.spec.whatwg.org
   type: dfn
     text: list; url: list
@@ -39,6 +47,8 @@ spec: INFRA; urlPrefix: https://infra.spec.whatwg.org
 spec: HTML; urlPrefix: https://html.spec.whatwg.org/C
   type: dfn
     text: policy container; url: policy-container
+    text: global object; url: global-object
+    text: window; url: window
 
 spec: FETCH; urlPrefix: https://fetch.spec.whatwg.org/
   type: dfn
@@ -571,15 +581,37 @@ spec:csp3; type:grammar; text:base64-value
   1. if |report policy|'s <a>enforcement</a> is "block" and |report policy|'s <a>source</a> is "inline"
      and |report policy|'s <a>destination</a> is equal to |request|'s <a for=request>destination</a>, set
     |report block| to true.
-  1. If |block| or |report block|, <a>fire a violation event</a>.
+  1. If |block| or |report block|, <a>fire a violation event</a> with |request|.
   1. If |block|, <a>report violation</a> with |policy|'s <a>endpoints</a>.
   1. If |report block|, <a>report violation</a> with |report policy|'s <a>endpoints</a>.
   1. If |block|, return "Blocked". Otherwise, return "Allowed".
  
   ### Fire a violation event ### {#fire-violation-event}
-  To <dfn>fire a violation event</dfn>, do the following:
 
-  1. TODO
+  <pre class="idl">
+
+    [Exposed=(Window,Worker)]
+    interface IntegrityPolicyViolationEvent : Event {
+        constructor(DOMString type, optional IntegrityPolicyViolationEventInit eventInitDict = {});
+        readonly    attribute USVString      documentURI;
+        readonly    attribute USVString      blockedURI;
+    };
+    dictionary IntegrityPolicyViolationEventInit : EventInit {
+        USVString      documentURI = "";
+        USVString      blockedURI = "";
+    };
+  </pre>
+
+  To <dfn>fire a violation event</dfn> given a <a>Request</a> |request|, do the following:
+
+  1. Assert that |request|'s <a for=request>client</a> is not null.
+  1. Let |global| be |request|'s <a for=request>client</a>'s <a>global object</a>.
+  1. Assert that |global| is a <a>Window</a>.
+  1. Let |target| be |global|'s <a>associated Document</a>.
+  1. Let |documentURI| be the result of <a>strip URL for use in reports</a> on |target|'s <a>document URL</a>.
+  1. Let |blockedURI| be the result of <a>strip URL for use in reports</a> on |request|'s <a for=request>URL</a>.
+  1. <a>Fire an event</a> names "integritypolicyviolation" that uses the `IntegrityPolicyViolationEvent`
+     interface at |target|, with its attributes initiaized to |documentURI| and |blockedURI|.
 
   ### Report violation ### {#report-violation-section}
   To <dfn>report violation</dfn> given a <a>list</a> |endpoints|, do the following:

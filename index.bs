@@ -519,68 +519,77 @@ spec:csp3; type:grammar; text:base64-value
   The headers' value is a <a>Dictionary</a> [[RFC9651]], with every member-value being an
   <a>inner list</a> of <a>tokens</a>.
   
+  A <dfn>source</dfn> is a string. The only possible value for it is "inline".
+  A <dfn>destination</dfn> is a string. The only possible value for it is "script".
+
   An <dfn>integrity policy struct</dfn>, is a <a>struct</a> that contains the following:
+
     * <dfn>enforcement</dfn>, a string which is the empty string or "block". Initially "block".
-    * <dfn>source</dfn>, a string which is the empty string or "inline". Initially "inline".
-    * <dfn>destination</dfn>, a string which is the empty string or "script". Initially the empty string.
+    * <dfn>sources</dfn>, a list of <a>source</a>s, Initially empty.
+    * <dfn>destinations</dfn>, a list of <a>destination</a>s, Initially empty.
     * <dfn>endpoints</dfn>, a <a>list</a> of strings, initially empty.
 
   When <dfn>processing an integrity policy</dfn>, with |input|, do the following:
-  1) Let |integrity policy| be a new <a>integrity policy struct</a>.
-  1) Let |dictionary| be the result of <a>parsing a dictionary</a> with |input|.
-  1) If |dictionary|['enforcement'] exists:
-    1) If its value is "block", set |integrity policy|'s <a>enforcement</a> to "block".
-    1) Otherwise, set |integrity policy|'s <a>enforcement</a> to the empty string.
-  1) If |dictionary|['sources'] exists:
-    1) If its value <a>contains</a> "inline", set |integrity policy|'s <a>source</a> to "inline".
-    1) Otherwise, set |integrity policy|'s <a>source</a> to the empty string.
-  1) If |dictionary|['destinations'] exists:
-    1) If its value <a>contains</a> "script", set |integrity policy|'s <a>destination</a> to "script".
-  1) if |dictionary|['endpoints'] exists:
-    1) Set |integrity policy|'s <a>endpoints</a> to |dictionary|['endpoints'].
-  1) return |integrity policy|
+
+  1. Let |integrity policy| be a new <a>integrity policy struct</a>.
+  1. Let |dictionary| be the result of <a>parsing a dictionary</a> with |input|.
+  1. If |dictionary|['enforcement'] exists:
+    1. If its value is "block", set |integrity policy|'s <a>enforcement</a> to "block".
+    1. Otherwise, set |integrity policy|'s <a>enforcement</a> to the empty string.
+  1. If |dictionary|['sources'] does not exist or if its value does not <a for=list>contain</a> "inline",
+     <a for=list>append</a> "inline" to |integrity policy|'s <a>sources</a>.
+  1. If |dictionary|['destinations'] exists:
+    1. If its value <a for=list>contains</a> "script", set |integrity policy|'s <a>destinations</a> to "script".
+  1. if |dictionary|['endpoints'] exists:
+    1. Set |integrity policy|'s <a>endpoints</a> to |dictionary|['endpoints'].
+  1. return |integrity policy|
   
   ### Parse Integrity-Policy headers ### {#parse-integrity-policy-headers-section}
   To <dfn>parse Integrity-Policy headers</dfn>, given a <a>Response</a> |response|
   and a <a>policy container</a> |container|, do the following:
-  1) Let |headers| be |response|'s <a>header list</a>.
-  1) If |headers| <a>contains</a> a <a>header</a> whose <a>header name</a> is "Integrity-Policy",
+
+  1. Let |headers| be |response|'s <a>header list</a>.
+  1. If |headers| <a for="header list">contains</a> a <a>header</a> whose <a>header name</a> is "Integrity-Policy",
      let |container|'s <a>integrity policy</a> be the result of running <a>processing an integrity policy</a>
      with the corresponding <a>header value</a>.
-  1) If |headers| <a>contains</a> a <a>header</a> whose <a>header name</a> is "Integrity-Policy-Report-Only",
+  1. If |headers| <a for="header list">contains</a> a <a>header</a> whose <a>header name</a> is "Integrity-Policy-Report-Only",
      let |container|'s <a>report only integrity policy</a> be the result of running <a>processing an integrity
      policy</a> with the corresponding <a>header value</a>.
   
   ### Should request be blocked by Integrity Policy ### {#should-request-be-blocked-by-integrity-policy-section}
   To determine <dfn>should request be blocked by integrity policy</dfn>, given a <a>request</a> |request|,
   do the following:
-  1) Let |policy container| be |request|'s <a>policy container</a>.
-  1) if |request|'s <a>integrity metadata</a> is not empty, return "Allowed".
-  1) Let |policy| be |policy container|'s <a>integrity policy</a>.
-  1) Let |report policy| be |policy container|'s <a>report only integrity policy</a>.
-  1) Let |block| be a boolean, initially false.
-  1) Let |report block| be a boolean, initially false.
-  1) if |policy|'s <a>enforcement</a> is "block" and |policy|'s <a>source</a> is "inline" and |policy|'s
+
+  1. Let |policy container| be |request|'s <a>policy container</a>.
+  1. if |request|'s <a>integrity metadata</a> is not empty, return "Allowed".
+  1. Let |policy| be |policy container|'s <a>integrity policy</a>.
+  1. Let |report policy| be |policy container|'s <a>report only integrity policy</a>.
+  1. Let |block| be a boolean, initially false.
+  1. Let |report block| be a boolean, initially false.
+  1. if |policy|'s <a>enforcement</a> is "block" and |policy|'s <a>source</a> is "inline" and |policy|'s
      <a>destination</a> is equal to |request|'s <a for=request>destination</a>, set |block| to true.
-  1) if |report policy|'s <a>enforcement</a> is "block" and |report policy|'s <a>source</a> is "inline"
+  1. if |report policy|'s <a>enforcement</a> is "block" and |report policy|'s <a>source</a> is "inline"
      and |report policy|'s <a>destination</a> is equal to |request|'s <a for=request>destination</a>, set
     |report block| to true.
-  1) If |block| or |report block|, <a>fire a violation event</a>.
-  1) If |block|, <a>report violation</a> with |policy|'s <a>endpoints</a>.
-  1) If |report block|, <a>report violation</a> with |report policy|'s <a>endpoints</a>.
-  1) If |block|, return "Blocked". Otherwise, return "Allowed".
+  1. If |block| or |report block|, <a>fire a violation event</a>.
+  1. If |block|, <a>report violation</a> with |policy|'s <a>endpoints</a>.
+  1. If |report block|, <a>report violation</a> with |report policy|'s <a>endpoints</a>.
+  1. If |block|, return "Blocked". Otherwise, return "Allowed".
  
   ### Fire a violation event ### {#fire-violation-event}
   To <dfn>fire a violation event</dfn>, do the following:
-  1) TODO
+
+  1. TODO
 
   ### Report violation ### {#report-violation-section}
   To <dfn>report violation</dfn> given a <a>list</a> |endpoints|, do the following:
-  1) TODO do something with |endpoints|
+
+  1. TODO do something with |endpoints|
 
   ### Integration ### {#integration}
 
   A <a>policy container</a> has extra items:
+
   * <dfn>integrity policy</dfn>, an <a>integrity policy struct</a>.
   * <dfn>report only integrity policy</dfn>, an <a>integrity policy struct</a>.
 

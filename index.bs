@@ -581,42 +581,77 @@ spec:csp3; type:grammar; text:base64-value
   1. if |report policy|'s <a>enforcement</a> is "block" and |report policy|'s <a>source</a> is "inline"
      and |report policy|'s <a>destination</a> is equal to |request|'s <a for=request>destination</a>, set
     |report block| to true.
-  1. If |block| or |report block|, <a>fire a violation event</a> with |request|.
-  1. If |block|, <a>report violation</a> with |policy|'s <a>endpoints</a>.
-  1. If |report block|, <a>report violation</a> with |report policy|'s <a>endpoints</a>.
+  1. If |block| or |report block|, <a>report violation</a> with |request|, |block|, |report block|,
+     |policy| and |report policy|.
   1. If |block|, return "Blocked". Otherwise, return "Allowed".
  
-  ### Fire a violation event ### {#fire-violation-event}
+  ### Report violations ### {#report-violations}
 
   <pre class="idl">
 
     [Exposed=(Window,Worker)]
     interface IntegrityPolicyViolationEvent : Event {
         constructor(DOMString type, optional IntegrityPolicyViolationEventInit eventInitDict = {});
-        readonly    attribute USVString      documentURI;
-        readonly    attribute USVString      blockedURI;
+        readonly    attribute USVString      documentURL;
+        readonly    attribute USVString      blockedURL;
     };
     dictionary IntegrityPolicyViolationEventInit : EventInit {
-        USVString      documentURI = "";
-        USVString      blockedURI = "";
+        USVString      documentURL = "";
+        USVString      blockedURL = "";
     };
   </pre>
 
-  To <dfn>fire a violation event</dfn> given a <a>Request</a> |request|, do the following:
+  <pre class="idl">
+    [Exposed=Window]
+    interface IntegrityPolicyViolationReportBody : ReportBody {
+      [Default] object toJSON();
+      readonly attribute USVString documentURL;
+      readonly attribute USVString? blockedURL;
+    };
+  </pre>
+
+  To <dfn>report violation</dfn> given a <a>Request</a> |request|, a boolean |block|,
+  a boolean |report block|, an <a>integrity policy struct</a> |policy|,
+  and an <a>integrity policy struct</a> |report policy|, do the following:
 
   1. Assert that |request|'s <a for=request>client</a> is not null.
-  1. Let |global| be |request|'s <a for=request>client</a>'s <a>global object</a>.
+  1. Let |settings object| be |request|'s <a for=request>client</a>.
+  1. Let |global| be |settings object|'s <a>global object</a>.
   1. Assert that |global| is a <a>Window</a>.
   1. Let |target| be |global|'s <a>associated Document</a>.
-  1. Let |documentURI| be the result of <a>strip URL for use in reports</a> on |target|'s <a>document URL</a>.
-  1. Let |blockedURI| be the result of <a>strip URL for use in reports</a> on |request|'s <a for=request>URL</a>.
+  1. Let |document URL| be the result of <a>strip URL for use in reports</a> on |target|'s <a>document URL</a>.
+  1. Let |blocked URL| be the result of <a>strip URL for use in reports</a> on |request|'s <a for=request>URL</a>.
   1. <a>Fire an event</a> names "integritypolicyviolation" that uses the `IntegrityPolicyViolationEvent`
-     interface at |target|, with its attributes initiaized to |documentURI| and |blockedURI|.
-
-  ### Report violation ### {#report-violation-section}
-  To <dfn>report violation</dfn> given a <a>list</a> |endpoints|, do the following:
-
-  1. TODO do something with |endpoints|
+     interface at |target|, with its attributes initiaized as follows:
+              :   {{IntegrityPolicyViolationEvent/documentURL}}
+              ::  |document URL|
+              :   {{IntegrityPolicyViolationEvent/blockedURL}}
+              ::  |blocked URL|
+  1. Let |body| be a new {{IntegrityPolicyViolationReportBody}}, initialized as follows:
+              :   {{IntegrityPolicyViolationReportBody/documentURL}}
+              ::  |document URL|
+              :   {{IntegrityPolicyViolationReportBody/blockedURL}}
+              ::  |blocked URL|
+  1. If |block|, <a for=list>for each</a> |endpoint| in |policy|'s <a>endpoints</a>,
+     <a>generate and queue a report</a> with the following arguments:
+              :   <var ignore>context</var>
+              ::  |settings object|
+              :   <var ignore>type</var>
+              ::  "integrity-policy-violation"
+              :   <var ignore>destination</var>
+              ::  |endpoint|
+              :   <var ignore>data</var>
+              ::  |body|
+  1. If |report block|, <a for=list>for each</a> |endpoint| in |report policy|'s <a>endpoints</a>,
+     <a>generate and queue a report</a> with the following arguments:
+              :   <var ignore>context</var>
+              ::  |settings object|
+              :   <var ignore>type</var>
+              ::  "integrity-policy-violation"
+              :   <var ignore>destination</var>
+              ::  |endpoint|
+              :   <var ignore>data</var>
+              ::  |body|
 
   ### Integration ### {#integration}
 

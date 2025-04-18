@@ -571,16 +571,21 @@ spec:csp3; type:grammar; text:base64-value
   do the following:
 
   1. Let |policy container| be |request|'s <a>policy container</a>.
-  1. if |request|'s <a>integrity metadata</a> is not empty, return "Allowed".
+  1. if |request|'s <a>integrity metadata</a> is not the empty string
+     and |request|'s <a for=request>mode</a> is either "cors" or "same-origin",
+     return "Allowed".
   1. Let |policy| be |policy container|'s <a>integrity policy</a>.
   1. Let |report policy| be |policy container|'s <a>report only integrity policy</a>.
   1. Let |block| be a boolean, initially false.
   1. Let |report block| be a boolean, initially false.
-  1. if |policy|'s <a>enforcement</a> is "block" and |policy|'s <a>source</a> is "inline" and |policy|'s
-     <a>destination</a> is equal to |request|'s <a for=request>destination</a>, set |block| to true.
-  1. if |report policy|'s <a>enforcement</a> is "block" and |report policy|'s <a>source</a> is "inline"
-     and |report policy|'s <a>destination</a> is equal to |request|'s <a for=request>destination</a>, set
-    |report block| to true.
+  1. if |policy|'s <a>enforcement</a> is "block"
+     and |policy|'s <a>source</a> is "inline"
+     and |policy|'s <a>destination</a> is equal to |request|'s <a for=request>destination</a>,
+     set |block| to true.
+  1. if |report policy|'s <a>enforcement</a> is "block"
+     and |report policy|'s <a>source</a> is "inline"
+     and |report policy|'s <a>destination</a> is equal to |request|'s <a for=request>destination</a>,
+     set |report block| to true.
   1. If |block| or |report block|, <a>report violation</a> with |request|, |block|, |report block|,
      |policy| and |report policy|.
   1. If |block|, return "Blocked". Otherwise, return "Allowed".

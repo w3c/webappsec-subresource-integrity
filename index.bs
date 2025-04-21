@@ -524,7 +524,7 @@ spec:csp3; type:grammar; text:base64-value
   ## Integrity-Policy ## {#integrity-policy-section}
   The `Integrity-Policy` and `Integrity-Policy-Report-Only` HTTP headers enable a document to
   enforce a policy regarding the integrity metadata requirements on all the subresources it
-  loads of certain <a>destinations</a>.
+  loads of certain <a for=request>destinations</a>.
 
   The headers' value is a <a>Dictionary</a> [[RFC9651]], with every member-value being an
   <a>inner list</a> of <a>tokens</a>.
@@ -534,22 +534,19 @@ spec:csp3; type:grammar; text:base64-value
 
   An <dfn>integrity policy struct</dfn>, is a <a>struct</a> that contains the following:
 
-    * <dfn>enforcement</dfn>, a string which is the empty string or "block". Initially "block".
     * <dfn>sources</dfn>, a list of <a>source</a>s, Initially empty.
-    * <dfn>destinations</dfn>, a list of <a>destination</a>s, Initially empty.
+    * <dfn>blocked destinations</dfn>, a list of <a>destination</a>s, Initially empty.
     * <dfn>endpoints</dfn>, a <a>list</a> of strings, initially empty.
 
   When <dfn>processing an integrity policy</dfn>, with |input|, do the following:
 
   1. Let |integrity policy| be a new <a>integrity policy struct</a>.
   1. Let |dictionary| be the result of <a>parsing a dictionary</a> with |input|.
-  1. If |dictionary|['enforcement'] exists:
-    1. If its value is "block", set |integrity policy|'s <a>enforcement</a> to "block".
-    1. Otherwise, set |integrity policy|'s <a>enforcement</a> to the empty string.
   1. If |dictionary|['sources'] does not exist or if its value <a for=list>contains</a> "inline",
      <a for=list>append</a> "inline" to |integrity policy|'s <a>sources</a>.
-  1. If |dictionary|['destinations'] exists:
-    1. If its value <a for=list>contains</a> "script", set |integrity policy|'s <a>destinations</a> to "script".
+  1. If |dictionary|['blocked-destinations'] exists:
+    1. If its value <a for=list>contains</a> "script",
+       <a for=list>append</a> "script" to |integrity policy|'s <a>blocked destinations</a>.
   1. if |dictionary|['endpoints'] exists:
     1. Set |integrity policy|'s <a>endpoints</a> to |dictionary|['endpoints'].
   1. return |integrity policy|
@@ -578,13 +575,11 @@ spec:csp3; type:grammar; text:base64-value
   1. Let |report policy| be |policy container|'s <a>report only integrity policy</a>.
   1. Let |block| be a boolean, initially false.
   1. Let |report block| be a boolean, initially false.
-  1. if |policy|'s <a>enforcement</a> is "block"
-     and |policy|'s <a>source</a> is "inline"
-     and |policy|'s <a>destination</a> is equal to |request|'s <a for=request>destination</a>,
+  1. if |policy|'s <a>source</a> is "inline"
+     and |policy|'s <a>blocked destinations</a> <a for=list>contains</a> |request|'s <a for=request>destination</a>,
      set |block| to true.
-  1. if |report policy|'s <a>enforcement</a> is "block"
-     and |report policy|'s <a>source</a> is "inline"
-     and |report policy|'s <a>destination</a> is equal to |request|'s <a for=request>destination</a>,
+  1. if |report policy|'s <a>source</a> is "inline"
+     and |report policy|'s <a>blocked destinations</a> <a for=list>contains</a> |request|'s <a for=request>destination</a>,
      set |report block| to true.
   1. If |block| or |report block|, <a>report violation</a> with |request|, |block|, |report block|,
      |policy| and |report policy|.

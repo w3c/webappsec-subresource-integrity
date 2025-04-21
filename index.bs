@@ -556,12 +556,14 @@ spec:csp3; type:grammar; text:base64-value
   and a <a>policy container</a> |container|, do the following:
 
   1. Let |headers| be |response|'s <a>header list</a>.
-  1. If |headers| <a for="header list">contains</a> a <a>header</a> whose <a>header name</a> is "Integrity-Policy",
-     let |container|'s <a>integrity policy</a> be the result of running <a>processing an integrity policy</a>
-     with the corresponding <a>header value</a>.
-  1. If |headers| <a for="header list">contains</a> a <a>header</a> whose <a>header name</a> is "Integrity-Policy-Report-Only",
-     let |container|'s <a>report only integrity policy</a> be the result of running <a>processing an integrity
-     policy</a> with the corresponding <a>header value</a>.
+  1. If |headers| <a for="header list">contains</a> a <a>header</a>
+     whose <a>header name</a> is "Integrity-Policy",
+     let |container|'s <a>integrity policy</a> be the result of running
+     <a>processing an integrity policy</a> with the corresponding <a>header value</a>.
+  1. If |headers| <a for="header list">contains</a> a <a>header</a>
+     whose <a>header name</a> is "Integrity-Policy-Report-Only",
+     let |container|'s <a>report only integrity policy</a> be the result of running
+     <a>processing an integrity policy</a> with the corresponding <a>header value</a>.
   
   ### Should request be blocked by Integrity Policy ### {#should-request-be-blocked-by-integrity-policy-section}
   To determine <dfn>should request be blocked by integrity policy</dfn>, given a <a>request</a> |request|,
@@ -575,11 +577,13 @@ spec:csp3; type:grammar; text:base64-value
   1. Let |report policy| be |policy container|'s <a>report only integrity policy</a>.
   1. Let |block| be a boolean, initially false.
   1. Let |report block| be a boolean, initially false.
-  1. if |policy|'s <a>source</a> is "inline"
-     and |policy|'s <a>blocked destinations</a> <a for=list>contains</a> |request|'s <a for=request>destination</a>,
+  1. if |policy|'s <a>sources</a> <a for=list>contains</a> "inline"
+     and |policy|'s <a>blocked destinations</a> <a for=list>contains</a>
+     |request|'s <a for=request>destination</a>,
      set |block| to true.
-  1. if |report policy|'s <a>source</a> is "inline"
-     and |report policy|'s <a>blocked destinations</a> <a for=list>contains</a> |request|'s <a for=request>destination</a>,
+  1. if |policy|'s <a>sources</a> <a for=list>contains</a> "inline"
+     and |report policy|'s <a>blocked destinations</a> <a for=list>contains</a>
+     |request|'s <a for=request>destination</a>,
      set |report block| to true.
   1. If |block| or |report block|, <a>report violation</a> with |request|, |block|, |report block|,
      |policy| and |report policy|.

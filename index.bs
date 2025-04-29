@@ -575,6 +575,8 @@ spec:csp3; type:grammar; text:base64-value
      return "Allowed".
   1. Let |policy| be |policy container|'s <a>integrity policy</a>.
   1. Let |report policy| be |policy container|'s <a>report only integrity policy</a>.
+  1. If both |policy| and |report policy| are empty <a>integrity policy struct</a>s, return "Allowed".
+  1. Assert that |request|'s <a for=request>client</a>'s <a>global object</a> is a <a>Window</a>. 
   1. Let |block| be a boolean, initially false.
   1. Let |report block| be a boolean, initially false.
   1. if |policy|'s <a>sources</a> <a for=list>contains</a> "inline"
@@ -661,6 +663,9 @@ spec:csp3; type:grammar; text:base64-value
 
   Add an extra step to <a>create a policy container from a fetch response</a> before it returns, that runs
   <a>parse Integrity-Policy headers</a> with <var ignore>response</var> and <var ignore>result</var>.
+
+  Note: The creation of a policy container only happens on navigation responses, but there's no
+        current way to assert that as part of the algorithm.
 
   Expand step 7 of <a>main fetch</a> to call <a>should request be blocked by integrity policy</a>
   and return a <a>network error</a> if it returns "blocked"

@@ -49,6 +49,7 @@ spec: HTML; urlPrefix: https://html.spec.whatwg.org/C
     text: policy container; url: policy-container
     text: global object; url: global-object
     text: window; url: window
+    text: WorkerGlobalScope; url: workerglobalscope
 
 spec: FETCH; urlPrefix: https://fetch.spec.whatwg.org/
   type: dfn
@@ -576,7 +577,8 @@ spec:csp3; type:grammar; text:base64-value
   1. Let |policy| be |policy container|'s <a>integrity policy</a>.
   1. Let |report policy| be |policy container|'s <a>report only integrity policy</a>.
   1. If both |policy| and |report policy| are empty <a>integrity policy struct</a>s, return "Allowed".
-  1. Assert that |request|'s <a for=request>client</a>'s <a>global object</a> is a <a>Window</a>. 
+  1. Let |global| be |request|'s <a for=request>client</a>'s <a>global object</a>.
+  1. if |global| is not a <a>Window</a> nor a <a>WorkerGlobalScope</a>, return "Allowed".
   1. Let |block| be a boolean, initially false.
   1. Let |report block| be a boolean, initially false.
   1. if |policy|'s <a>sources</a> <a for=list>contains</a> "inline"
@@ -611,9 +613,11 @@ spec:csp3; type:grammar; text:base64-value
   1. Assert that |request|'s <a for=request>client</a> is not null.
   1. Let |settings object| be |request|'s <a for=request>client</a>.
   1. Let |global| be |settings object|'s <a>global object</a>.
-  1. Assert that |global| is a <a>Window</a>.
-  1. Let |target| be |global|'s <a>associated Document</a>.
-  1. Let |document URL| be the result of <a>strip URL for use in reports</a> on |target|'s <a>document URL</a>.
+  1. Assert that |global| is a <a>Window</a> or a <a>WorkerGlobalScope</a>.
+  1. Let |URL| be an empty <a for=/>URL</a>.
+  1. If |global| is a <a>Window</a>, set |URL| to |global|'s <a>associated Document</a> <a>document URL</a>.
+  1. If |global| is a <a>WorkerGlobalScope</a>, set |URL| to |global|'s <a for=WorkerGlobalScope>URL</a>.
+  1. Let |document URL| be the result of <a>strip URL for use in reports</a> on |URL|.
   1. Let |blocked URL| be the result of <a>strip URL for use in reports</a> on |request|'s <a for=request>URL</a>.
   1. If |block|, <a for=list>for each</a> |endpoint| in |policy|'s <a>endpoints</a>:
      1. Let |body| be a new {{IntegrityPolicyViolationReportBody}}, initialized as follows:

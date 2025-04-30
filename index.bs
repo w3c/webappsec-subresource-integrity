@@ -53,10 +53,6 @@ spec: HTML; urlPrefix: https://html.spec.whatwg.org/C
 
 spec: FETCH; urlPrefix: https://fetch.spec.whatwg.org/
   type: dfn
-    text: request; url: concept-request 
-    text: response; url: concept-response 
-    text: header list; url: concept-response-header-list
-    text: header; url: concept-header
     text: main fetch; url: main-fetch
 
 spec: RFC7234; urlPrefix: https://tools.ietf.org/html/rfc7234
@@ -81,7 +77,6 @@ spec: RFC9651; urlPrefix: https://tools.ietf.org/html/rfc9651
     text: Dictionary; url: name-dictionaries
     text: inner list; url: name-inner-lists
     text: token; url: name-tokens
-    text: parsing a dictionary; url: name-parsing-a-dictionary
 
 </pre>
 <pre class="link-defaults">
@@ -530,8 +525,9 @@ spec:csp3; type:grammar; text:base64-value
   The headers' value is a <a>Dictionary</a> [[RFC9651]], with every member-value being an
   <a>inner list</a> of <a>tokens</a>.
   
-  A <dfn>source</dfn> is a string. The only possible value for it is "inline".
-  A <dfn>destination</dfn> is a string. The only possible value for it is "script".
+  A <dfn>source</dfn> is a string. The only possible value for it is "`inline`".
+
+  A <dfn>destination</dfn> is a string. The only possible value for it is "`script`".
 
   An <dfn>integrity policy struct</dfn>, is a <a>struct</a> that contains the following:
 
@@ -539,35 +535,36 @@ spec:csp3; type:grammar; text:base64-value
     * <dfn>blocked destinations</dfn>, a list of <a>destination</a>s, Initially empty.
     * <dfn>endpoints</dfn>, a <a>list</a> of strings, initially empty.
 
-  When <dfn>processing an integrity policy</dfn>, with |input|, do the following:
+  When <dfn>processing an integrity policy</dfn>, with |headers| and |header name|, do the following:
 
-  1. Let |integrity policy| be a new <a>integrity policy struct</a>.
-  1. Let |dictionary| be the result of <a>parsing a dictionary</a> with |input|.
-  1. If |dictionary|['sources'] does not exist or if its value <a for=list>contains</a> "inline",
-     <a for=list>append</a> "inline" to |integrity policy|'s <a>sources</a>.
-  1. If |dictionary|['blocked-destinations'] exists:
-    1. If its value <a for=list>contains</a> "script",
-       <a for=list>append</a> "script" to |integrity policy|'s <a>blocked destinations</a>.
-  1. if |dictionary|['endpoints'] exists:
-    1. Set |integrity policy|'s <a>endpoints</a> to |dictionary|['endpoints'].
-  1. return |integrity policy|
+  1. Let |integrityPolicy| be a new <a>integrity policy struct</a>.
+  1. Let |dictionary| be the result of <a>getting a structured field value</a> from |headers|
+     given |header name| and "`dictionary`".
+  1. If |dictionary|["`sources`"] does not exist or if its value <a for=list>contains</a> "`inline`",
+     <a for=list>append</a> "`inline`" to |integrityPolicy|'s <a>sources</a>.
+  1. If |dictionary|["`blocked-destinations`"] exists:
+    1. If its value <a for=list>contains</a> "`script`",
+       <a for=list>append</a> "`script`" to |integrityPolicy|'s <a>blocked destinations</a>.
+  1. If |dictionary|["`endpoints`"] <a for=map>exists</a>:
+    1. Set |integrityPolicy|'s <a>endpoints</a> to |dictionary|['endpoints'].
+  1. Return |integrityPolicy|.
   
   ### Parse Integrity-Policy headers ### {#parse-integrity-policy-headers-section}
-  To <dfn>parse Integrity-Policy headers</dfn>, given a <a>Response</a> |response|
+  To <dfn>parse Integrity-Policy headers</dfn>, given a <a for=/>Response</a> |response|
   and a <a>policy container</a> |container|, do the following:
 
-  1. Let |headers| be |response|'s <a>header list</a>.
+  1. Let |headers| be |response|'s <a for=response>header list</a>.
   1. If |headers| <a for="header list">contains</a> a <a>header</a>
-     whose <a>header name</a> is "Integrity-Policy",
+     whose <a>header name</a> is "`Integrity-Policy`",
      let |container|'s <a>integrity policy</a> be the result of running
      <a>processing an integrity policy</a> with the corresponding <a>header value</a>.
   1. If |headers| <a for="header list">contains</a> a <a>header</a>
-     whose <a>header name</a> is "Integrity-Policy-Report-Only",
+     whose <a>header name</a> is "`Integrity-Policy-Report-Only`",
      let |container|'s <a>report only integrity policy</a> be the result of running
      <a>processing an integrity policy</a> with the corresponding <a>header value</a>.
   
   ### Should request be blocked by Integrity Policy ### {#should-request-be-blocked-by-integrity-policy-section}
-  To determine <dfn>should request be blocked by integrity policy</dfn>, given a <a>request</a> |request|,
+  To determine <dfn>should request be blocked by integrity policy</dfn>, given a <a for=/>request</a> |request|,
   do the following:
 
   1. Let |policy container| be |request|'s <a>policy container</a>.
@@ -581,11 +578,11 @@ spec:csp3; type:grammar; text:base64-value
   1. if |global| is not a <a>Window</a> nor a <a>WorkerGlobalScope</a>, return "Allowed".
   1. Let |block| be a boolean, initially false.
   1. Let |report block| be a boolean, initially false.
-  1. if |policy|'s <a>sources</a> <a for=list>contains</a> "inline"
+  1. if |policy|'s <a>sources</a> <a for=list>contains</a> "`inline`"
      and |policy|'s <a>blocked destinations</a> <a for=list>contains</a>
      |request|'s <a for=request>destination</a>,
      set |block| to true.
-  1. if |policy|'s <a>sources</a> <a for=list>contains</a> "inline"
+  1. if |policy|'s <a>sources</a> <a for=list>contains</a> "`inline`"
      and |report policy|'s <a>blocked destinations</a> <a for=list>contains</a>
      |request|'s <a for=request>destination</a>,
      set |report block| to true.
@@ -606,7 +603,7 @@ spec:csp3; type:grammar; text:base64-value
     };
   </pre>
 
-  To <dfn>report violation</dfn> given a <a>Request</a> |request|, a boolean |block|,
+  To <dfn>report violation</dfn> given a <a for=/>Request</a> |request|, a boolean |block|,
   a boolean |report block|, an <a>integrity policy struct</a> |policy|,
   and an <a>integrity policy struct</a> |report policy|, do the following:
 
@@ -614,10 +611,11 @@ spec:csp3; type:grammar; text:base64-value
   1. Let |settings object| be |request|'s <a for=request>client</a>.
   1. Let |global| be |settings object|'s <a>global object</a>.
   1. Assert that |global| is a <a>Window</a> or a <a>WorkerGlobalScope</a>.
-  1. Let |URL| be an empty <a for=/>URL</a>.
-  1. If |global| is a <a>Window</a>, set |URL| to |global|'s <a>associated Document</a> <a>document URL</a>.
-  1. If |global| is a <a>WorkerGlobalScope</a>, set |URL| to |global|'s <a for=WorkerGlobalScope>URL</a>.
-  1. Let |document URL| be the result of <a>strip URL for use in reports</a> on |URL|.
+  1. Let |url| be a <a for=/>URL</a>, initially null.
+  1. If |global| is a <a>Window</a>, set |url| to |global|'s <a>associated Document</a> <a>document URL</a>.
+  1. If |global| is a <a>WorkerGlobalScope</a>, set |url| to |global|'s <a for=WorkerGlobalScope>URL</a>.
+  1. Assert that |url| is a non-null <a for=/>URL</a>.
+  1. Let |document URL| be the result of <a>strip URL for use in reports</a> on |url|.
   1. Let |blocked URL| be the result of <a>strip URL for use in reports</a> on |request|'s <a for=request>URL</a>.
   1. If |block|, <a for=list>for each</a> |endpoint| in |policy|'s <a>endpoints</a>:
      1. Let |body| be a new {{IntegrityPolicyViolationReportBody}}, initialized as follows:

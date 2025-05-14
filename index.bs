@@ -541,14 +541,10 @@ spec:csp3; type:grammar; text:base64-value
   and a <a for=/>policy container</a> |container|, do the following:
 
   1. Let |headers| be |response|'s <a for=response>header list</a>.
-  1. If |headers| <a for="header list">contains</a> a <a>header</a>
-     whose <a>byte-lowercased</a> <a>header name</a>'s <a>isomorphic decode</a>
-     is "`integrity-policy`",
+  1. If |headers| <a for="header list">contains</a> ``integrity-policy``,
      set |container|'s <a>integrity policy</a> be the result of running
      <a>processing an integrity policy</a> with the corresponding <a>header value</a>.
-  1. If |headers| <a for="header list">contains</a> a <a>header</a>
-     whose <a>byte-lowercased</a> <a>header name</a>'s <a>isomorphic decode</a>
-     is "`integrity-policy-report-only`",
+  1. If |headers| <a for="header list">contains</a> ``integrity-policy-report-only``,
      set |container|'s <a>report only integrity policy</a> be the result of running
      <a>processing an integrity policy</a> with the corresponding <a>header value</a>.
   
@@ -606,7 +602,7 @@ spec:csp3; type:grammar; text:base64-value
   1. <a>Assert</a>: |url| is a <a for=/>URL</a>.
   1. Let |documentURL| be the result of <a>strip URL for use in reports</a> on |url|.
   1. Let |blockedURL| be the result of <a>strip URL for use in reports</a> on |request|'s <a for=request>URL</a>.
-  1. If |block|, <a for=list>for each</a> |endpoint| in |policy|'s <a>endpoints</a>:
+  1. If |block| is true, <a for=list>for each</a> |endpoint| in |policy|'s <a>endpoints</a>:
      1. Let |body| be a new {{IntegrityPolicyViolationReportBody}}, initialized as follows:
                  :   {{IntegrityPolicyViolationReportBody/documentURL}}
                  ::  |documentURL|
@@ -625,7 +621,7 @@ spec:csp3; type:grammar; text:base64-value
               ::  |endpoint|
               :   <var ignore>data</var>
               ::  |body|
-  1. If |reportBlock|, <a for=list>for each</a> |endpoint| in |reportPolicy|'s <a>endpoints</a>:
+  1. If |reportBlock| is true, <a for=list>for each</a> |endpoint| in |reportPolicy|'s <a>endpoints</a>:
      1. Let |reportBody| be a new {{IntegrityPolicyViolationReportBody}}, initialized as follows:
                  :   {{IntegrityPolicyViolationReportBody/documentURL}}
                  ::  |documentURL|

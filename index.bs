@@ -613,13 +613,13 @@ spec:csp3; type:grammar; text:base64-value
                  :   {{IntegrityPolicyViolationReportBody/reportOnly}}
                  ::  false
      2. <a>Generate and queue a report</a> with the following arguments:
-              :   <var ignore>context</var>
+              :   <a for="generate and queue a report"><i>context</i></a>
               ::  |settingsObject|
-              :   <var ignore>type</var>
+              :   <a for="generate and queue a report"><i>type</i></a>
               ::  "`integrity-policy-violation`"
-              :   <var ignore>destination</var>
+              :   <a for="generate and queue a report"><i>destination</i></a>
               ::  |endpoint|
-              :   <var ignore>data</var>
+              :   <a for="generate and queue a report"><i>data</i></a>
               ::  |body|
   1. If |reportBlock| is true, <a for=list>for each</a> |endpoint| in |reportPolicy|'s <a>endpoints</a>:
      1. Let |reportBody| be a new {{IntegrityPolicyViolationReportBody}}, initialized as follows:
@@ -632,13 +632,13 @@ spec:csp3; type:grammar; text:base64-value
                  :   {{IntegrityPolicyViolationReportBody/reportOnly}}
                  ::  true 
      2. <a>Generate and queue a report</a> with the following arguments:
-              :   <var ignore>context</var>
+              :   <a for="generate and queue a report"><i>context</i></a>
               ::  |settingsObject|
-              :   <var ignore>type</var>
+              :   <a for="generate and queue a report"><i>type</i></a>
               ::  "`integrity-policy-violation`"
-              :   <var ignore>destination</var>
+              :   <a for="generate and queue a report"><i>destination</i></a>
               ::  |endpoint|
-              :   <var ignore>data</var>
+              :   <a for="generate and queue a report"><i>data</i></a>
               ::  |reportBody|
 
   ### Integration ### {#integration}

@@ -32,6 +32,14 @@ spec: ABNF; urlPrefix: https://tools.ietf.org/html/rfc5234
     text: VCHAR; url: appendix-B.1
     text: WSP; url: appendix-B.1
 
+spec: CSP; urlPrefix: https://www.w3.org/TR/CSP3/
+  type: dfn
+    text: strip url for use in reports; url: strip-url-for-use-in-reports
+
+spec: FETCH; urlPrefix: https://fetch.spec.whatwg.org/
+  type: dfn
+    text: main fetch; url: main-fetch
+
 spec: RFC7234; urlPrefix: https://tools.ietf.org/html/rfc7234
   type: dfn
     text: Cache-Control; url: section-5.2
@@ -44,9 +52,17 @@ spec: SHA2; urlPrefix: https://csrc.nist.gov/publications/fips/fips180-4/fips-18
     text: SHA-256; url: #
     text: SHA-384; url: #
     text: SHA-512; url: #
+
 spec: RFC8288; urlPrefix: https://tools.ietf.org/html/rfc8288
   type: http-header
     text: link
+
+spec: RFC9651; urlPrefix: https://tools.ietf.org/html/rfc9651
+  type: dfn
+    text: Dictionary; url: name-dictionaries
+    text: inner list; url: name-inner-lists
+    text: token; url: name-tokens
+
 </pre>
 <pre class="link-defaults">
 spec:csp3; type:grammar; text:base64-value
@@ -485,6 +501,158 @@ spec:csp3; type:grammar; text:base64-value
   failed resource with a different one.
 
   <!-- ####################################################################### -->
+  
+  ## Integrity-Policy ## {#integrity-policy-section}
+  The `Integrity-Policy` and `Integrity-Policy-Report-Only` HTTP headers enable a document to
+  enforce a policy regarding the integrity metadata requirements on all the subresources it
+  loads of certain <a for=request>destinations</a>.
+
+  The headers' value is a <a>Dictionary</a> [[RFC9651]], with every member-value being an
+  <a>inner list</a> of <a>tokens</a>.
+  
+  A <dfn>source</dfn> is a string. The only possible value for it is "`inline`".
+
+  A <dfn>destination</dfn> is a string. The only possible value for it is "`script`".
+
+  An <dfn>integrity policy struct</dfn>, is a <a>struct</a> that contains the following:
+
+    * <dfn>sources</dfn>, a list of <a>source</a>s, initially empty.
+    * <dfn>blocked destinations</dfn>, a list of <a>destination</a>s, initially empty.
+    * <dfn>endpoints</dfn>, a <a for=/>list</a> of strings, initially empty.
+
+  When <dfn>processing an integrity policy</dfn>, with a <a for=/>header list</a> |headers|
+  and a <a>header name</a> |headerName|, do the following:
+
+  1. Let |integrityPolicy| be a new <a>integrity policy struct</a>.
+  1. Let |dictionary| be the result of <a>getting a structured field value</a> from |headers|
+     given |headerName| and "`dictionary`".
+  1. If |dictionary|["`sources`"] does not <a for=list>exist</a> or if its value
+     <a for=list>contains</a> "`inline`", <a for=list>append</a> "`inline`" to
+     |integrityPolicy|'s <a>sources</a>.
+  1. If |dictionary|["`blocked-destinations`"] <a for=list>exists</a>:
+    1. If its value <a for=list>contains</a> "`script`",
+       <a for=list>append</a> "`script`" to |integrityPolicy|'s <a>blocked destinations</a>.
+  1. If |dictionary|["`endpoints`"] <a for=map>exists</a>:
+    1. Set |integrityPolicy|'s <a>endpoints</a> to |dictionary|['endpoints'].
+  1. Return |integrityPolicy|.
+  
+  ### Parse Integrity-Policy headers ### {#parse-integrity-policy-headers-section}
+  To <dfn>parse Integrity-Policy headers</dfn>, given a <a for=/>Response</a> |response|
+  and a <a for=/>policy container</a> |container|, do the following:
+
+  1. Let |headers| be |response|'s <a for=response>header list</a>.
+  1. If |headers| <a for="header list">contains</a> ``integrity-policy``,
+     set |container|'s <a>integrity policy</a> be the result of running
+     <a>processing an integrity policy</a> with the corresponding <a>header value</a>.
+  1. If |headers| <a for="header list">contains</a> ``integrity-policy-report-only``,
+     set |container|'s <a>report only integrity policy</a> be the result of running
+     <a>processing an integrity policy</a> with the corresponding <a>header value</a>.
+  
+  ### Should request be blocked by Integrity Policy ### {#should-request-be-blocked-by-integrity-policy-section}
+  To determine <dfn>should request be blocked by integrity policy</dfn>, given a <a for=/>request</a> |request|,
+  do the following:
+
+  1. Let |policyContainer| be |request|'s <a for=request>policy container</a>.
+  1. If |request|'s <a>integrity metadata</a> is not the empty string
+     and |request|'s <a for=request>mode</a> is either "`cors`" or "`same-origin`",
+     return "Allowed".
+  1. Let |policy| be |policyContainer|'s <a>integrity policy</a>.
+  1. Let |reportPolicy| be |policyContainer|'s <a>report only integrity policy</a>.
+  1. If both |policy| and |reportPolicy| are empty <a>integrity policy struct</a>s, return "Allowed".
+  1. Let |global| be |request|'s <a for=request>client</a>'s <a for="environment settings object">global object</a>.
+  1. If |global| is not a {{Window}} nor a {{WorkerGlobalScope}}, return "`Allowed`".
+  1. Let |block| be a boolean, initially false.
+  1. Let |reportBlock| be a boolean, initially false.
+  1. If |policy|'s <a>sources</a> <a for=list>contains</a> "`inline`"
+     and |policy|'s <a>blocked destinations</a> <a for=list>contains</a>
+     |request|'s <a for=request>destination</a>,
+     set |block| to true.
+  1. If |policy|'s <a>sources</a> <a for=list>contains</a> "`inline`"
+     and |reportPolicy|'s <a>blocked destinations</a> <a for=list>contains</a>
+     |request|'s <a for=request>destination</a>,
+     set |reportBlock| to true.
+  1. If |block| is true or |reportBlock| is true, then <a>report violation</a>
+     with |request|, |block|, |reportBlock|, |policy| and |reportPolicy|.
+  1. If |block| is true, then return "`Blocked`"; otherwise "`Allowed`".
+ 
+  ### Report violations ### {#report-violations}
+
+  <pre class="idl">
+    [Exposed=Window]
+    interface IntegrityPolicyViolationReportBody : ReportBody {
+      [Default] object toJSON();
+      readonly attribute USVString documentURL;
+      readonly attribute USVString blockedURL;
+      readonly attribute USVString destination;
+      readonly attribute boolean   reportOnly;
+    };
+  </pre>
+
+  To <dfn>report violation</dfn> given a <a for=/>Request</a> |request|, a boolean |block|,
+  a boolean |reportBlock|, an <a>integrity policy struct</a> |policy|,
+  and an <a>integrity policy struct</a> |reportPolicy|, do the following:
+
+  1. <a>Assert</a>: |request|'s <a for=request>client</a> is not null.
+  1. Let |settingsObject| be |request|'s <a for=request>client</a>.
+  1. Let |global| be |settingsObject|'s <a for="environment settings object">global object</a>.
+  1. <a>Assert</a>: |global| is a {{Window}} or a {{WorkerGlobalScope}}.
+  1. Let |url| be null.
+  1. If |global| is a {{Window}}, set |url| to |global|'s <a>associated Document</a>'s {{Document/URL}}.
+  1. If |global| is a {{WorkerGlobalScope}}, set |url| to |global|'s <a for=WorkerGlobalScope>URL</a>.
+  1. <a>Assert</a>: |url| is a <a for=/>URL</a>.
+  1. Let |documentURL| be the result of <a>strip URL for use in reports</a> on |url|.
+  1. Let |blockedURL| be the result of <a>strip URL for use in reports</a> on |request|'s <a for=request>URL</a>.
+  1. If |block| is true, <a for=list>for each</a> |endpoint| in |policy|'s <a>endpoints</a>:
+     1. Let |body| be a new {{IntegrityPolicyViolationReportBody}}, initialized as follows:
+                 :   {{IntegrityPolicyViolationReportBody/documentURL}}
+                 ::  |documentURL|
+                 :   {{IntegrityPolicyViolationReportBody/blockedURL}}
+                 ::  |blockedURL|
+                 :   {{IntegrityPolicyViolationReportBody/destination}}
+                 ::  |request|'s <a for=request>destination</a>
+                 :   {{IntegrityPolicyViolationReportBody/reportOnly}}
+                 ::  false
+     2. <a>Generate and queue a report</a> with the following arguments:
+              :   <a for="generate and queue a report"><i>context</i></a>
+              ::  |settingsObject|
+              :   <a for="generate and queue a report"><i>type</i></a>
+              ::  "`integrity-policy-violation`"
+              :   <a for="generate and queue a report"><i>destination</i></a>
+              ::  |endpoint|
+              :   <a for="generate and queue a report"><i>data</i></a>
+              ::  |body|
+  1. If |reportBlock| is true, <a for=list>for each</a> |endpoint| in |reportPolicy|'s <a>endpoints</a>:
+     1. Let |reportBody| be a new {{IntegrityPolicyViolationReportBody}}, initialized as follows:
+                 :   {{IntegrityPolicyViolationReportBody/documentURL}}
+                 ::  |documentURL|
+                 :   {{IntegrityPolicyViolationReportBody/blockedURL}}
+                 ::  |blockedURL|
+                 :   {{IntegrityPolicyViolationReportBody/destination}}
+                 ::  |request|'s <a for=request>destination</a>
+                 :   {{IntegrityPolicyViolationReportBody/reportOnly}}
+                 ::  true 
+     2. <a>Generate and queue a report</a> with the following arguments:
+              :   <a for="generate and queue a report"><i>context</i></a>
+              ::  |settingsObject|
+              :   <a for="generate and queue a report"><i>type</i></a>
+              ::  "`integrity-policy-violation`"
+              :   <a for="generate and queue a report"><i>destination</i></a>
+              ::  |endpoint|
+              :   <a for="generate and queue a report"><i>data</i></a>
+              ::  |reportBody|
+
+  ### Integration ### {#integration}
+
+  A <a for=/>policy container</a> has extra items:
+
+  * <dfn>integrity policy</dfn>, an <a>integrity policy struct</a>.
+  * <dfn>report only integrity policy</dfn>, an <a>integrity policy struct</a>.
+
+  Add an extra step to <a>create a policy container from a fetch response</a> before it returns, that runs
+  <a>parse Integrity-Policy headers</a> with <var ignore>response</var> and <var ignore>result</var>.
+
+  Expand step 7 of <a>main fetch</a> to call <a>should request be blocked by integrity policy</a>
+  and return a <a>network error</a> if it returns "`Blocked`".
 
   # Proxies # {#proxies}
 

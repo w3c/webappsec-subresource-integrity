@@ -549,7 +549,7 @@ spec:csp3; type:grammar; text:base64-value
      <a>processing an integrity policy</a> with the corresponding <a>header value</a>.
   
   ### Should request be blocked by Integrity Policy ### {#should-request-be-blocked-by-integrity-policy-section}
-  To determine <dfn>should request be blocked by integrity policy</dfn>, given a <a for=/>request</a> |request|,
+  To determine <dfn export>should request be blocked by integrity policy</dfn>, given a <a for=/>request</a> |request|,
   do the following:
 
   1. Let |policyContainer| be |request|'s <a for=request>policy container</a>.
@@ -567,7 +567,7 @@ spec:csp3; type:grammar; text:base64-value
      and |policy|'s <a>blocked destinations</a> <a for=list>contains</a>
      |request|'s <a for=request>destination</a>,
      set |block| to true.
-  1. If |policy|'s <a>sources</a> <a for=list>contains</a> "`inline`"
+  1. If |reportPolicy|'s <a>sources</a> <a for=list>contains</a> "`inline`"
      and |reportPolicy|'s <a>blocked destinations</a> <a for=list>contains</a>
      |request|'s <a for=request>destination</a>,
      set |reportBlock| to true.

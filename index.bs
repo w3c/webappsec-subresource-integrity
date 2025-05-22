@@ -514,7 +514,7 @@ spec:csp3; type:grammar; text:base64-value
 
   A <dfn>destination</dfn> is a string. The only possible value for it is "`script`".
 
-  An <dfn>integrity policy struct</dfn>, is a <a>struct</a> that contains the following:
+  An <dfn export>integrity policy struct</dfn>, is a <a>struct</a> that contains the following:
 
     * <dfn>sources</dfn>, a list of <a>source</a>s, initially empty.
     * <dfn>blocked destinations</dfn>, a list of <a>destination</a>s, initially empty.
@@ -537,7 +537,7 @@ spec:csp3; type:grammar; text:base64-value
   1. Return |integrityPolicy|.
   
   ### Parse Integrity-Policy headers ### {#parse-integrity-policy-headers-section}
-  To <dfn>parse Integrity-Policy headers</dfn>, given a <a for=/>Response</a> |response|
+  To <dfn export>parse Integrity-Policy headers</dfn>, given a <a for=/>Response</a> |response|
   and a <a for=/>policy container</a> |container|, do the following:
 
   1. Let |headers| be |response|'s <a for=response>header list</a>.

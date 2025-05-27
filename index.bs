@@ -314,7 +314,7 @@ spec:csp3; type:grammar; text:base64-value
 
   In this case, the user agent will choose the strongest hash function in the
   list, and use that metadata to validate the response (as described below in
-  the [[#parse-metadata]] and [[#get-the-strongest-metadata]] algorithms).
+  the [[#parse-metadata-section]] and [[#get-the-strongest-metadata]] algorithms).
 
   When a hash function is determined to be insecure, user agents SHOULD deprecate
   and eventually remove support for integrity validation using the insecure hash
@@ -346,10 +346,12 @@ spec:csp3; type:grammar; text:base64-value
   1.  Let |result| be the result of applying |algorithm| to |bytes|.
   2.  Return the result of <a>base64 encoding</a> |result|.
 
-  ### Parse |metadata| ### {#parse-metadata}
+  ### Parse metadata ### {#parse-metadata-section}
 
-  This algorithm accepts a string, and returns a set of hash expressions whose
-  hash functions are understood by the user agent.
+  When asked to <dfn>parse metadata</dfn> given a string |metadata|, run the following steps:
+
+  Note: the algorithm returns a set of hash expressions whose hash functions are understood
+  by the user agent.
 
   1.  Let |result| be the empty set.
   2.  For each |item| returned by <a lt="strictly split">splitting</a>
@@ -401,7 +403,7 @@ spec:csp3; type:grammar; text:base64-value
 <h4 dfn export id=does-response-match-metadatalist>Do |bytes| match |metadataList|?</h4>
 
   1.  Let |parsedMetadata| be the result of
-      <a href="#parse-metadata">parsing |metadataList|</a>.
+      <a lt="parse metadata">parsing |metadataList|</a>.
   2.  If |parsedMetadata| [=set/is empty=] set, return `true`.
   3.  Let |metadata| be the result of <a href="#get-the-strongest-metadata">
       getting the strongest metadata from |parsedMetadata|</a>.
@@ -553,8 +555,10 @@ spec:csp3; type:grammar; text:base64-value
   do the following:
 
   1. Let |policyContainer| be |request|'s <a for=request>policy container</a>.
-  1. If |request|'s <a>integrity metadata</a> is not the empty string
-     and |request|'s <a for=request>mode</a> is either "`cors`" or "`same-origin`",
+  1. Let |parsedMetadata| be the result of calling <a>parse metadata</a> with 
+     |request|'s <a for=request>integrity metadata</a>.
+  1. If |parsedMetadata| is not the empty set and
+     |request|'s <a for=request>mode</a> is either "`cors`" or "`same-origin`",
      return "Allowed".
   1. Let |policy| be |policyContainer|'s <a>integrity policy</a>.
   1. Let |reportPolicy| be |policyContainer|'s <a>report only integrity policy</a>.

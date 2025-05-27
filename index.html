@@ -7,7 +7,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <meta content="Bikeshed version b25686b9f, updated Fri Mar 14 14:15:20 2025 -0700" name="generator">
   <link href="http://www.w3.org/TR/SRI/" rel="canonical">
-  <meta content="309a3faef2f651eb43a7829e476c668d84a03e24" name="revision">
+  <meta content="94fdafefd9d33e380461f381e9a4d8e400df571b" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>/* Boilerplate: style-autolinks */
@@ -832,7 +832,7 @@ dd:not(:last-child) > .wpt-tests-block:not([open]):last-child {
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Subresource Integrity</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2025-05-22">22 May 2025</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2025-05-27">27 May 2025</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -921,7 +921,7 @@ fetched resource has been delivered without unexpected manipulation.</p>
        <a href="#verification-algorithms"><span class="secno">3.3</span> <span class="content">Response verification algorithms</span></a>
        <ol class="toc">
         <li><a href="#apply-algorithm-to-response"><span class="secno">3.3.1</span> <span class="content">Apply <var>algorithm</var> to <var>bytes</var></span></a>
-        <li><a href="#parse-metadata"><span class="secno">3.3.2</span> <span class="content">Parse <var>metadata</var></span></a>
+        <li><a href="#parse-metadata-section"><span class="secno">3.3.2</span> <span class="content">Parse metadata</span></a>
         <li><a href="#get-the-strongest-metadata"><span class="secno">3.3.3</span> <span class="content">Get the strongest metadata from <var>set</var></span></a>
         <li><a href="#does-response-match-metadatalist"><span class="secno">3.3.4</span> <span class="content">Do <var>bytes</var> match <var>metadataList</var>?</span></a>
        </ol>
@@ -1143,7 +1143,7 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
    </div>
    <p>In this case, the user agent will choose the strongest hash function in the
   list, and use that metadata to validate the response (as described below in
-  the <a href="#parse-metadata">§ 3.3.2 Parse metadata</a> and <a href="#get-the-strongest-metadata">§ 3.3.3 Get the strongest metadata from set</a> algorithms).</p>
+  the <a href="#parse-metadata-section">§ 3.3.2 Parse metadata</a> and <a href="#get-the-strongest-metadata">§ 3.3.3 Get the strongest metadata from set</a> algorithms).</p>
    <p>When a hash function is determined to be insecure, user agents SHOULD deprecate
   and eventually remove support for integrity validation using the insecure hash
   function. User agents MAY check the validity of responses using a digest based on
@@ -1169,9 +1169,10 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
     <li data-md>
      <p>Return the result of <a data-link-type="dfn" href="#base64-encoding" id="ref-for-base64-encoding①">base64 encoding</a> <var>result</var>.</p>
    </ol>
-   <h4 class="heading settled" data-level="3.3.2" id="parse-metadata"><span class="secno">3.3.2. </span><span class="content">Parse <var>metadata</var></span><a class="self-link" href="#parse-metadata"></a></h4>
-   <p>This algorithm accepts a string, and returns a set of hash expressions whose
-  hash functions are understood by the user agent.</p>
+   <h4 class="heading settled" data-level="3.3.2" id="parse-metadata-section"><span class="secno">3.3.2. </span><span class="content">Parse metadata</span><a class="self-link" href="#parse-metadata-section"></a></h4>
+   <p>When asked to <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="parse-metadata">parse metadata</dfn> given a string <var>metadata</var>, run the following steps:</p>
+   <p class="note" role="note"><span class="marker">Note:</span> the algorithm returns a set of hash expressions whose hash functions are understood
+  by the user agent.</p>
    <ol>
     <li data-md>
      <p>Let <var>result</var> be the empty set.</p>
@@ -1247,7 +1248,7 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
    <h4 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export data-level="3.3.4" data-lt="Do bytes match metadataList?" id="does-response-match-metadatalist"><span class="secno">3.3.4. </span><span class="content">Do <var>bytes</var> match <var>metadataList</var>?</span><a class="self-link" href="#does-response-match-metadatalist" id="ref-for-does-response-match-metadatalist①"></a></h4>
    <ol>
     <li data-md>
-     <p>Let <var>parsedMetadata</var> be the result of <a href="#parse-metadata">parsing <var>metadataList</var></a>.</p>
+     <p>Let <var>parsedMetadata</var> be the result of <a data-link-type="dfn" href="#parse-metadata" id="ref-for-parse-metadata">parsing <var>metadataList</var></a>.</p>
     <li data-md>
      <p>If <var>parsedMetadata</var> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-is-empty" id="ref-for-list-is-empty">is empty</a> set, return <code>true</code>.</p>
     <li data-md>
@@ -1382,8 +1383,9 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
     <li data-md>
      <p>Let <var>policyContainer</var> be <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-policy-container" id="ref-for-concept-request-policy-container">policy container</a>.</p>
     <li data-md>
-     <p>If <var>request</var>’s <a data-link-type="dfn" href="#integrity-metadata" id="ref-for-integrity-metadata⑦">integrity metadata</a> is not the empty string
- and <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-mode" id="ref-for-concept-request-mode">mode</a> is either "<code>cors</code>" or "<code>same-origin</code>",
+     <p>Let <var>parsedMetadata</var> be the result of calling <a data-link-type="dfn" href="#parse-metadata" id="ref-for-parse-metadata①">parse metadata</a> with <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-integrity-metadata" id="ref-for-concept-request-integrity-metadata">integrity metadata</a>.</p>
+    <li data-md>
+     <p>If <var>parsedMetadata</var> is not the empty set and <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-mode" id="ref-for-concept-request-mode">mode</a> is either "<code>cors</code>" or "<code>same-origin</code>",
  return "Allowed".</p>
     <li data-md>
      <p>Let <var>policy</var> be <var>policyContainer</var>’s <a data-link-type="dfn" href="#integrity-policy" id="ref-for-integrity-policy①">integrity policy</a>.</p>
@@ -1533,7 +1535,7 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
    <p>Optimizing proxies and other intermediate servers which modify the
   responses MUST ensure that the digest associated
   with those responses stays in sync with the new content. One option
-  is to ensure that the <a data-link-type="dfn" href="#integrity-metadata" id="ref-for-integrity-metadata⑧">integrity metadata</a> associated with
+  is to ensure that the <a data-link-type="dfn" href="#integrity-metadata" id="ref-for-integrity-metadata⑦">integrity metadata</a> associated with
   resources is updated. Another
   would be simply to deliver only the canonical version of resources
   for which a page author has requested integrity verification.</p>
@@ -1543,7 +1545,7 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
    <h2 class="heading settled" data-level="5" id="security-considerations"><span class="secno">5. </span><span class="content">Security and Privacy Considerations</span><a class="self-link" href="#security-considerations"></a></h2>
    <p><em> This section is not normative.</em></p>
    <h3 class="heading settled" data-level="5.1" id="non-secure-contexts"><span class="secno">5.1. </span><span class="content">Non-secure contexts remain non-secure</span><a class="self-link" href="#non-secure-contexts"></a></h3>
-   <p><a data-link-type="dfn" href="#integrity-metadata" id="ref-for-integrity-metadata⑨">Integrity metadata</a> delivered by a context that is not a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#secure-context" id="ref-for-secure-context">Secure
+   <p><a data-link-type="dfn" href="#integrity-metadata" id="ref-for-integrity-metadata⑧">Integrity metadata</a> delivered by a context that is not a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#secure-context" id="ref-for-secure-context">Secure
   Context</a> such as an HTTP page, only protects an origin against a compromise
   of the server where an external resources is hosted. Network attackers can alter
   the digest in-flight (or remove it entirely, or do absolutely anything else to
@@ -1665,6 +1667,7 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
    <li><a href="#integritypolicyviolationreportbody">IntegrityPolicyViolationReportBody</a><span>, in § 3.8.3</span>
    <li><a href="#grammardef-option-expression">option-expression</a><span>, in § 3.5</span>
    <li><a href="#parse-integrity-policy-headers">parse Integrity-Policy headers</a><span>, in § 3.8.1</span>
+   <li><a href="#parse-metadata">parse metadata</a><span>, in § 3.3.2</span>
    <li><a href="#processing-an-integrity-policy">processing an integrity policy</a><span>, in § 3.8</span>
    <li><a href="#dom-integritypolicyviolationreportbody-reportonly">reportOnly</a><span>, in § 3.8.3</span>
    <li><a href="#report-only-integrity-policy">report only integrity policy</a><span>, in § 3.8.4</span>
@@ -1708,6 +1711,7 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
      <li><span class="dfn-paneled" id="f7b00a8b">header list <small>(for response)</small></span>
      <li><span class="dfn-paneled" id="1534f1eb">header name</span>
      <li><span class="dfn-paneled" id="c07f8014">header value</span>
+     <li><span class="dfn-paneled" id="d79a826f">integrity metadata</span>
      <li><span class="dfn-paneled" id="821e824a">main fetch</span>
      <li><span class="dfn-paneled" id="cb98f71f">mode</span>
      <li><span class="dfn-paneled" id="eb1b1af3">network error</span>
@@ -2116,6 +2120,7 @@ let dfnPanelData = {
 "cfb6031b": {"dfnID":"cfb6031b","dfnText":"creating a policy container from a fetch response","external":true,"refSections":[{"refs":[{"id":"ref-for-creating-a-policy-container-from-a-fetch-response"}],"title":"3.8.4. Integration"}],"url":"https://html.spec.whatwg.org/multipage/browsers.html#creating-a-policy-container-from-a-fetch-response"},
 "d1364af2": {"dfnID":"d1364af2","dfnText":"link","external":true,"refSections":[{"refs":[{"id":"ref-for-link"}],"title":"3.6. The integrity link processing option"}],"url":"https://tools.ietf.org/html/rfc8288#link"},
 "d5434eef": {"dfnID":"d5434eef","dfnText":"contains","external":true,"refSections":[{"refs":[{"id":"ref-for-header-list-contains"},{"id":"ref-for-header-list-contains\u2460"}],"title":"3.8.1. Parse Integrity-Policy headers"}],"url":"https://fetch.spec.whatwg.org/#header-list-contains"},
+"d79a826f": {"dfnID":"d79a826f","dfnText":"integrity metadata","external":true,"refSections":[{"refs":[{"id":"ref-for-concept-request-integrity-metadata"}],"title":"3.8.2. Should request be blocked by Integrity Policy"}],"url":"https://fetch.spec.whatwg.org/#concept-request-integrity-metadata"},
 "d85a6c84": {"dfnID":"d85a6c84","dfnText":"header list","external":true,"refSections":[{"refs":[{"id":"ref-for-concept-header-list"}],"title":"3.8. Integrity-Policy"}],"url":"https://fetch.spec.whatwg.org/#concept-header-list"},
 "dc1cd39b": {"dfnID":"dc1cd39b","dfnText":"URL","external":true,"refSections":[{"refs":[{"id":"ref-for-concept-request-url"}],"title":"3.8.3. Report violations"}],"url":"https://fetch.spec.whatwg.org/#concept-request-url"},
 "dcffbccd": {"dfnID":"dcffbccd","dfnText":"URL","external":true,"refSections":[{"refs":[{"id":"ref-for-concept-url"}],"title":"3.8.3. Report violations"}],"url":"https://url.spec.whatwg.org/#concept-url"},
@@ -2140,11 +2145,12 @@ let dfnPanelData = {
 "grammardef-hash-with-options": {"dfnID":"grammardef-hash-with-options","dfnText":"hash-with-options","external":false,"refSections":[{"refs":[{"id":"ref-for-grammardef-hash-with-options"},{"id":"ref-for-grammardef-hash-with-options\u2460"}],"title":"3.5. The integrity attribute"}],"url":"#grammardef-hash-with-options"},
 "grammardef-integrity-metadata": {"dfnID":"grammardef-integrity-metadata","dfnText":"integrity-metadata","external":false,"refSections":[{"refs":[{"id":"ref-for-grammardef-integrity-metadata"}],"title":"3.6. The integrity link processing option"}],"url":"#grammardef-integrity-metadata"},
 "grammardef-option-expression": {"dfnID":"grammardef-option-expression","dfnText":"option-expression","external":false,"refSections":[{"refs":[{"id":"ref-for-grammardef-option-expression"}],"title":"3.5. The integrity attribute"}],"url":"#grammardef-option-expression"},
-"integrity-metadata": {"dfnID":"integrity-metadata","dfnText":"integrity\n  metadata","external":false,"refSections":[{"refs":[{"id":"ref-for-integrity-metadata"},{"id":"ref-for-integrity-metadata\u2460"},{"id":"ref-for-integrity-metadata\u2461"}],"title":"1.2.1. Resource Integrity"},{"refs":[{"id":"ref-for-integrity-metadata\u2462"}],"title":"3.2. Cryptographic hash functions"},{"refs":[{"id":"ref-for-integrity-metadata\u2463"}],"title":"3.2.1. Agility"},{"refs":[{"id":"ref-for-integrity-metadata\u2464"}],"title":"3.5. The integrity attribute"},{"refs":[{"id":"ref-for-integrity-metadata\u2465"}],"title":"3.6. The integrity link processing option"},{"refs":[{"id":"ref-for-integrity-metadata\u2466"}],"title":"3.8.2. Should request be blocked by Integrity Policy"},{"refs":[{"id":"ref-for-integrity-metadata\u2467"}],"title":"4. Proxies"},{"refs":[{"id":"ref-for-integrity-metadata\u2468"}],"title":"5.1. Non-secure contexts remain non-secure"}],"url":"#integrity-metadata"},
+"integrity-metadata": {"dfnID":"integrity-metadata","dfnText":"integrity\n  metadata","external":false,"refSections":[{"refs":[{"id":"ref-for-integrity-metadata"},{"id":"ref-for-integrity-metadata\u2460"},{"id":"ref-for-integrity-metadata\u2461"}],"title":"1.2.1. Resource Integrity"},{"refs":[{"id":"ref-for-integrity-metadata\u2462"}],"title":"3.2. Cryptographic hash functions"},{"refs":[{"id":"ref-for-integrity-metadata\u2463"}],"title":"3.2.1. Agility"},{"refs":[{"id":"ref-for-integrity-metadata\u2464"}],"title":"3.5. The integrity attribute"},{"refs":[{"id":"ref-for-integrity-metadata\u2465"}],"title":"3.6. The integrity link processing option"},{"refs":[{"id":"ref-for-integrity-metadata\u2466"}],"title":"4. Proxies"},{"refs":[{"id":"ref-for-integrity-metadata\u2467"}],"title":"5.1. Non-secure contexts remain non-secure"}],"url":"#integrity-metadata"},
 "integrity-policy": {"dfnID":"integrity-policy","dfnText":"integrity policy","external":false,"refSections":[{"refs":[{"id":"ref-for-integrity-policy"}],"title":"3.8.1. Parse Integrity-Policy headers"},{"refs":[{"id":"ref-for-integrity-policy\u2460"}],"title":"3.8.2. Should request be blocked by Integrity Policy"}],"url":"#integrity-policy"},
 "integrity-policy-struct": {"dfnID":"integrity-policy-struct","dfnText":"integrity policy struct","external":false,"refSections":[{"refs":[{"id":"ref-for-integrity-policy-struct"}],"title":"3.8. Integrity-Policy"},{"refs":[{"id":"ref-for-integrity-policy-struct\u2460"}],"title":"3.8.2. Should request be blocked by Integrity Policy"},{"refs":[{"id":"ref-for-integrity-policy-struct\u2461"},{"id":"ref-for-integrity-policy-struct\u2462"}],"title":"3.8.3. Report violations"},{"refs":[{"id":"ref-for-integrity-policy-struct\u2463"},{"id":"ref-for-integrity-policy-struct\u2464"}],"title":"3.8.4. Integration"}],"url":"#integrity-policy-struct"},
 "integritypolicyviolationreportbody": {"dfnID":"integritypolicyviolationreportbody","dfnText":"IntegrityPolicyViolationReportBody","external":false,"refSections":[{"refs":[{"id":"ref-for-integritypolicyviolationreportbody"},{"id":"ref-for-integritypolicyviolationreportbody\u2460"}],"title":"3.8.3. Report violations"}],"url":"#integritypolicyviolationreportbody"},
 "parse-integrity-policy-headers": {"dfnID":"parse-integrity-policy-headers","dfnText":"parse Integrity-Policy headers","external":false,"refSections":[{"refs":[{"id":"ref-for-parse-integrity-policy-headers"}],"title":"3.8.4. Integration"}],"url":"#parse-integrity-policy-headers"},
+"parse-metadata": {"dfnID":"parse-metadata","dfnText":"parse metadata","external":false,"refSections":[{"refs":[{"id":"ref-for-parse-metadata"}],"title":"3.3.4. Do bytes match metadataList?"},{"refs":[{"id":"ref-for-parse-metadata\u2460"}],"title":"3.8.2. Should request be blocked by Integrity Policy"}],"url":"#parse-metadata"},
 "processing-an-integrity-policy": {"dfnID":"processing-an-integrity-policy","dfnText":"processing an integrity policy","external":false,"refSections":[{"refs":[{"id":"ref-for-processing-an-integrity-policy"},{"id":"ref-for-processing-an-integrity-policy\u2460"}],"title":"3.8.1. Parse Integrity-Policy headers"}],"url":"#processing-an-integrity-policy"},
 "report-only-integrity-policy": {"dfnID":"report-only-integrity-policy","dfnText":"report only integrity policy","external":false,"refSections":[{"refs":[{"id":"ref-for-report-only-integrity-policy"}],"title":"3.8.1. Parse Integrity-Policy headers"},{"refs":[{"id":"ref-for-report-only-integrity-policy\u2460"}],"title":"3.8.2. Should request be blocked by Integrity Policy"}],"url":"#report-only-integrity-policy"},
 "report-violation": {"dfnID":"report-violation","dfnText":"report violation","external":false,"refSections":[{"refs":[{"id":"ref-for-report-violation"}],"title":"3.8.2. Should request be blocked by Integrity Policy"}],"url":"#report-violation"},
@@ -2559,6 +2565,7 @@ let refsData = {
 "#integrity-policy-struct": {"displayText":"integrity policy struct","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"integrity policy struct","type":"dfn","url":"#integrity-policy-struct"},
 "#integritypolicyviolationreportbody": {"displayText":"IntegrityPolicyViolationReportBody","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"IntegrityPolicyViolationReportBody","type":"interface","url":"#integritypolicyviolationreportbody"},
 "#parse-integrity-policy-headers": {"displayText":"parse integrity-policy headers","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"parse integrity-policy headers","type":"dfn","url":"#parse-integrity-policy-headers"},
+"#parse-metadata": {"displayText":"parse metadata","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"parse metadata","type":"dfn","url":"#parse-metadata"},
 "#processing-an-integrity-policy": {"displayText":"processing an integrity policy","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"processing an integrity policy","type":"dfn","url":"#processing-an-integrity-policy"},
 "#report-only-integrity-policy": {"displayText":"report only integrity policy","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"report only integrity policy","type":"dfn","url":"#report-only-integrity-policy"},
 "#report-violation": {"displayText":"report violation","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"report violation","type":"dfn","url":"#report-violation"},
@@ -2580,6 +2587,7 @@ let refsData = {
 "https://fetch.spec.whatwg.org/#concept-request": {"displayText":"request","export":true,"for_":[],"level":"1","normative":true,"shortname":"fetch","spec":"fetch","status":"current","text":"request","type":"dfn","url":"https://fetch.spec.whatwg.org/#concept-request"},
 "https://fetch.spec.whatwg.org/#concept-request-client": {"displayText":"client","export":true,"for_":["request"],"level":"1","normative":true,"shortname":"fetch","spec":"fetch","status":"current","text":"client","type":"dfn","url":"https://fetch.spec.whatwg.org/#concept-request-client"},
 "https://fetch.spec.whatwg.org/#concept-request-destination": {"displayText":"destination","export":true,"for_":["request"],"level":"1","normative":true,"shortname":"fetch","spec":"fetch","status":"current","text":"destination","type":"dfn","url":"https://fetch.spec.whatwg.org/#concept-request-destination"},
+"https://fetch.spec.whatwg.org/#concept-request-integrity-metadata": {"displayText":"integrity metadata","export":true,"for_":["request"],"level":"1","normative":true,"shortname":"fetch","spec":"fetch","status":"current","text":"integrity metadata","type":"dfn","url":"https://fetch.spec.whatwg.org/#concept-request-integrity-metadata"},
 "https://fetch.spec.whatwg.org/#concept-request-mode": {"displayText":"mode","export":true,"for_":["request"],"level":"1","normative":true,"shortname":"fetch","spec":"fetch","status":"current","text":"mode","type":"dfn","url":"https://fetch.spec.whatwg.org/#concept-request-mode"},
 "https://fetch.spec.whatwg.org/#concept-request-policy-container": {"displayText":"policy container","export":true,"for_":["request"],"level":"1","normative":true,"shortname":"fetch","spec":"fetch","status":"current","text":"policy container","type":"dfn","url":"https://fetch.spec.whatwg.org/#concept-request-policy-container"},
 "https://fetch.spec.whatwg.org/#concept-request-url": {"displayText":"URL","export":true,"for_":["request"],"level":"1","normative":true,"shortname":"fetch","spec":"fetch","status":"current","text":"url","type":"dfn","url":"https://fetch.spec.whatwg.org/#concept-request-url"},

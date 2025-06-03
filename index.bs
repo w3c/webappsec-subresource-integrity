@@ -32,10 +32,6 @@ spec: ABNF; urlPrefix: https://tools.ietf.org/html/rfc5234
     text: VCHAR; url: appendix-B.1
     text: WSP; url: appendix-B.1
 
-spec: CSP; urlPrefix: https://www.w3.org/TR/CSP3/
-  type: dfn
-    text: strip url for use in reports; url: strip-url-for-use-in-reports
-
 spec: FETCH; urlPrefix: https://fetch.spec.whatwg.org/
   type: dfn
     text: main fetch; url: main-fetch
@@ -516,7 +512,7 @@ spec:csp3; type:grammar; text:base64-value
 
   A <dfn>destination</dfn> is a string. The only possible value for it is "`script`".
 
-  An <dfn export>integrity policy struct</dfn>, is a <a>struct</a> that contains the following:
+  An <dfn export>integrity policy</dfn>, is a <a>struct</a> that contains the following:
 
     * <dfn>sources</dfn>, a list of <a>source</a>s, initially empty.
     * <dfn>blocked destinations</dfn>, a list of <a>destination</a>s, initially empty.
@@ -525,7 +521,7 @@ spec:csp3; type:grammar; text:base64-value
   When <dfn>processing an integrity policy</dfn>, with a <a for=/>header list</a> |headers|
   and a <a>header name</a> |headerName|, do the following:
 
-  1. Let |integrityPolicy| be a new <a>integrity policy struct</a>.
+  1. Let |integrityPolicy| be a new <a for=/>integrity policy</a>.
   1. Let |dictionary| be the result of <a>getting a structured field value</a> from |headers|
      given |headerName| and "`dictionary`".
   1. If |dictionary|["`sources`"] does not <a for=list>exist</a> or if its value
@@ -544,7 +540,7 @@ spec:csp3; type:grammar; text:base64-value
 
   1. Let |headers| be |response|'s <a for=response>header list</a>.
   1. If |headers| <a for="header list">contains</a> ``integrity-policy``,
-     set |container|'s <a>integrity policy</a> be the result of running
+     set |container|'s <a for="policy container">integrity policy</a> be the result of running
      <a>processing an integrity policy</a> with the corresponding <a>header value</a>.
   1. If |headers| <a for="header list">contains</a> ``integrity-policy-report-only``,
      set |container|'s <a>report only integrity policy</a> be the result of running
@@ -560,9 +556,9 @@ spec:csp3; type:grammar; text:base64-value
   1. If |parsedMetadata| is not the empty set and
      |request|'s <a for=request>mode</a> is either "`cors`" or "`same-origin`",
      return "Allowed".
-  1. Let |policy| be |policyContainer|'s <a>integrity policy</a>.
+  1. Let |policy| be |policyContainer|'s <a for="policy container">integrity policy</a>.
   1. Let |reportPolicy| be |policyContainer|'s <a>report only integrity policy</a>.
-  1. If both |policy| and |reportPolicy| are empty <a>integrity policy struct</a>s, return "Allowed".
+  1. If both |policy| and |reportPolicy| are empty <a for=/>integrity policy</a>s, return "Allowed".
   1. Let |global| be |request|'s <a for=request>client</a>'s <a for="environment settings object">global object</a>.
   1. If |global| is not a {{Window}} nor a {{WorkerGlobalScope}}, return "`Allowed`".
   1. Let |block| be a boolean, initially false.
@@ -593,8 +589,8 @@ spec:csp3; type:grammar; text:base64-value
   </pre>
 
   To <dfn>report violation</dfn> given a <a for=/>Request</a> |request|, a boolean |block|,
-  a boolean |reportBlock|, an <a>integrity policy struct</a> |policy|,
-  and an <a>integrity policy struct</a> |reportPolicy|, do the following:
+  a boolean |reportBlock|, an <a for=/>integrity policy</a> |policy|,
+  and an <a for=/>integrity policy</a> |reportPolicy|, do the following:
 
   1. <a>Assert</a>: |request|'s <a for=request>client</a> is not null.
   1. Let |settingsObject| be |request|'s <a for=request>client</a>.
@@ -649,8 +645,8 @@ spec:csp3; type:grammar; text:base64-value
 
   A <a for=/>policy container</a> has extra items:
 
-  * <dfn>integrity policy</dfn>, an <a>integrity policy struct</a>.
-  * <dfn>report only integrity policy</dfn>, an <a>integrity policy struct</a>.
+  * <dfn for="policy container">integrity policy</dfn>, an <a for=/>integrity policy</a>.
+  * <dfn for="policy container">report only integrity policy</dfn>, an <a for=/>integrity policy</a>.
 
   Add an extra step to <a>create a policy container from a fetch response</a> before it returns, that runs
   <a>parse Integrity-Policy headers</a> with <var ignore>response</var> and <var ignore>result</var>.

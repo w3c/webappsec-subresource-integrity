@@ -5,9 +5,9 @@
   <title>Subresource Integrity</title>
   <meta content="ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
-  <meta content="Bikeshed version b25686b9f, updated Fri Mar 14 14:15:20 2025 -0700" name="generator">
+  <meta content="Bikeshed version 9a7a6709a, updated Tue May 27 16:45:34 2025 -0700" name="generator">
   <link href="http://www.w3.org/TR/SRI/" rel="canonical">
-  <meta content="94fdafefd9d33e380461f381e9a4d8e400df571b" name="revision">
+  <meta content="2089aeb95782970d35f96283d1f3da89beaa8802" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>/* Boilerplate: style-autolinks */
@@ -832,7 +832,7 @@ dd:not(:last-child) > .wpt-tests-block:not([open]):last-child {
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Subresource Integrity</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2025-05-27">27 May 2025</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2025-06-03">3 June 2025</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -1332,7 +1332,7 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
    <p>The headers' value is a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc9651#name-dictionaries" id="ref-for-name-dictionaries">Dictionary</a> <a data-link-type="biblio" href="#biblio-rfc9651" title="Structured Field Values for HTTP">[RFC9651]</a>, with every member-value being an <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc9651#name-inner-lists" id="ref-for-name-inner-lists">inner list</a> of <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc9651#name-tokens" id="ref-for-name-tokens">tokens</a>.</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="source">source</dfn> is a string. The only possible value for it is "<code>inline</code>".</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="destination">destination</dfn> is a string. The only possible value for it is "<code>script</code>".</p>
-   <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="integrity-policy-struct">integrity policy struct</dfn>, is a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#struct" id="ref-for-struct">struct</a> that contains the following:</p>
+   <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="integrity-policy">integrity policy</dfn>, is a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#struct" id="ref-for-struct">struct</a> that contains the following:</p>
    <ul>
     <li data-md>
      <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="sources">sources</dfn>, a list of <a data-link-type="dfn" href="#source" id="ref-for-source">source</a>s, initially empty.</p>
@@ -1344,7 +1344,7 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
    <p>When <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="processing-an-integrity-policy">processing an integrity policy</dfn>, with a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-header-list" id="ref-for-concept-header-list">header list</a> <var>headers</var> and a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#header-name" id="ref-for-header-name">header name</a> <var>headerName</var>, do the following:</p>
    <ol>
     <li data-md>
-     <p>Let <var>integrityPolicy</var> be a new <a data-link-type="dfn" href="#integrity-policy-struct" id="ref-for-integrity-policy-struct">integrity policy struct</a>.</p>
+     <p>Let <var>integrityPolicy</var> be a new <a data-link-type="dfn" href="#integrity-policy" id="ref-for-integrity-policy">integrity policy</a>.</p>
     <li data-md>
      <p>Let <var>dictionary</var> be the result of <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-header-list-get-structured-header" id="ref-for-concept-header-list-get-structured-header">getting a structured field value</a> from <var>headers</var> given <var>headerName</var> and "<code>dictionary</code>".</p>
     <li data-md>
@@ -1371,10 +1371,10 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
      <p>Let <var>headers</var> be <var>response</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response-header-list" id="ref-for-concept-response-header-list">header list</a>.</p>
     <li data-md>
      <p>If <var>headers</var> <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#header-list-contains" id="ref-for-header-list-contains">contains</a> <code>integrity-policy</code>,
- set <var>container</var>’s <a data-link-type="dfn" href="#integrity-policy" id="ref-for-integrity-policy">integrity policy</a> be the result of running <a data-link-type="dfn" href="#processing-an-integrity-policy" id="ref-for-processing-an-integrity-policy">processing an integrity policy</a> with the corresponding <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#header-value" id="ref-for-header-value">header value</a>.</p>
+ set <var>container</var>’s <a data-link-type="dfn" href="#policy-container-integrity-policy" id="ref-for-policy-container-integrity-policy">integrity policy</a> be the result of running <a data-link-type="dfn" href="#processing-an-integrity-policy" id="ref-for-processing-an-integrity-policy">processing an integrity policy</a> with the corresponding <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#header-value" id="ref-for-header-value">header value</a>.</p>
     <li data-md>
      <p>If <var>headers</var> <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#header-list-contains" id="ref-for-header-list-contains①">contains</a> <code>integrity-policy-report-only</code>,
- set <var>container</var>’s <a data-link-type="dfn" href="#report-only-integrity-policy" id="ref-for-report-only-integrity-policy">report only integrity policy</a> be the result of running <a data-link-type="dfn" href="#processing-an-integrity-policy" id="ref-for-processing-an-integrity-policy①">processing an integrity policy</a> with the corresponding <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#header-value" id="ref-for-header-value①">header value</a>.</p>
+ set <var>container</var>’s <a data-link-type="dfn" href="#policy-container-report-only-integrity-policy" id="ref-for-policy-container-report-only-integrity-policy">report only integrity policy</a> be the result of running <a data-link-type="dfn" href="#processing-an-integrity-policy" id="ref-for-processing-an-integrity-policy①">processing an integrity policy</a> with the corresponding <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#header-value" id="ref-for-header-value①">header value</a>.</p>
    </ol>
    <h4 class="heading settled" data-level="3.8.2" id="should-request-be-blocked-by-integrity-policy-section"><span class="secno">3.8.2. </span><span class="content">Should request be blocked by Integrity Policy</span><a class="self-link" href="#should-request-be-blocked-by-integrity-policy-section"></a></h4>
     To determine <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="should-request-be-blocked-by-integrity-policy">should request be blocked by integrity policy</dfn>, given a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request" id="ref-for-concept-request①">request</a> <var>request</var>,
@@ -1388,11 +1388,11 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
      <p>If <var>parsedMetadata</var> is not the empty set and <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-mode" id="ref-for-concept-request-mode">mode</a> is either "<code>cors</code>" or "<code>same-origin</code>",
  return "Allowed".</p>
     <li data-md>
-     <p>Let <var>policy</var> be <var>policyContainer</var>’s <a data-link-type="dfn" href="#integrity-policy" id="ref-for-integrity-policy①">integrity policy</a>.</p>
+     <p>Let <var>policy</var> be <var>policyContainer</var>’s <a data-link-type="dfn" href="#policy-container-integrity-policy" id="ref-for-policy-container-integrity-policy①">integrity policy</a>.</p>
     <li data-md>
-     <p>Let <var>reportPolicy</var> be <var>policyContainer</var>’s <a data-link-type="dfn" href="#report-only-integrity-policy" id="ref-for-report-only-integrity-policy①">report only integrity policy</a>.</p>
+     <p>Let <var>reportPolicy</var> be <var>policyContainer</var>’s <a data-link-type="dfn" href="#policy-container-report-only-integrity-policy" id="ref-for-policy-container-report-only-integrity-policy①">report only integrity policy</a>.</p>
     <li data-md>
-     <p>If both <var>policy</var> and <var>reportPolicy</var> are empty <a data-link-type="dfn" href="#integrity-policy-struct" id="ref-for-integrity-policy-struct①">integrity policy struct</a>s, return "Allowed".</p>
+     <p>If both <var>policy</var> and <var>reportPolicy</var> are empty <a data-link-type="dfn" href="#integrity-policy" id="ref-for-integrity-policy①">integrity policy</a>s, return "Allowed".</p>
     <li data-md>
      <p>Let <var>global</var> be <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client" id="ref-for-concept-request-client">client</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-global" id="ref-for-concept-settings-object-global">global object</a>.</p>
     <li data-md>
@@ -1425,8 +1425,8 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
 };
 </pre>
    <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="report-violation">report violation</dfn> given a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request" id="ref-for-concept-request②">Request</a> <var>request</var>, a boolean <var>block</var>,
-  a boolean <var>reportBlock</var>, an <a data-link-type="dfn" href="#integrity-policy-struct" id="ref-for-integrity-policy-struct②">integrity policy struct</a> <var>policy</var>,
-  and an <a data-link-type="dfn" href="#integrity-policy-struct" id="ref-for-integrity-policy-struct③">integrity policy struct</a> <var>reportPolicy</var>, do the following:</p>
+  a boolean <var>reportBlock</var>, an <a data-link-type="dfn" href="#integrity-policy" id="ref-for-integrity-policy②">integrity policy</a> <var>policy</var>,
+  and an <a data-link-type="dfn" href="#integrity-policy" id="ref-for-integrity-policy③">integrity policy</a> <var>reportPolicy</var>, do the following:</p>
    <ol>
     <li data-md>
      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#assert" id="ref-for-assert">Assert</a>: <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client" id="ref-for-concept-request-client①">client</a> is not null.</p>
@@ -1445,9 +1445,9 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
     <li data-md>
      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#assert" id="ref-for-assert②">Assert</a>: <var>url</var> is a <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url" id="ref-for-concept-url">URL</a>.</p>
     <li data-md>
-     <p>Let <var>documentURL</var> be the result of <a data-link-type="dfn" href="https://www.w3.org/TR/CSP3/#strip-url-for-use-in-reports" id="ref-for-strip-url-for-use-in-reports">strip URL for use in reports</a> on <var>url</var>.</p>
+     <p>Let <var>documentURL</var> be the result of <a data-link-type="dfn" href="https://w3c.github.io/reporting/#strip-url-for-use-in-reports" id="ref-for-strip-url-for-use-in-reports">strip URL for use in reports</a> on <var>url</var>.</p>
     <li data-md>
-     <p>Let <var>blockedURL</var> be the result of <a data-link-type="dfn" href="https://www.w3.org/TR/CSP3/#strip-url-for-use-in-reports" id="ref-for-strip-url-for-use-in-reports①">strip URL for use in reports</a> on <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-url" id="ref-for-concept-request-url">URL</a>.</p>
+     <p>Let <var>blockedURL</var> be the result of <a data-link-type="dfn" href="https://w3c.github.io/reporting/#strip-url-for-use-in-reports" id="ref-for-strip-url-for-use-in-reports①">strip URL for use in reports</a> on <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-url" id="ref-for-concept-request-url">URL</a>.</p>
     <li data-md>
      <p>If <var>block</var> is true, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate">for each</a> <var>endpoint</var> in <var>policy</var>’s <a data-link-type="dfn" href="#endpoints" id="ref-for-endpoints①">endpoints</a>:</p>
      <ol>
@@ -1525,9 +1525,9 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
    <p>A <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#policy-container" id="ref-for-policy-container①">policy container</a> has extra items:</p>
    <ul>
     <li data-md>
-     <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="integrity-policy">integrity policy</dfn>, an <a data-link-type="dfn" href="#integrity-policy-struct" id="ref-for-integrity-policy-struct④">integrity policy struct</a>.</p>
+     <p><dfn class="dfn-paneled" data-dfn-for="policy container" data-dfn-type="dfn" data-noexport id="policy-container-integrity-policy">integrity policy</dfn>, an <a data-link-type="dfn" href="#integrity-policy" id="ref-for-integrity-policy④">integrity policy</a>.</p>
     <li data-md>
-     <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="report-only-integrity-policy">report only integrity policy</dfn>, an <a data-link-type="dfn" href="#integrity-policy-struct" id="ref-for-integrity-policy-struct⑤">integrity policy struct</a>.</p>
+     <p><dfn class="dfn-paneled" data-dfn-for="policy container" data-dfn-type="dfn" data-noexport id="policy-container-report-only-integrity-policy">report only integrity policy</dfn>, an <a data-link-type="dfn" href="#integrity-policy" id="ref-for-integrity-policy⑤">integrity policy</a>.</p>
    </ul>
    <p>Add an extra step to <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#creating-a-policy-container-from-a-fetch-response" id="ref-for-creating-a-policy-container-from-a-fetch-response">create a policy container from a fetch response</a> before it returns, that runs <a data-link-type="dfn" href="#parse-integrity-policy-headers" id="ref-for-parse-integrity-policy-headers">parse Integrity-Policy headers</a> with <var>response</var> and <var>result</var>.</p>
    <p>Expand step 7 of <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#main-fetch" id="ref-for-main-fetch">main fetch</a> to call <a data-link-type="dfn" href="#should-request-be-blocked-by-integrity-policy" id="ref-for-should-request-be-blocked-by-integrity-policy">should request be blocked by integrity policy</a> and return a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-network-error" id="ref-for-concept-network-error">network error</a> if it returns "<code>Blocked</code>".</p>
@@ -1662,15 +1662,19 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
    <li><a href="#grammardef-hash-with-options">hash-with-options</a><span>, in § 3.5</span>
    <li><a href="#integrity-metadata">integrity metadata</a><span>, in § 3.1</span>
    <li><a href="#grammardef-integrity-metadata">integrity-metadata</a><span>, in § 3.5</span>
-   <li><a href="#integrity-policy">integrity policy</a><span>, in § 3.8.4</span>
-   <li><a href="#integrity-policy-struct">integrity policy struct</a><span>, in § 3.8</span>
+   <li>
+    integrity policy
+    <ul>
+     <li><a href="#integrity-policy">definition of</a><span>, in § 3.8</span>
+     <li><a href="#policy-container-integrity-policy">dfn for policy container</a><span>, in § 3.8.4</span>
+    </ul>
    <li><a href="#integritypolicyviolationreportbody">IntegrityPolicyViolationReportBody</a><span>, in § 3.8.3</span>
    <li><a href="#grammardef-option-expression">option-expression</a><span>, in § 3.5</span>
    <li><a href="#parse-integrity-policy-headers">parse Integrity-Policy headers</a><span>, in § 3.8.1</span>
    <li><a href="#parse-metadata">parse metadata</a><span>, in § 3.3.2</span>
    <li><a href="#processing-an-integrity-policy">processing an integrity policy</a><span>, in § 3.8</span>
    <li><a href="#dom-integritypolicyviolationreportbody-reportonly">reportOnly</a><span>, in § 3.8.3</span>
-   <li><a href="#report-only-integrity-policy">report only integrity policy</a><span>, in § 3.8.4</span>
+   <li><a href="#policy-container-report-only-integrity-policy">report only integrity policy</a><span>, in § 3.8.4</span>
    <li><a href="#report-violation">report violation</a><span>, in § 3.8.3</span>
    <li><a href="#should-request-be-blocked-by-integrity-policy">should request be blocked by integrity policy</a><span>, in § 3.8.2</span>
    <li><a href="#source">source</a><span>, in § 3.8</span>
@@ -1692,7 +1696,6 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
     <ul>
      <li><span class="dfn-paneled" id="aa9871ba">base64-value</span>
      <li><span class="dfn-paneled" id="b123cff6">hash-algorithm</span>
-     <li><span class="dfn-paneled" id="771a780c">strip url for use in reports</span>
     </ul>
    <li>
     <a data-link-type="biblio">[DOM]</a> defines the following terms:
@@ -1760,6 +1763,7 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
      <li><span class="dfn-paneled" id="5c9158ae">data</span>
      <li><span class="dfn-paneled" id="35ccaa89">destination</span>
      <li><span class="dfn-paneled" id="7ed9d314">generate and queue a report</span>
+     <li><span class="dfn-paneled" id="093a0772">strip URL for use in reports</span>
      <li><span class="dfn-paneled" id="3113ad77">type</span>
     </ul>
    <li>
@@ -2063,6 +2067,7 @@ function parseHTML(markup) {
 let dfnPanelData = {
 "086e3aff": {"dfnID":"086e3aff","dfnText":"origin","external":true,"refSections":[{"refs":[{"id":"ref-for-concept-origin"}],"title":"2. Key Concepts and Terminology"}],"url":"https://html.spec.whatwg.org/multipage/browsers.html#concept-origin"},
 "0939d6e1": {"dfnID":"0939d6e1","dfnText":"context","external":true,"refSections":[{"refs":[{"id":"ref-for-generate-and-queue-a-report-context"},{"id":"ref-for-generate-and-queue-a-report-context\u2460"}],"title":"3.8.3. Report violations"}],"url":"https://w3c.github.io/reporting/#generate-and-queue-a-report-context"},
+"093a0772": {"dfnID":"093a0772","dfnText":"strip URL for use in reports","external":true,"refSections":[{"refs":[{"id":"ref-for-strip-url-for-use-in-reports"},{"id":"ref-for-strip-url-for-use-in-reports\u2460"}],"title":"3.8.3. Report violations"}],"url":"https://w3c.github.io/reporting/#strip-url-for-use-in-reports"},
 "0de10dfb": {"dfnID":"0de10dfb","dfnText":"SHA-256","external":true,"refSections":[{"refs":[{"id":"ref-for-something"},{"id":"ref-for-something\u2460"},{"id":"ref-for-something\u2461"},{"id":"ref-for-something\u2462"},{"id":"ref-for-something\u2463"},{"id":"ref-for-something\u2464"},{"id":"ref-for-something\u2465"}],"title":"2. Key Concepts and Terminology"},{"refs":[{"id":"ref-for-something\u2466"}],"title":"3.1. Integrity metadata"},{"refs":[{"id":"ref-for-something\u2467"},{"id":"ref-for-something\u2468"},{"id":"ref-for-something\u2460\u24ea"}],"title":"3.2. Cryptographic hash functions"},{"refs":[{"id":"ref-for-something\u2460\u2460"},{"id":"ref-for-something\u2460\u2461"},{"id":"ref-for-something\u2460\u2462"}],"title":"3.2.2. Priority"},{"refs":[{"id":"ref-for-something\u2460\u2463"},{"id":"ref-for-something\u2460\u2464"}],"title":"3.3.4. Do bytes match metadataList?"}],"url":"https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#"},
 "104bce7f": {"dfnID":"104bce7f","dfnText":"SHA-2","external":true,"refSections":[{"refs":[{"id":"ref-for-something"},{"id":"ref-for-something\u2460"},{"id":"ref-for-something\u2461"},{"id":"ref-for-something\u2462"},{"id":"ref-for-something\u2463"},{"id":"ref-for-something\u2464"},{"id":"ref-for-something\u2465"}],"title":"2. Key Concepts and Terminology"},{"refs":[{"id":"ref-for-something\u2466"}],"title":"3.1. Integrity metadata"},{"refs":[{"id":"ref-for-something\u2467"},{"id":"ref-for-something\u2468"},{"id":"ref-for-something\u2460\u24ea"}],"title":"3.2. Cryptographic hash functions"},{"refs":[{"id":"ref-for-something\u2460\u2460"},{"id":"ref-for-something\u2460\u2461"},{"id":"ref-for-something\u2460\u2462"}],"title":"3.2.2. Priority"},{"refs":[{"id":"ref-for-something\u2460\u2463"},{"id":"ref-for-something\u2460\u2464"}],"title":"3.3.4. Do bytes match metadataList?"}],"url":"https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#"},
 "1243a891": {"dfnID":"1243a891","dfnText":"exist (for map)","external":true,"refSections":[{"refs":[{"id":"ref-for-map-exists"}],"title":"3.8. Integrity-Policy"}],"url":"https://infra.spec.whatwg.org/#map-exists"},
@@ -2089,7 +2094,6 @@ let dfnPanelData = {
 "6f2dfa22": {"dfnID":"6f2dfa22","dfnText":"ASCII lowercase","external":true,"refSections":[{"refs":[{"id":"ref-for-ascii-lowercase"}],"title":"2. Key Concepts and Terminology"}],"url":"https://infra.spec.whatwg.org/#ascii-lowercase"},
 "7393da89": {"dfnID":"7393da89","dfnText":"same origin","external":true,"refSections":[{"refs":[{"id":"ref-for-same-origin"}],"title":"2. Key Concepts and Terminology"}],"url":"https://html.spec.whatwg.org/multipage/browsers.html#same-origin"},
 "75393c04": {"dfnID":"75393c04","dfnText":"exist (for list)","external":true,"refSections":[{"refs":[{"id":"ref-for-list-contain"}],"title":"2. Key Concepts and Terminology"},{"refs":[{"id":"ref-for-list-contain\u2460"}],"title":"3.3.2. Parse metadata"},{"refs":[{"id":"ref-for-list-contain\u2461"},{"id":"ref-for-list-contain\u2462"},{"id":"ref-for-list-contain\u2463"},{"id":"ref-for-list-contain\u2464"}],"title":"3.8. Integrity-Policy"},{"refs":[{"id":"ref-for-list-contain\u2465"},{"id":"ref-for-list-contain\u2466"},{"id":"ref-for-list-contain\u2467"},{"id":"ref-for-list-contain\u2468"}],"title":"3.8.2. Should request be blocked by Integrity Policy"}],"url":"https://infra.spec.whatwg.org/#list-contain"},
-"771a780c": {"dfnID":"771a780c","dfnText":"strip url for use in reports","external":true,"refSections":[{"refs":[{"id":"ref-for-strip-url-for-use-in-reports"},{"id":"ref-for-strip-url-for-use-in-reports\u2460"}],"title":"3.8.3. Report violations"}],"url":"https://www.w3.org/TR/CSP3/#strip-url-for-use-in-reports"},
 "77b4c09a": {"dfnID":"77b4c09a","dfnText":"assert","external":true,"refSections":[{"refs":[{"id":"ref-for-assert"},{"id":"ref-for-assert\u2460"},{"id":"ref-for-assert\u2461"}],"title":"3.8.3. Report violations"}],"url":"https://infra.spec.whatwg.org/#assert"},
 "7ed9d314": {"dfnID":"7ed9d314","dfnText":"generate and queue a report","external":true,"refSections":[{"refs":[{"id":"ref-for-generate-and-queue-a-report"},{"id":"ref-for-generate-and-queue-a-report\u2460"}],"title":"3.8.3. Report violations"}],"url":"https://w3c.github.io/reporting/#generate-and-queue-a-report"},
 "821e824a": {"dfnID":"821e824a","dfnText":"main fetch","external":true,"refSections":[{"refs":[{"id":"ref-for-main-fetch"}],"title":"3.8.4. Integration"}],"url":"https://fetch.spec.whatwg.org/#main-fetch"},
@@ -2146,13 +2150,13 @@ let dfnPanelData = {
 "grammardef-integrity-metadata": {"dfnID":"grammardef-integrity-metadata","dfnText":"integrity-metadata","external":false,"refSections":[{"refs":[{"id":"ref-for-grammardef-integrity-metadata"}],"title":"3.6. The integrity link processing option"}],"url":"#grammardef-integrity-metadata"},
 "grammardef-option-expression": {"dfnID":"grammardef-option-expression","dfnText":"option-expression","external":false,"refSections":[{"refs":[{"id":"ref-for-grammardef-option-expression"}],"title":"3.5. The integrity attribute"}],"url":"#grammardef-option-expression"},
 "integrity-metadata": {"dfnID":"integrity-metadata","dfnText":"integrity\n  metadata","external":false,"refSections":[{"refs":[{"id":"ref-for-integrity-metadata"},{"id":"ref-for-integrity-metadata\u2460"},{"id":"ref-for-integrity-metadata\u2461"}],"title":"1.2.1. Resource Integrity"},{"refs":[{"id":"ref-for-integrity-metadata\u2462"}],"title":"3.2. Cryptographic hash functions"},{"refs":[{"id":"ref-for-integrity-metadata\u2463"}],"title":"3.2.1. Agility"},{"refs":[{"id":"ref-for-integrity-metadata\u2464"}],"title":"3.5. The integrity attribute"},{"refs":[{"id":"ref-for-integrity-metadata\u2465"}],"title":"3.6. The integrity link processing option"},{"refs":[{"id":"ref-for-integrity-metadata\u2466"}],"title":"4. Proxies"},{"refs":[{"id":"ref-for-integrity-metadata\u2467"}],"title":"5.1. Non-secure contexts remain non-secure"}],"url":"#integrity-metadata"},
-"integrity-policy": {"dfnID":"integrity-policy","dfnText":"integrity policy","external":false,"refSections":[{"refs":[{"id":"ref-for-integrity-policy"}],"title":"3.8.1. Parse Integrity-Policy headers"},{"refs":[{"id":"ref-for-integrity-policy\u2460"}],"title":"3.8.2. Should request be blocked by Integrity Policy"}],"url":"#integrity-policy"},
-"integrity-policy-struct": {"dfnID":"integrity-policy-struct","dfnText":"integrity policy struct","external":false,"refSections":[{"refs":[{"id":"ref-for-integrity-policy-struct"}],"title":"3.8. Integrity-Policy"},{"refs":[{"id":"ref-for-integrity-policy-struct\u2460"}],"title":"3.8.2. Should request be blocked by Integrity Policy"},{"refs":[{"id":"ref-for-integrity-policy-struct\u2461"},{"id":"ref-for-integrity-policy-struct\u2462"}],"title":"3.8.3. Report violations"},{"refs":[{"id":"ref-for-integrity-policy-struct\u2463"},{"id":"ref-for-integrity-policy-struct\u2464"}],"title":"3.8.4. Integration"}],"url":"#integrity-policy-struct"},
+"integrity-policy": {"dfnID":"integrity-policy","dfnText":"integrity policy","external":false,"refSections":[{"refs":[{"id":"ref-for-integrity-policy"}],"title":"3.8. Integrity-Policy"},{"refs":[{"id":"ref-for-integrity-policy\u2460"}],"title":"3.8.2. Should request be blocked by Integrity Policy"},{"refs":[{"id":"ref-for-integrity-policy\u2461"},{"id":"ref-for-integrity-policy\u2462"}],"title":"3.8.3. Report violations"},{"refs":[{"id":"ref-for-integrity-policy\u2463"},{"id":"ref-for-integrity-policy\u2464"}],"title":"3.8.4. Integration"}],"url":"#integrity-policy"},
 "integritypolicyviolationreportbody": {"dfnID":"integritypolicyviolationreportbody","dfnText":"IntegrityPolicyViolationReportBody","external":false,"refSections":[{"refs":[{"id":"ref-for-integritypolicyviolationreportbody"},{"id":"ref-for-integritypolicyviolationreportbody\u2460"}],"title":"3.8.3. Report violations"}],"url":"#integritypolicyviolationreportbody"},
 "parse-integrity-policy-headers": {"dfnID":"parse-integrity-policy-headers","dfnText":"parse Integrity-Policy headers","external":false,"refSections":[{"refs":[{"id":"ref-for-parse-integrity-policy-headers"}],"title":"3.8.4. Integration"}],"url":"#parse-integrity-policy-headers"},
 "parse-metadata": {"dfnID":"parse-metadata","dfnText":"parse metadata","external":false,"refSections":[{"refs":[{"id":"ref-for-parse-metadata"}],"title":"3.3.4. Do bytes match metadataList?"},{"refs":[{"id":"ref-for-parse-metadata\u2460"}],"title":"3.8.2. Should request be blocked by Integrity Policy"}],"url":"#parse-metadata"},
+"policy-container-integrity-policy": {"dfnID":"policy-container-integrity-policy","dfnText":"integrity policy","external":false,"refSections":[{"refs":[{"id":"ref-for-policy-container-integrity-policy"}],"title":"3.8.1. Parse Integrity-Policy headers"},{"refs":[{"id":"ref-for-policy-container-integrity-policy\u2460"}],"title":"3.8.2. Should request be blocked by Integrity Policy"}],"url":"#policy-container-integrity-policy"},
+"policy-container-report-only-integrity-policy": {"dfnID":"policy-container-report-only-integrity-policy","dfnText":"report only integrity policy","external":false,"refSections":[{"refs":[{"id":"ref-for-policy-container-report-only-integrity-policy"}],"title":"3.8.1. Parse Integrity-Policy headers"},{"refs":[{"id":"ref-for-policy-container-report-only-integrity-policy\u2460"}],"title":"3.8.2. Should request be blocked by Integrity Policy"}],"url":"#policy-container-report-only-integrity-policy"},
 "processing-an-integrity-policy": {"dfnID":"processing-an-integrity-policy","dfnText":"processing an integrity policy","external":false,"refSections":[{"refs":[{"id":"ref-for-processing-an-integrity-policy"},{"id":"ref-for-processing-an-integrity-policy\u2460"}],"title":"3.8.1. Parse Integrity-Policy headers"}],"url":"#processing-an-integrity-policy"},
-"report-only-integrity-policy": {"dfnID":"report-only-integrity-policy","dfnText":"report only integrity policy","external":false,"refSections":[{"refs":[{"id":"ref-for-report-only-integrity-policy"}],"title":"3.8.1. Parse Integrity-Policy headers"},{"refs":[{"id":"ref-for-report-only-integrity-policy\u2460"}],"title":"3.8.2. Should request be blocked by Integrity Policy"}],"url":"#report-only-integrity-policy"},
 "report-violation": {"dfnID":"report-violation","dfnText":"report violation","external":false,"refSections":[{"refs":[{"id":"ref-for-report-violation"}],"title":"3.8.2. Should request be blocked by Integrity Policy"}],"url":"#report-violation"},
 "should-request-be-blocked-by-integrity-policy": {"dfnID":"should-request-be-blocked-by-integrity-policy","dfnText":"should request be blocked by integrity policy","external":false,"refSections":[{"refs":[{"id":"ref-for-should-request-be-blocked-by-integrity-policy"}],"title":"3.8.4. Integration"}],"url":"#should-request-be-blocked-by-integrity-policy"},
 "source": {"dfnID":"source","dfnText":"source","external":false,"refSections":[{"refs":[{"id":"ref-for-source"}],"title":"3.8. Integrity-Policy"}],"url":"#source"},
@@ -2562,12 +2566,12 @@ let refsData = {
 "#grammardef-option-expression": {"displayText":"option-expression","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"option-expression","type":"grammar","url":"#grammardef-option-expression"},
 "#integrity-metadata": {"displayText":"integrity metadata","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"integrity metadata","type":"dfn","url":"#integrity-metadata"},
 "#integrity-policy": {"displayText":"integrity policy","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"integrity policy","type":"dfn","url":"#integrity-policy"},
-"#integrity-policy-struct": {"displayText":"integrity policy struct","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"integrity policy struct","type":"dfn","url":"#integrity-policy-struct"},
 "#integritypolicyviolationreportbody": {"displayText":"IntegrityPolicyViolationReportBody","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"IntegrityPolicyViolationReportBody","type":"interface","url":"#integritypolicyviolationreportbody"},
 "#parse-integrity-policy-headers": {"displayText":"parse integrity-policy headers","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"parse integrity-policy headers","type":"dfn","url":"#parse-integrity-policy-headers"},
 "#parse-metadata": {"displayText":"parse metadata","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"parse metadata","type":"dfn","url":"#parse-metadata"},
+"#policy-container-integrity-policy": {"displayText":"integrity policy","export":true,"for_":["policy container"],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"integrity policy","type":"dfn","url":"#policy-container-integrity-policy"},
+"#policy-container-report-only-integrity-policy": {"displayText":"report only integrity policy","export":true,"for_":["policy container"],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"report only integrity policy","type":"dfn","url":"#policy-container-report-only-integrity-policy"},
 "#processing-an-integrity-policy": {"displayText":"processing an integrity policy","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"processing an integrity policy","type":"dfn","url":"#processing-an-integrity-policy"},
-"#report-only-integrity-policy": {"displayText":"report only integrity policy","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"report only integrity policy","type":"dfn","url":"#report-only-integrity-policy"},
 "#report-violation": {"displayText":"report violation","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"report violation","type":"dfn","url":"#report-violation"},
 "#should-request-be-blocked-by-integrity-policy": {"displayText":"should request be blocked by integrity policy","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"should request be blocked by integrity policy","type":"dfn","url":"#should-request-be-blocked-by-integrity-policy"},
 "#source": {"displayText":"source","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"source","type":"dfn","url":"#source"},
@@ -2635,6 +2639,7 @@ let refsData = {
 "https://w3c.github.io/reporting/#generate-and-queue-a-report-destination": {"displayText":"destination","export":true,"for_":["generate and queue a report"],"level":"1","normative":true,"shortname":"reporting","spec":"reporting-1","status":"current","text":"destination","type":"dfn","url":"https://w3c.github.io/reporting/#generate-and-queue-a-report-destination"},
 "https://w3c.github.io/reporting/#generate-and-queue-a-report-type": {"displayText":"type","export":true,"for_":["generate and queue a report"],"level":"1","normative":true,"shortname":"reporting","spec":"reporting-1","status":"current","text":"type","type":"dfn","url":"https://w3c.github.io/reporting/#generate-and-queue-a-report-type"},
 "https://w3c.github.io/reporting/#reportbody": {"displayText":"ReportBody","export":true,"for_":[],"level":"1","normative":true,"shortname":"reporting","spec":"reporting-1","status":"current","text":"ReportBody","type":"interface","url":"https://w3c.github.io/reporting/#reportbody"},
+"https://w3c.github.io/reporting/#strip-url-for-use-in-reports": {"displayText":"strip URL for use in reports","export":true,"for_":[],"level":"1","normative":true,"shortname":"reporting","spec":"reporting-1","status":"current","text":"strip url for use in reports","type":"dfn","url":"https://w3c.github.io/reporting/#strip-url-for-use-in-reports"},
 "https://w3c.github.io/webappsec-csp/#grammardef-base64-value": {"displayText":"base64-value","export":true,"for_":[],"level":"3","normative":true,"shortname":"csp","spec":"csp3","status":"current","text":"base64-value","type":"grammar","url":"https://w3c.github.io/webappsec-csp/#grammardef-base64-value"},
 "https://w3c.github.io/webappsec-csp/#grammardef-hash-algorithm": {"displayText":"hash-algorithm","export":true,"for_":[],"level":"3","normative":true,"shortname":"csp","spec":"csp3","status":"current","text":"hash-algorithm","type":"grammar","url":"https://w3c.github.io/webappsec-csp/#grammardef-hash-algorithm"},
 "https://webidl.spec.whatwg.org/#Default": {"displayText":"Default","export":true,"for_":[],"level":"1","normative":true,"shortname":"webidl","spec":"webidl","status":"current","text":"Default","type":"extended-attribute","url":"https://webidl.spec.whatwg.org/#Default"},
@@ -2642,7 +2647,6 @@ let refsData = {
 "https://webidl.spec.whatwg.org/#idl-USVString": {"displayText":"USVString","export":true,"for_":[],"level":"1","normative":true,"shortname":"webidl","spec":"webidl","status":"current","text":"USVString","type":"interface","url":"https://webidl.spec.whatwg.org/#idl-USVString"},
 "https://webidl.spec.whatwg.org/#idl-boolean": {"displayText":"boolean","export":true,"for_":[],"level":"1","normative":true,"shortname":"webidl","spec":"webidl","status":"current","text":"boolean","type":"interface","url":"https://webidl.spec.whatwg.org/#idl-boolean"},
 "https://webidl.spec.whatwg.org/#idl-object": {"displayText":"object","export":true,"for_":[],"level":"1","normative":true,"shortname":"webidl","spec":"webidl","status":"current","text":"object","type":"interface","url":"https://webidl.spec.whatwg.org/#idl-object"},
-"https://www.w3.org/TR/CSP3/#strip-url-for-use-in-reports": {"displayText":"strip url for use in reports","export":true,"for_":[],"level":"","normative":true,"shortname":"csp","spec":"csp","status":"anchor-block","text":"strip url for use in reports","type":"dfn","url":"https://www.w3.org/TR/CSP3/#strip-url-for-use-in-reports"},
 };
 
 function mkRefHint(link, ref) {

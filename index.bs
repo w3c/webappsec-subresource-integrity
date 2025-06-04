@@ -741,5 +741,5 @@ spec:csp3; type:grammar; text:base64-value
 
   A special thanks to Mike West for his invaluable contributions to the initial
   version of this spec. Thanks to Brad Hill, Anne van Kesteren, Jonathan
-  Kingston, Mark Nottingham,  Sergey Shekyan , Dan Veditz, Eduardo Vela,
-  Tanvi Vyas, and Michal Zalewski for providing invaluable feedback.
+  Kingston, Fatih Kilic, Mark Nottingham, Sergey Shekyan, Dan Veditz, Eduardo Vela,
+  Tanvi Vyas, Yoav Weiss, and Michal Zalewski for providing invaluable feedback.

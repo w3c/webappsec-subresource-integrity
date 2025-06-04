@@ -556,7 +556,7 @@ spec:csp3; type:grammar; text:base64-value
   1. If |parsedMetadata| is not the empty set and
      |request|'s <a for=request>mode</a> is either "`cors`" or "`same-origin`",
      return "Allowed".
-  1. If |request|'s <a for=request>url</a>'s <a for=url>scheme</a> is "data" or "blob",
+  1. If |request|'s <a for=request>url</a> is <a lt="is local">local</a>,
      return "Allowed".
   1. Let |policy| be |policyContainer|'s <a for="policy container">integrity policy</a>.
   1. Let |reportPolicy| be |policyContainer|'s <a>report only integrity policy</a>.

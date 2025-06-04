@@ -7,7 +7,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <meta content="Bikeshed version 9a7a6709a, updated Tue May 27 16:45:34 2025 -0700" name="generator">
   <link href="http://www.w3.org/TR/SRI/" rel="canonical">
-  <meta content="2089aeb95782970d35f96283d1f3da89beaa8802" name="revision">
+  <meta content="539e4d2dfb2dbc29fedb03a4c242a39558bec262" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>/* Boilerplate: style-autolinks */
@@ -832,7 +832,7 @@ dd:not(:last-child) > .wpt-tests-block:not([open]):last-child {
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Subresource Integrity</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2025-06-03">3 June 2025</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2025-06-04">4 June 2025</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -1574,9 +1574,9 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
   logged into a particular service.</p>
    <p>Moreover, attackers could brute-force specific values in an otherwise
   static resource. Consider a JSON response that looks like this:</p>
-   <div class="example" id="example-2319c0a9">
-    <a class="self-link" href="#example-2319c0a9"></a> 
-<pre class="highlight"><c- p>{</c->'s<c- kc>tatus</c->'<c- p>:</c-> 'au<c- kc>t</c->he<c- kc>nt</c->ica<c- kc>te</c->d'<c- p>,</c-> 'user<c- kc>na</c->me'<c- p>:</c-> 'admi<c- kc>n</c->'<c- p>}</c->
+   <div class="example" id="example-6c05895b">
+    <a class="self-link" href="#example-6c05895b"></a> 
+<pre class="highlight"><c- p>{</c-><c- f>"status"</c-><c- p>:</c-> <c- u>"authenticated"</c-><c- p>,</c-> <c- f>"username"</c-><c- p>:</c-> <c- u>"admin"</c-><c- p>}</c->
 </pre>
    </div>
    <p>An attacker could precompute hashes for the response with a variety of

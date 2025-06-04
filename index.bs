@@ -719,7 +719,7 @@ spec:csp3; type:grammar; text:base64-value
 
   <div class="example">
   <xmp highlight="json">
-      {'status': 'authenticated', 'username': 'admin'}
+      {"status": "authenticated", "username": "admin"}
   </xmp>
   </div>
 

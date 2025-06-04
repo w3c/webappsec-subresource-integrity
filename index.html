@@ -7,7 +7,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <meta content="Bikeshed version 9a7a6709a, updated Tue May 27 16:45:34 2025 -0700" name="generator">
   <link href="http://www.w3.org/TR/SRI/" rel="canonical">
-  <meta content="539e4d2dfb2dbc29fedb03a4c242a39558bec262" name="revision">
+  <meta content="7d06193bcb96ef31a7e1df96fc25d8d596ef9b42" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>/* Boilerplate: style-autolinks */
@@ -1388,6 +1388,9 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
      <p>If <var>parsedMetadata</var> is not the empty set and <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-mode" id="ref-for-concept-request-mode">mode</a> is either "<code>cors</code>" or "<code>same-origin</code>",
  return "Allowed".</p>
     <li data-md>
+     <p>If <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-url" id="ref-for-concept-request-url">url</a> is <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#is-local" id="ref-for-is-local">local</a>,
+ return "Allowed".</p>
+    <li data-md>
      <p>Let <var>policy</var> be <var>policyContainer</var>’s <a data-link-type="dfn" href="#policy-container-integrity-policy" id="ref-for-policy-container-integrity-policy①">integrity policy</a>.</p>
     <li data-md>
      <p>Let <var>reportPolicy</var> be <var>policyContainer</var>’s <a data-link-type="dfn" href="#policy-container-report-only-integrity-policy" id="ref-for-policy-container-report-only-integrity-policy①">report only integrity policy</a>.</p>
@@ -1447,7 +1450,7 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
     <li data-md>
      <p>Let <var>documentURL</var> be the result of <a data-link-type="dfn" href="https://w3c.github.io/reporting/#strip-url-for-use-in-reports" id="ref-for-strip-url-for-use-in-reports">strip URL for use in reports</a> on <var>url</var>.</p>
     <li data-md>
-     <p>Let <var>blockedURL</var> be the result of <a data-link-type="dfn" href="https://w3c.github.io/reporting/#strip-url-for-use-in-reports" id="ref-for-strip-url-for-use-in-reports①">strip URL for use in reports</a> on <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-url" id="ref-for-concept-request-url">URL</a>.</p>
+     <p>Let <var>blockedURL</var> be the result of <a data-link-type="dfn" href="https://w3c.github.io/reporting/#strip-url-for-use-in-reports" id="ref-for-strip-url-for-use-in-reports①">strip URL for use in reports</a> on <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-url" id="ref-for-concept-request-url①">URL</a>.</p>
     <li data-md>
      <p>If <var>block</var> is true, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate">for each</a> <var>endpoint</var> in <var>policy</var>’s <a data-link-type="dfn" href="#endpoints" id="ref-for-endpoints①">endpoints</a>:</p>
      <ol>
@@ -1715,6 +1718,7 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
      <li><span class="dfn-paneled" id="1534f1eb">header name</span>
      <li><span class="dfn-paneled" id="c07f8014">header value</span>
      <li><span class="dfn-paneled" id="d79a826f">integrity metadata</span>
+     <li><span class="dfn-paneled" id="8f26de31">is local</span>
      <li><span class="dfn-paneled" id="821e824a">main fetch</span>
      <li><span class="dfn-paneled" id="cb98f71f">mode</span>
      <li><span class="dfn-paneled" id="eb1b1af3">network error</span>
@@ -2102,6 +2106,7 @@ let dfnPanelData = {
 "86efadaf": {"dfnID":"86efadaf","dfnText":"policy container","external":true,"refSections":[{"refs":[{"id":"ref-for-concept-request-policy-container"}],"title":"3.8.2. Should request be blocked by Integrity Policy"}],"url":"https://fetch.spec.whatwg.org/#concept-request-policy-container"},
 "889e932f": {"dfnID":"889e932f","dfnText":"Exposed","external":true,"refSections":[{"refs":[{"id":"ref-for-Exposed"}],"title":"3.8.3. Report violations"}],"url":"https://webidl.spec.whatwg.org/#Exposed"},
 "8a30477b": {"dfnID":"8a30477b","dfnText":"global object","external":true,"refSections":[{"refs":[{"id":"ref-for-concept-settings-object-global"}],"title":"3.8.2. Should request be blocked by Integrity Policy"},{"refs":[{"id":"ref-for-concept-settings-object-global\u2460"}],"title":"3.8.3. Report violations"}],"url":"https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-global"},
+"8f26de31": {"dfnID":"8f26de31","dfnText":"is local","external":true,"refSections":[{"refs":[{"id":"ref-for-is-local"}],"title":"3.8.2. Should request be blocked by Integrity Policy"}],"url":"https://fetch.spec.whatwg.org/#is-local"},
 "92ff7496": {"dfnID":"92ff7496","dfnText":"SHA-512","external":true,"refSections":[{"refs":[{"id":"ref-for-something"},{"id":"ref-for-something\u2460"},{"id":"ref-for-something\u2461"},{"id":"ref-for-something\u2462"},{"id":"ref-for-something\u2463"},{"id":"ref-for-something\u2464"},{"id":"ref-for-something\u2465"}],"title":"2. Key Concepts and Terminology"},{"refs":[{"id":"ref-for-something\u2466"}],"title":"3.1. Integrity metadata"},{"refs":[{"id":"ref-for-something\u2467"},{"id":"ref-for-something\u2468"},{"id":"ref-for-something\u2460\u24ea"}],"title":"3.2. Cryptographic hash functions"},{"refs":[{"id":"ref-for-something\u2460\u2460"},{"id":"ref-for-something\u2460\u2461"},{"id":"ref-for-something\u2460\u2462"}],"title":"3.2.2. Priority"},{"refs":[{"id":"ref-for-something\u2460\u2463"},{"id":"ref-for-something\u2460\u2464"}],"title":"3.3.4. Do bytes match metadataList?"}],"url":"https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#"},
 "984221ca": {"dfnID":"984221ca","dfnText":"struct","external":true,"refSections":[{"refs":[{"id":"ref-for-struct"}],"title":"3.8. Integrity-Policy"}],"url":"https://infra.spec.whatwg.org/#struct"},
 "998ca7a7": {"dfnID":"998ca7a7","dfnText":"inner list","external":true,"refSections":[{"refs":[{"id":"ref-for-name-inner-lists"}],"title":"3.8. Integrity-Policy"}],"url":"https://tools.ietf.org/html/rfc9651#name-inner-lists"},
@@ -2126,7 +2131,7 @@ let dfnPanelData = {
 "d5434eef": {"dfnID":"d5434eef","dfnText":"contains","external":true,"refSections":[{"refs":[{"id":"ref-for-header-list-contains"},{"id":"ref-for-header-list-contains\u2460"}],"title":"3.8.1. Parse Integrity-Policy headers"}],"url":"https://fetch.spec.whatwg.org/#header-list-contains"},
 "d79a826f": {"dfnID":"d79a826f","dfnText":"integrity metadata","external":true,"refSections":[{"refs":[{"id":"ref-for-concept-request-integrity-metadata"}],"title":"3.8.2. Should request be blocked by Integrity Policy"}],"url":"https://fetch.spec.whatwg.org/#concept-request-integrity-metadata"},
 "d85a6c84": {"dfnID":"d85a6c84","dfnText":"header list","external":true,"refSections":[{"refs":[{"id":"ref-for-concept-header-list"}],"title":"3.8. Integrity-Policy"}],"url":"https://fetch.spec.whatwg.org/#concept-header-list"},
-"dc1cd39b": {"dfnID":"dc1cd39b","dfnText":"URL","external":true,"refSections":[{"refs":[{"id":"ref-for-concept-request-url"}],"title":"3.8.3. Report violations"}],"url":"https://fetch.spec.whatwg.org/#concept-request-url"},
+"dc1cd39b": {"dfnID":"dc1cd39b","dfnText":"URL","external":true,"refSections":[{"refs":[{"id":"ref-for-concept-request-url"}],"title":"3.8.2. Should request be blocked by Integrity Policy"},{"refs":[{"id":"ref-for-concept-request-url\u2460"}],"title":"3.8.3. Report violations"}],"url":"https://fetch.spec.whatwg.org/#concept-request-url"},
 "dcffbccd": {"dfnID":"dcffbccd","dfnText":"URL","external":true,"refSections":[{"refs":[{"id":"ref-for-concept-url"}],"title":"3.8.3. Report violations"}],"url":"https://url.spec.whatwg.org/#concept-url"},
 "destination": {"dfnID":"destination","dfnText":"destination","external":false,"refSections":[{"refs":[{"id":"ref-for-destination"}],"title":"3.8. Integrity-Policy"}],"url":"#destination"},
 "digest": {"dfnID":"digest","dfnText":"digest","external":false,"refSections":[{"refs":[{"id":"ref-for-digest"}],"title":"3.1. Integrity metadata"}],"url":"#digest"},
@@ -2601,6 +2606,7 @@ let refsData = {
 "https://fetch.spec.whatwg.org/#header-list-contains": {"displayText":"contains","export":true,"for_":["header list"],"level":"1","normative":true,"shortname":"fetch","spec":"fetch","status":"current","text":"contains","type":"dfn","url":"https://fetch.spec.whatwg.org/#header-list-contains"},
 "https://fetch.spec.whatwg.org/#header-name": {"displayText":"header name","export":true,"for_":[],"level":"1","normative":true,"shortname":"fetch","spec":"fetch","status":"current","text":"header name","type":"dfn","url":"https://fetch.spec.whatwg.org/#header-name"},
 "https://fetch.spec.whatwg.org/#header-value": {"displayText":"header value","export":true,"for_":[],"level":"1","normative":true,"shortname":"fetch","spec":"fetch","status":"current","text":"header value","type":"dfn","url":"https://fetch.spec.whatwg.org/#header-value"},
+"https://fetch.spec.whatwg.org/#is-local": {"displayText":"is local","export":true,"for_":[],"level":"1","normative":true,"shortname":"fetch","spec":"fetch","status":"current","text":"is local","type":"dfn","url":"https://fetch.spec.whatwg.org/#is-local"},
 "https://fetch.spec.whatwg.org/#main-fetch": {"displayText":"main fetch","export":true,"for_":[],"level":"","normative":true,"shortname":"fetch","spec":"fetch","status":"anchor-block","text":"main fetch","type":"dfn","url":"https://fetch.spec.whatwg.org/#main-fetch"},
 "https://html.spec.whatwg.org/multipage/browsers.html#concept-origin": {"displayText":"origin","export":true,"for_":[],"level":"1","normative":true,"shortname":"html","spec":"html","status":"current","text":"origin","type":"dfn","url":"https://html.spec.whatwg.org/multipage/browsers.html#concept-origin"},
 "https://html.spec.whatwg.org/multipage/browsers.html#creating-a-policy-container-from-a-fetch-response": {"displayText":"creating a policy container from a fetch response","export":true,"for_":[],"level":"1","normative":true,"shortname":"html","spec":"html","status":"current","text":"creating a policy container from a fetch response","type":"dfn","url":"https://html.spec.whatwg.org/multipage/browsers.html#creating-a-policy-container-from-a-fetch-response"},

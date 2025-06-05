@@ -645,14 +645,6 @@ spec:csp3; type:grammar; text:base64-value
 
   ### Integration ### {#integration}
 
-  A <a for=/>policy container</a> has extra items:
-
-  * <dfn for="policy container">integrity policy</dfn>, an <a for=/>integrity policy</a>.
-  * <dfn for="policy container">report only integrity policy</dfn>, an <a for=/>integrity policy</a>.
-
-  Add an extra step to <a>create a policy container from a fetch response</a> before it returns, that runs
-  <a>parse Integrity-Policy headers</a> with <var ignore>response</var> and <var ignore>result</var>.
-
   Expand step 7 of <a>main fetch</a> to call <a>should request be blocked by integrity policy</a>
   and return a <a>network error</a> if it returns "`Blocked`".
 

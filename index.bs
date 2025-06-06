@@ -618,7 +618,7 @@ spec:csp3; type:grammar; text:base64-value
               :   <a for="generate and queue a report"><i>context</i></a>
               ::  |settingsObject|
               :   <a for="generate and queue a report"><i>type</i></a>
-              ::  "`integrity-policy-violation`"
+              ::  "`integrity-violation`"
               :   <a for="generate and queue a report"><i>destination</i></a>
               ::  |endpoint|
               :   <a for="generate and queue a report"><i>data</i></a>

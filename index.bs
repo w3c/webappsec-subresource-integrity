@@ -581,7 +581,7 @@ spec:csp3; type:grammar; text:base64-value
 
   <pre class="idl">
     [Exposed=Window]
-    interface IntegrityPolicyViolationReportBody : ReportBody {
+    interface IntegrityViolationReportBody : ReportBody {
       [Default] object toJSON();
       readonly attribute USVString documentURL;
       readonly attribute USVString blockedURL;

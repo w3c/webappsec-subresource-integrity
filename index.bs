@@ -533,6 +533,19 @@ spec:csp3; type:grammar; text:base64-value
   1. If |dictionary|["`endpoints`"] <a for=map>exists</a>:
     1. Set |integrityPolicy|'s <a>endpoints</a> to |dictionary|['endpoints'].
   1. Return |integrityPolicy|.
+
+  <div class=example>
+  The following header will cause the request for any external script that's loaded without integrity
+  metadata (or any no-CORS external script) to be blocked.
+  ```http
+    Integrity-Policy: blocked-destinations=(script), endpoints=(integrity-endpoint)
+  ```
+  The blocking will also trigger a report to the "`integrity-endpoint`"
+  reporting endpoint (defined by the relevant `Reporting-Endpoints` header).
+  
+  Developers can also register a ReportingObserver for "`integrity-violation`" to get reports in 
+  
+  </div>
   
   ### Parse Integrity-Policy headers ### {#parse-integrity-policy-headers-section}
   To <dfn export>parse Integrity-Policy headers</dfn>, given a <a for=/>Response</a> |response|

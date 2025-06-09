@@ -543,8 +543,8 @@ spec:csp3; type:grammar; text:base64-value
   The blocking will also trigger a report to the "`integrity-endpoint`"
   reporting endpoint (defined by the relevant `Reporting-Endpoints` header).
   
-  Developers can also register a ReportingObserver for "`integrity-violation`" to get reports in 
-  
+  Developers can also register a ReportingObserver for "`integrity-violation`" to get JavaScript-based
+  reports.
   </div>
   
   ### Parse Integrity-Policy headers ### {#parse-integrity-policy-headers-section}

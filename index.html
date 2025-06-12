@@ -7,7 +7,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <meta content="Bikeshed version 275834c42, updated Wed Jun 11 14:18:15 2025 -0700" name="generator">
   <link href="http://www.w3.org/TR/SRI/" rel="canonical">
-  <meta content="1d81b5a49a04d943a2b768eff88246dcf48eff5d" name="revision">
+  <meta content="0abf954d4c91903b8576b2bf6c48d1bfd78e7aa3" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>/* Boilerplate: style-autolinks */
@@ -1514,13 +1514,11 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
      <p>If <var>block</var> is true, then return "<code>Blocked</code>"; otherwise "<code>Allowed</code>".</p>
    </ol>
    <h4 class="heading settled" data-level="3.8.3" id="report-violations"><span class="secno">3.8.3. </span><span class="content">Report violations</span><a class="self-link" href="#report-violations"></a></h4>
-<pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed" id="ref-for-Exposed"><c- g>Exposed</c-></a>=<c- n>Window</c->]
-<c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="integritypolicyviolationreportbody"><code><c- g>IntegrityPolicyViolationReportBody</c-></code></dfn> : <a data-link-type="idl-name" href="https://w3c.github.io/reporting/#reportbody" id="ref-for-reportbody"><c- n>ReportBody</c-></a> {
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Default" id="ref-for-Default"><c- g>Default</c-></a>] <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-object" id="ref-for-idl-object"><c- b>object</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="IntegrityPolicyViolationReportBody" data-dfn-type="method" data-export data-lt="toJSON()" id="dom-integritypolicyviolationreportbody-tojson"><code><c- g>toJSON</c-></code></dfn>();
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString" id="ref-for-idl-USVString"><c- b>USVString</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="IntegrityPolicyViolationReportBody" data-dfn-type="attribute" data-export data-readonly data-type="USVString" id="dom-integritypolicyviolationreportbody-documenturl"><code><c- g>documentURL</c-></code></dfn>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString" id="ref-for-idl-USVString①"><c- b>USVString</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="IntegrityPolicyViolationReportBody" data-dfn-type="attribute" data-export data-readonly data-type="USVString" id="dom-integritypolicyviolationreportbody-blockedurl"><code><c- g>blockedURL</c-></code></dfn>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString" id="ref-for-idl-USVString②"><c- b>USVString</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="IntegrityPolicyViolationReportBody" data-dfn-type="attribute" data-export data-readonly data-type="USVString" id="dom-integritypolicyviolationreportbody-destination"><code><c- g>destination</c-></code></dfn>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean" id="ref-for-idl-boolean"><c- b>boolean</c-></a>   <dfn class="dfn-paneled idl-code" data-dfn-for="IntegrityPolicyViolationReportBody" data-dfn-type="attribute" data-export data-readonly data-type="boolean" id="dom-integritypolicyviolationreportbody-reportonly"><code><c- g>reportOnly</c-></code></dfn>;
+<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-integrityviolationreportbody"><code><c- g>IntegrityViolationReportBody</c-></code></dfn> : <a data-link-type="idl-name" href="https://w3c.github.io/reporting/#reportbody" id="ref-for-reportbody"><c- n>ReportBody</c-></a> {
+  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString" id="ref-for-idl-USVString"><c- b>USVString</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="IntegrityViolationReportBody" data-dfn-type="dict-member" data-export data-type="USVString" id="dom-integrityviolationreportbody-documenturl"><code><c- g>documentURL</c-></code></dfn>;
+  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString" id="ref-for-idl-USVString①"><c- b>USVString</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="IntegrityViolationReportBody" data-dfn-type="dict-member" data-export data-type="USVString" id="dom-integrityviolationreportbody-blockedurl"><code><c- g>blockedURL</c-></code></dfn>;
+  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString" id="ref-for-idl-USVString②"><c- b>USVString</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="IntegrityViolationReportBody" data-dfn-type="dict-member" data-export data-type="USVString" id="dom-integrityviolationreportbody-destination"><code><c- g>destination</c-></code></dfn>;
+  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean" id="ref-for-idl-boolean"><c- b>boolean</c-></a>   <dfn class="dfn-paneled idl-code" data-dfn-for="IntegrityViolationReportBody" data-dfn-type="dict-member" data-export data-type="boolean" id="dom-integrityviolationreportbody-reportonly"><code><c- g>reportOnly</c-></code></dfn>;
 };
 </pre>
    <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="report-violation">report violation</dfn> given a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request" id="ref-for-concept-request②">Request</a> <var>request</var>, a boolean <var>block</var>,
@@ -1551,18 +1549,18 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
      <p>If <var>block</var> is true, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate">for each</a> <var>endpoint</var> in <var>policy</var>’s <a data-link-type="dfn" href="#endpoints" id="ref-for-endpoints①">endpoints</a>:</p>
      <ol>
       <li data-md>
-       <p>Let <var>body</var> be a new <code class="idl"><a data-link-type="idl" href="#integritypolicyviolationreportbody" id="ref-for-integritypolicyviolationreportbody">IntegrityPolicyViolationReportBody</a></code>, initialized as follows:</p>
+       <p>Let <var>body</var> be a new <code class="idl"><a data-link-type="idl" href="#dictdef-integrityviolationreportbody" id="ref-for-dictdef-integrityviolationreportbody">IntegrityViolationReportBody</a></code>, initialized as follows:</p>
        <dl>
-        <dt data-md><code class="idl"><a data-link-type="idl" href="#dom-integritypolicyviolationreportbody-documenturl" id="ref-for-dom-integritypolicyviolationreportbody-documenturl">documentURL</a></code>
+        <dt data-md><code class="idl"><a data-link-type="idl" href="#dom-integrityviolationreportbody-documenturl" id="ref-for-dom-integrityviolationreportbody-documenturl">documentURL</a></code>
         <dd data-md>
          <p><var>documentURL</var></p>
-        <dt data-md><code class="idl"><a data-link-type="idl" href="#dom-integritypolicyviolationreportbody-blockedurl" id="ref-for-dom-integritypolicyviolationreportbody-blockedurl">blockedURL</a></code>
+        <dt data-md><code class="idl"><a data-link-type="idl" href="#dom-integrityviolationreportbody-blockedurl" id="ref-for-dom-integrityviolationreportbody-blockedurl">blockedURL</a></code>
         <dd data-md>
          <p><var>blockedURL</var></p>
-        <dt data-md><code class="idl"><a data-link-type="idl" href="#dom-integritypolicyviolationreportbody-destination" id="ref-for-dom-integritypolicyviolationreportbody-destination">destination</a></code>
+        <dt data-md><code class="idl"><a data-link-type="idl" href="#dom-integrityviolationreportbody-destination" id="ref-for-dom-integrityviolationreportbody-destination">destination</a></code>
         <dd data-md>
          <p><var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-destination" id="ref-for-concept-request-destination③">destination</a></p>
-        <dt data-md><code class="idl"><a data-link-type="idl" href="#dom-integritypolicyviolationreportbody-reportonly" id="ref-for-dom-integritypolicyviolationreportbody-reportonly">reportOnly</a></code>
+        <dt data-md><code class="idl"><a data-link-type="idl" href="#dom-integrityviolationreportbody-reportonly" id="ref-for-dom-integrityviolationreportbody-reportonly">reportOnly</a></code>
         <dd data-md>
          <p>false</p>
        </dl>
@@ -1574,7 +1572,7 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
          <p><var>settingsObject</var></p>
         <dt data-md><a data-link-type="dfn" href="https://w3c.github.io/reporting/#generate-and-queue-a-report-type" id="ref-for-generate-and-queue-a-report-type"><i>type</i></a>
         <dd data-md>
-         <p>"<code>integrity-policy-violation</code>"</p>
+         <p>"<code>integrity-violation</code>"</p>
         <dt data-md><a data-link-type="dfn" href="https://w3c.github.io/reporting/#generate-and-queue-a-report-destination" id="ref-for-generate-and-queue-a-report-destination"><i>destination</i></a>
         <dd data-md>
          <p><var>endpoint</var></p>
@@ -1587,18 +1585,18 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
      <p>If <var>reportBlock</var> is true, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①">for each</a> <var>endpoint</var> in <var>reportPolicy</var>’s <a data-link-type="dfn" href="#endpoints" id="ref-for-endpoints②">endpoints</a>:</p>
      <ol>
       <li data-md>
-       <p>Let <var>reportBody</var> be a new <code class="idl"><a data-link-type="idl" href="#integritypolicyviolationreportbody" id="ref-for-integritypolicyviolationreportbody①">IntegrityPolicyViolationReportBody</a></code>, initialized as follows:</p>
+       <p>Let <var>reportBody</var> be a new <code class="idl"><a data-link-type="idl" href="#dictdef-integrityviolationreportbody" id="ref-for-dictdef-integrityviolationreportbody①">IntegrityViolationReportBody</a></code>, initialized as follows:</p>
        <dl>
-        <dt data-md><code class="idl"><a data-link-type="idl" href="#dom-integritypolicyviolationreportbody-documenturl" id="ref-for-dom-integritypolicyviolationreportbody-documenturl①">documentURL</a></code>
+        <dt data-md><code class="idl"><a data-link-type="idl" href="#dom-integrityviolationreportbody-documenturl" id="ref-for-dom-integrityviolationreportbody-documenturl①">documentURL</a></code>
         <dd data-md>
          <p><var>documentURL</var></p>
-        <dt data-md><code class="idl"><a data-link-type="idl" href="#dom-integritypolicyviolationreportbody-blockedurl" id="ref-for-dom-integritypolicyviolationreportbody-blockedurl①">blockedURL</a></code>
+        <dt data-md><code class="idl"><a data-link-type="idl" href="#dom-integrityviolationreportbody-blockedurl" id="ref-for-dom-integrityviolationreportbody-blockedurl①">blockedURL</a></code>
         <dd data-md>
          <p><var>blockedURL</var></p>
-        <dt data-md><code class="idl"><a data-link-type="idl" href="#dom-integritypolicyviolationreportbody-destination" id="ref-for-dom-integritypolicyviolationreportbody-destination①">destination</a></code>
+        <dt data-md><code class="idl"><a data-link-type="idl" href="#dom-integrityviolationreportbody-destination" id="ref-for-dom-integrityviolationreportbody-destination①">destination</a></code>
         <dd data-md>
          <p><var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-destination" id="ref-for-concept-request-destination④">destination</a></p>
-        <dt data-md><code class="idl"><a data-link-type="idl" href="#dom-integritypolicyviolationreportbody-reportonly" id="ref-for-dom-integritypolicyviolationreportbody-reportonly①">reportOnly</a></code>
+        <dt data-md><code class="idl"><a data-link-type="idl" href="#dom-integrityviolationreportbody-reportonly" id="ref-for-dom-integrityviolationreportbody-reportonly①">reportOnly</a></code>
         <dd data-md>
          <p>true</p>
        </dl>
@@ -1610,7 +1608,7 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
          <p><var>settingsObject</var></p>
         <dt data-md><a data-link-type="dfn" href="https://w3c.github.io/reporting/#generate-and-queue-a-report-type" id="ref-for-generate-and-queue-a-report-type①"><i>type</i></a>
         <dd data-md>
-         <p>"<code>integrity-policy-violation</code>"</p>
+         <p>"<code>integrity-violation</code>"</p>
         <dt data-md><a data-link-type="dfn" href="https://w3c.github.io/reporting/#generate-and-queue-a-report-destination" id="ref-for-generate-and-queue-a-report-destination①"><i>destination</i></a>
         <dd data-md>
          <p><var>endpoint</var></p>
@@ -1753,33 +1751,32 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
   <ul class="index">
    <li><a href="#base64-encoding">base64 encoding</a><span>, in § 2</span>
    <li><a href="#blocked-destinations">blocked destinations</a><span>, in § 3.8</span>
-   <li><a href="#dom-integritypolicyviolationreportbody-blockedurl">blockedURL</a><span>, in § 3.8.3</span>
+   <li><a href="#dom-integrityviolationreportbody-blockedurl">blockedURL</a><span>, in § 3.8.3</span>
    <li>
     destination
     <ul>
-     <li><a href="#dom-integritypolicyviolationreportbody-destination">attribute for IntegrityPolicyViolationReportBody</a><span>, in § 3.8.3</span>
      <li><a href="#destination">definition of</a><span>, in § 3.8</span>
+     <li><a href="#dom-integrityviolationreportbody-destination">dict-member for IntegrityViolationReportBody</a><span>, in § 3.8.3</span>
     </ul>
    <li><a href="#digest">digest</a><span>, in § 2</span>
    <li><a href="#does-response-match-metadatalist">Do bytes match metadataList?</a><span>, in § 3.3.3</span>
-   <li><a href="#dom-integritypolicyviolationreportbody-documenturl">documentURL</a><span>, in § 3.8.3</span>
+   <li><a href="#dom-integrityviolationreportbody-documenturl">documentURL</a><span>, in § 3.8.3</span>
    <li><a href="#endpoints">endpoints</a><span>, in § 3.8</span>
    <li><a href="#grammardef-hash-expression">hash-expression</a><span>, in § 3.5</span>
    <li><a href="#grammardef-hash-with-options">hash-with-options</a><span>, in § 3.5</span>
    <li><a href="#integrity-metadata">integrity metadata</a><span>, in § 3.1</span>
    <li><a href="#grammardef-integrity-metadata">integrity-metadata</a><span>, in § 3.5</span>
    <li><a href="#integrity-policy">integrity policy</a><span>, in § 3.8</span>
-   <li><a href="#integritypolicyviolationreportbody">IntegrityPolicyViolationReportBody</a><span>, in § 3.8.3</span>
+   <li><a href="#dictdef-integrityviolationreportbody">IntegrityViolationReportBody</a><span>, in § 3.8.3</span>
    <li><a href="#grammardef-option-expression">option-expression</a><span>, in § 3.5</span>
    <li><a href="#parse-integrity-policy-headers">parse Integrity-Policy headers</a><span>, in § 3.8.1</span>
    <li><a href="#parse-metadata">parse metadata</a><span>, in § 3.3.2</span>
    <li><a href="#processing-an-integrity-policy">processing an integrity policy</a><span>, in § 3.8</span>
-   <li><a href="#dom-integritypolicyviolationreportbody-reportonly">reportOnly</a><span>, in § 3.8.3</span>
+   <li><a href="#dom-integrityviolationreportbody-reportonly">reportOnly</a><span>, in § 3.8.3</span>
    <li><a href="#report-violation">report violation</a><span>, in § 3.8.3</span>
    <li><a href="#should-request-be-blocked-by-integrity-policy">should request be blocked by integrity policy</a><span>, in § 3.8.2</span>
    <li><a href="#source">source</a><span>, in § 3.8</span>
    <li><a href="#sources">sources</a><span>, in § 3.8</span>
-   <li><a href="#dom-integritypolicyviolationreportbody-tojson">toJSON()</a><span>, in § 3.8.3</span>
    <li><a href="#valid-sri-hash-algorithm-token">valid SRI hash algorithm token</a><span>, in § 2</span>
    <li><a href="#valid-sri-hash-algorithm-token-set">valid SRI hash algorithm token set</a><span>, in § 2</span>
   </ul>
@@ -1900,11 +1897,8 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
    <li>
     <a data-link-type="biblio">[WEBIDL]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="f4531911">Default</span>
-     <li><span class="dfn-paneled" id="889e932f">Exposed</span>
      <li><span class="dfn-paneled" id="b0d7f3c3">USVString</span>
      <li><span class="dfn-paneled" id="5372cca8">boolean</span>
-     <li><span class="dfn-paneled" id="efd1ec5d">object</span>
     </ul>
   </ul>
   <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
@@ -1955,13 +1949,11 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
    <dd>E. Rescorla. <a href="https://www.rfc-editor.org/rfc/rfc8446"><cite>The Transport Layer Security (TLS) Protocol Version 1.3</cite></a>. August 2018. Proposed Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc8446">https://www.rfc-editor.org/rfc/rfc8446</a>
   </dl>
   <h2 class="no-num no-ref heading settled" id="idl-index"><span class="content">IDL Index</span><a class="self-link" href="#idl-index"></a></h2>
-<pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed"><c- g>Exposed</c-></a>=<c- n>Window</c->]
-<c- b>interface</c-> <a href="#integritypolicyviolationreportbody"><code><c- g>IntegrityPolicyViolationReportBody</c-></code></a> : <a data-link-type="idl-name" href="https://w3c.github.io/reporting/#reportbody"><c- n>ReportBody</c-></a> {
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Default"><c- g>Default</c-></a>] <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-object"><c- b>object</c-></a> <a href="#dom-integritypolicyviolationreportbody-tojson"><code><c- g>toJSON</c-></code></a>();
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString"><c- b>USVString</c-></a> <a data-readonly data-type="USVString" href="#dom-integritypolicyviolationreportbody-documenturl"><code><c- g>documentURL</c-></code></a>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString"><c- b>USVString</c-></a> <a data-readonly data-type="USVString" href="#dom-integritypolicyviolationreportbody-blockedurl"><code><c- g>blockedURL</c-></code></a>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString"><c- b>USVString</c-></a> <a data-readonly data-type="USVString" href="#dom-integritypolicyviolationreportbody-destination"><code><c- g>destination</c-></code></a>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean"><c- b>boolean</c-></a>   <a data-readonly data-type="boolean" href="#dom-integritypolicyviolationreportbody-reportonly"><code><c- g>reportOnly</c-></code></a>;
+<pre class="idl highlight def"><c- b>dictionary</c-> <a href="#dictdef-integrityviolationreportbody"><code><c- g>IntegrityViolationReportBody</c-></code></a> : <a data-link-type="idl-name" href="https://w3c.github.io/reporting/#reportbody"><c- n>ReportBody</c-></a> {
+  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString"><c- b>USVString</c-></a> <a data-type="USVString" href="#dom-integrityviolationreportbody-documenturl"><code><c- g>documentURL</c-></code></a>;
+  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString"><c- b>USVString</c-></a> <a data-type="USVString" href="#dom-integrityviolationreportbody-blockedurl"><code><c- g>blockedURL</c-></code></a>;
+  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString"><c- b>USVString</c-></a> <a data-type="USVString" href="#dom-integrityviolationreportbody-destination"><code><c- g>destination</c-></code></a>;
+  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean"><c- b>boolean</c-></a>   <a data-type="boolean" href="#dom-integrityviolationreportbody-reportonly"><code><c- g>reportOnly</c-></code></a>;
 };
 
 </pre>
@@ -2201,7 +2193,6 @@ let dfnPanelData = {
 "83c59a3a": {"dfnID":"83c59a3a","dfnText":"WorkerGlobalScope","external":true,"refSections":[{"refs":[{"id":"ref-for-workerglobalscope"}],"title":"3.8.2. Should request be blocked by Integrity Policy"},{"refs":[{"id":"ref-for-workerglobalscope\u2460"},{"id":"ref-for-workerglobalscope\u2461"}],"title":"3.8.3. Report violations"}],"url":"https://html.spec.whatwg.org/multipage/workers.html#workerglobalscope"},
 "857d5516": {"dfnID":"857d5516","dfnText":"client","external":true,"refSections":[{"refs":[{"id":"ref-for-concept-request-client"}],"title":"3.8.2. Should request be blocked by Integrity Policy"},{"refs":[{"id":"ref-for-concept-request-client\u2460"},{"id":"ref-for-concept-request-client\u2461"}],"title":"3.8.3. Report violations"}],"url":"https://fetch.spec.whatwg.org/#concept-request-client"},
 "86efadaf": {"dfnID":"86efadaf","dfnText":"policy container","external":true,"refSections":[{"refs":[{"id":"ref-for-concept-request-policy-container"}],"title":"3.8.2. Should request be blocked by Integrity Policy"}],"url":"https://fetch.spec.whatwg.org/#concept-request-policy-container"},
-"889e932f": {"dfnID":"889e932f","dfnText":"Exposed","external":true,"refSections":[{"refs":[{"id":"ref-for-Exposed"}],"title":"3.8.3. Report violations"}],"url":"https://webidl.spec.whatwg.org/#Exposed"},
 "8a30477b": {"dfnID":"8a30477b","dfnText":"global object","external":true,"refSections":[{"refs":[{"id":"ref-for-concept-settings-object-global"}],"title":"3.8.2. Should request be blocked by Integrity Policy"},{"refs":[{"id":"ref-for-concept-settings-object-global\u2460"}],"title":"3.8.3. Report violations"}],"url":"https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-global"},
 "8f26de31": {"dfnID":"8f26de31","dfnText":"is local","external":true,"refSections":[{"refs":[{"id":"ref-for-is-local"}],"title":"3.8.2. Should request be blocked by Integrity Policy"}],"url":"https://fetch.spec.whatwg.org/#is-local"},
 "92ff7496": {"dfnID":"92ff7496","dfnText":"SHA-512","external":true,"refSections":[{"refs":[{"id":"ref-for-something"},{"id":"ref-for-something\u2460"},{"id":"ref-for-something\u2461"},{"id":"ref-for-something\u2462"},{"id":"ref-for-something\u2463"},{"id":"ref-for-something\u2464"},{"id":"ref-for-something\u2465"}],"title":"2. Key Concepts and Terminology"},{"refs":[{"id":"ref-for-something\u2466"}],"title":"3.1. Integrity metadata"},{"refs":[{"id":"ref-for-something\u2467"},{"id":"ref-for-something\u2468"},{"id":"ref-for-something\u2460\u24ea"}],"title":"3.2. Cryptographic hash functions"},{"refs":[{"id":"ref-for-something\u2460\u2460"},{"id":"ref-for-something\u2460\u2461"},{"id":"ref-for-something\u2460\u2462"}],"title":"3.2.2. Priority"},{"refs":[{"id":"ref-for-something\u2460\u2463"},{"id":"ref-for-something\u2460\u2464"}],"title":"3.3.4. Do bytes match metadataList?"}],"url":"https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#"},
@@ -2230,19 +2221,17 @@ let dfnPanelData = {
 "dc1cd39b": {"dfnID":"dc1cd39b","dfnText":"URL","external":true,"refSections":[{"refs":[{"id":"ref-for-concept-request-url"}],"title":"3.8.2. Should request be blocked by Integrity Policy"},{"refs":[{"id":"ref-for-concept-request-url\u2460"}],"title":"3.8.3. Report violations"}],"url":"https://fetch.spec.whatwg.org/#concept-request-url"},
 "dcffbccd": {"dfnID":"dcffbccd","dfnText":"URL","external":true,"refSections":[{"refs":[{"id":"ref-for-concept-url"}],"title":"3.8.3. Report violations"}],"url":"https://url.spec.whatwg.org/#concept-url"},
 "destination": {"dfnID":"destination","dfnText":"destination","external":false,"refSections":[{"refs":[{"id":"ref-for-destination"}],"title":"3.8. Integrity-Policy"}],"url":"#destination"},
+"dictdef-integrityviolationreportbody": {"dfnID":"dictdef-integrityviolationreportbody","dfnText":"IntegrityViolationReportBody","external":false,"refSections":[{"refs":[{"id":"ref-for-dictdef-integrityviolationreportbody"},{"id":"ref-for-dictdef-integrityviolationreportbody\u2460"}],"title":"3.8.3. Report violations"}],"url":"#dictdef-integrityviolationreportbody"},
 "digest": {"dfnID":"digest","dfnText":"digest","external":false,"refSections":[{"refs":[{"id":"ref-for-digest"}],"title":"3.1. Integrity metadata"}],"url":"#digest"},
 "does-response-match-metadatalist": {"dfnID":"does-response-match-metadatalist","dfnText":"3.3.4. Do bytes match metadataList?","external":false,"refSections":[{"refs":[{"id":"ref-for-does-response-match-metadatalist"}],"title":"3.2.1. Agility"},{"refs":[{"id":"ref-for-does-response-match-metadatalist"}],"title":"3.3.4. Do bytes match metadataList?"}],"url":"#does-response-match-metadatalist"},
-"dom-integritypolicyviolationreportbody-blockedurl": {"dfnID":"dom-integritypolicyviolationreportbody-blockedurl","dfnText":"blockedURL","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-integritypolicyviolationreportbody-blockedurl"},{"id":"ref-for-dom-integritypolicyviolationreportbody-blockedurl\u2460"}],"title":"3.8.3. Report violations"}],"url":"#dom-integritypolicyviolationreportbody-blockedurl"},
-"dom-integritypolicyviolationreportbody-destination": {"dfnID":"dom-integritypolicyviolationreportbody-destination","dfnText":"destination","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-integritypolicyviolationreportbody-destination"},{"id":"ref-for-dom-integritypolicyviolationreportbody-destination\u2460"}],"title":"3.8.3. Report violations"}],"url":"#dom-integritypolicyviolationreportbody-destination"},
-"dom-integritypolicyviolationreportbody-documenturl": {"dfnID":"dom-integritypolicyviolationreportbody-documenturl","dfnText":"documentURL","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-integritypolicyviolationreportbody-documenturl"},{"id":"ref-for-dom-integritypolicyviolationreportbody-documenturl\u2460"}],"title":"3.8.3. Report violations"}],"url":"#dom-integritypolicyviolationreportbody-documenturl"},
-"dom-integritypolicyviolationreportbody-reportonly": {"dfnID":"dom-integritypolicyviolationreportbody-reportonly","dfnText":"reportOnly","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-integritypolicyviolationreportbody-reportonly"},{"id":"ref-for-dom-integritypolicyviolationreportbody-reportonly\u2460"}],"title":"3.8.3. Report violations"}],"url":"#dom-integritypolicyviolationreportbody-reportonly"},
-"dom-integritypolicyviolationreportbody-tojson": {"dfnID":"dom-integritypolicyviolationreportbody-tojson","dfnText":"toJSON","external":false,"refSections":[],"url":"#dom-integritypolicyviolationreportbody-tojson"},
+"dom-integrityviolationreportbody-blockedurl": {"dfnID":"dom-integrityviolationreportbody-blockedurl","dfnText":"blockedURL","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-integrityviolationreportbody-blockedurl"},{"id":"ref-for-dom-integrityviolationreportbody-blockedurl\u2460"}],"title":"3.8.3. Report violations"}],"url":"#dom-integrityviolationreportbody-blockedurl"},
+"dom-integrityviolationreportbody-destination": {"dfnID":"dom-integrityviolationreportbody-destination","dfnText":"destination","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-integrityviolationreportbody-destination"},{"id":"ref-for-dom-integrityviolationreportbody-destination\u2460"}],"title":"3.8.3. Report violations"}],"url":"#dom-integrityviolationreportbody-destination"},
+"dom-integrityviolationreportbody-documenturl": {"dfnID":"dom-integrityviolationreportbody-documenturl","dfnText":"documentURL","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-integrityviolationreportbody-documenturl"},{"id":"ref-for-dom-integrityviolationreportbody-documenturl\u2460"}],"title":"3.8.3. Report violations"}],"url":"#dom-integrityviolationreportbody-documenturl"},
+"dom-integrityviolationreportbody-reportonly": {"dfnID":"dom-integrityviolationreportbody-reportonly","dfnText":"reportOnly","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-integrityviolationreportbody-reportonly"},{"id":"ref-for-dom-integrityviolationreportbody-reportonly\u2460"}],"title":"3.8.3. Report violations"}],"url":"#dom-integrityviolationreportbody-reportonly"},
 "e5fc5b88": {"dfnID":"e5fc5b88","dfnText":"strictly split","external":true,"refSections":[{"refs":[{"id":"ref-for-strictly-split"},{"id":"ref-for-strictly-split\u2460"},{"id":"ref-for-strictly-split\u2461"}],"title":"3.3.2. Parse metadata"}],"url":"https://infra.spec.whatwg.org/#strictly-split"},
 "ee7bba09": {"dfnID":"ee7bba09","dfnText":"response","external":true,"refSections":[{"refs":[{"id":"ref-for-concept-response"}],"title":"3.8.1. Parse Integrity-Policy headers"}],"url":"https://fetch.spec.whatwg.org/#concept-response"},
-"efd1ec5d": {"dfnID":"efd1ec5d","dfnText":"object","external":true,"refSections":[{"refs":[{"id":"ref-for-idl-object"}],"title":"3.8.3. Report violations"}],"url":"https://webidl.spec.whatwg.org/#idl-object"},
 "endpoints": {"dfnID":"endpoints","dfnText":"endpoints","external":false,"refSections":[{"refs":[{"id":"ref-for-endpoints"}],"title":"3.8. Integrity-Policy"},{"refs":[{"id":"ref-for-endpoints\u2460"},{"id":"ref-for-endpoints\u2461"}],"title":"3.8.3. Report violations"}],"url":"#endpoints"},
 "f4486aa1": {"dfnID":"f4486aa1","dfnText":"token","external":true,"refSections":[{"refs":[{"id":"ref-for-name-tokens"}],"title":"3.8. Integrity-Policy"}],"url":"https://tools.ietf.org/html/rfc9651#name-tokens"},
-"f4531911": {"dfnID":"f4531911","dfnText":"Default","external":true,"refSections":[{"refs":[{"id":"ref-for-Default"}],"title":"3.8.3. Report violations"}],"url":"https://webidl.spec.whatwg.org/#Default"},
 "f7b00a8b": {"dfnID":"f7b00a8b","dfnText":"header list (for response)","external":true,"refSections":[{"refs":[{"id":"ref-for-concept-response-header-list"}],"title":"3.8.1. Parse Integrity-Policy headers"}],"url":"https://fetch.spec.whatwg.org/#concept-response-header-list"},
 "f937b7b6": {"dfnID":"f937b7b6","dfnText":"continue","external":true,"refSections":[{"refs":[{"id":"ref-for-iteration-continue"}],"title":"3.3.2. Parse metadata"},{"refs":[{"id":"ref-for-iteration-continue\u2460"},{"id":"ref-for-iteration-continue\u2461"}],"title":"3.3.3. Get the strongest metadata from set"}],"url":"https://infra.spec.whatwg.org/#iteration-continue"},
 "grammardef-hash-expression": {"dfnID":"grammardef-hash-expression","dfnText":"hash-expression","external":false,"refSections":[{"refs":[{"id":"ref-for-grammardef-hash-expression"}],"title":"3.5. The integrity attribute"}],"url":"#grammardef-hash-expression"},
@@ -2251,7 +2240,6 @@ let dfnPanelData = {
 "grammardef-option-expression": {"dfnID":"grammardef-option-expression","dfnText":"option-expression","external":false,"refSections":[{"refs":[{"id":"ref-for-grammardef-option-expression"}],"title":"3.5. The integrity attribute"}],"url":"#grammardef-option-expression"},
 "integrity-metadata": {"dfnID":"integrity-metadata","dfnText":"integrity\n  metadata","external":false,"refSections":[{"refs":[{"id":"ref-for-integrity-metadata"},{"id":"ref-for-integrity-metadata\u2460"},{"id":"ref-for-integrity-metadata\u2461"}],"title":"1.2.1. Resource Integrity"},{"refs":[{"id":"ref-for-integrity-metadata\u2462"}],"title":"3.2. Cryptographic hash functions"},{"refs":[{"id":"ref-for-integrity-metadata\u2463"}],"title":"3.2.1. Agility"},{"refs":[{"id":"ref-for-integrity-metadata\u2464"}],"title":"3.5. The integrity attribute"},{"refs":[{"id":"ref-for-integrity-metadata\u2465"}],"title":"3.6. The integrity link processing option"},{"refs":[{"id":"ref-for-integrity-metadata\u2466"}],"title":"4. Proxies"},{"refs":[{"id":"ref-for-integrity-metadata\u2467"}],"title":"5.1. Non-secure contexts remain non-secure"}],"url":"#integrity-metadata"},
 "integrity-policy": {"dfnID":"integrity-policy","dfnText":"integrity policy","external":false,"refSections":[{"refs":[{"id":"ref-for-integrity-policy"}],"title":"3.8. Integrity-Policy"},{"refs":[{"id":"ref-for-integrity-policy\u2460"}],"title":"3.8.2. Should request be blocked by Integrity Policy"},{"refs":[{"id":"ref-for-integrity-policy\u2461"},{"id":"ref-for-integrity-policy\u2462"}],"title":"3.8.3. Report violations"}],"url":"#integrity-policy"},
-"integritypolicyviolationreportbody": {"dfnID":"integritypolicyviolationreportbody","dfnText":"IntegrityPolicyViolationReportBody","external":false,"refSections":[{"refs":[{"id":"ref-for-integritypolicyviolationreportbody"},{"id":"ref-for-integritypolicyviolationreportbody\u2460"}],"title":"3.8.3. Report violations"}],"url":"#integritypolicyviolationreportbody"},
 "parse-integrity-policy-headers": {"dfnID":"parse-integrity-policy-headers","dfnText":"parse Integrity-Policy headers","external":false,"refSections":[],"url":"#parse-integrity-policy-headers"},
 "parse-metadata": {"dfnID":"parse-metadata","dfnText":"parse metadata","external":false,"refSections":[{"refs":[{"id":"ref-for-parse-metadata"}],"title":"3.3.4. Do bytes match metadataList?"},{"refs":[{"id":"ref-for-parse-metadata\u2460"}],"title":"3.8.2. Should request be blocked by Integrity Policy"}],"url":"#parse-metadata"},
 "processing-an-integrity-policy": {"dfnID":"processing-an-integrity-policy","dfnText":"processing an integrity policy","external":false,"refSections":[{"refs":[{"id":"ref-for-processing-an-integrity-policy"},{"id":"ref-for-processing-an-integrity-policy\u2460"}],"title":"3.8.1. Parse Integrity-Policy headers"}],"url":"#processing-an-integrity-policy"},
@@ -2652,11 +2640,12 @@ let refsData = {
 "#base64-encoding": {"displayText":"base64 encoding","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"base64 encoding","type":"dfn","url":"#base64-encoding"},
 "#blocked-destinations": {"displayText":"blocked destinations","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"blocked destinations","type":"dfn","url":"#blocked-destinations"},
 "#destination": {"displayText":"destination","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"destination","type":"dfn","url":"#destination"},
+"#dictdef-integrityviolationreportbody": {"displayText":"IntegrityViolationReportBody","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"IntegrityViolationReportBody","type":"dictionary","url":"#dictdef-integrityviolationreportbody"},
 "#digest": {"displayText":"digest","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"digest","type":"dfn","url":"#digest"},
-"#dom-integritypolicyviolationreportbody-blockedurl": {"displayText":"blockedURL","export":true,"for_":["IntegrityPolicyViolationReportBody"],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"blockedURL","type":"attribute","url":"#dom-integritypolicyviolationreportbody-blockedurl"},
-"#dom-integritypolicyviolationreportbody-destination": {"displayText":"destination","export":true,"for_":["IntegrityPolicyViolationReportBody"],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"destination","type":"attribute","url":"#dom-integritypolicyviolationreportbody-destination"},
-"#dom-integritypolicyviolationreportbody-documenturl": {"displayText":"documentURL","export":true,"for_":["IntegrityPolicyViolationReportBody"],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"documentURL","type":"attribute","url":"#dom-integritypolicyviolationreportbody-documenturl"},
-"#dom-integritypolicyviolationreportbody-reportonly": {"displayText":"reportOnly","export":true,"for_":["IntegrityPolicyViolationReportBody"],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"reportOnly","type":"attribute","url":"#dom-integritypolicyviolationreportbody-reportonly"},
+"#dom-integrityviolationreportbody-blockedurl": {"displayText":"blockedURL","export":true,"for_":["IntegrityViolationReportBody"],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"blockedURL","type":"dict-member","url":"#dom-integrityviolationreportbody-blockedurl"},
+"#dom-integrityviolationreportbody-destination": {"displayText":"destination","export":true,"for_":["IntegrityViolationReportBody"],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"destination","type":"dict-member","url":"#dom-integrityviolationreportbody-destination"},
+"#dom-integrityviolationreportbody-documenturl": {"displayText":"documentURL","export":true,"for_":["IntegrityViolationReportBody"],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"documentURL","type":"dict-member","url":"#dom-integrityviolationreportbody-documenturl"},
+"#dom-integrityviolationreportbody-reportonly": {"displayText":"reportOnly","export":true,"for_":["IntegrityViolationReportBody"],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"reportOnly","type":"dict-member","url":"#dom-integrityviolationreportbody-reportonly"},
 "#endpoints": {"displayText":"endpoints","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"endpoints","type":"dfn","url":"#endpoints"},
 "#grammardef-hash-expression": {"displayText":"hash-expression","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"hash-expression","type":"grammar","url":"#grammardef-hash-expression"},
 "#grammardef-hash-with-options": {"displayText":"hash-with-options","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"hash-with-options","type":"grammar","url":"#grammardef-hash-with-options"},
@@ -2664,7 +2653,6 @@ let refsData = {
 "#grammardef-option-expression": {"displayText":"option-expression","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"option-expression","type":"grammar","url":"#grammardef-option-expression"},
 "#integrity-metadata": {"displayText":"integrity metadata","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"integrity metadata","type":"dfn","url":"#integrity-metadata"},
 "#integrity-policy": {"displayText":"integrity policy","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"integrity policy","type":"dfn","url":"#integrity-policy"},
-"#integritypolicyviolationreportbody": {"displayText":"IntegrityPolicyViolationReportBody","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"IntegrityPolicyViolationReportBody","type":"interface","url":"#integritypolicyviolationreportbody"},
 "#parse-metadata": {"displayText":"parse metadata","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"parse metadata","type":"dfn","url":"#parse-metadata"},
 "#processing-an-integrity-policy": {"displayText":"processing an integrity policy","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"processing an integrity policy","type":"dfn","url":"#processing-an-integrity-policy"},
 "#report-violation": {"displayText":"report violation","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"report violation","type":"dfn","url":"#report-violation"},
@@ -2736,11 +2724,8 @@ let refsData = {
 "https://w3c.github.io/reporting/#strip-url-for-use-in-reports": {"displayText":"strip URL for use in reports","export":true,"for_":[],"level":"1","normative":true,"shortname":"reporting","spec":"reporting-1","status":"current","text":"strip url for use in reports","type":"dfn","url":"https://w3c.github.io/reporting/#strip-url-for-use-in-reports"},
 "https://w3c.github.io/webappsec-csp/#grammardef-base64-value": {"displayText":"base64-value","export":true,"for_":[],"level":"3","normative":true,"shortname":"csp","spec":"csp3","status":"current","text":"base64-value","type":"grammar","url":"https://w3c.github.io/webappsec-csp/#grammardef-base64-value"},
 "https://w3c.github.io/webappsec-csp/#grammardef-hash-algorithm": {"displayText":"hash-algorithm","export":true,"for_":[],"level":"3","normative":true,"shortname":"csp","spec":"csp3","status":"current","text":"hash-algorithm","type":"grammar","url":"https://w3c.github.io/webappsec-csp/#grammardef-hash-algorithm"},
-"https://webidl.spec.whatwg.org/#Default": {"displayText":"Default","export":true,"for_":[],"level":"1","normative":true,"shortname":"webidl","spec":"webidl","status":"current","text":"Default","type":"extended-attribute","url":"https://webidl.spec.whatwg.org/#Default"},
-"https://webidl.spec.whatwg.org/#Exposed": {"displayText":"Exposed","export":true,"for_":[],"level":"1","normative":true,"shortname":"webidl","spec":"webidl","status":"current","text":"Exposed","type":"extended-attribute","url":"https://webidl.spec.whatwg.org/#Exposed"},
 "https://webidl.spec.whatwg.org/#idl-USVString": {"displayText":"USVString","export":true,"for_":[],"level":"1","normative":true,"shortname":"webidl","spec":"webidl","status":"current","text":"USVString","type":"interface","url":"https://webidl.spec.whatwg.org/#idl-USVString"},
 "https://webidl.spec.whatwg.org/#idl-boolean": {"displayText":"boolean","export":true,"for_":[],"level":"1","normative":true,"shortname":"webidl","spec":"webidl","status":"current","text":"boolean","type":"interface","url":"https://webidl.spec.whatwg.org/#idl-boolean"},
-"https://webidl.spec.whatwg.org/#idl-object": {"displayText":"object","export":true,"for_":[],"level":"1","normative":true,"shortname":"webidl","spec":"webidl","status":"current","text":"object","type":"interface","url":"https://webidl.spec.whatwg.org/#idl-object"},
 };
 
 function mkRefHint(link, ref) {

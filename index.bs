@@ -32,10 +32,6 @@ spec: ABNF; urlPrefix: https://tools.ietf.org/html/rfc5234
     text: VCHAR; url: appendix-B.1
     text: WSP; url: appendix-B.1
 
-spec: FETCH; urlPrefix: https://fetch.spec.whatwg.org/
-  type: dfn
-    text: main fetch; url: main-fetch
-
 spec: RFC7234; urlPrefix: https://tools.ietf.org/html/rfc7234
   type: dfn
     text: Cache-Control; url: section-5.2
@@ -510,7 +506,7 @@ spec:csp3; type:grammar; text:base64-value
   
   A <dfn>source</dfn> is a string. The only possible value for it is "`inline`".
 
-  A <dfn>destination</dfn> is a string. The only possible value for it is "`script`".
+  A <dfn>destination</dfn> is a <a>destination type</a>. The only possible value for it is "`script`".
 
   An <dfn export>integrity policy</dfn>, is a <a>struct</a> that contains the following:
 
@@ -642,11 +638,6 @@ spec:csp3; type:grammar; text:base64-value
               ::  |endpoint|
               :   <a for="generate and queue a report"><i>data</i></a>
               ::  |reportBody|
-
-  ### Integration ### {#integration}
-
-  Expand step 7 of <a>main fetch</a> to call <a>should request be blocked by integrity policy</a>
-  and return a <a>network error</a> if it returns "`Blocked`".
 
   # Proxies # {#proxies}
 

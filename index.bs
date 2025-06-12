@@ -535,8 +535,8 @@ spec:csp3; type:grammar; text:base64-value
   1. Return |integrityPolicy|.
 
   <div class=example>
-  The following header will cause the request for any external script that's loaded without integrity
-  metadata (or any no-CORS external script) to be blocked.
+  The following header block the request for any external script that's loaded without integrity
+  metadata (or any no-CORS external script).
   ```http
     Integrity-Policy: blocked-destinations=(script), endpoints=(integrity-endpoint)
   ```

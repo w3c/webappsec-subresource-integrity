@@ -576,13 +576,11 @@ spec:csp3; type:grammar; text:base64-value
   ### Report violations ### {#report-violations}
 
   <pre class="idl">
-    [Exposed=Window]
-    interface IntegrityPolicyViolationReportBody : ReportBody {
-      [Default] object toJSON();
-      readonly attribute USVString documentURL;
-      readonly attribute USVString blockedURL;
-      readonly attribute USVString destination;
-      readonly attribute boolean   reportOnly;
+    dictionary IntegrityViolationReportBody : ReportBody {
+      USVString documentURL;
+      USVString blockedURL;
+      USVString destination;
+      boolean   reportOnly;
     };
   </pre>
 
@@ -601,39 +599,39 @@ spec:csp3; type:grammar; text:base64-value
   1. Let |documentURL| be the result of <a>strip URL for use in reports</a> on |url|.
   1. Let |blockedURL| be the result of <a>strip URL for use in reports</a> on |request|'s <a for=request>URL</a>.
   1. If |block| is true, <a for=list>for each</a> |endpoint| in |policy|'s <a>endpoints</a>:
-     1. Let |body| be a new {{IntegrityPolicyViolationReportBody}}, initialized as follows:
-                 :   {{IntegrityPolicyViolationReportBody/documentURL}}
+     1. Let |body| be a new {{IntegrityViolationReportBody}}, initialized as follows:
+                 :   {{IntegrityViolationReportBody/documentURL}}
                  ::  |documentURL|
-                 :   {{IntegrityPolicyViolationReportBody/blockedURL}}
+                 :   {{IntegrityViolationReportBody/blockedURL}}
                  ::  |blockedURL|
-                 :   {{IntegrityPolicyViolationReportBody/destination}}
+                 :   {{IntegrityViolationReportBody/destination}}
                  ::  |request|'s <a for=request>destination</a>
-                 :   {{IntegrityPolicyViolationReportBody/reportOnly}}
+                 :   {{IntegrityViolationReportBody/reportOnly}}
                  ::  false
      2. <a>Generate and queue a report</a> with the following arguments:
               :   <a for="generate and queue a report"><i>context</i></a>
               ::  |settingsObject|
               :   <a for="generate and queue a report"><i>type</i></a>
-              ::  "`integrity-policy-violation`"
+              ::  "`integrity-violation`"
               :   <a for="generate and queue a report"><i>destination</i></a>
               ::  |endpoint|
               :   <a for="generate and queue a report"><i>data</i></a>
               ::  |body|
   1. If |reportBlock| is true, <a for=list>for each</a> |endpoint| in |reportPolicy|'s <a>endpoints</a>:
-     1. Let |reportBody| be a new {{IntegrityPolicyViolationReportBody}}, initialized as follows:
-                 :   {{IntegrityPolicyViolationReportBody/documentURL}}
+     1. Let |reportBody| be a new {{IntegrityViolationReportBody}}, initialized as follows:
+                 :   {{IntegrityViolationReportBody/documentURL}}
                  ::  |documentURL|
-                 :   {{IntegrityPolicyViolationReportBody/blockedURL}}
+                 :   {{IntegrityViolationReportBody/blockedURL}}
                  ::  |blockedURL|
-                 :   {{IntegrityPolicyViolationReportBody/destination}}
+                 :   {{IntegrityViolationReportBody/destination}}
                  ::  |request|'s <a for=request>destination</a>
-                 :   {{IntegrityPolicyViolationReportBody/reportOnly}}
+                 :   {{IntegrityViolationReportBody/reportOnly}}
                  ::  true 
      2. <a>Generate and queue a report</a> with the following arguments:
               :   <a for="generate and queue a report"><i>context</i></a>
               ::  |settingsObject|
               :   <a for="generate and queue a report"><i>type</i></a>
-              ::  "`integrity-policy-violation`"
+              ::  "`integrity-violation`"
               :   <a for="generate and queue a report"><i>destination</i></a>
               ::  |endpoint|
               :   <a for="generate and queue a report"><i>data</i></a>

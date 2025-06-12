@@ -5,9 +5,9 @@
   <title>Subresource Integrity</title>
   <meta content="ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
-  <meta content="Bikeshed version 9a7a6709a, updated Tue May 27 16:45:34 2025 -0700" name="generator">
+  <meta content="Bikeshed version 275834c42, updated Wed Jun 11 14:18:15 2025 -0700" name="generator">
   <link href="http://www.w3.org/TR/SRI/" rel="canonical">
-  <meta content="2e039a4ac2c7f5832ee227dae7e462438bdf4523" name="revision">
+  <meta content="1d81b5a49a04d943a2b768eff88246dcf48eff5d" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>/* Boilerplate: style-autolinks */
@@ -830,9 +830,13 @@ dd:not(:last-child) > .wpt-tests-block:not([open]):last-child {
 </style>
  <body class="h-entry">
   <div class="head">
-   <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
+   <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/">
+    <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72">
+</a>
+</p>
    <h1 class="p-name no-ref" id="title">Subresource Integrity</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2025-06-05">5 June 2025</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>,
+    <time class="dt-updated" datetime="2025-06-12">12 June 2025</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -858,7 +862,8 @@ dd:not(:last-child) > .wpt-tests-block:not([open]):last-child {
     </div>
    </details>
    <div data-fill-with="warning"></div>
-   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/policies/#copyright">Copyright</a> © 2025 <a href="https://www.w3.org/">World Wide Web Consortium</a>. <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/policies/#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/policies/#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/copyright/software-license/" rel="license" title="W3C Software and Document License">permissive document license</a> rules apply. </p>
+   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/policies/#copyright">Copyright</a> © 2025 <a href="https://www.w3.org/">World Wide Web Consortium</a>. <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/policies/#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/policies/#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/copyright/software-license/" rel="license" title="W3C Software and Document License">permissive document license</a> rules apply.
+</p>
    <hr title="Separator for header">
   </div>
   <div class="p-summary" data-fill-with="abstract">
@@ -868,24 +873,48 @@ fetched resource has been delivered without unexpected manipulation.</p>
   </div>
   <h2 class="no-num no-toc no-ref heading settled" id="sotd"><span class="content">Status of this document</span></h2>
   <div data-fill-with="status">
-   <p> This is a public copy of the editors’ draft.
+   <p>
+	This is a public copy of the editors’ draft.
 	It is provided for discussion only and may change at any moment.
 	Its publication here does not imply endorsement of its contents by W3C.
-	Don’t cite this document other than as work in progress. </p>
-   <p> <strong>Changes to this document may be tracked at <a href="https://github.com/w3c/webappsec">https://github.com/w3c/webappsec</a>.</strong> </p>
-   <p> The (<a href="https://lists.w3.org/Archives/Public/public-webappsec/">archived</a>) public mailing list <a href="mailto:public-webappsec@w3.org?Subject=%5BSRI%5D%20PUT%20SUBJECT%20HERE">public-webappsec@w3.org</a> (see <a href="https://www.w3.org/Mail/Request">instructions</a>)
+	Don’t cite this document other than as work in progress.
+
+</p>
+   <p>
+  <strong>Changes to this document may be tracked at
+  <a href="https://github.com/w3c/webappsec">https://github.com/w3c/webappsec</a>.</strong>
+
+</p>
+   <p>
+	The (<a href="https://lists.w3.org/Archives/Public/public-webappsec/">archived</a>) public mailing list
+	<a href="mailto:public-webappsec@w3.org?Subject=%5BSRI%5D%20PUT%20SUBJECT%20HERE">public-webappsec@w3.org</a>
+	(see <a href="https://www.w3.org/Mail/Request">instructions</a>)
 	is preferred for discussion of this specification.
 	When sending e-mail,
 	please put the text “SRI” in the subject,
 	preferably like this:
-	“[SRI] <em>…summary of comment…</em>” </p>
-   <p> This document was produced by the <a href="https://www.w3.org/groups/wg/webappsec">Web Application Security Working Group</a>. </p>
-   <p> This document was produced by a group operating under
+	“[SRI] <em>…summary of comment…</em>”
+
+</p>
+   <p>
+	This document was produced by the
+  <a href="https://www.w3.org/groups/wg/webappsec">Web Application Security Working Group</a>.
+
+</p>
+   <p>
+	This document was produced by a group operating under
 	the <a href="https://www.w3.org/policies/patent-policy/">W3C Patent Policy</a>.
-	W3C maintains a <a href="https://www.w3.org/groups/wg/webappsec/ipr" rel="disclosure">public list of any patent disclosures</a> made in connection with the deliverables of the group;
+	W3C maintains a <a href="https://www.w3.org/groups/wg/webappsec/ipr" rel="disclosure">public list of any patent disclosures</a>
+	made in connection with the deliverables of the group;
 	that page also includes instructions for disclosing a patent.
-	An individual who has actual knowledge of a patent which the individual believes contains <a href="https://www.w3.org/policies/patent-policy/#def-essential">Essential Claim(s)</a> must disclose the information in accordance with <a href="https://www.w3.org/policies/patent-policy/#sec-Disclosure">section 6 of the W3C Patent Policy</a>. </p>
-   <p> This document is governed by the <a href="https://www.w3.org/policies/process/20231103/" id="w3c_process_revision">03 November 2023 W3C Process Document</a>. </p>
+	An individual who has actual knowledge of a patent which the individual believes contains <a href="https://www.w3.org/policies/patent-policy/#def-essential">Essential Claim(s)</a>
+	must disclose the information in accordance with <a href="https://www.w3.org/policies/patent-policy/#sec-Disclosure">section 6 of the W3C Patent Policy</a>.
+
+</p>
+   <p>
+  This document is governed by the <a href="https://www.w3.org/policies/process/20231103/" id="w3c_process_revision">03 November 2023 W3C Process Document</a>.
+
+</p>
    <p></p>
   </div>
   <div data-fill-with="at-risk"></div>
@@ -935,7 +964,6 @@ fetched resource has been delivered without unexpected manipulation.</p>
         <li><a href="#parse-integrity-policy-headers-section"><span class="secno">3.8.1</span> <span class="content">Parse Integrity-Policy headers</span></a>
         <li><a href="#should-request-be-blocked-by-integrity-policy-section"><span class="secno">3.8.2</span> <span class="content">Should request be blocked by Integrity Policy</span></a>
         <li><a href="#report-violations"><span class="secno">3.8.3</span> <span class="content">Report violations</span></a>
-        <li><a href="#integration"><span class="secno">3.8.4</span> <span class="content">Integration</span></a>
        </ol>
      </ol>
     <li><a href="#proxies"><span class="secno">4</span> <span class="content">Proxies</span></a>
@@ -979,7 +1007,8 @@ fetched resource has been delivered without unexpected manipulation.</p>
   no recourse. Likewise, an attacker who can replace the file on the Content
   Delivery Network (CDN) server has the ability to inject arbitrary content.</p>
    <p>Delivering resources over a secure channel mitigates some of this risk: with
-  TLS <a data-link-type="biblio" href="#biblio-tls" title="The Transport Layer Security (TLS) Protocol Version 1.3">[TLS]</a>, HSTS <a data-link-type="biblio" href="#biblio-rfc6797" title="HTTP Strict Transport Security (HSTS)">[RFC6797]</a>, and pinned public keys <a data-link-type="biblio" href="#biblio-rfc7469" title="Public Key Pinning Extension for HTTP">[RFC7469]</a>, a user agent can be fairly certain
+  TLS <a data-link-type="biblio" href="#biblio-tls" title="The Transport Layer Security (TLS) Protocol Version 1.3">[TLS]</a>, HSTS <a data-link-type="biblio" href="#biblio-rfc6797" title="HTTP Strict Transport Security (HSTS)">[RFC6797]</a>, and pinned public keys
+  <a data-link-type="biblio" href="#biblio-rfc7469" title="Public Key Pinning Extension for HTTP">[RFC7469]</a>, a user agent can be fairly certain
   that it is indeed speaking with the server it believes it’s talking to. These
   mechanisms, however, authenticate <em>only</em> the server, <em>not</em> the content. An
   attacker (or administrator) with access to the server can manipulate content with
@@ -990,21 +1019,26 @@ fetched resource has been delivered without unexpected manipulation.</p>
   with an <code>integrity</code> attribute that contains a cryptographic hash
   of the representation of the resource the author expects to load. For instance,
   an author may wish to load some framework from a shared server rather than hosting it
-  on their own origin. Specifying that the <em>expected</em> SHA-384 hash of <code>https://example.com/example-framework.js</code> is <code>Li9vy3DqF8tnTXuiaAJuML3ky+er10rcgNR/VqsVpcw+ThHmYcwiB1pbOxEbzJr7</code> means
+  on their own origin. Specifying that the <em>expected</em> SHA-384 hash of
+  <code>https://example.com/example-framework.js</code>
+  is <code>Li9vy3DqF8tnTXuiaAJuML3ky+er10rcgNR/VqsVpcw+ThHmYcwiB1pbOxEbzJr7</code> means
   that the user agent can verify that the data it loads from that URL matches
   that expected hash before executing the JavaScript it contains. This
   integrity verification significantly reduces the risk that an attacker can
   substitute malicious content.</p>
-   <p>This example can be communicated to a user agent by adding the hash to a <code>script</code> element, like so:</p>
+   <p>This example can be communicated to a user agent by adding the hash to a
+  <code>script</code> element, like so:</p>
    <div class="example" id="example-59806504">
-    <a class="self-link" href="#example-59806504"></a> 
+    <a class="self-link" href="#example-59806504"></a>
+  
 <pre class="highlight"><c- p>&lt;</c-><c- f>script</c-> <c- e>src</c-><c- o>=</c-><c- s>"https://example.com/example-framework.js"</c->
         <c- e>integrity</c-><c- o>=</c-><c- s>"sha384-Li9vy3DqF8tnTXuiaAJuML3ky+er10rcgNR/VqsVpcw+ThHmYcwiB1pbOxEbzJr7"</c->
         <c- e>crossorigin</c-><c- o>=</c-><c- s>"anonymous"</c-><c- p>>&lt;/</c-><c- f>script</c-><c- p>></c->
 </pre>
    </div>
    <p>Scripts, of course, are not the only response type which would benefit
-  from integrity validation. The scheme specified here also applies to <code>link</code> and future versions of this specification are likely to expand this coverage.</p>
+  from integrity validation. The scheme specified here also applies to <code>link</code>
+  and future versions of this specification are likely to expand this coverage.</p>
    <details class="wpt-tests-block" dir="ltr" lang="en">
     <summary>Tests</summary>
     <ul class="wpt-tests-list">
@@ -1017,7 +1051,8 @@ fetched resource has been delivered without unexpected manipulation.</p>
      <p>Compromise of a third-party service should not automatically mean
   compromise of every site which includes its scripts. Content authors
   will have a mechanism by which they can specify expectations for
-  content they load, meaning for example that they could load a <em>specific</em> script, and not <em>any</em> script that happens to have a
+  content they load, meaning for example that they could load a
+  <em>specific</em> script, and not <em>any</em> script that happens to have a
   particular URL.</p>
     <li data-md>
      <p>The verification mechanism should have error-reporting functionality which
@@ -1031,9 +1066,11 @@ fetched resource has been delivered without unexpected manipulation.</p>
   for globally-distributed users. It is important, however, to ensure that
   the CDN’s servers deliver <em>only</em> the code the author expects them to
   deliver. To mitigate the risk that a CDN compromise (or unexpectedly malicious
-  behavior) would change that site in unfortunate ways, the following <a data-link-type="dfn" href="#integrity-metadata" id="ref-for-integrity-metadata">integrity metadata</a> is added to the <code>link</code> element included on the page:</p>
+  behavior) would change that site in unfortunate ways, the following
+  <a data-link-type="dfn" href="#integrity-metadata" id="ref-for-integrity-metadata">integrity metadata</a> is added to the <code>link</code> element included on the page:</p>
      <div class="example" id="example-ed55c3e6">
-      <a class="self-link" href="#example-ed55c3e6"></a> 
+      <a class="self-link" href="#example-ed55c3e6"></a>
+  
 <pre class="highlight"><c- p>&lt;</c-><c- f>link</c-> <c- e>rel</c-><c- o>=</c-><c- s>"stylesheet"</c-> <c- e>href</c-><c- o>=</c-><c- s>"https://site53.example.net/style.css"</c->
       <c- e>integrity</c-><c- o>=</c-><c- s>"sha384-+/M6kredJcxdsqkczBUjMLvqyHb1K/JThDXWsBVxMEeZHEaMKEOEct339VItX1zB"</c->
       <c- e>crossorigin</c-><c- o>=</c-><c- s>"anonymous"</c-><c- p>></c->
@@ -1045,7 +1082,8 @@ fetched resource has been delivered without unexpected manipulation.</p>
   reviewed is executed, the author generates <a data-link-type="dfn" href="#integrity-metadata" id="ref-for-integrity-metadata①">integrity metadata</a> for
   the script, and adds it to the <code>script</code> element:</p>
      <div class="example" id="example-af0f59ce">
-      <a class="self-link" href="#example-af0f59ce"></a> 
+      <a class="self-link" href="#example-af0f59ce"></a>
+  
 <pre class="highlight"><c- p>&lt;</c-><c- f>script</c-> <c- e>src</c-><c- o>=</c-><c- s>"https://analytics-r-us.example.com/v1.0/include.js"</c->
         <c- e>integrity</c-><c- o>=</c-><c- s>"sha384-MBO5IDfYaE6c6Aao94oZrIOiC6CGiSN2n4QUbHNPhzk5Xhm0djZLQqTpL0HzTUxk"</c->
         <c- e>crossorigin</c-><c- o>=</c-><c- s>"anonymous"</c-><c- p>>&lt;/</c-><c- f>script</c-><c- p>></c->
@@ -1053,7 +1091,8 @@ fetched resource has been delivered without unexpected manipulation.</p>
      </div>
     <li data-md>
      <p>A user agent wishes to ensure that JavaScript code running in high-privilege HTML
-  contexts (for example, a browser’s New Tab page) aren’t manipulated before display. <a data-link-type="dfn" href="#integrity-metadata" id="ref-for-integrity-metadata②">Integrity metadata</a> mitigates the risk that altered JavaScript will run
+  contexts (for example, a browser’s New Tab page) aren’t manipulated before display.
+  <a data-link-type="dfn" href="#integrity-metadata" id="ref-for-integrity-metadata②">Integrity metadata</a> mitigates the risk that altered JavaScript will run
   in these pages' high-privilege contexts.</p>
    </ul>
    <h2 class="heading settled" data-level="2" id="terms"><span class="secno">2. </span><span class="content">Key Concepts and Terminology</span><a class="self-link" href="#terms"></a></h2>
@@ -1061,19 +1100,28 @@ fetched resource has been delivered without unexpected manipulation.</p>
    <p>The term <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="digest">digest</dfn> refers to the base64 encoded result of
   executing a cryptographic hash function on an arbitrary block of data.</p>
    <p>The terms <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin" id="ref-for-concept-origin">origin</a> and <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#same-origin" id="ref-for-same-origin">same origin</a> are defined in HTML. <a data-link-type="biblio" href="#biblio-html" title="HTML Standard">[HTML]</a></p>
-   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="base64-encoding">base64 encoding</dfn> is defined in <a href="https://tools.ietf.org/html/rfc4648#section-4">Section 4 of RFC 4648</a>. <a data-link-type="biblio" href="#biblio-rfc4648" title="The Base16, Base32, and Base64 Data Encodings">[RFC4648]</a></p>
+   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="base64-encoding">base64 encoding</dfn> is defined in <a href="https://tools.ietf.org/html/rfc4648#section-4">Section 4 of RFC 4648</a>.
+  <a data-link-type="biblio" href="#biblio-rfc4648" title="The Base16, Base32, and Base64 Data Encodings">[RFC4648]</a></p>
    <p>The <a data-link-type="dfn" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something">SHA-256</a>, <a data-link-type="dfn" data-refhint-key="37de769a" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something①">SHA-384</a>, and <a data-link-type="dfn" data-refhint-key="a801f883" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something②">SHA-512</a> are part
   of the <a data-link-type="dfn" data-refhint-key="14c46ca8" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something③">SHA-2</a> set of cryptographic hash functions defined by the
   NIST. <a data-link-type="biblio" href="#biblio-sha2" title="FIPS PUB 180-4, Secure Hash Standard">[SHA2]</a></p>
-   <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="valid-sri-hash-algorithm-token-set">valid SRI hash algorithm token set</dfn> is the <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set">ordered set</a> « "<code>sha256</code>", "<code>sha384</code>", "<code>sha512</code>" » (corresponding to <a data-link-type="dfn" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something④">SHA-256</a>, <a data-link-type="dfn" data-refhint-key="37de769a" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something⑤">SHA-384</a>, and <a data-link-type="dfn" data-refhint-key="a801f883" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something⑥">SHA-512</a> respectively). The ordering of this set is
-  meaningful, with stronger algorithms appearing later in the set. See <a href="#priority">§ 3.2.2 Priority</a> and <a href="#get-the-strongest-metadata">§ 3.3.3 Get the strongest metadata from set</a> for
+   <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="valid-sri-hash-algorithm-token-set">valid SRI hash algorithm token set</dfn> is the <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set">ordered set</a>
+  « "<code>sha256</code>", "<code>sha384</code>", "<code>sha512</code>" » (corresponding to <a data-link-type="dfn" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something④">SHA-256</a>,
+  <a data-link-type="dfn" data-refhint-key="37de769a" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something⑤">SHA-384</a>, and <a data-link-type="dfn" data-refhint-key="a801f883" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something⑥">SHA-512</a> respectively). The ordering of this set is
+  meaningful, with stronger algorithms appearing later in the set. See
+  <a href="#priority">§ 3.2.2 Priority</a> and <a href="#get-the-strongest-metadata">§ 3.3.3 Get the strongest metadata from set</a> for
   additional information.</p>
-   <p>A string is a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="valid-sri-hash-algorithm-token">valid SRI hash algorithm token</dfn> if its <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ascii-lowercase" id="ref-for-ascii-lowercase">ASCII lowercase</a> is <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain">contained</a> in the <a data-link-type="dfn" href="#valid-sri-hash-algorithm-token-set" id="ref-for-valid-sri-hash-algorithm-token-set">valid SRI hash algorithm token set</a>.</p>
+   <p>A string is a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="valid-sri-hash-algorithm-token">valid SRI hash algorithm token</dfn> if its
+  <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ascii-lowercase" id="ref-for-ascii-lowercase">ASCII lowercase</a> is <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain">contained</a> in the
+  <a data-link-type="dfn" href="#valid-sri-hash-algorithm-token-set" id="ref-for-valid-sri-hash-algorithm-token-set">valid SRI hash algorithm token set</a>.</p>
    <h3 class="heading settled" data-level="2.1" id="grammar-concepts"><span class="secno">2.1. </span><span class="content">Grammatical Concepts</span><a class="self-link" href="#grammar-concepts"></a></h3>
    <p>The Augmented Backus-Naur Form (ABNF) notation used in this document is
   specified in RFC5234. <a data-link-type="biblio" href="#biblio-abnf" title="Augmented BNF for Syntax Specifications: ABNF">[ABNF]</a></p>
-   <p><a href="https://tools.ietf.org/html/rfc5234#appendix-B.1" id="58fa9b5f0">Appendix B.1</a> of <a data-link-type="biblio" href="#biblio-abnf" title="Augmented BNF for Syntax Specifications: ABNF">[ABNF]</a> defines the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc5234#appendix-B.1" id="ref-for-appendix-B.1">VCHAR</a> (printing characters) and <a data-link-type="dfn" data-refhint-key="fc7b3d90" href="https://tools.ietf.org/html/rfc5234#appendix-B.1" id="ref-for-appendix-B.1①">WSP</a> (whitespace) rules.</p>
-   <p>Content Security Policy defines the <a data-link-type="grammar" href="https://w3c.github.io/webappsec-csp/#grammardef-base64-value" id="ref-for-grammardef-base64-value"><code>base64-value</code></a> and <a data-link-type="grammar" href="https://w3c.github.io/webappsec-csp/#grammardef-hash-algorithm" id="ref-for-grammardef-hash-algorithm"><code>hash-algorithm</code></a> rules. <a data-link-type="biblio" href="#biblio-csp" title="Content Security Policy Level 3">[CSP]</a></p>
+   <p><a href="https://tools.ietf.org/html/rfc5234#appendix-B.1" id="58fa9b5f0">Appendix B.1</a> of
+  <a data-link-type="biblio" href="#biblio-abnf" title="Augmented BNF for Syntax Specifications: ABNF">[ABNF]</a> defines the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc5234#appendix-B.1" id="ref-for-appendix-B.1">VCHAR</a> (printing characters) and <a data-link-type="dfn" data-refhint-key="fc7b3d90" href="https://tools.ietf.org/html/rfc5234#appendix-B.1" id="ref-for-appendix-B.1①">WSP</a>
+  (whitespace) rules.</p>
+   <p>Content Security Policy defines the <a data-link-type="grammar" href="https://w3c.github.io/webappsec-csp/#grammardef-base64-value" id="ref-for-grammardef-base64-value"><code>base64-value</code></a> and
+  <a data-link-type="grammar" href="https://w3c.github.io/webappsec-csp/#grammardef-hash-algorithm" id="ref-for-grammardef-hash-algorithm"><code>hash-algorithm</code></a> rules. <a data-link-type="biblio" href="#biblio-csp" title="Content Security Policy Level 3">[CSP]</a></p>
    <h2 class="heading settled" data-level="3" id="framework"><span class="secno">3. </span><span class="content">Framework</span><a class="self-link" href="#framework"></a></h2>
    <p>The integrity verification mechanism specified here boils down to the
   process of generating a sufficiently strong cryptographic digest for a
@@ -1098,17 +1146,22 @@ fetched resource has been delivered without unexpected manipulation.</p>
    <p>This metadata MUST be encoded in the same format as the <code>hash-source</code> (without
   the single quotes) in <a href="http://www.w3.org/TR/CSP2/#source-list-syntax">section 4.2 of the Content
   Security Policy Level 2 specification</a>.</p>
-   <p>For example, given a script resource containing only the string <code>alert('Hello,   world.');</code>, an author might choose <a data-link-type="dfn" data-refhint-key="37de769a" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something⑦">SHA-384</a> as a hash function. <code>H8BRh8j48O9oYatfu5AZzq6A9RINhZO5H16dQZngK7T62em8MUt1FLm52t+eX6xO</code> is the <a data-link-type="dfn" href="#base64-encoding" id="ref-for-base64-encoding">base64 encoded</a> digest that results. This can be encoded
+   <p>For example, given a script resource containing only the string <code>alert('Hello,   world.');</code>, an author might choose <a data-link-type="dfn" data-refhint-key="37de769a" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something⑦">SHA-384</a> as a hash function.
+  <code>H8BRh8j48O9oYatfu5AZzq6A9RINhZO5H16dQZngK7T62em8MUt1FLm52t+eX6xO</code> is the <a data-link-type="dfn" href="#base64-encoding" id="ref-for-base64-encoding">base64 encoded</a> digest that results. This can be encoded
   as follows:</p>
    <div class="example" id="example-cc8e7f02">
-    <a class="self-link" href="#example-cc8e7f02"></a> 
+    <a class="self-link" href="#example-cc8e7f02"></a>
+  
 <pre>sha384-H8BRh8j48O9oYatfu5AZzq6A9RINhZO5H16dQZngK7T62em8MUt1FLm52t+eX6xO
 </pre>
    </div>
    <div class="note" role="note">
-     Digests may be generated using any number of utilities. <a href="https://www.openssl.org/">OpenSSL</a>, for example, is quite commonly
+    
+  Digests may be generated using any number of utilities. <a href="https://www.openssl.org/">OpenSSL</a>, for example, is quite commonly
   available. The example in this section is the result of the following command
-  line: 
+  line:
+
+  
 <pre class="highlight">echo -n <c- u>"alert('Hello, world.');"</c-> <c- p>|</c-> openssl dgst -sha384 -binary <c- p>|</c-> openssl base64 -A
 </pre>
    </div>
@@ -1127,14 +1180,16 @@ fetched resource has been delivered without unexpected manipulation.</p>
   For example, the resource described in the previous section may be described
   by either of the following hash expressions:</p>
    <div class="example" id="example-a9403be4">
-    <a class="self-link" href="#example-a9403be4"></a> 
+    <a class="self-link" href="#example-a9403be4"></a>
+  
 <pre>sha384-H8BRh8j48O9oYatfu5AZzq6A9RINhZO5H16dQZngK7T62em8MUt1FLm52t+eX6xO
 sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzCinRE7Af1ofPrw==
 </pre>
    </div>
    <p>Authors may choose to specify both, for example:</p>
    <div class="example" id="example-da4338e9">
-    <a class="self-link" href="#example-da4338e9"></a> 
+    <a class="self-link" href="#example-da4338e9"></a>
+  
 <pre class="highlight"><c- p>&lt;</c-><c- f>script</c-> <c- e>src</c-><c- o>=</c-><c- s>"hello_world.js"</c->
    <c- e>integrity</c-><c- o>=</c-><c- s>"sha384-H8BRh8j48O9oYatfu5AZzq6A9RINhZO5H16dQZngK7T62em8MUt1FLm52t+eX6xO</c->
 <c- s>              sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzCinRE7Af1ofPrw=="</c->
@@ -1177,27 +1232,34 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
     <li data-md>
      <p>Let <var>result</var> be the empty set.</p>
     <li data-md>
-     <p>For each <var>item</var> returned by <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#strictly-split" id="ref-for-strictly-split">splitting</a> <var>metadata</var> on spaces:</p>
+     <p>For each <var>item</var> returned by <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#strictly-split" id="ref-for-strictly-split">splitting</a>
+  <var>metadata</var> on spaces:</p>
      <ol>
       <li data-md>
-       <p>Let <var>expression-and-options</var> be the result of <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#strictly-split" id="ref-for-strictly-split①">splitting</a> <var>item</var> on U+003F (?).</p>
+       <p>Let <var>expression-and-options</var> be the result of
+  <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#strictly-split" id="ref-for-strictly-split①">splitting</a> <var>item</var> on U+003F (?).</p>
       <li data-md>
        <p>Let <var>algorithm-expression</var> be <var>expression-and-options</var>[0].</p>
       <li data-md>
        <p>Let <var>base64-value</var> be the empty string.</p>
       <li data-md>
-       <p>Let <var>algorithm-and-value</var> be the result of <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#strictly-split" id="ref-for-strictly-split②">splitting</a> <var>algorithm-expression</var> on U+002D (-).</p>
+       <p>Let <var>algorithm-and-value</var> be the result of
+  <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#strictly-split" id="ref-for-strictly-split②">splitting</a> <var>algorithm-expression</var> on U+002D (-).</p>
       <li data-md>
        <p>Let <var>algorithm</var> be <var>algorithm-and-value</var>[0].</p>
       <li data-md>
-       <p>If <var>algorithm-and-value</var>[1] <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain①">exists</a>, set <var>base64-value</var> to <var>algorithm-and-value</var>[1].</p>
+       <p>If <var>algorithm-and-value</var>[1] <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain①">exists</a>, set
+  <var>base64-value</var> to <var>algorithm-and-value</var>[1].</p>
       <li data-md>
-       <p>If <var>algorithm</var> is not a <a data-link-type="dfn" href="#valid-sri-hash-algorithm-token" id="ref-for-valid-sri-hash-algorithm-token">valid SRI hash algorithm token</a>, then <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#iteration-continue" id="ref-for-iteration-continue">continue</a>.</p>
+       <p>If <var>algorithm</var> is not a <a data-link-type="dfn" href="#valid-sri-hash-algorithm-token" id="ref-for-valid-sri-hash-algorithm-token">valid SRI hash algorithm token</a>, then
+  <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#iteration-continue" id="ref-for-iteration-continue">continue</a>.</p>
       <li data-md>
        <p>Let <var>metadata</var> be the ordered map  «["alg" → <var>algorithm</var>,
   "val" → <var>base64-value</var>]».</p>
-       <p class="note" role="note"><span class="marker">Note:</span> Since no <code>options</code> are defined (see the <a href="#integrity-metadata-description">§ 3.1 Integrity metadata</a>), a corresponding entry is not set
- in <var>metadata</var>. If <code>options</code> are defined in a future version, <var>expression-and-options</var>[1] can be utilized as <code>options</code>.</p>
+       <p class="note" role="note"><span class="marker">Note:</span> Since no <code>options</code> are defined (see the
+ <a href="#integrity-metadata-description">§ 3.1 Integrity metadata</a>), a corresponding entry is not set
+ in <var>metadata</var>. If <code>options</code> are defined in a future version,
+ <var>expression-and-options</var>[1] can be utilized as <code>options</code>.</p>
       <li data-md>
        <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append">Append</a> <var>metadata</var> to <var>result</var>.</p>
      </ol>
@@ -1225,9 +1287,11 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
          <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#iteration-continue" id="ref-for-iteration-continue①">Continue</a>.</p>
        </ol>
       <li data-md>
-       <p>Let <var>currentAlgorithm</var> be <var>strongest</var>["<code>alg</code>"], and <var>currentAlgorithmIndex</var> be the index of <var>currentAlgorithm</var> in the <a data-link-type="dfn" href="#valid-sri-hash-algorithm-token-set" id="ref-for-valid-sri-hash-algorithm-token-set②">valid SRI hash algorithm token set</a>.</p>
+       <p>Let <var>currentAlgorithm</var> be <var>strongest</var>["<code>alg</code>"], and <var>currentAlgorithmIndex</var>
+  be the index of <var>currentAlgorithm</var> in the <a data-link-type="dfn" href="#valid-sri-hash-algorithm-token-set" id="ref-for-valid-sri-hash-algorithm-token-set②">valid SRI hash algorithm token set</a>.</p>
       <li data-md>
-       <p>Let <var>newAlgorithm</var> be the <var>item</var>["<code>alg</code>"], and <var>newAlgorithmIndex</var> be the index of <var>newAlgorithm</var> in the <a data-link-type="dfn" href="#valid-sri-hash-algorithm-token-set" id="ref-for-valid-sri-hash-algorithm-token-set③">valid SRI hash algorithm token set</a>.</p>
+       <p>Let <var>newAlgorithm</var> be the <var>item</var>["<code>alg</code>"], and <var>newAlgorithmIndex</var>
+  be the index of <var>newAlgorithm</var> in the <a data-link-type="dfn" href="#valid-sri-hash-algorithm-token-set" id="ref-for-valid-sri-hash-algorithm-token-set③">valid SRI hash algorithm token set</a>.</p>
       <li data-md>
        <p>If <var>newAlgorithmIndex</var> is less than <var>currentAlgorithmIndex</var>, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#iteration-continue" id="ref-for-iteration-continue②">continue</a>.</p>
       <li data-md>
@@ -1248,11 +1312,13 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
    <h4 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export data-level="3.3.4" data-lt="Do bytes match metadataList?" id="does-response-match-metadatalist"><span class="secno">3.3.4. </span><span class="content">Do <var>bytes</var> match <var>metadataList</var>?</span><a class="self-link" href="#does-response-match-metadatalist" id="ref-for-does-response-match-metadatalist①"></a></h4>
    <ol>
     <li data-md>
-     <p>Let <var>parsedMetadata</var> be the result of <a data-link-type="dfn" href="#parse-metadata" id="ref-for-parse-metadata">parsing <var>metadataList</var></a>.</p>
+     <p>Let <var>parsedMetadata</var> be the result of
+  <a data-link-type="dfn" href="#parse-metadata" id="ref-for-parse-metadata">parsing <var>metadataList</var></a>.</p>
     <li data-md>
      <p>If <var>parsedMetadata</var> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-is-empty" id="ref-for-list-is-empty">is empty</a> set, return <code>true</code>.</p>
     <li data-md>
-     <p>Let <var>metadata</var> be the result of <a href="#get-the-strongest-metadata"> getting the strongest metadata from <var>parsedMetadata</var></a>.</p>
+     <p>Let <var>metadata</var> be the result of <a href="#get-the-strongest-metadata">
+  getting the strongest metadata from <var>parsedMetadata</var></a>.</p>
     <li data-md>
      <p>For each <var>item</var> in <var>metadata</var>:</p>
      <ol>
@@ -1261,9 +1327,11 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
       <li data-md>
        <p>Let <var>expectedValue</var> be the <var>item</var>["val"].</p>
       <li data-md>
-       <p>Let <var>actualValue</var> be the result of <a href="#apply-algorithm-to-response">applying <var>algorithm</var> to <var>bytes</var> </a>.</p>
+       <p>Let <var>actualValue</var> be the result of <a href="#apply-algorithm-to-response">applying <var>algorithm</var> to <var>bytes</var>
+  </a>.</p>
       <li data-md>
-       <p>If <var>actualValue</var> is a case-sensitive match for <var>expectedValue</var>, return <code>true</code>.</p>
+       <p>If <var>actualValue</var> is a case-sensitive match for
+  <var>expectedValue</var>, return <code>true</code>.</p>
      </ol>
     <li data-md>
      <p>Return <code>false</code>.</p>
@@ -1271,7 +1339,8 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
    <p>This algorithm allows the user agent to accept multiple, valid strong hash
   functions. For example, a developer might write a <code>script</code> element such as:</p>
    <div class="example" id="example-3e451647">
-    <a class="self-link" href="#example-3e451647"></a> 
+    <a class="self-link" href="#example-3e451647"></a>
+  
 <pre class="highlight"><c- p>&lt;</c-><c- f>script</c-> <c- e>src</c-><c- o>=</c-><c- s>"https://example.com/example-framework.js"</c->
         <c- e>integrity</c-><c- o>=</c-><c- s>"sha384-Li9vy3DqF8tnTXuiaAJuML3ky+er10rcgNR/VqsVpcw+ThHmYcwiB1pbOxEbzJr7</c->
 <c- s>                   sha384-+/M6kredJcxdsqkczBUjMLvqyHb1K/JThDXWsBVxMEeZHEaMKEOEct339VItX1zB"</c->
@@ -1279,7 +1348,8 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
 </pre>
    </div>
    <p>which would allow the user agent to accept two different content payloads, one
-  of which matches the first <a data-link-type="dfn" data-refhint-key="37de769a" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something①④">SHA-384</a> hash value and the other matches the second <a data-link-type="dfn" data-refhint-key="37de769a" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something①⑤">SHA-384</a> hash value.</p>
+  of which matches the first <a data-link-type="dfn" data-refhint-key="37de769a" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something①④">SHA-384</a> hash value and the other matches the second
+  <a data-link-type="dfn" data-refhint-key="37de769a" href="https://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf#" id="ref-for-something①⑤">SHA-384</a> hash value.</p>
    <p class="note" role="note"><span class="marker">Note:</span> User agents may allow users to modify the result of this algorithm via
   user preferences, bookmarklets, third-party additions to the user agent, and
   other such mechanisms. For example, redirects generated by an extension like <a href="https://www.eff.org/https-everywhere">HTTPS Everywhere</a> could load and
@@ -1294,7 +1364,8 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
   metadata for some of these elements, a new <code>integrity</code> attribute is added to
   the list of content attributes for the <code>link</code> and <code>script</code> elements. <a data-link-type="biblio" href="#biblio-html" title="HTML Standard">[HTML]</a></p>
    <p class="note" role="note"><span class="marker">Note:</span> A future revision of this specification is likely to include integrity support
-  for all possible subresources, i.e., <code>a</code>, <code>audio</code>, <code>embed</code>, <code>iframe</code>, <code>img</code>, <code>link</code>, <code>object</code>, <code>script</code>, <code>source</code>, <code>track</code>, and <code>video</code> elements.</p>
+  for all possible subresources, i.e., <code>a</code>, <code>audio</code>, <code>embed</code>, <code>iframe</code>, <code>img</code>,
+  <code>link</code>, <code>object</code>, <code>script</code>, <code>source</code>, <code>track</code>, and <code>video</code> elements.</p>
    <h3 class="heading settled" data-level="3.5" id="the-integrity-attribute"><span class="secno">3.5. </span><span class="content">The <code>integrity</code> attribute</span><a class="self-link" href="#the-integrity-attribute"></a></h3>
    <p>The <code>integrity</code> attribute represents <a data-link-type="dfn" href="#integrity-metadata" id="ref-for-integrity-metadata⑤">integrity metadata</a> for an element.
   The value of the attribute MUST be either the empty string, or at least one
@@ -1307,14 +1378,15 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
    <p><code>option-expression</code>s are associated on a per <code>hash-expression</code> basis and are
   applied only to the <code>hash-expression</code> that immediately precedes it.</p>
    <p>In order for user agents to remain fully forwards compatible with future
-  options, the user agent MUST ignore all unrecognized <code>option-expression</code>s.</p>
+  options, the user agent MUST ignore all unrecognized  <code>option-expression</code>s.</p>
    <p class="note" role="note"><span class="marker">Note:</span> Note that while the <code>option-expression</code> has been reserved in the syntax,
   no options have been defined. It is likely that a future version of the spec
   will define a more specific syntax for options, so it is defined here as broadly
   as possible.</p>
    <h3 class="heading settled" data-level="3.6" id="the-integrity-link-processing-option"><span class="secno">3.6. </span><span class="content">The <code>integrity</code> link processing option</span><a class="self-link" href="#the-integrity-link-processing-option"></a></h3>
    <p><a data-link-type="dfn" href="#integrity-metadata" id="ref-for-integrity-metadata⑥">Integrity metadata</a> can also be specified for `<code><a data-link-type="http-header" href="https://tools.ietf.org/html/rfc8288#link" id="ref-for-link">link</a></code>` HTTP response headers
-  as an <code>integrity</code> link parameter which MUST be specified using the same <a data-link-type="grammar" href="#grammardef-integrity-metadata" id="ref-for-grammardef-integrity-metadata"><code>integrity-metadata</code></a> grammar that applies to <code>integrity</code> attributes
+  as an <code>integrity</code> link parameter which MUST be specified using the same
+  <a data-link-type="grammar" href="#grammardef-integrity-metadata" id="ref-for-grammardef-integrity-metadata"><code>integrity-metadata</code></a> grammar that applies to <code>integrity</code> attributes
   on elements. For example:</p>
 <pre class="language-http highlight">Link: &lt;/style.css>; rel=preload; as=style;  crossorigin="anonymous"; integrity="sha256-[digest goes here]"
 </pre>
@@ -1323,15 +1395,20 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
   check, instead returning a network error as defined in Fetch <a data-link-type="biblio" href="#biblio-fetch" title="Fetch Standard">[Fetch]</a>.</p>
    <p class="note" role="note"><span class="marker">Note:</span> On a failed integrity check, an <code>error</code> event is fired. Developers
   wishing to provide a canonical fallback resource (e.g., a resource not served
-  from a CDN, perhaps from a secondary, trusted, but slower source) can catch this <code>error</code> event and provide an appropriate handler to replace the
+  from a CDN, perhaps from a secondary, trusted, but slower source) can catch this
+  <code>error</code> event and provide an appropriate handler to replace the
   failed resource with a different one.</p>
    <h3 class="heading settled" data-level="3.8" id="integrity-policy-section"><span class="secno">3.8. </span><span class="content">Integrity-Policy</span><a class="self-link" href="#integrity-policy-section"></a></h3>
-    The <code>Integrity-Policy</code> and <code>Integrity-Policy-Report-Only</code> HTTP headers enable a document to
+   
+  The <code>Integrity-Policy</code> and <code>Integrity-Policy-Report-Only</code> HTTP headers enable a document to
   enforce a policy regarding the integrity metadata requirements on all the subresources it
-  loads of certain <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-destination" id="ref-for-concept-request-destination">destinations</a>. 
-   <p>The headers' value is a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc9651#name-dictionaries" id="ref-for-name-dictionaries">Dictionary</a> <a data-link-type="biblio" href="#biblio-rfc9651" title="Structured Field Values for HTTP">[RFC9651]</a>, with every member-value being an <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc9651#name-inner-lists" id="ref-for-name-inner-lists">inner list</a> of <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc9651#name-tokens" id="ref-for-name-tokens">tokens</a>.</p>
+  loads of certain <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-destination" id="ref-for-concept-request-destination">destinations</a>.
+
+
+   <p>The headers' value is a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc9651#name-dictionaries" id="ref-for-name-dictionaries">Dictionary</a> <a data-link-type="biblio" href="#biblio-rfc9651" title="Structured Field Values for HTTP">[RFC9651]</a>, with every member-value being an
+  <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc9651#name-inner-lists" id="ref-for-name-inner-lists">inner list</a> of <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc9651#name-tokens" id="ref-for-name-tokens">tokens</a>.</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="source">source</dfn> is a string. The only possible value for it is "<code>inline</code>".</p>
-   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="destination">destination</dfn> is a string. The only possible value for it is "<code>script</code>".</p>
+   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="destination">destination</dfn> is a <a data-link-type="dfn">destination type</a>. The only possible value for it is "<code>script</code>".</p>
    <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="integrity-policy">integrity policy</dfn>, is a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#struct" id="ref-for-struct">struct</a> that contains the following:</p>
    <ul>
     <li data-md>
@@ -1341,19 +1418,24 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
     <li data-md>
      <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="endpoints">endpoints</dfn>, a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list">list</a> of strings, initially empty.</p>
    </ul>
-   <p>When <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="processing-an-integrity-policy">processing an integrity policy</dfn>, with a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-header-list" id="ref-for-concept-header-list">header list</a> <var>headers</var> and a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#header-name" id="ref-for-header-name">header name</a> <var>headerName</var>, do the following:</p>
+   <p>When <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="processing-an-integrity-policy">processing an integrity policy</dfn>, with a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-header-list" id="ref-for-concept-header-list">header list</a> <var>headers</var>
+  and a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#header-name" id="ref-for-header-name">header name</a> <var>headerName</var>, do the following:</p>
    <ol>
     <li data-md>
      <p>Let <var>integrityPolicy</var> be a new <a data-link-type="dfn" href="#integrity-policy" id="ref-for-integrity-policy">integrity policy</a>.</p>
     <li data-md>
-     <p>Let <var>dictionary</var> be the result of <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-header-list-get-structured-header" id="ref-for-concept-header-list-get-structured-header">getting a structured field value</a> from <var>headers</var> given <var>headerName</var> and "<code>dictionary</code>".</p>
+     <p>Let <var>dictionary</var> be the result of <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-header-list-get-structured-header" id="ref-for-concept-header-list-get-structured-header">getting a structured field value</a> from <var>headers</var>
+ given <var>headerName</var> and "<code>dictionary</code>".</p>
     <li data-md>
-     <p>If <var>dictionary</var>["<code>sources</code>"] does not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain②">exist</a> or if its value <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain③">contains</a> "<code>inline</code>", <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append①">append</a> "<code>inline</code>" to <var>integrityPolicy</var>’s <a data-link-type="dfn" href="#sources" id="ref-for-sources">sources</a>.</p>
+     <p>If <var>dictionary</var>["<code>sources</code>"] does not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain②">exist</a> or if its value
+ <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain③">contains</a> "<code>inline</code>", <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append①">append</a> "<code>inline</code>" to
+ <var>integrityPolicy</var>’s <a data-link-type="dfn" href="#sources" id="ref-for-sources">sources</a>.</p>
     <li data-md>
      <p>If <var>dictionary</var>["<code>blocked-destinations</code>"] <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain④">exists</a>:</p>
      <ol>
       <li data-md>
-       <p>If its value <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain⑤">contains</a> "<code>script</code>", <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append②">append</a> "<code>script</code>" to <var>integrityPolicy</var>’s <a data-link-type="dfn" href="#blocked-destinations" id="ref-for-blocked-destinations">blocked destinations</a>.</p>
+       <p>If its value <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain⑤">contains</a> "<code>script</code>",
+ <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append②">append</a> "<code>script</code>" to <var>integrityPolicy</var>’s <a data-link-type="dfn" href="#blocked-destinations" id="ref-for-blocked-destinations">blocked destinations</a>.</p>
      </ol>
     <li data-md>
      <p>If <var>dictionary</var>["<code>endpoints</code>"] <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists">exists</a>:</p>
@@ -1365,27 +1447,38 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
      <p>Return <var>integrityPolicy</var>.</p>
    </ol>
    <h4 class="heading settled" data-level="3.8.1" id="parse-integrity-policy-headers-section"><span class="secno">3.8.1. </span><span class="content">Parse Integrity-Policy headers</span><a class="self-link" href="#parse-integrity-policy-headers-section"></a></h4>
-    To <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="parse-integrity-policy-headers">parse Integrity-Policy headers</dfn>, given a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response" id="ref-for-concept-response">Response</a> <var>response</var> and a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#policy-container" id="ref-for-policy-container">policy container</a> <var>container</var>, do the following: 
+   
+  To <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="parse-integrity-policy-headers">parse Integrity-Policy headers</dfn>, given a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response" id="ref-for-concept-response">Response</a> <var>response</var>
+  and a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#policy-container" id="ref-for-policy-container">policy container</a> <var>container</var>, do the following:
+
+
    <ol>
     <li data-md>
      <p>Let <var>headers</var> be <var>response</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response-header-list" id="ref-for-concept-response-header-list">header list</a>.</p>
     <li data-md>
      <p>If <var>headers</var> <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#header-list-contains" id="ref-for-header-list-contains">contains</a> <code>integrity-policy</code>,
- set <var>container</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#policy-container-integrity-policy" id="ref-for-policy-container-integrity-policy">integrity policy</a> be the result of running <a data-link-type="dfn" href="#processing-an-integrity-policy" id="ref-for-processing-an-integrity-policy">processing an integrity policy</a> with the corresponding <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#header-value" id="ref-for-header-value">header value</a>.</p>
+ set <var>container</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#policy-container-integrity-policy" id="ref-for-policy-container-integrity-policy">integrity policy</a> be the result of running
+ <a data-link-type="dfn" href="#processing-an-integrity-policy" id="ref-for-processing-an-integrity-policy">processing an integrity policy</a> with the corresponding <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#header-value" id="ref-for-header-value">header value</a>.</p>
     <li data-md>
      <p>If <var>headers</var> <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#header-list-contains" id="ref-for-header-list-contains①">contains</a> <code>integrity-policy-report-only</code>,
- set <var>container</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#policy-container-report-only-integrity-policy" id="ref-for-policy-container-report-only-integrity-policy">report only integrity policy</a> be the result of running <a data-link-type="dfn" href="#processing-an-integrity-policy" id="ref-for-processing-an-integrity-policy①">processing an integrity policy</a> with the corresponding <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#header-value" id="ref-for-header-value①">header value</a>.</p>
+ set <var>container</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#policy-container-report-only-integrity-policy" id="ref-for-policy-container-report-only-integrity-policy">report only integrity policy</a> be the result of running
+ <a data-link-type="dfn" href="#processing-an-integrity-policy" id="ref-for-processing-an-integrity-policy①">processing an integrity policy</a> with the corresponding <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#header-value" id="ref-for-header-value①">header value</a>.</p>
    </ol>
    <h4 class="heading settled" data-level="3.8.2" id="should-request-be-blocked-by-integrity-policy-section"><span class="secno">3.8.2. </span><span class="content">Should request be blocked by Integrity Policy</span><a class="self-link" href="#should-request-be-blocked-by-integrity-policy-section"></a></h4>
-    To determine <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="should-request-be-blocked-by-integrity-policy">should request be blocked by integrity policy</dfn>, given a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request" id="ref-for-concept-request①">request</a> <var>request</var>,
-  do the following: 
+   
+  To determine <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="should-request-be-blocked-by-integrity-policy">should request be blocked by integrity policy</dfn>, given a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request" id="ref-for-concept-request①">request</a> <var>request</var>,
+  do the following:
+
+
    <ol>
     <li data-md>
      <p>Let <var>policyContainer</var> be <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-policy-container" id="ref-for-concept-request-policy-container">policy container</a>.</p>
     <li data-md>
-     <p>Let <var>parsedMetadata</var> be the result of calling <a data-link-type="dfn" href="#parse-metadata" id="ref-for-parse-metadata①">parse metadata</a> with <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-integrity-metadata" id="ref-for-concept-request-integrity-metadata">integrity metadata</a>.</p>
+     <p>Let <var>parsedMetadata</var> be the result of calling <a data-link-type="dfn" href="#parse-metadata" id="ref-for-parse-metadata①">parse metadata</a> with
+ <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-integrity-metadata" id="ref-for-concept-request-integrity-metadata">integrity metadata</a>.</p>
     <li data-md>
-     <p>If <var>parsedMetadata</var> is not the empty set and <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-mode" id="ref-for-concept-request-mode">mode</a> is either "<code>cors</code>" or "<code>same-origin</code>",
+     <p>If <var>parsedMetadata</var> is not the empty set and
+ <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-mode" id="ref-for-concept-request-mode">mode</a> is either "<code>cors</code>" or "<code>same-origin</code>",
  return "Allowed".</p>
     <li data-md>
      <p>If <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-url" id="ref-for-concept-request-url">url</a> is <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#is-local" id="ref-for-is-local">local</a>,
@@ -1406,14 +1499,17 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
      <p>Let <var>reportBlock</var> be a boolean, initially false.</p>
     <li data-md>
      <p>If <var>policy</var>’s <a data-link-type="dfn" href="#sources" id="ref-for-sources①">sources</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain⑥">contains</a> "<code>inline</code>"
- and <var>policy</var>’s <a data-link-type="dfn" href="#blocked-destinations" id="ref-for-blocked-destinations①">blocked destinations</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain⑦">contains</a> <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-destination" id="ref-for-concept-request-destination①">destination</a>,
+ and <var>policy</var>’s <a data-link-type="dfn" href="#blocked-destinations" id="ref-for-blocked-destinations①">blocked destinations</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain⑦">contains</a>
+ <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-destination" id="ref-for-concept-request-destination①">destination</a>,
  set <var>block</var> to true.</p>
     <li data-md>
      <p>If <var>reportPolicy</var>’s <a data-link-type="dfn" href="#sources" id="ref-for-sources②">sources</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain⑧">contains</a> "<code>inline</code>"
- and <var>reportPolicy</var>’s <a data-link-type="dfn" href="#blocked-destinations" id="ref-for-blocked-destinations②">blocked destinations</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain⑨">contains</a> <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-destination" id="ref-for-concept-request-destination②">destination</a>,
+ and <var>reportPolicy</var>’s <a data-link-type="dfn" href="#blocked-destinations" id="ref-for-blocked-destinations②">blocked destinations</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain⑨">contains</a>
+ <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-destination" id="ref-for-concept-request-destination②">destination</a>,
  set <var>reportBlock</var> to true.</p>
     <li data-md>
-     <p>If <var>block</var> is true or <var>reportBlock</var> is true, then <a data-link-type="dfn" href="#report-violation" id="ref-for-report-violation">report violation</a> with <var>request</var>, <var>block</var>, <var>reportBlock</var>, <var>policy</var> and <var>reportPolicy</var>.</p>
+     <p>If <var>block</var> is true or <var>reportBlock</var> is true, then <a data-link-type="dfn" href="#report-violation" id="ref-for-report-violation">report violation</a>
+ with <var>request</var>, <var>block</var>, <var>reportBlock</var>, <var>policy</var> and <var>reportPolicy</var>.</p>
     <li data-md>
      <p>If <var>block</var> is true, then return "<code>Blocked</code>"; otherwise "<code>Allowed</code>".</p>
    </ol>
@@ -1524,8 +1620,6 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
        </dl>
      </ol>
    </ol>
-   <h4 class="heading settled" data-level="3.8.4" id="integration"><span class="secno">3.8.4. </span><span class="content">Integration</span><a class="self-link" href="#integration"></a></h4>
-   <p>Expand step 7 of <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#main-fetch" id="ref-for-main-fetch">main fetch</a> to call <a data-link-type="dfn" href="#should-request-be-blocked-by-integrity-policy" id="ref-for-should-request-be-blocked-by-integrity-policy">should request be blocked by integrity policy</a> and return a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-network-error" id="ref-for-concept-network-error">network error</a> if it returns "<code>Blocked</code>".</p>
    <h2 class="heading settled" data-level="4" id="proxies"><span class="secno">4. </span><span class="content">Proxies</span><a class="self-link" href="#proxies"></a></h2>
    <p>Optimizing proxies and other intermediate servers which modify the
   responses MUST ensure that the digest associated
@@ -1546,7 +1640,7 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
   the digest in-flight (or remove it entirely, or do absolutely anything else to
   the document), just as they could alter the response the hash is meant to
   validate.  Thus, it is recommended that authors deliver integrity metadata only
-  to a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#secure-context" id="ref-for-secure-context①">Secure Context</a>. See also <a href="http://www.w3.org/2001/tag/doc/web-https ">Securing the Web</a>.</p>
+  to a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#secure-context" id="ref-for-secure-context①">Secure Context</a>. See also  <a href="http://www.w3.org/2001/tag/doc/web-https ">Securing the Web</a>.</p>
    <h3 class="heading settled" data-level="5.2" id="hash-collision-attacks"><span class="secno">5.2. </span><span class="content">Hash collision attacks</span><a class="self-link" href="#hash-collision-attacks"></a></h3>
    <p>Digests are only as strong as the hash function used to generate them. It is
   recommended that user agents refuse to support known-weak hashing functions and
@@ -1559,9 +1653,11 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
   expected and, in some cases, broken, so it is important that user agents stay
   aware of these developments.</p>
    <h3 class="heading settled" data-level="5.3" id="cross-origin-data-leakage"><span class="secno">5.3. </span><span class="content">Cross-origin data leakage</span><a class="self-link" href="#cross-origin-data-leakage"></a></h3>
-   <p>This specification requires integrity-protected cross-origin requests to use the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#cors-protocol" id="ref-for-cors-protocol">CORS protocol</a> to ensure that the resource’s content is explicitly shared
+   <p>This specification requires integrity-protected cross-origin requests to use the
+  <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#cors-protocol" id="ref-for-cors-protocol">CORS protocol</a> to ensure that the resource’s content is explicitly shared
   with the requestor. If that requirement were omitted,
-  attackers could violate the <a href="http://www.w3.org/Security/wiki/Same_Origin_Policy">same-origin policy</a> and determine whether a cross-origin resource has certain content.</p>
+  attackers could violate the <a href="http://www.w3.org/Security/wiki/Same_Origin_Policy">same-origin policy</a>
+  and determine whether a cross-origin resource has certain content.</p>
    <p>Attackers would attempt to load the resource with a known digest, and
   watch for load failures. If the load fails, the attacker could surmise
   that the response didn’t match the hash and thereby gain some insight into
@@ -1570,7 +1666,8 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
    <p>Moreover, attackers could brute-force specific values in an otherwise
   static resource. Consider a JSON response that looks like this:</p>
    <div class="example" id="example-6c05895b">
-    <a class="self-link" href="#example-6c05895b"></a> 
+    <a class="self-link" href="#example-6c05895b"></a>
+  
 <pre class="highlight"><c- p>{</c-><c- f>"status"</c-><c- p>:</c-> <c- u>"authenticated"</c-><c- p>,</c-> <c- f>"username"</c-><c- p>:</c-> <c- u>"admin"</c-><c- p>}</c->
 </pre>
    </div>
@@ -1579,7 +1676,8 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
   to load the document. A successful load would confirm that the attacker
   has correctly guessed the username.</p>
    <h2 class="heading settled" data-level="6" id="acknowledgements"><span class="secno">6. </span><span class="content">Acknowledgements</span><a class="self-link" href="#acknowledgements"></a></h2>
-   <p>Much of the content here is inspired heavily by Gervase Markham’s <a href="http://www.gerv.net/security/link-fingerprints/">Link Fingerprints</a> concept as well as WHATWG’s <a href="https://wiki.whatwg.org/wiki/Link_Hashes">Link Hashes</a>.</p>
+   <p>Much of the content here is inspired heavily by Gervase Markham’s <a href="http://www.gerv.net/security/link-fingerprints/">Link Fingerprints</a>
+  concept as well as WHATWG’s <a href="https://wiki.whatwg.org/wiki/Link_Hashes">Link Hashes</a>.</p>
    <p>A special thanks to Mike West for his invaluable contributions to the initial
   version of this spec. Thanks to Brad Hill, Anne van Kesteren, Jonathan
   Kingston, Fatih Kilic, Mark Nottingham, Sergey Shekyan, Dan Veditz, Eduardo Vela,
@@ -1595,21 +1693,31 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
     in the normative parts of this document
     are to be interpreted as described in RFC 2119.
     However, for readability,
-    these words do not appear in all uppercase letters in this specification. </p>
+    these words do not appear in all uppercase letters in this specification.
+
+    </p>
    <p>All of the text of this specification is normative
-    except sections explicitly marked as non-normative, examples, and notes. <a data-link-type="biblio" href="#biblio-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">[RFC2119]</a> </p>
+    except sections explicitly marked as non-normative, examples, and notes. <a data-link-type="biblio" href="#biblio-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">[RFC2119]</a>
+
+    </p>
    <p>Examples in this specification are introduced with the words “for example”
     or are set apart from the normative text
     with <code>class="example"</code>,
-    like this: </p>
+    like this:
+
+    </p>
    <div class="example" id="w3c-example">
-    <a class="self-link" href="#w3c-example"></a> 
-    <p>This is an example of an informative example. </p>
+    <a class="self-link" href="#w3c-example"></a>
+        
+    <p>This is an example of an informative example.
+    </p>
    </div>
    <p>Informative notes begin with the word “Note”
     and are set apart from the normative text
     with <code>class="note"</code>,
-    like this: </p>
+    like this:
+
+    </p>
    <p class="note" role="note">Note, this is an informative note.</p>
    <details class="wpt-tests-block" dir="ltr" lang="en" open>
     <summary>Tests</summary>
@@ -1626,14 +1734,17 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
     or "return false and abort these steps")
     are to be interpreted with the meaning of the key word
     ("must", "should", "may", etc)
-    used in introducing the algorithm. </p>
+    used in introducing the algorithm.
+
+    </p>
     <p>Conformance requirements phrased as algorithms or specific steps
     can be implemented in any manner,
     so long as the end result is equivalent.
     In particular, the algorithms defined in this specification
     are intended to be easy to understand
     and are not intended to be performant.
-    Implementers are encouraged to optimize. </p>
+    Implementers are encouraged to optimize.
+</p>
    </section>
   </div>
   <script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script>
@@ -1705,9 +1816,7 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
      <li><span class="dfn-paneled" id="c07f8014">header value</span>
      <li><span class="dfn-paneled" id="d79a826f">integrity metadata</span>
      <li><span class="dfn-paneled" id="8f26de31">is local</span>
-     <li><span class="dfn-paneled" id="821e824a">main fetch</span>
      <li><span class="dfn-paneled" id="cb98f71f">mode</span>
-     <li><span class="dfn-paneled" id="eb1b1af3">network error</span>
      <li><span class="dfn-paneled" id="86efadaf">policy container</span>
      <li><span class="dfn-paneled" id="55213b5b">request</span>
      <li><span class="dfn-paneled" id="ee7bba09">response</span>
@@ -2089,7 +2198,6 @@ let dfnPanelData = {
 "75393c04": {"dfnID":"75393c04","dfnText":"exist (for list)","external":true,"refSections":[{"refs":[{"id":"ref-for-list-contain"}],"title":"2. Key Concepts and Terminology"},{"refs":[{"id":"ref-for-list-contain\u2460"}],"title":"3.3.2. Parse metadata"},{"refs":[{"id":"ref-for-list-contain\u2461"},{"id":"ref-for-list-contain\u2462"},{"id":"ref-for-list-contain\u2463"},{"id":"ref-for-list-contain\u2464"}],"title":"3.8. Integrity-Policy"},{"refs":[{"id":"ref-for-list-contain\u2465"},{"id":"ref-for-list-contain\u2466"},{"id":"ref-for-list-contain\u2467"},{"id":"ref-for-list-contain\u2468"}],"title":"3.8.2. Should request be blocked by Integrity Policy"}],"url":"https://infra.spec.whatwg.org/#list-contain"},
 "77b4c09a": {"dfnID":"77b4c09a","dfnText":"assert","external":true,"refSections":[{"refs":[{"id":"ref-for-assert"},{"id":"ref-for-assert\u2460"},{"id":"ref-for-assert\u2461"}],"title":"3.8.3. Report violations"}],"url":"https://infra.spec.whatwg.org/#assert"},
 "7ed9d314": {"dfnID":"7ed9d314","dfnText":"generate and queue a report","external":true,"refSections":[{"refs":[{"id":"ref-for-generate-and-queue-a-report"},{"id":"ref-for-generate-and-queue-a-report\u2460"}],"title":"3.8.3. Report violations"}],"url":"https://w3c.github.io/reporting/#generate-and-queue-a-report"},
-"821e824a": {"dfnID":"821e824a","dfnText":"main fetch","external":true,"refSections":[{"refs":[{"id":"ref-for-main-fetch"}],"title":"3.8.4. Integration"}],"url":"https://fetch.spec.whatwg.org/#main-fetch"},
 "83c59a3a": {"dfnID":"83c59a3a","dfnText":"WorkerGlobalScope","external":true,"refSections":[{"refs":[{"id":"ref-for-workerglobalscope"}],"title":"3.8.2. Should request be blocked by Integrity Policy"},{"refs":[{"id":"ref-for-workerglobalscope\u2460"},{"id":"ref-for-workerglobalscope\u2461"}],"title":"3.8.3. Report violations"}],"url":"https://html.spec.whatwg.org/multipage/workers.html#workerglobalscope"},
 "857d5516": {"dfnID":"857d5516","dfnText":"client","external":true,"refSections":[{"refs":[{"id":"ref-for-concept-request-client"}],"title":"3.8.2. Should request be blocked by Integrity Policy"},{"refs":[{"id":"ref-for-concept-request-client\u2460"},{"id":"ref-for-concept-request-client\u2461"}],"title":"3.8.3. Report violations"}],"url":"https://fetch.spec.whatwg.org/#concept-request-client"},
 "86efadaf": {"dfnID":"86efadaf","dfnText":"policy container","external":true,"refSections":[{"refs":[{"id":"ref-for-concept-request-policy-container"}],"title":"3.8.2. Should request be blocked by Integrity Policy"}],"url":"https://fetch.spec.whatwg.org/#concept-request-policy-container"},
@@ -2130,7 +2238,6 @@ let dfnPanelData = {
 "dom-integritypolicyviolationreportbody-reportonly": {"dfnID":"dom-integritypolicyviolationreportbody-reportonly","dfnText":"reportOnly","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-integritypolicyviolationreportbody-reportonly"},{"id":"ref-for-dom-integritypolicyviolationreportbody-reportonly\u2460"}],"title":"3.8.3. Report violations"}],"url":"#dom-integritypolicyviolationreportbody-reportonly"},
 "dom-integritypolicyviolationreportbody-tojson": {"dfnID":"dom-integritypolicyviolationreportbody-tojson","dfnText":"toJSON","external":false,"refSections":[],"url":"#dom-integritypolicyviolationreportbody-tojson"},
 "e5fc5b88": {"dfnID":"e5fc5b88","dfnText":"strictly split","external":true,"refSections":[{"refs":[{"id":"ref-for-strictly-split"},{"id":"ref-for-strictly-split\u2460"},{"id":"ref-for-strictly-split\u2461"}],"title":"3.3.2. Parse metadata"}],"url":"https://infra.spec.whatwg.org/#strictly-split"},
-"eb1b1af3": {"dfnID":"eb1b1af3","dfnText":"network error","external":true,"refSections":[{"refs":[{"id":"ref-for-concept-network-error"}],"title":"3.8.4. Integration"}],"url":"https://fetch.spec.whatwg.org/#concept-network-error"},
 "ee7bba09": {"dfnID":"ee7bba09","dfnText":"response","external":true,"refSections":[{"refs":[{"id":"ref-for-concept-response"}],"title":"3.8.1. Parse Integrity-Policy headers"}],"url":"https://fetch.spec.whatwg.org/#concept-response"},
 "efd1ec5d": {"dfnID":"efd1ec5d","dfnText":"object","external":true,"refSections":[{"refs":[{"id":"ref-for-idl-object"}],"title":"3.8.3. Report violations"}],"url":"https://webidl.spec.whatwg.org/#idl-object"},
 "endpoints": {"dfnID":"endpoints","dfnText":"endpoints","external":false,"refSections":[{"refs":[{"id":"ref-for-endpoints"}],"title":"3.8. Integrity-Policy"},{"refs":[{"id":"ref-for-endpoints\u2460"},{"id":"ref-for-endpoints\u2461"}],"title":"3.8.3. Report violations"}],"url":"#endpoints"},
@@ -2149,7 +2256,7 @@ let dfnPanelData = {
 "parse-metadata": {"dfnID":"parse-metadata","dfnText":"parse metadata","external":false,"refSections":[{"refs":[{"id":"ref-for-parse-metadata"}],"title":"3.3.4. Do bytes match metadataList?"},{"refs":[{"id":"ref-for-parse-metadata\u2460"}],"title":"3.8.2. Should request be blocked by Integrity Policy"}],"url":"#parse-metadata"},
 "processing-an-integrity-policy": {"dfnID":"processing-an-integrity-policy","dfnText":"processing an integrity policy","external":false,"refSections":[{"refs":[{"id":"ref-for-processing-an-integrity-policy"},{"id":"ref-for-processing-an-integrity-policy\u2460"}],"title":"3.8.1. Parse Integrity-Policy headers"}],"url":"#processing-an-integrity-policy"},
 "report-violation": {"dfnID":"report-violation","dfnText":"report violation","external":false,"refSections":[{"refs":[{"id":"ref-for-report-violation"}],"title":"3.8.2. Should request be blocked by Integrity Policy"}],"url":"#report-violation"},
-"should-request-be-blocked-by-integrity-policy": {"dfnID":"should-request-be-blocked-by-integrity-policy","dfnText":"should request be blocked by integrity policy","external":false,"refSections":[{"refs":[{"id":"ref-for-should-request-be-blocked-by-integrity-policy"}],"title":"3.8.4. Integration"}],"url":"#should-request-be-blocked-by-integrity-policy"},
+"should-request-be-blocked-by-integrity-policy": {"dfnID":"should-request-be-blocked-by-integrity-policy","dfnText":"should request be blocked by integrity policy","external":false,"refSections":[],"url":"#should-request-be-blocked-by-integrity-policy"},
 "source": {"dfnID":"source","dfnText":"source","external":false,"refSections":[{"refs":[{"id":"ref-for-source"}],"title":"3.8. Integrity-Policy"}],"url":"#source"},
 "sources": {"dfnID":"sources","dfnText":"sources","external":false,"refSections":[{"refs":[{"id":"ref-for-sources"}],"title":"3.8. Integrity-Policy"},{"refs":[{"id":"ref-for-sources\u2460"},{"id":"ref-for-sources\u2461"}],"title":"3.8.2. Should request be blocked by Integrity Policy"}],"url":"#sources"},
 "valid-sri-hash-algorithm-token": {"dfnID":"valid-sri-hash-algorithm-token","dfnText":"valid SRI hash algorithm token","external":false,"refSections":[{"refs":[{"id":"ref-for-valid-sri-hash-algorithm-token"}],"title":"3.3.2. Parse metadata"},{"refs":[{"id":"ref-for-valid-sri-hash-algorithm-token\u2460"}],"title":"3.3.3. Get the strongest metadata from set"}],"url":"#valid-sri-hash-algorithm-token"},
@@ -2561,7 +2668,6 @@ let refsData = {
 "#parse-metadata": {"displayText":"parse metadata","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"parse metadata","type":"dfn","url":"#parse-metadata"},
 "#processing-an-integrity-policy": {"displayText":"processing an integrity policy","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"processing an integrity policy","type":"dfn","url":"#processing-an-integrity-policy"},
 "#report-violation": {"displayText":"report violation","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"report violation","type":"dfn","url":"#report-violation"},
-"#should-request-be-blocked-by-integrity-policy": {"displayText":"should request be blocked by integrity policy","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"should request be blocked by integrity policy","type":"dfn","url":"#should-request-be-blocked-by-integrity-policy"},
 "#source": {"displayText":"source","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"source","type":"dfn","url":"#source"},
 "#sources": {"displayText":"sources","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"sources","type":"dfn","url":"#sources"},
 "#valid-sri-hash-algorithm-token": {"displayText":"valid sri hash algorithm token","export":true,"for_":[],"level":"2","normative":true,"shortname":"sri","spec":"sri-2","status":"local","text":"valid sri hash algorithm token","type":"dfn","url":"#valid-sri-hash-algorithm-token"},
@@ -2575,7 +2681,6 @@ let refsData = {
 "https://dom.spec.whatwg.org/#dom-document-url": {"displayText":"URL","export":true,"for_":["Document"],"level":"1","normative":true,"shortname":"dom","spec":"dom","status":"current","text":"URL","type":"attribute","url":"https://dom.spec.whatwg.org/#dom-document-url"},
 "https://fetch.spec.whatwg.org/#concept-header-list": {"displayText":"header list","export":true,"for_":[],"level":"1","normative":true,"shortname":"fetch","spec":"fetch","status":"current","text":"header list","type":"dfn","url":"https://fetch.spec.whatwg.org/#concept-header-list"},
 "https://fetch.spec.whatwg.org/#concept-header-list-get-structured-header": {"displayText":"get a structured field value","export":true,"for_":["header list"],"level":"1","normative":true,"shortname":"fetch","spec":"fetch","status":"current","text":"get a structured field value","type":"dfn","url":"https://fetch.spec.whatwg.org/#concept-header-list-get-structured-header"},
-"https://fetch.spec.whatwg.org/#concept-network-error": {"displayText":"network error","export":true,"for_":[],"level":"1","normative":true,"shortname":"fetch","spec":"fetch","status":"current","text":"network error","type":"dfn","url":"https://fetch.spec.whatwg.org/#concept-network-error"},
 "https://fetch.spec.whatwg.org/#concept-request": {"displayText":"request","export":true,"for_":[],"level":"1","normative":true,"shortname":"fetch","spec":"fetch","status":"current","text":"request","type":"dfn","url":"https://fetch.spec.whatwg.org/#concept-request"},
 "https://fetch.spec.whatwg.org/#concept-request-client": {"displayText":"client","export":true,"for_":["request"],"level":"1","normative":true,"shortname":"fetch","spec":"fetch","status":"current","text":"client","type":"dfn","url":"https://fetch.spec.whatwg.org/#concept-request-client"},
 "https://fetch.spec.whatwg.org/#concept-request-destination": {"displayText":"destination","export":true,"for_":["request"],"level":"1","normative":true,"shortname":"fetch","spec":"fetch","status":"current","text":"destination","type":"dfn","url":"https://fetch.spec.whatwg.org/#concept-request-destination"},
@@ -2590,7 +2695,6 @@ let refsData = {
 "https://fetch.spec.whatwg.org/#header-name": {"displayText":"header name","export":true,"for_":[],"level":"1","normative":true,"shortname":"fetch","spec":"fetch","status":"current","text":"header name","type":"dfn","url":"https://fetch.spec.whatwg.org/#header-name"},
 "https://fetch.spec.whatwg.org/#header-value": {"displayText":"header value","export":true,"for_":[],"level":"1","normative":true,"shortname":"fetch","spec":"fetch","status":"current","text":"header value","type":"dfn","url":"https://fetch.spec.whatwg.org/#header-value"},
 "https://fetch.spec.whatwg.org/#is-local": {"displayText":"is local","export":true,"for_":[],"level":"1","normative":true,"shortname":"fetch","spec":"fetch","status":"current","text":"is local","type":"dfn","url":"https://fetch.spec.whatwg.org/#is-local"},
-"https://fetch.spec.whatwg.org/#main-fetch": {"displayText":"main fetch","export":true,"for_":[],"level":"","normative":true,"shortname":"fetch","spec":"fetch","status":"anchor-block","text":"main fetch","type":"dfn","url":"https://fetch.spec.whatwg.org/#main-fetch"},
 "https://html.spec.whatwg.org/multipage/browsers.html#concept-origin": {"displayText":"origin","export":true,"for_":[],"level":"1","normative":true,"shortname":"html","spec":"html","status":"current","text":"origin","type":"dfn","url":"https://html.spec.whatwg.org/multipage/browsers.html#concept-origin"},
 "https://html.spec.whatwg.org/multipage/browsers.html#policy-container": {"displayText":"policy container","export":true,"for_":[],"level":"1","normative":true,"shortname":"html","spec":"html","status":"current","text":"policy container","type":"dfn","url":"https://html.spec.whatwg.org/multipage/browsers.html#policy-container"},
 "https://html.spec.whatwg.org/multipage/browsers.html#policy-container-integrity-policy": {"displayText":"integrity policy","export":true,"for_":["policy container"],"level":"1","normative":true,"shortname":"html","spec":"html","status":"current","text":"integrity policy","type":"dfn","url":"https://html.spec.whatwg.org/multipage/browsers.html#policy-container-integrity-policy"},
@@ -2628,7 +2732,7 @@ let refsData = {
 "https://w3c.github.io/reporting/#generate-and-queue-a-report-data": {"displayText":"data","export":true,"for_":["generate and queue a report"],"level":"1","normative":true,"shortname":"reporting","spec":"reporting-1","status":"current","text":"data","type":"dfn","url":"https://w3c.github.io/reporting/#generate-and-queue-a-report-data"},
 "https://w3c.github.io/reporting/#generate-and-queue-a-report-destination": {"displayText":"destination","export":true,"for_":["generate and queue a report"],"level":"1","normative":true,"shortname":"reporting","spec":"reporting-1","status":"current","text":"destination","type":"dfn","url":"https://w3c.github.io/reporting/#generate-and-queue-a-report-destination"},
 "https://w3c.github.io/reporting/#generate-and-queue-a-report-type": {"displayText":"type","export":true,"for_":["generate and queue a report"],"level":"1","normative":true,"shortname":"reporting","spec":"reporting-1","status":"current","text":"type","type":"dfn","url":"https://w3c.github.io/reporting/#generate-and-queue-a-report-type"},
-"https://w3c.github.io/reporting/#reportbody": {"displayText":"ReportBody","export":true,"for_":[],"level":"1","normative":true,"shortname":"reporting","spec":"reporting-1","status":"current","text":"ReportBody","type":"interface","url":"https://w3c.github.io/reporting/#reportbody"},
+"https://w3c.github.io/reporting/#reportbody": {"displayText":"ReportBody","export":true,"for_":[],"level":"1","normative":true,"shortname":"reporting","spec":"reporting-1","status":"current","text":"ReportBody","type":"dictionary","url":"https://w3c.github.io/reporting/#reportbody"},
 "https://w3c.github.io/reporting/#strip-url-for-use-in-reports": {"displayText":"strip URL for use in reports","export":true,"for_":[],"level":"1","normative":true,"shortname":"reporting","spec":"reporting-1","status":"current","text":"strip url for use in reports","type":"dfn","url":"https://w3c.github.io/reporting/#strip-url-for-use-in-reports"},
 "https://w3c.github.io/webappsec-csp/#grammardef-base64-value": {"displayText":"base64-value","export":true,"for_":[],"level":"3","normative":true,"shortname":"csp","spec":"csp3","status":"current","text":"base64-value","type":"grammar","url":"https://w3c.github.io/webappsec-csp/#grammardef-base64-value"},
 "https://w3c.github.io/webappsec-csp/#grammardef-hash-algorithm": {"displayText":"hash-algorithm","export":true,"for_":[],"level":"3","normative":true,"shortname":"csp","spec":"csp3","status":"current","text":"hash-algorithm","type":"grammar","url":"https://w3c.github.io/webappsec-csp/#grammardef-hash-algorithm"},

@@ -5,9 +5,9 @@
   <title>Subresource Integrity</title>
   <meta content="ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
-  <meta content="Bikeshed version 275834c42, updated Wed Jun 11 14:18:15 2025 -0700" name="generator">
+  <meta content="Bikeshed version 618007319, updated Thu Jun 26 17:23:55 2025 -0700" name="generator">
   <link href="http://www.w3.org/TR/SRI/" rel="canonical">
-  <meta content="ab68b582ff32f3221dab2354f910e183e52e77bc" name="revision">
+  <meta content="679d68564b9bac07d2db0b579afab79c7cd84b4f" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>/* Boilerplate: style-autolinks */
@@ -836,7 +836,7 @@ dd:not(:last-child) > .wpt-tests-block:not([open]):last-child {
 </p>
    <h1 class="p-name no-ref" id="title">Subresource Integrity</h1>
    <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>,
-    <time class="dt-updated" datetime="2025-06-12">12 June 2025</time></p>
+    <time class="dt-updated" datetime="2025-06-30">30 June 2025</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -1269,8 +1269,7 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
    <h4 class="heading settled" data-level="3.3.3" id="get-the-strongest-metadata"><span class="secno">3.3.3. </span><span class="content">Get the strongest metadata from <var>set</var></span><a class="self-link" href="#get-the-strongest-metadata"></a></h4>
    <ol>
     <li data-md>
-     <p>Let <var>result</var> be the empty set and <var>strongest</var> be the empty
-  string.</p>
+     <p>Let <var>result</var> be the empty set and <var>strongest</var> be null.</p>
     <li data-md>
      <p>For each <var>item</var> in <var>set</var>:</p>
      <ol>
@@ -1408,7 +1407,7 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
    <p>The headers' value is a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc9651#name-dictionaries" id="ref-for-name-dictionaries">Dictionary</a> <a data-link-type="biblio" href="#biblio-rfc9651" title="Structured Field Values for HTTP">[RFC9651]</a>, with every member-value being an
   <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc9651#name-inner-lists" id="ref-for-name-inner-lists">inner list</a> of <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc9651#name-tokens" id="ref-for-name-tokens">tokens</a>.</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="source">source</dfn> is a string. The only possible value for it is "<code>inline</code>".</p>
-   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="destination">destination</dfn> is a <a data-link-type="dfn">destination type</a>. The only possible value for it is "<code>script</code>".</p>
+   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="destination">destination</dfn> is a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#destination-type" id="ref-for-destination-type">destination type</a>. The only possible value for it is "<code>script</code>".</p>
    <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="integrity-policy">integrity policy</dfn>, is a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#struct" id="ref-for-struct">struct</a> that contains the following:</p>
    <ul>
     <li data-md>
@@ -1818,6 +1817,7 @@ sha512-Q2bFTOhEALkN8hOms2FKTDLy7eugP2zFZ1T8LCvX42Fp3WoNr3bjZSAHeOsHrbV1Fu9/A0EzC
      <li><span class="dfn-paneled" id="d5434eef">contains</span>
      <li><span class="dfn-paneled" id="a2a30ba8">CORS protocol</span>
      <li><span class="dfn-paneled" id="3ae34c95">destination</span>
+     <li><span class="dfn-paneled" id="e56c6177">destination type</span>
      <li><span class="dfn-paneled" id="5c66de35">get a structured field value</span>
      <li><span class="dfn-paneled" id="d85a6c84">header list</span>
      <li><span class="dfn-paneled" id="f7b00a8b">header list <small>(for response)</small></span>
@@ -2240,6 +2240,7 @@ let dfnPanelData = {
 "dom-integrityviolationreportbody-destination": {"dfnID":"dom-integrityviolationreportbody-destination","dfnText":"destination","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-integrityviolationreportbody-destination"},{"id":"ref-for-dom-integrityviolationreportbody-destination\u2460"}],"title":"3.8.3. Report violations"}],"url":"#dom-integrityviolationreportbody-destination"},
 "dom-integrityviolationreportbody-documenturl": {"dfnID":"dom-integrityviolationreportbody-documenturl","dfnText":"documentURL","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-integrityviolationreportbody-documenturl"},{"id":"ref-for-dom-integrityviolationreportbody-documenturl\u2460"}],"title":"3.8.3. Report violations"}],"url":"#dom-integrityviolationreportbody-documenturl"},
 "dom-integrityviolationreportbody-reportonly": {"dfnID":"dom-integrityviolationreportbody-reportonly","dfnText":"reportOnly","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-integrityviolationreportbody-reportonly"},{"id":"ref-for-dom-integrityviolationreportbody-reportonly\u2460"}],"title":"3.8.3. Report violations"}],"url":"#dom-integrityviolationreportbody-reportonly"},
+"e56c6177": {"dfnID":"e56c6177","dfnText":"destination type","external":true,"refSections":[{"refs":[{"id":"ref-for-destination-type"}],"title":"3.8. Integrity-Policy"}],"url":"https://fetch.spec.whatwg.org/#destination-type"},
 "e5fc5b88": {"dfnID":"e5fc5b88","dfnText":"strictly split","external":true,"refSections":[{"refs":[{"id":"ref-for-strictly-split"},{"id":"ref-for-strictly-split\u2460"},{"id":"ref-for-strictly-split\u2461"}],"title":"3.3.2. Parse metadata"}],"url":"https://infra.spec.whatwg.org/#strictly-split"},
 "ee7bba09": {"dfnID":"ee7bba09","dfnText":"response","external":true,"refSections":[{"refs":[{"id":"ref-for-concept-response"}],"title":"3.8.1. Parse Integrity-Policy headers"}],"url":"https://fetch.spec.whatwg.org/#concept-response"},
 "endpoints": {"dfnID":"endpoints","dfnText":"endpoints","external":false,"refSections":[{"refs":[{"id":"ref-for-endpoints"}],"title":"3.8. Integrity-Policy"},{"refs":[{"id":"ref-for-endpoints\u2460"},{"id":"ref-for-endpoints\u2461"}],"title":"3.8.3. Report violations"}],"url":"#endpoints"},
@@ -2691,6 +2692,7 @@ let refsData = {
 "https://fetch.spec.whatwg.org/#concept-response": {"displayText":"response","export":true,"for_":[],"level":"1","normative":true,"shortname":"fetch","spec":"fetch","status":"current","text":"response","type":"dfn","url":"https://fetch.spec.whatwg.org/#concept-response"},
 "https://fetch.spec.whatwg.org/#concept-response-header-list": {"displayText":"header list","export":true,"for_":["response"],"level":"1","normative":true,"shortname":"fetch","spec":"fetch","status":"current","text":"header list","type":"dfn","url":"https://fetch.spec.whatwg.org/#concept-response-header-list"},
 "https://fetch.spec.whatwg.org/#cors-protocol": {"displayText":"CORS protocol","export":true,"for_":[],"level":"1","normative":true,"shortname":"fetch","spec":"fetch","status":"current","text":"cors protocol","type":"dfn","url":"https://fetch.spec.whatwg.org/#cors-protocol"},
+"https://fetch.spec.whatwg.org/#destination-type": {"displayText":"destination type","export":true,"for_":[],"level":"1","normative":true,"shortname":"fetch","spec":"fetch","status":"current","text":"destination type","type":"dfn","url":"https://fetch.spec.whatwg.org/#destination-type"},
 "https://fetch.spec.whatwg.org/#header-list-contains": {"displayText":"contains","export":true,"for_":["header list"],"level":"1","normative":true,"shortname":"fetch","spec":"fetch","status":"current","text":"contains","type":"dfn","url":"https://fetch.spec.whatwg.org/#header-list-contains"},
 "https://fetch.spec.whatwg.org/#header-name": {"displayText":"header name","export":true,"for_":[],"level":"1","normative":true,"shortname":"fetch","spec":"fetch","status":"current","text":"header name","type":"dfn","url":"https://fetch.spec.whatwg.org/#header-name"},
 "https://fetch.spec.whatwg.org/#header-value": {"displayText":"header value","export":true,"for_":[],"level":"1","normative":true,"shortname":"fetch","spec":"fetch","status":"current","text":"header value","type":"dfn","url":"https://fetch.spec.whatwg.org/#header-value"},

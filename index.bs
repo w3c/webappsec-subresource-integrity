@@ -372,7 +372,7 @@ spec:csp3; type:grammar; text:base64-value
 
   ### Get the strongest metadata from |set| ### {#get-the-strongest-metadata}
 
-  1.  Let |result| be the empty set and |strongest| be empty.
+  1.  Let |result| be the empty set and |strongest| be null.
   2.  For each |item| in |set|:
       1.  Assert: |item|["`alg`"] is a [=valid SRI hash algorithm token=].
       2.  If |result| is the empty set, then:
@@ -387,7 +387,7 @@ spec:csp3; type:grammar; text:base64-value
       6.  Otherwise, if |newAlgorithmIndex| is greater than |currentAlgorithmIndex|:
           1.  Set |strongest| to |item|.
           2.  Set |result| to « |item| ».
-      7.  Otherwise, if |newAlgorithmIndex| and |currentAlgorithmIndex| are the
+      7.  Otherwise, |newAlgorithmIndex| and |currentAlgorithmIndex| are the
           same value. [=set/Append=] |item| to |result|.
   3.  Return |result|.
 

@@ -525,6 +525,8 @@ spec:csp3; type:grammar; text:base64-value
   1. If |dictionary|["`blocked-destinations`"] <a for=list>exists</a>:
     1. If its value <a for=list>contains</a> "`script`",
        <a for=list>append</a> "`script`" to |integrityPolicy|'s <a>blocked destinations</a>.
+    1. If its value <a for=list>contains</a> "`style`",
+       <a for=list>append</a> "`style`" to |integrityPolicy|'s <a>blocked destinations</a>.
   1. If |dictionary|["`endpoints`"] <a for=map>exists</a>:
     1. Set |integrityPolicy|'s <a>endpoints</a> to |dictionary|['endpoints'].
   1. Return |integrityPolicy|.

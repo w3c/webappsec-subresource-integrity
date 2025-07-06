@@ -20,4 +20,3 @@ jobs:
           SOURCE: index.bs
           W3C_BUILD_OVERRIDE: |
             status: WD
-            shortName: sri

@@ -2,8 +2,8 @@
 Title: Subresource Integrity
 Status: ED
 ED: https://w3c.github.io/webappsec-subresource-integrity/
-TR: http://www.w3.org/TR/SRI/
-Shortname: SRI
+TR: http://www.w3.org/TR/sri-2/
+Shortname: sri
 Level: 2
 Editor: Frederik Braun 68466, Mozilla, https://frederik-braun.com, fbraun@mozilla.com
 Former Editor: Devdatta Akhawe, Dropbox Inc., http://devd.me, dev.akhawe@gmail.com

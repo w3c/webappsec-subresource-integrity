@@ -505,7 +505,8 @@ spec:csp3; type:grammar; text:base64-value
   
   A <dfn>source</dfn> is a string. The only possible value for it is "`inline`".
 
-  A <dfn>destination</dfn> is a <a>destination type</a>. The only possible value for it is "`script`".
+  A <dfn>destination</dfn> is a <a>destination type</a>. The possible values for it are
+  "`script`" and "`style`".
 
   An <dfn export>integrity policy</dfn>, is a <a>struct</a> that contains the following:
 

@@ -1,0 +1,25 @@
+name: New feature
+description: Request a new feature in the HTML Standard.
+labels: ["feature-request", "needs implementer interest"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before filling out this form, please take a look at the [W3C Code of Ethics and Professional Conduct](https://www.w3.org/Consortium/cepc/) and our [contributing guidelines](https://github.com/w3c/webappsec-subresource-integrity/blob/main/CONTRIBUTING.md).
+  - type: textarea
+    attributes:
+      label: "What problem are you trying to solve?"
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: "What solutions exist today?"
+  - type: textarea
+    attributes:
+      label: "How would you solve it?"
+  - type: textarea
+    attributes:
+      label: "Anything else?"
+  - type: markdown
+    attributes:
+      value: "Thank you for contributing to SRI!"

@@ -1,0 +1,15 @@
+name: New issue
+description: File a new issue against the Subresource Integrity standard.
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before filling out this form, please take a look at the [W3C Code of Ethics and Professional Conduct](https://www.w3.org/Consortium/cepc/) and our [contributing guidelines](https://github.com/w3c/webappsec-subresource-integrity/blob/main/CONTRIBUTING.md).
+  - type: textarea
+    attributes:
+      label: "What is the issue with Subresource Integrity?"
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: "Thank you for contributing to SRI!"

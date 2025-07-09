@@ -372,24 +372,27 @@ spec:csp3; type:grammar; text:base64-value
 
   ### Get the strongest metadata from |set| ### {#get-the-strongest-metadata}
 
-  1.  Let |result| be the empty set and |strongest| be null.
-  2.  For each |item| in |set|:
+  1.  Let |result| be the empty set.
+  2.  If |set| [=set/is empty=] set, return |result|.
+  3   Let |currentAlgorithmIndex| be null.
+  4.  For each |item| in |set|:
       1.  Assert: |item|["`alg`"] is a [=valid SRI hash algorithm token=].
       2.  If |result| is the empty set, then:
           1. [=set/Append=] |item| to |result|.
-          2. Set |strongest| to |item|.
+          2. Set |currentAlgorithmIndex| to be the index of |item|["`alg`"]
+             in the [=valid SRI hash algorithm token set=].
           3. [=iteration/Continue=].
-      3.  Let |currentAlgorithm| be |strongest|["`alg`"], and |currentAlgorithmIndex|
-          be the index of |currentAlgorithm| in the [=valid SRI hash algorithm token set=].
-      4.  Let |newAlgorithm| be the |item|["`alg`"], and |newAlgorithmIndex|
-          be the index of |newAlgorithm| in the [=valid SRI hash algorithm token set=].
-      5.  If |newAlgorithmIndex| is less than |currentAlgorithmIndex|, [=iteration/continue=].
-      6.  Otherwise, if |newAlgorithmIndex| is greater than |currentAlgorithmIndex|:
-          1.  Set |strongest| to |item|.
+      3.  Let |newAlgorithmIndex| be the index of |item|["`alg`"] in the
+          [=valid SRI hash algorithm token set=].
+      4.  If |newAlgorithmIndex| is less than |currentAlgorithmIndex|, [=iteration/continue=].
+      5.  Otherwise, if |newAlgorithmIndex| is greater than |currentAlgorithmIndex|:
+          1.  Set |currentAlgorithmIndex| to |newAlgorithmIndex|.
           2.  Set |result| to « |item| ».
-      7.  Otherwise, |newAlgorithmIndex| and |currentAlgorithmIndex| are the
+      6.  Otherwise, |newAlgorithmIndex| and |currentAlgorithmIndex| are the
           same value. [=set/Append=] |item| to |result|.
-  3.  Return |result|.
+  5.  Return |result|.
+
+  Note: step 4.1. is optional when |set| is the result of <a>parse metadata</a>.
 
 <h4 dfn export id=does-response-match-metadatalist>Do |bytes| match |metadataList|?</h4>
 

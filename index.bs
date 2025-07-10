@@ -340,7 +340,8 @@ spec:csp3; type:grammar; text:base64-value
 
   ### Parse metadata ### {#parse-metadata-section}
 
-  When asked to <dfn>parse metadata</dfn> given a string |metadata|, run the following steps:
+  When asked to <dfn export>parse metadata</dfn> given a string |metadata|, run the
+  following steps:
 
   Note: the algorithm returns a set of hash expressions whose hash functions are understood
   by the user agent.

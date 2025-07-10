@@ -485,7 +485,7 @@ spec:csp3; type:grammar; text:base64-value
   ## Handling integrity violations ## {#handling-integrity-violations}
 
   The user agent will refuse to render or execute responses that fail an integrity
-  check, instead returning a network error as defined in Fetch [[!Fetch]].
+  check, instead returning a network error as defined in Fetch [[!Fetch]], and may send an <a>sri report</a>.
 
   Note: On a failed integrity check, an `error` event is fired. Developers
   wishing to provide a canonical fallback resource (e.g., a resource not served
@@ -725,6 +725,30 @@ spec:csp3; type:grammar; text:base64-value
   common usernames, and specify those hashes while repeatedly attempting
   to load the document. A successful load would confirm that the attacker
   has correctly guessed the username.
+
+  <!-- ####################################################################### -->
+
+  # SRI Reports # {#sri-report}
+
+  <dfn>SRI Reports</dfn> indicate that the user agent refused to render or execute a response that failed an integrity check.
+
+  <a>SRI Reports</a> are a type of [=report=] and have the <a>report type</a> "sri".
+
+  <pre class="idl">
+    [Exposed=(Window,Worker)]
+    interface SriReportBody : ReportBody {
+      [Default] object toJSON();
+      readonly attribute USVString blockedURL;
+      readonly attribute DOMString? integrityAttribute;
+    };
+  </pre>
+
+  :  {{blockedURL}}
+  :: The URL of the resource that failed the integrity check.
+  :  {{integrityAttribute}}
+  :: The integrity attribute of the element.
+
+  <a>SRI Reports</a>, if sent, must be sent to a <a lt="endpoint">reporting endpoint</a> with a name of <code>sri</code> and must only be sent as the result of a failed integrity check and not any other error to ensure that no privacy or security risk is introduced.
 
   <!-- ####################################################################### -->
 

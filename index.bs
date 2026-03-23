@@ -354,7 +354,7 @@ spec:csp3; type:grammar; text:base64-value
       2.  Let |algorithm-expression| be |expression-and-options|[0].
       3.  Let |base64-value| be the empty string.
       4.  Let |algorithm-and-value| be the result of
-          <a lt="strictly split">splitting</a> |algorithm-expression| on U+002D (-).
+          splitting |algorithm-expression| on the first occurence of U+002D (-).
       5.  Let |algorithm| be |algorithm-and-value|[0].
       6.  If |algorithm| is not a [=valid SRI hash algorithm token=], then
           [=iteration/continue=].

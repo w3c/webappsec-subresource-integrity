@@ -608,6 +608,8 @@ spec:csp3; type:grammar; text:base64-value
   1. Let |settingsObject| be |request|'s <a for=request>client</a>.
   1. Let |global| be |settingsObject|'s <a for="environment settings object">global object</a>.
   1. <a>Assert</a>: |global| is a {{Window}} or a {{WorkerGlobalScope}}.
+  1. Let |context| be |global|'s <a>associated Document</a> if |global| is a {{Window}};
+     otherwise |global|.
   1. Let |url| be null.
   1. If |global| is a {{Window}}, set |url| to |global|'s <a>associated Document</a>'s {{Document/URL}}.
   1. If |global| is a {{WorkerGlobalScope}}, set |url| to |global|'s <a for=WorkerGlobalScope>URL</a>.
@@ -626,7 +628,7 @@ spec:csp3; type:grammar; text:base64-value
                  ::  false
      2. <a>Generate and queue a report</a> with the following arguments:
               :   <a for="generate and queue a report"><i>context</i></a>
-              ::  |settingsObject|
+              ::  |context|
               :   <a for="generate and queue a report"><i>type</i></a>
               ::  "`integrity-violation`"
               :   <a for="generate and queue a report"><i>destination</i></a>
@@ -645,7 +647,7 @@ spec:csp3; type:grammar; text:base64-value
                  ::  true 
      2. <a>Generate and queue a report</a> with the following arguments:
               :   <a for="generate and queue a report"><i>context</i></a>
-              ::  |settingsObject|
+              ::  |context|
               :   <a for="generate and queue a report"><i>type</i></a>
               ::  "`integrity-violation`"
               :   <a for="generate and queue a report"><i>destination</i></a>

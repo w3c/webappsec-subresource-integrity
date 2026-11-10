@@ -609,7 +609,7 @@ spec:csp3; type:grammar; text:base64-value
   1. Let |global| be |settingsObject|'s <a for="environment settings object">global object</a>.
   1. <a>Assert</a>: |global| is a {{Window}} or a {{WorkerGlobalScope}}.
   1. Let |url| be null.
-  1. If |global| is a {{Window}}, set |url| to |global|'s <a>associated Document</a>'s {{Document/URL}}.
+  1. If |global| is a {{Window}}, set |url| to |global|'s <a>associated Document</a>'s <a for=Document>URL</a>.
   1. If |global| is a {{WorkerGlobalScope}}, set |url| to |global|'s <a for=WorkerGlobalScope>URL</a>.
   1. <a>Assert</a>: |url| is a <a for=/>URL</a>.
   1. Let |documentURL| be the result of <a>strip URL for use in reports</a> on |url|.

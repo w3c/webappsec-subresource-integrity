@@ -521,16 +521,23 @@ spec:csp3; type:grammar; text:base64-value
   1. Let |integrityPolicy| be a new <a for=/>integrity policy</a>.
   1. Let |dictionary| be the result of <a>getting a structured field value</a> from |headers|
      given |headerName| and "`dictionary`".
-  1. If |dictionary|["`sources`"] does not <a for=list>exist</a> or if its value
+  1. If |dictionary| is null, then return |integrityPolicy|.
+  1. Let |tokens| be an empty <a>ordered map</a>.
+  1. <a for=map>For each</a> |key| → (|member|, <var ignore>memberParameters</var>) of |dictionary|:
+    1. Set |tokens|[|key|] to an empty <a for=/>list</a>.
+    1. If |member| is not an <a>inner list</a>, then <a>continue</a>.
+    1. <a for=list>For each</a> (|item|, <var ignore>itemParameters</var>) of |member|:
+      1. If |item| is a <a>token</a>, then <a for=list>append</a> its string value to |tokens|[|key|].
+  1. If |tokens|["`sources`"] does not <a for=map>exist</a> or its value
      <a for=list>contains</a> "`inline`", <a for=list>append</a> "`inline`" to
      |integrityPolicy|'s <a>sources</a>.
-  1. If |dictionary|["`blocked-destinations`"] <a for=list>exists</a>:
+  1. If |tokens|["`blocked-destinations`"] <a for=map>exists</a>:
     1. If its value <a for=list>contains</a> "`script`",
        <a for=list>append</a> "`script`" to |integrityPolicy|'s <a>blocked destinations</a>.
     1. If its value <a for=list>contains</a> "`style`",
        <a for=list>append</a> "`style`" to |integrityPolicy|'s <a>blocked destinations</a>.
-  1. If |dictionary|["`endpoints`"] <a for=map>exists</a>:
-    1. Set |integrityPolicy|'s <a>endpoints</a> to |dictionary|['endpoints'].
+  1. If |tokens|["`endpoints`"] <a for=map>exists</a>:
+    1. Set |integrityPolicy|'s <a>endpoints</a> to |tokens|["`endpoints`"].
   1. Return |integrityPolicy|.
 
   <div class=example>
@@ -552,11 +559,11 @@ spec:csp3; type:grammar; text:base64-value
 
   1. Let |headers| be |response|'s <a for=response>header list</a>.
   1. If |headers| <a for="header list">contains</a> ``integrity-policy``,
-     set |container|'s <a for="policy container">integrity policy</a> be the result of running
-     <a>processing an integrity policy</a> with the corresponding <a>header value</a>.
+     set |container|'s <a for="policy container">integrity policy</a> to the result of
+     <a>processing an integrity policy</a> with |headers| and ``integrity-policy``.
   1. If |headers| <a for="header list">contains</a> ``integrity-policy-report-only``,
-     set |container|'s <a>report only integrity policy</a> be the result of running
-     <a>processing an integrity policy</a> with the corresponding <a>header value</a>.
+     set |container|'s <a>report only integrity policy</a> to the result of
+     <a>processing an integrity policy</a> with |headers| and ``integrity-policy-report-only``.
   
   ### Should request be blocked by Integrity Policy ### {#should-request-be-blocked-by-integrity-policy-section}
   To determine <dfn export>should request be blocked by integrity policy</dfn>, given a <a for=/>request</a> |request|,

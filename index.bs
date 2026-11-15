@@ -591,6 +591,8 @@ spec:csp3; type:grammar; text:base64-value
  
   ### Report violations ### {#report-violations}
 
+  The "`integrity-violation`" [=report type=] is [=visible to ReportingObservers=].
+
   <pre class="idl">
     dictionary IntegrityViolationReportBody : ReportBody {
       USVString documentURL;
